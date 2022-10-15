@@ -192,6 +192,7 @@ def Grafico_Scatter(request):
         imagem_relatorio = image.decode('utf-8')
         buffer.close()
 
+
         if form.is_valid():
             print(form.changed_data)
         else:
@@ -200,7 +201,8 @@ def Grafico_Scatter(request):
         context = {
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
-            'nome_do_relatorio' : nome_do_relatorio
+            'nome_do_relatorio' : nome_do_relatorio,
+            'dados' : dados
         }
 
     return render(request, 'base/relatorio_quest_socio_notas.html', context=context)
