@@ -1,0 +1,9 @@
+*{
+    margin: 0%;
+}
+
+.relatorio{
+    max-height: max-content;
+    height: 1000px;
+    width: 100%;
+}

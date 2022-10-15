@@ -1,5 +1,6 @@
 from cProfile import label
 import os
+import uuid
 from django.shortcuts import render
 from django.http import HttpResponse
 import pandas as pd
@@ -69,14 +70,14 @@ def Grafico_Scatter(request):
         # plt.switch_backend('AGG')
 
         width = 0.25         # A largura das barras
-        plt.figure(figsize=(13,5))
+        plt.figure(figsize=(0,0))
 
         r1 = np.arange(len(NU_NOTA_CNCHAmostra))
         r2 = [x + width for x in r1]
         r3 = [x + width for x in r2]
 
 
-        figura = plt.figure(figsize=(17, 33))
+        figura = plt.figure(figsize=(17, 29))
         figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
         'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM')
         
@@ -87,7 +88,7 @@ def Grafico_Scatter(request):
         plt.legend()
         
         # plt.xlim(limits)
-        plt.title(Q, size=16, y=1)
+        plt.title(Q, size=24, y=1)
         plt.ylabel('Nota Média Global no Exame')
         plt.xlabel('Questão Socioeconômica')
 
@@ -181,37 +182,42 @@ def Grafico_Scatter(request):
         # plt.show(figura)
         buffer = BytesIO()
         plt.savefig(buffer, format='png')
+        nome_do_relatorio = 'dados_imagens/' + str(uuid.uuid4()) + '.pdf'
+        nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
+        nome_do_relatorio = nome_do_relatorio
+        relatorio = plt.savefig(fname=nome_destino_do_relatorio, format='pdf')
+        # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')
         buffer.seek(0)
         image_png = buffer.getvalue()
         graph_media = base64.b64encode(image_png)
         graph_media = graph_media.decode('utf-8')
         buffer.close()
 
-        plt.switch_backend('AGG')
+        # plt.switch_backend('AGG')
 
-        width = 0.25         # A largura das barras
-        plt.figure(figsize=(13,25))
+        # width = 0.25         # A largura das barras
+        # plt.figure(figsize=(13,25))
 
 
-        figura1 = plt.figure(figsize=(17, 13))
-        figura.suptitle('Questão Socioeconômica VS Desempenho no Exame')
+        # figura1 = plt.figure(figsize=(17, 13))
+        # figura.suptitle('Questão Socioeconômica VS Desempenho no Exame')
         
-        figura1.add_subplot(621)
-        p1 = plt.scatter(questao, NU_NOTA_CNCHAmostra, color='#BA5ACD', label="questao")
+        # figura1.add_subplot(6, 2, 1)
+        # p1 = plt.scatter(questao, NU_NOTA_CNCHAmostra, color='#BA5ACD', label="questao")
         
-        # plt.xlim(limits)
-        plt.title(Q)
-        plt.ylabel('Nota Média Global no Exame')
-        plt.xlabel('Questão Socioeconômica')
+        # # plt.xlim(limits)
+        # plt.title(Q)
+        # plt.ylabel('Nota Média Global no Exame')
+        # plt.xlabel('Questão Socioeconômica')
 
-        plt.show()
-        buffer = BytesIO()
-        plt.savefig(buffer, format='png')
-        buffer.seek(0)
-        image_png = buffer.getvalue()
-        graph_scatter = base64.b64encode(image_png)
-        graph_scatter = graph_scatter.decode('utf-8')
-        buffer.close()
+        # plt.show()
+        # buffer = BytesIO()
+        # plt.savefig(buffer, format='png')
+        # buffer.seek(0)
+        # image_png = buffer.getvalue()
+        # graph_scatter = base64.b64encode(image_png)
+        # graph_scatter = graph_scatter.decode('utf-8')
+        # buffer.close()
 
         if form.is_valid():
             print(form.changed_data)
@@ -221,8 +227,9 @@ def Grafico_Scatter(request):
         context = {
             'form' : form,
             'graph_media' : graph_media,
-            'graph_scatter' : graph_scatter
+            'relatorio' : relatorio,
+            'nome_do_relatorio' : nome_do_relatorio
         }
 
-    return render(request, 'base/grafico_scatter.html', context=context)
+    return render(request, 'base/relatorio_quest_socio_notas.html', context=context)
     
