@@ -183,7 +183,7 @@ def Grafico_Scatter(request):
         buffer = BytesIO()
         plt.savefig(buffer, format='png')
         nome_do_relatorio = 'dados_imagens/' + str(uuid.uuid4()) + '.pdf'
-        nome_destino_do_relatorio = 'static/' + nome_do_relatorio
+        nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
         plt.savefig(fname=nome_destino_do_relatorio, format='pdf')
         # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')
         buffer.seek(0)
