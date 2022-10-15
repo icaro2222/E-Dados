@@ -189,35 +189,9 @@ def Grafico_Scatter(request):
         # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')
         buffer.seek(0)
         image_png = buffer.getvalue()
-        graph_media = base64.b64encode(image_png)
-        graph_media = graph_media.decode('utf-8')
+        image = base64.b64encode(image_png)
+        imagem_relatorio = image.decode('utf-8')
         buffer.close()
-
-        # plt.switch_backend('AGG')
-
-        # width = 0.25         # A largura das barras
-        # plt.figure(figsize=(13,25))
-
-
-        # figura1 = plt.figure(figsize=(17, 13))
-        # figura.suptitle('Questão Socioeconômica VS Desempenho no Exame')
-        
-        # figura1.add_subplot(6, 2, 1)
-        # p1 = plt.scatter(questao, NU_NOTA_CNCHAmostra, color='#BA5ACD', label="questao")
-        
-        # # plt.xlim(limits)
-        # plt.title(Q)
-        # plt.ylabel('Nota Média Global no Exame')
-        # plt.xlabel('Questão Socioeconômica')
-
-        # plt.show()
-        # buffer = BytesIO()
-        # plt.savefig(buffer, format='png')
-        # buffer.seek(0)
-        # image_png = buffer.getvalue()
-        # graph_scatter = base64.b64encode(image_png)
-        # graph_scatter = graph_scatter.decode('utf-8')
-        # buffer.close()
 
         if form.is_valid():
             print(form.changed_data)
@@ -226,7 +200,7 @@ def Grafico_Scatter(request):
 
         context = {
             'form' : form,
-            'graph_media' : graph_media,
+            'imagem_relatorio' : imagem_relatorio,
             'relatorio' : relatorio,
             'nome_do_relatorio' : nome_do_relatorio
         }
