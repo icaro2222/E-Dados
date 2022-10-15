@@ -1,6 +1,4 @@
-from cProfile import label
 import os
-from tkinter.font import Font
 from typing import Sized
 import uuid
 from django.shortcuts import render
@@ -216,7 +214,7 @@ def Grafico_Scatter(request):
         imagem_relatorio = image.decode('utf-8')
         buffer.close()
 
-        fig = px.line(dados)
+        fig = px.line(Amostra_Masculina)
         relatorio = fig.to_html()
 
         if form.is_valid():
