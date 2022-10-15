@@ -1,0 +1,49 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+<link rel="shortcut icon" href={% static "img/E-Dados.png" %}>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href={% static "css/style-login.css" %}>
+</head>
+<body>
+	<main>
+		<form action={% url "dashboard" %} method="get">
+            {%csrf_token%}
+		<div class="main-login">
+			<div class="left-login">
+				<h1>E-Dados</h1>
+				<img alt="E-Dados" src={% static "img/E-Dados.png" %} class="left-image-login">
+			</div>
+			<div class="right-login">
+				<div class="card-login">
+					<h1>LOGIN</h1>
+					<div class="textfield">
+						<label for="email">E-mail</label>
+		            	<input type="email" name="email" placeholder="E-mail" autofocus required>
+		            	<!-- <input type="hidden" name="questao">
+		            	<input type="hidden" name="nota">
+		            	<input type="hidden" name="sexo">
+		            	<input type="hidden" name="tipo_de_grafico"> -->
+					</div>
+					<div class="textfield">
+						<label for="senha">Senha</label>
+		            	<input type="password" name="senha" placeholder="Senha" required>
+					</div>
+					<input class="btn-login" id="login-Button" type="submit" name="salvar" value="Entrar">
+				</div>
+			</div>	
+		</div>
+	</form>
+	</main>
+</body>
+	<footer>
+		<p>© Sistema desenvolvido por 
+			<a href="https://github.com/icaro2222" target="_blank">
+				<i class="fab fa-github"></i> Ícaro Dias</a>
+		</p>
+	</footer>
+</html>

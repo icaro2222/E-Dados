@@ -1,0 +1,35 @@
+{% extends 'layout/layout.html' %}
+{%load static %}
+{% block titulo %}Index1{% endblock %}
+{% block conteudo %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <!-- Page Heading -->
+            <form class="col" action="." method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                <hr class="mb-3">
+            <div class="col">                        
+                <input class="mb-4 md-12" type="submit" value="Enviar" name="Enviar">
+            </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="col">
+                <hr>
+                <h2>Nesta Tela você irá poder realizar uma análise comparativa
+                     entre as questões socioeconômicas e a seu respectivo desenpenho 
+                     nas provas realizadas durante o exame.</h2>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col">                        
+                <img class="col md-12" src="data:image/png;base64, {{graph|safe}}"/>
+            </div>
+        </div> -->
+    </div>
+</div>
+<!-- /.container-fluid -->
+{% endblock %}
