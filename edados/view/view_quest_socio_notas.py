@@ -1,11 +1,16 @@
 from cProfile import label
 import os
+from tkinter.font import Font
+from typing import Sized
 import uuid
 from django.shortcuts import render
+import plotly.graph_objects as go 
 from django.http import HttpResponse
 import pandas as pd
 import matplotlib.pyplot as plt
 from io import BytesIO
+import matplotlib as mpl
+import plotly.express as px
 import base64
 from edados.formularios.form_questao_e_notas import MeuFormulario
 from edados.settings import BASE_DIR
@@ -77,9 +82,12 @@ def Grafico_Scatter(request):
         r3 = [x + width for x in r2]
 
 
+        mpl.rcParams['lines.linewidth'] = 2
+        mpl.rcParams['lines.linestyle'] = '--'
+
         figura = plt.figure(figsize=(17, 29))
         figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
-        'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM')
+        'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=26)
         
         figura.add_subplot(6,2,1)
         bar_label_mean = plt.bar(dados.index, dados['mean'], color='#BA5ACD', width=width, label="média")
@@ -97,7 +105,7 @@ def Grafico_Scatter(request):
         plt.legend()
         
         # plt.xlim(limits)
-        plt.title(Q)
+        plt.title(Q, size=24)
         plt.ylabel('Nota Média Global no Exame')
         plt.xlabel('Questão Socioeconômica')
 
@@ -106,7 +114,7 @@ def Grafico_Scatter(request):
         plt.legend()
         
         # plt.xlim(limits)
-        plt.title(Q)
+        plt.title(Q, size=24)
         plt.ylabel('Quantidade de Respostas')
         plt.xlabel('Questão Socioeconômica')
 
@@ -115,7 +123,7 @@ def Grafico_Scatter(request):
         plt.legend()
         
         # plt.xlim(limits)
-        plt.title(Q)
+        plt.title(Q, size=24)
         plt.ylabel('Quantidade de Respostas')
         plt.xlabel('Questão Socioeconômica')
 
@@ -125,7 +133,7 @@ def Grafico_Scatter(request):
         plt.legend()
         
         # plt.xlim(limits)
-        plt.title(Q)
+        plt.title(Q, size=24)
         plt.ylabel('Nota ate 25%/ Global no Exame')
         plt.xlabel('Questão Socioeconômica')
 
@@ -135,7 +143,7 @@ def Grafico_Scatter(request):
         plt.legend()
         
         # plt.xlim(limits)
-        plt.title(Q)
+        plt.title(Q, size=24)
         plt.ylabel('Nota ate 25%/ Global no Exame')
         plt.xlabel('Questão Socioeconômica')
 
@@ -145,7 +153,7 @@ def Grafico_Scatter(request):
         plt.legend()
         
         # plt.xlim(limits)
-        plt.title(Q)
+        plt.title(Q, size=24)
         plt.ylabel('Nota até 50%/ Global no Exame')
         plt.xlabel('Questão Socioeconômica')
 
@@ -155,7 +163,7 @@ def Grafico_Scatter(request):
         plt.legend()
         
         # plt.xlim(limits)
-        plt.title(Q)
+        plt.title(Q, size=24)
         plt.ylabel('Nota até 50%/ Global no Exame')
         plt.xlabel('Questão Socioeconômica')
 
@@ -165,7 +173,7 @@ def Grafico_Scatter(request):
         plt.legend()
         
         # plt.xlim(limits)
-        plt.title(Q)
+        plt.title(Q, size=24)
         plt.ylabel('Nota Máxima no Exame')
         plt.xlabel('Questão Socioeconômica')
 
@@ -175,16 +183,16 @@ def Grafico_Scatter(request):
         plt.legend()
         
         # plt.xlim(limits)
-        plt.title(Q)
+        plt.title(Q, size=24)
         plt.ylabel('Nota Máxima no Exame')
         plt.xlabel('Questão Socioeconômica')
 
         # plt.show(figura)
         buffer = BytesIO()
-        plt.savefig(buffer, format='png')
+        savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
         nome_do_relatorio = 'dados_imagens/' + str(uuid.uuid4()) + '.pdf'
         nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
-        plt.savefig(fname=nome_destino_do_relatorio, format='pdf')
+        plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
         # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')
         buffer.seek(0)
         image_png = buffer.getvalue()
@@ -192,6 +200,24 @@ def Grafico_Scatter(request):
         imagem_relatorio = image.decode('utf-8')
         buffer.close()
 
+        # fig = go.Figure(data=dados) 
+        # fig.show() 
+
+        # plt.show(figura)
+        buffer = BytesIO()
+        savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
+        nome_do_relatorio = 'dados_imagens/' + str(uuid.uuid4()) + '.pdf'
+        nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
+        plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
+        # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')
+        buffer.seek(0)
+        image_png = buffer.getvalue()
+        image = base64.b64encode(image_png)
+        imagem_relatorio = image.decode('utf-8')
+        buffer.close()
+
+        fig = px.line(dados)
+        relatorio = fig.to_html()
 
         if form.is_valid():
             print(form.changed_data)
@@ -202,6 +228,7 @@ def Grafico_Scatter(request):
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
             'nome_do_relatorio' : nome_do_relatorio,
+            'relatorio' : relatorio,
             'dados' : dados
         }
 

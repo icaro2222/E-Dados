@@ -17,7 +17,12 @@
             </div>
             </form>
         </div>
-        <div class="row d-flex justify-content-end mb-3">
+        <div class="row"> 
+            <div class="col">
+                {{relatorio|safe}}               
+            </div>
+        </div>
+        <div class="row d-flex justify-content-end m-3">
             <div class="col-md-4">
                 <button type="button" class="btn btn-success"><a class="downloader__btn active" id="pickfiles" href={% static nome_do_relatorio %}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
@@ -26,13 +31,6 @@
                       </svg>  Baixar o Relatório</a></button>
             </div>
         </div>
-        <!-- <div class="row"> 
-            <div class="col">
-                <div class="table">
-                    {{dados}}
-                </div>
-            </div>
-        </div> -->
         <div class="row"> 
             <!-- class="relatorio" -->
             <div class="col">
