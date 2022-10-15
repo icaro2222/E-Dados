@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-from . import view_scatter #, views, view,  view_plot
+from .view import view_quest_socio_notas #, views, view,  view_plot
 
 urlpatterns = [
     path('login/', TemplateView.as_view(template_name="login.html")),
@@ -26,5 +26,5 @@ urlpatterns = [
     # path('manipulando/', views.index, name='page_dados'),
     # path('grafico_tabela/', view.Grafico_Tabela, name="grafico_tabela"),
     # path('grafico_plot_teste/', view_plot.Grafico_Plot_Teste, name="grafico_plot_teste"),
-    path('Quest_Soc_Notas/', view_scatter.Grafico_Scatter, name="Quest_Soc_Notas"),
+    path('Quest_Soc_Notas/', view_quest_socio_notas.Grafico_Scatter, name="Quest_Soc_Notas"),
 ]
