@@ -1,0 +1,15 @@
+*{
+    padding: 0%;
+}
+
+.navbar {
+    background-image: linear-gradient(177deg,#aeb1e2 30%,#0f174e 100%);
+}
+
+.sidebar {
+    background-image: linear-gradient(274deg,#aeb1e2 10%,#060c5f 100%);
+}
+
+#wrapper #content-wrapper {
+    background-color: #dce3f8;
+}
