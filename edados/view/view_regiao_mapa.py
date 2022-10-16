@@ -57,8 +57,8 @@ def view_regiao_mapa(request):
             Amostra = [prova, Q]
 
         DataFrame = DataFrame.sort_values(by=[Q])
-        # dados = DataFrame.groupby('SG_UF_ESC')[prova]
-        # dados = dados.describe()
+        dados = DataFrame.groupby('SG_UF_ESC')[prova]
+        dados = dados.describe()
 
 
         width = 0.25         # A largura das barras
@@ -70,7 +70,7 @@ def view_regiao_mapa(request):
         figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
         'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=26)
         
-        DataFrame.plot.scatter(y='latitude', x='longitude', figsize=(10, 8), color='#FA1AFD', label="máximo")
+        DataFrame.plot.scatter(y='latitude', x='longitude', c=DataFrame[prova], figsize=(10, 8), label="máximo")
         plt.legend()
         
         # plt.xlim(limits)
@@ -107,7 +107,9 @@ def view_regiao_mapa(request):
         imagem_relatorio = image.decode('utf-8')
         buffer.close()
 
-        fig = px.line(y=DataFrame['longitude'])
+        fig = px.line(y=DataFrame['longitude'], x=DataFrame['latitude'])
+        # fig = px.scatter_mapbox(dados, lat="centroid_lat", lon="centroid_lon",     color="peak_hour", size="car_hours",
+        #           color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
         relatorio = fig.to_html()
 
         if form.is_valid():
@@ -119,7 +121,7 @@ def view_regiao_mapa(request):
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
             'nome_do_relatorio' : nome_do_relatorio,
-            # 'relatorio' : relatorio,
+            'relatorio' : relatorio,
             # 'dados' : DataFrame
         }
 
