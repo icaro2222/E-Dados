@@ -10,18 +10,13 @@ from io import BytesIO
 import matplotlib as mpl
 import plotly.express as px
 import base64
-from edados.formularios.form_questao_e_notas import MeuFormulario
+from edados.formularios.form_questao_e_notas_sexo import MeuFormulario
 from edados.settings import BASE_DIR
 import numpy as np
 
 caminho = os.path.join(BASE_DIR, 'dados/Microdado_PROVA_CH_N_Amostra.csv')
 
-def logar(request):
-    # return render(request, 'indexTest.html')
-    
-    return HttpResponse("oi, DEUUUUUUU CERTTTTTOOOOOO. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-
-def view_quest_socio_notas(request):
+def Quest_Soc_Notas_Sexo(request):
 
     Q = 'TP_SEXO'
     prova = 'NU_NOTA_MT'
@@ -32,57 +27,44 @@ def view_quest_socio_notas(request):
         if form.is_valid():
             print(form.changed_data)
 
-        form = MeuFormulario()
         menssagem = ("Nesta tela você irá poder realizar uma análise comparativa entre as " +
         "questões socioeconômicas e o desempenho nas provas, " +
         "realizadas durante o exame.\n" +
         "Sendo possivel fazer uma filtragem por gêreno.")
+
+        form = MeuFormulario()
         context = {
             'form' : form,
             'menssagem' : menssagem
         }
         return render(request, 'base/quest_socio_notas.html', context=context)
     else:
+
         form = MeuFormulario(request.POST)
 
         Q = form.data['questao']
         prova = form.data['nota']
+        filtro_sexo = form.data['sexo']
 
         Microdado_Amostra = pd.read_csv(caminho, sep= ';', encoding = "ISO-8859-1")
-            
         Amostra = [prova, Q, 'TP_SEXO']
-            
-        ChAmostra = Microdado_Amostra.filter(items = Amostra)
-            
-        ChAmostra = ChAmostra.sort_values(by=[Q])
+        DataFrame = Microdado_Amostra.filter(items = Amostra)
 
-        Amostra_Feminina = ChAmostra[ChAmostra['TP_SEXO']=='M']
-        Amostra_Masculina = ChAmostra[ChAmostra['TP_SEXO']=='F']
+        if filtro_sexo == 'ambos':
+            pass
+        elif filtro_sexo == 'm':
+            DataFrame = DataFrame[DataFrame['TP_SEXO']=='M']
+            Amostra = [prova, Q]
+        else:
+            DataFrame = DataFrame[DataFrame['TP_SEXO']=='F']
+            Amostra = [prova, Q]
 
-        Amostra_Feminina = Amostra_Feminina.groupby(Q)[prova]
-        Amostra_Masculina = Amostra_Masculina.groupby(Q)[prova]
-        Amostra_Feminina = Amostra_Feminina.describe()
-        Amostra_Masculina = Amostra_Masculina.describe()
-
-
-
-
-        dados = ChAmostra.groupby(Q)[prova]
+        DataFrame = DataFrame.sort_values(by=[Q])
+        dados = DataFrame.groupby(Q)[prova]
         dados = dados.describe()
 
-        NU_NOTA_CNCHAmostra = ChAmostra[prova]
-        questao = ChAmostra[Q]
-        
-        # limits = [10, 1000]
-        # plt.switch_backend('AGG')
 
         width = 0.25         # A largura das barras
-        plt.figure(figsize=(0,0))
-
-        r1 = np.arange(len(NU_NOTA_CNCHAmostra))
-        r2 = [x + width for x in r1]
-        r3 = [x + width for x in r2]
-
 
         mpl.rcParams['lines.linewidth'] = 2
         mpl.rcParams['lines.linestyle'] = '--'
@@ -234,5 +216,5 @@ def view_quest_socio_notas(request):
             'dados' : dados
         }
 
-    return render(request, 'base/relatorio_quest_socio_notas.html', context=context)
+    return render(request, 'base/relatorio_quest_socio_notas_sexo.html', context=context)
     
