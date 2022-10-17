@@ -218,18 +218,51 @@ def view_quest_socio_notas(request):
         imagem_relatorio = image.decode('utf-8')
         buffer.close()
 
+        # fig = go.Figure(data=[go.Table(
+        #         header=dict(values=['medias', 'máximo', 'quant alunos', '25%', '50%', '75%']),
+        #         cells=dict(values=[dados['mean'], dados['max'], dados['count'], dados['25%'], dados['50%'], dados['75%']]))
+        #     ])
+
+        headerColor = 'grey'
+        rowEvenColor = 'lightgrey'
+        rowOddColor = 'white'
+
+        Amostra = ['NU_NOTA_CH', 'Q014', 'TP_SEXO']
+
+        ChAmostra = Microdado_Amostra.filter(items = Amostra)
+        ChAmostra = ChAmostra.sort_values(by=['Q014'])
+        dados = ChAmostra.groupby('Q014')['NU_NOTA_CH']        
+        dados = dados.describe()
+
+        fig = go.Figure(data=[go.Table(
+                header=dict(
+                    values=['', 'medias', 'máximo', 'quant alunos', '25%', '50%', '75%'],
+                    line_color='darkslategray',
+                    fill_color=headerColor,
+                    align=['left','center'],
+                    font=dict(color='white', size=12)
+                ),
+                cells=dict(
+                    values=[dados.index,
+                    dados['mean'], dados['max'], dados['count'], dados['25%'], dados['50%'], dados['75%']],
+                    line_color='darkslategray',
+                    # 2-D list of colors for alternating rows
+                    fill_color = [[rowOddColor,rowEvenColor,rowOddColor, rowEvenColor,rowOddColor]*5],
+                    align = ['left', 'center'],
+                    font = dict(color = 'darkslategray', size = 11)
+                    ))
+                ])
+
+        relatorio_em_tabela = fig.to_html()
+
         fig = px.line(dados)
         relatorio = fig.to_html()
-
-        if form.is_valid():
-            print(form.changed_data)
-        else:
-            pass
 
         context = {
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
             'nome_do_relatorio' : nome_do_relatorio,
+            'relatorio_em_tabela' : relatorio_em_tabela,
             'relatorio' : relatorio,
             'dados' : dados
         }
