@@ -163,7 +163,7 @@ def regiao(request):
         figura.add_subplot(6, 2, 10)
         plt.scatter(dados.index, dados['max'], color='#AA5ACD',  label="máximo")
         plt.plot(dados.index, dados['max'], color='#AA5ACD',  label="máximo")
-        plt.legend()
+        plt.legend() 
         
         # plt.xlim(limits)
         plt.title(Q, size=24)
@@ -199,6 +199,31 @@ def regiao(request):
         imagem_relatorio = image.decode('utf-8')
         buffer.close()
 
+        headerColor = 'grey'
+        rowEvenColor = 'lightgrey'
+        rowOddColor = 'white'
+
+        fig = go.Figure(data=[go.Table(
+                header=dict(
+                    values=['', 'medias', 'máximo', 'quant alunos', '25%', '50%', '75%'],
+                    line_color='darkslategray',
+                    fill_color=headerColor,
+                    align=['left','center'],
+                    font=dict(color='white', size=12)
+                ),
+                cells=dict(
+                    values=[dados.index,
+                    dados['mean'], dados['max'], dados['count'], dados['25%'], dados['50%'], dados['75%']],
+                    line_color='darkslategray',
+                    # 2-D list of colors for alternating rows
+                    fill_color = [[rowOddColor,rowEvenColor,rowOddColor, rowEvenColor,rowOddColor]*5],
+                    align = ['left', 'center'],
+                    font = dict(color = 'darkslategray', size = 11)
+                    ))
+                ])
+
+        relatorio_tabela = fig.to_html()
+
         fig = px.line(dados)
         relatorio = fig.to_html()
 
@@ -211,9 +236,10 @@ def regiao(request):
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
             'nome_do_relatorio' : nome_do_relatorio,
+            'relatorio_tabela' : relatorio_tabela,
             'relatorio' : relatorio,
             'dados' : dados
         }
 
-    return render(request, 'base/relatorio_quest_socio_notas_sexo.html', context=context)
+    return render(request, 'base/relatorio_regiao.html', context=context)
     

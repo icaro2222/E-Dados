@@ -1,5 +1,4 @@
-{% extends 'layout/layout.html' %} {%load static %} {% block titulo %}Contraste entre Sexo Nas Questões
-Socioeconômica vs notas {% endblock %} {% block css %}<link rel="stylesheet"
+{% extends 'layout/layout.html' %} {%load static %} {% block titulo %}Região vs notas & Provas{% endblock %} {% block css %}<link rel="stylesheet"
 href={% static "css/styles_relatorio.css" %}>{% endblock %} {% block conteudo %}
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -36,6 +35,12 @@ href={% static "css/styles_relatorio.css" %}>{% endblock %} {% block conteudo %}
         </div>
       </form>
     </div>
+    <div class="row">
+      <div class="col md-12">
+        <div class="col md-11">{{relatorio_tabela|safe}}</div>
+      </div>
+    </div>
+    <hr class="mb-3" />
     <div class="row">
       <div class="col md-12">
         <div class="col md-11">{{relatorio|safe}}</div>
