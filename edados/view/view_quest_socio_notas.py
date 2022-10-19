@@ -33,10 +33,14 @@ def view_quest_socio_notas(request):
             print(form.changed_data)
 
         form = MeuFormulario()
-        menssagem = ("Nesta tela você irá poder realizar uma análise comparativa entre as " +
+        menssagem = ("Introdução:\nNesta tela você irá poder realizar uma análise comparativa entre as " +
         "questões socioeconômicas e o desempenho nas provas, " +
         "realizadas durante o exame.\n" +
-        "Sendo possivel fazer uma filtragem por gêreno.")
+        "Sendo possivel fazer uma filtragem por gêreno.\n\n"+
+        "Objetivo:\nPossibilitar a análise e visualisação do resultado em formato de tabelas e gráficos\n"+
+        ", e permitindo com que os usuários entrem com metricas e fatores a serem analisador.\n\n"+
+        "O que se espera?\n Ao termino da análise terá se resultados que tentam entregar ao usuário informações que "+
+        "são facies e simples de se compreender.")
         context = {
             'form' : form,
             'menssagem' : menssagem
