@@ -83,7 +83,7 @@ def view_quest_socio_notas(request):
         'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=26)
         
         figura.add_subplot(6,2,1)
-        bar_label_mean = plt.bar(dados.index, dados['mean'].apply(formatar), color='#BA5ACD', width=width, label="média")
+        bar_label_mean = plt.bar(dados.index, dados['mean'], color='#BA5ACD', width=width, label="média")
         plt.scatter(dados.index, dados['max'], color='#FA1AFD', label="máximo")
         plt.bar_label(bar_label_mean)
         plt.legend()
@@ -219,25 +219,26 @@ def view_quest_socio_notas(request):
         rowEvenColor = 'lightgrey'
         rowOddColor = 'white'
 
-        Amostra = ['NU_NOTA_CH', 'Q014', 'TP_SEXO']
+        # Amostra = ['NU_NOTA_CH', 'Q014', 'TP_SEXO']
 
         
-        ChAmostra = Microdado_Amostra.filter(items = Amostra)
-        ChAmostra = ChAmostra.sort_values(by=['Q014'])
-        dados = ChAmostra.groupby('Q014')['NU_NOTA_CH']        
-        dados = dados.describe()
+        # ChAmostra = Microdado_Amostra.filter(items = Amostra)
+        # ChAmostra = ChAmostra.sort_values(by=['Q014'])
+        # dados = ChAmostra.groupby('Q014')['NU_NOTA_CH']        
+        # dados = dados.describe()
 
         fig = go.Figure(data=[go.Table(
                 header=dict(
-                    values=['', 'medias', 'máximo', 'quant alunos', '25%', '50%', '75%'],
+                    values=['Respostas', 'medias', 'máximo', 'quant alunos', '25%', '50%', '75%'],
+                    fill_color='royalblue',
+                    height=40,
                     line_color='darkslategray',
-                    fill_color=headerColor,
                     align=['left','center'],
                     font=dict(color='white', size=12)
                 ),
                 cells=dict(
                     values=[dados.index,
-                    dados['mean'], dados['max'], dados['count'], dados['25%'], dados['50%'], dados['75%']],
+                    dados['mean'].apply(formatar), dados['max'], dados['count'], dados['25%'].apply(formatar), dados['50%'].apply(formatar), dados['75%'].apply(formatar)],
                     line_color='darkslategray',
                     # 2-D list of colors for alternating rows
                     fill_color = [[rowOddColor,rowEvenColor,rowOddColor, rowEvenColor,rowOddColor]*5],
@@ -249,14 +250,14 @@ def view_quest_socio_notas(request):
         relatorio_em_tabela = fig.to_html()
 
         fig = px.line(dados)
-        relatorio = fig.to_html()
+        relatorio_linha = fig.to_html()
 
         context = {
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
             'nome_do_relatorio' : nome_do_relatorio,
             'relatorio_em_tabela' : relatorio_em_tabela,
-            'relatorio' : relatorio,
+            'relatorio' : relatorio_linha,
             'dados' : dados
         }
 
