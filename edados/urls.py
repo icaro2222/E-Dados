@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import TemplateView
-from .view import view_quest_socio_notas, view_quest_socio_notas_sexo , view_regiao, view_regiao_mapa#, views, view,  view_plot
+from .view import view_quest_socio_notas, view_quest_socio_notas_sexo , view_quest_socio_notas_deficiencia, view_regiao, view_regiao_mapa#, views, view,  view_plot
 
 urlpatterns = [
     path('login/', TemplateView.as_view(template_name="login.html")),
@@ -30,4 +30,5 @@ urlpatterns = [
     path('Desenpenho_por_Regiao/', view_regiao.regiao, name="Desenpenho_por_Regiao"),
     path('Desenpenho_por_Regiao_Mapa/', view_regiao_mapa.view_regiao_mapa, name="Desenpenho_por_Regiao_Mapa"),
     path('Quest_Soc_Notas_Sexo/', view_quest_socio_notas_sexo.Quest_Soc_Notas_Sexo, name="Quest_Soc_Notas_Sexo"),
+    path('Quest_Soc_Notas_Deficiencia/', view_quest_socio_notas_deficiencia.Quest_Soc_Notas_Deficiencia, name="Quest_Soc_Notas_Deficiencia"),
 ]

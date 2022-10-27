@@ -10,11 +10,11 @@ from io import BytesIO
 import matplotlib as mpl
 import plotly.express as px
 import base64
-from edados.formularios.form_questao_e_notas_sexo import MeuFormulario
+from edados.formularios.form import MeuFormulario
 from edados.settings import BASE_DIR
 import numpy as np
 
-caminho = os.path.join(BASE_DIR, 'dados/Microdado_PROVA_CH_N_Amostra.csv')
+caminho = os.path.join(BASE_DIR, 'dados/Microdado_Amostra.csv')
 
 def Quest_Soc_Notas_Sexo(request):
 
@@ -174,7 +174,7 @@ def Quest_Soc_Notas_Sexo(request):
         # plt.show(figura)
         buffer = BytesIO()
         savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        nome_do_relatorio = 'dados_imagens/' + str(uuid.uuid4()) + '.pdf'
+        nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
         nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
         plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
         # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')
@@ -190,7 +190,7 @@ def Quest_Soc_Notas_Sexo(request):
         # plt.show(figura)
         buffer = BytesIO()
         savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        nome_do_relatorio = 'dados_imagens/' + str(uuid.uuid4()) + '.pdf'
+        nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
         nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
         plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
         # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')
