@@ -86,6 +86,18 @@ WSGI_APPLICATION = 'edados.wsgi.application'
 #     }
 # }
 
+# Localhost
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'e_dados',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',
+#         'PORT': '3306'
+#     }
+# }
+
 #  Realizando a conecxão do Django, com o banco postgress, usando o banco do sisfis no ceteia
 
 DATABASES = {

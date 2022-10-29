@@ -10,10 +10,12 @@ from io import BytesIO
 import matplotlib as mpl
 import plotly.express as px
 import base64
+import pyodbc
 from edados.formularios.form_questao_e_notas_deficiencia import MeuFormulario
 from edados.formularios.form_filtro import MeuFormulario as Formulario_filtro
 from edados.settings import BASE_DIR
 import numpy as np
+from edados.database import conect_db, engine
 
 caminho = os.path.join(BASE_DIR, 'dados/Microdado_Amostra.csv')
 caminho2 = os.path.join(BASE_DIR, 'dados/')
@@ -26,8 +28,7 @@ def Quest_Soc_Notas_Deficiencia(request):
     Q = 'TP_SEXO'
     prova = 'NU_NOTA_MT'
 
-    if request.method == 'GET':
-        
+    if request.method == 'GET':        
         menssagem = ("Correlação entre pessoas com e sem deficiência, no quesito socioeconômico e desempenho no exame.")
 
         form = MeuFormulario()
@@ -39,6 +40,10 @@ def Quest_Soc_Notas_Deficiencia(request):
         }
         return render(request, 'base/quest_socio_notas_deficiencia.html', context=context)
     else:
+
+        # Realizando conexão com o banco
+        Microdado_Amostra = engine.buscar_dataframe_no_banco()
+
         # Recebendo fomulario da tela
         form = MeuFormulario(request.POST)
         form_filtro = Formulario_filtro(request.POST)
