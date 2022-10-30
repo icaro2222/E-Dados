@@ -59,13 +59,13 @@ def Quest_Soc_Notas_Deficiencia(request):
         if(filtro_sexo != 'ambos'):
             Amostra = [prova, Q, 'TP_SEXO']
             if(filtro_deficiencia != 'ambos'):
-                Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra, filtro_sexo, filtro_deficiencia)
+                Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia)
             else:
-                Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra, filtro_sexo)
+                Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo)
         else:
             Amostra = [prova, Q]
             if(filtro_deficiencia != 'ambos'):
-                Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra, filtro_deficiencia)
+                Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia)
             else:
                 Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra)
 
