@@ -41,8 +41,6 @@ def Quest_Soc_Notas_Deficiencia(request):
         return render(request, 'base/quest_socio_notas_deficiencia.html', context=context)
     else:
 
-        # Realizando conexão com o banco
-        Microdado_Amostra = engine.buscar_dataframe_no_banco()
 
         # Recebendo fomulario da tela
         form = MeuFormulario(request.POST)
@@ -55,15 +53,22 @@ def Quest_Soc_Notas_Deficiencia(request):
 
         # Formulario de Filtro
         filtro_sexo = form_filtro.data['sexo']
-        Microdado_Amostra = pd.read_csv(caminho, sep= ';', encoding = "ISO-8859-1", nrows= 20000 )
+
+        # Microdado_Amostra = pd.read_csv(caminho, sep= ';', encoding = "ISO-8859-1", nrows= 20000 )
         
-        if(filtro_sexo == 'ambos'):
-            Amostra = [prova, Q, filtro_deficiencia]
+        if(filtro_sexo != 'ambos'):
+            Amostra = [prova, Q, 'TP_SEXO']
+            if(filtro_deficiencia != 'ambos'):
+                Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra, filtro_sexo, filtro_deficiencia)
+            else:
+                Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra, filtro_sexo)
         else:
-            Amostra = [prova, Q, filtro_deficiencia, 'TP_SEXO']
-            Microdado_Amostra = Microdado_Amostra[Microdado_Amostra['TP_SEXO'] == filtro_sexo]
-        # Definindo Amostra com a filtradem apenas dos paramentros importantes
-        
+            Amostra = [prova, Q]
+            if(filtro_deficiencia != 'ambos'):
+                Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra, filtro_deficiencia)
+            else:
+                Microdado_Amostra = engine.buscar_dataframe_no_banco(Amostra)
+
         width = 0.25         # A largura das barras
 
         DataFrame_sem_deficiencia = Microdado_Amostra.filter(items = Amostra)
@@ -85,15 +90,16 @@ def Quest_Soc_Notas_Deficiencia(request):
             plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
 
         else:
-            caminho_a_deficiencia = caminho2 + filtro_deficiencia + '.csv'
-            Microdado_Amostra = pd.read_csv(caminho_a_deficiencia, sep= ';', encoding = "ISO-8859-1")
-            DataFrame = Microdado_Amostra.filter(items = Amostra)
-            DataFrame = DataFrame.sort_values(by=[Q])
-            DataFrame_dificiente = DataFrame[DataFrame[filtro_deficiencia]==1]
+            # caminho_a_deficiencia = caminho2 + filtro_deficiencia + '.csv'
+            # Microdado_Amostra = pd.read_csv(caminho_a_deficiencia, sep= ';', encoding = "ISO-8859-1")
+            # DataFrame = Microdado_Amostra.filter(items = Amostra)
+            # DataFrame = DataFrame.sort_values(by=[Q])
+            # DataFrame_dificiente = DataFrame[DataFrame[filtro_deficiencia]==1]
 
-            DataFrame_dificiente = DataFrame_dificiente.sort_values(by=[Q])
-            dados = DataFrame_dificiente.groupby(Q)[prova]
-            dados_deficiente = dados.describe()
+            # DataFrame_dificiente = DataFrame_dificiente.sort_values(by=[Q])
+            # dados = DataFrame_dificiente.groupby(Q)[prova]
+            # dados_deficiente = dados.describe()
+            dados_deficiente = DataFrame_sem_deficiencia
       # A largura das barras
             figura = plt.figure(figsize=(12, 8))
             figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
@@ -183,7 +189,7 @@ def Quest_Soc_Notas_Deficiencia(request):
         figura_tabela.add_trace(go.Bar(x=DataFrame_sem_deficiencia.index, y=DataFrame_sem_deficiencia['mean']))
 
         figura_tabela.update_layout(
-            title_text = 'Pessoas Sem Deficiência',
+            title_text = 'Pessoas Com Deficiência X Pessoas Sem Deficiência',
             height = 800,
             margin = {'t':75, 'l':50},
             yaxis = {'domain': [0, .45]},

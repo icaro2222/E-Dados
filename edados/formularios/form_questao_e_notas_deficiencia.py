@@ -74,9 +74,6 @@ class MeuFormulario(forms.Form):
 # 'IN_SALA_ACOMPANHANTE'
 # 'IN_MOBILIARIO_ESPECIFICO'
 # 'IN_MATERIAL_ESPECIFICO'
-
-
-
     questao = forms.ChoiceField(choices=choices_questao)
     nota = forms.ChoiceField(choices=choices_nota)
     deficiencia = forms.ChoiceField(choices=choices_deficiencia)
