@@ -8,10 +8,10 @@ Socioeconômica vs notas{% endblock %} {% block conteudo %}
       <form class="col" action="." method="post">
         <h3>Variáveis de Contraste, correlação entre elas.</h3>
         <hr class="mb-3" />
-          {% csrf_token %} {{ form.as_p }}
+          {% csrf_token %} {{ form }}
           <hr class="mb-3" />
           <h3>Filtros! Adicione um filtro à sua pesquisa.</h3>
-          {% csrf_token %} {{ form_filtro.as_p }}
+          {% csrf_token %} {{ form_filtro }}
           <hr class="mb-3" />
         <div class="row d-flex justify-content-end">
           <div class="col-md-3">

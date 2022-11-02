@@ -13,6 +13,7 @@ import base64
 from edados.formularios.form_questao_e_notas import MeuFormulario
 from edados.settings import BASE_DIR
 import numpy as np
+from edados.database import bd_quest_socio_notas
 
 caminho = os.path.join(BASE_DIR, 'dados/Microdado_Amostra.csv')
 
@@ -55,14 +56,15 @@ def view_quest_socio_notas(request):
         Q = form.data['questao']
         prova = form.data['nota']
 
-        Microdado_Amostra = pd.read_csv(caminho, sep= ';', encoding = "ISO-8859-1")
-            
-        Amostra = [prova, Q, 'TP_SEXO']
-            
-        ChAmostra = Microdado_Amostra.filter(items = Amostra)
-            
-        ChAmostra = ChAmostra.sort_values(by=[Q])
+        # Processo de pegar os dados para a realização da análise
+        # Microdado_Amostra = pd.read_csv(caminho, sep= ';', encoding = "ISO-8859-1")
 
+        Amostra = [prova, Q, 'TP_SEXO']
+        Microdado_Amostra = bd_quest_socio_notas.buscar_dataframe_no_banco(Amostra)
+
+        # realizando um agrupamento, para criar uam estrutura para a análise
+        ChAmostra = Microdado_Amostra.filter(items = Amostra)
+        ChAmostra = ChAmostra.sort_values(by=[Q])
         dados = ChAmostra.groupby(Q)[prova]
         dados = dados.describe()
 

@@ -13,6 +13,7 @@ import base64
 from edados.formularios.form import MeuFormulario
 from edados.settings import BASE_DIR
 import numpy as np
+from edados.database import bd_quest_socio_notas
 
 caminho = os.path.join(BASE_DIR, 'dados/Microdado_Amostra.csv')
 
@@ -46,8 +47,12 @@ def Quest_Soc_Notas_Sexo(request):
         prova = form.data['nota']
         filtro_sexo = form.data['sexo']
 
-        Microdado_Amostra = pd.read_csv(caminho, sep= ';', encoding = "ISO-8859-1")
+        # Microdado_Amostra = pd.read_csv(caminho, sep= ';', encoding = "ISO-8859-1")
+       
+        
         Amostra = [prova, Q, 'TP_SEXO']
+        Microdado_Amostra = bd_quest_socio_notas.buscar_dataframe_no_banco(Amostra)
+
         DataFrame = Microdado_Amostra.filter(items = Amostra)
 
         if filtro_sexo == 'ambos':
