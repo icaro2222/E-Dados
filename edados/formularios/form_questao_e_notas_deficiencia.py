@@ -30,7 +30,34 @@ class MeuFormulario(forms.Form):
                         ('Q024', 'Questão 24'),
                         ('Q025', 'Questão 25'),
                         ('TP_SEXO', 'Comparar Nota ao Sexo'))
-            
+
+# A partir da apresentação de algumas ocupações divididas em grupos ordenados, indique o grupo que contempla a ocupação mais próxima da ocupação da sua mãe ou da mulher responsável por você. (Se ela não estiver trabalhando, escolha uma ocupação pensando no último trabalho dela).
+# A partir da apresentação de algumas ocupações divididas em grupos ordenados, indique o grupo que contempla a ocupação mais próxima da ocupação do seu pai ou do homem responsável por você. (Se ele não estiver trabalhando, escolha uma ocupação pensando no último trabalho dele).
+# Até que série seu pai, ou o homem responsável por você, estudou?
+# Até que série sua mãe, ou a mulher responsável por você, estudou?
+# Em sua residência trabalha empregado(a) doméstico(a)?
+# Incluindo você, quantas pessoas moram atualmente em sua residência?
+# Na sua residência tem acesso à Internet?
+# Na sua residência tem aparelho de DVD?
+# Na sua residência tem aspirador de pó?
+# Na sua residência tem banheiro?
+# Na sua residência tem carro?
+# Na sua residência tem computador?
+# Na sua residência tem forno micro-ondas?
+# Na sua residência tem freezer (independente ou segunda porta da geladeira)?
+# Na sua residência tem geladeira?          
+# Na sua residência tem máquina de lavar louça?
+# Na sua residência tem máquina de lavar roupa? (o tanquinho NÃO deve ser considerado)
+# Na sua residência tem máquina de secar roupa (independente ou em conjunto com a máquina de lavar roupa)?
+# Na sua residência tem motocicleta?
+# Na sua residência tem quartos para dormir?
+# Na sua residência tem telefone celular?
+# Na sua residência tem telefone fixo?
+# Na sua residência tem televisão em cores?
+# Na sua residência tem TV por assinatura?
+# Qual é a renda mensal de sua família? (Some a sua renda com a dos seus familiares.)
+
+
     choices_nota = (('NU_NOTA_MT' ,'Nota em Matemática'),    
                     ('NU_NOTA_CH', 'Nota em Ciências da Natureza'),
                     ('NU_NOTA_CN' ,'Nota em Ciências Humanas'),
