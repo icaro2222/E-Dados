@@ -1,82 +1,29 @@
+from sqlalchemy import create_engine
 
-import mysql.connector
-from mysql.connector import Error
+def connect():
+
+    # Conexão MYSQL
+    # tipo_db = "mysql+pymysql"
+    # host="localhost"
+    # user="icaro"
+    # passwod="tatakae"
+    # database="e_dados"
+    # porta=3306
 
 
-def create_server_connection(host_name, user_name, user_password):
-    connection = None
-    try:
-        connection = mysql.connector.connect(
-            host=host_name,
-            user=user_name,
-            passwd=user_password
-        )
-        print("MySQL Database connection successful")
-    except Error as err:
-        print(f"Error: '{err}'")
+    # Conexão POSTGRESQL
+    tipo_db = "postgresql"
+    host="ec2-44-195-132-31.compute-1.amazonaws.com"
+    user="glbksewieqangq"
+    passwod="9d27ed821da4e10718d0b602c631c3a3a3f546ad4f130843abdd1f96a7f7d45d"
+    database="da05j5cn1d843o"
+    porta= 5432
 
-    return connection
-
-def create_db_connection(host_name, user_name, user_password, db_name):
-    connection = None
-    try:
-        connection = mysql.connector.connect(
-            host=host_name,
-            user=user_name,
-            passwd=user_password,
-            database=db_name
-        )
-        print("MySQL Database connection successful")
-    except Error as err:
-        print(f"Error: '{err}'")
-
-    return connection
+    conexao = str(tipo_db)+"://"+str(user)+":"+str(passwod)+"@"+str(host)+":" + str(porta)+"/"+str(database)
     
-def create_database(connection, query):
-    cursor = connection.cursor()
-    try:
-        cursor.execute(query)
-        print("Database created successfully")
-    except Error as err:
-        print(f"Error: '{err}'")
+    # Conectando com o Banco de Dados
+    engine = create_engine(conexao, pool_pre_ping=True)
+
+    print("Conexãop com o banco bem sucedida!")
     
-def execute_query(connection, query):
-    cursor = connection.cursor()
-    try:
-        cursor.execute(query)
-        connection.commit()
-        print("Query successful")
-    except Error as err:
-        print(f"Error: '{err}'")
-
-def read_query(query):
-    connection = None
-
-    connection = mysql.connector.connect(
-        host="localhost",
-        user="icaro",
-        passwd='tatakae',
-        database='e_dados'
-    )
-    print("MySQL Database connection successful")
-    # Connect to the Database
-        
-    cursor = connection.cursor()
-    result = None
-    cursor.execute(query)
-    result = cursor.fetchall()
-    
-    return result
-
-
-
-        # server = 'myserver' 
-        # database = 'e_dados' 
-        # username = 'icaro' 
-        # password = 'tatakae'  
-        # cnxn = pyodbc.connect('DRIVER={Devart ODBC Driver for MySQL};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
-        # cursor = cnxn.cursor()
-        # # select 26 rows from SQL table to insert in dataframe.
-        # query = "SELECT NO_MUNICIPIO_RESIDENCIA FROM enem LIMIT 100;"
-        # df = pd.read_sql(query, cnxn)
-        # print(df.head(26))
+    return engine

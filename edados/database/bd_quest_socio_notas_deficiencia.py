@@ -1,12 +1,12 @@
 from ast import If
 import pandas as pd
-from sqlalchemy import create_engine
+from edados.database import conect_db
 
 BANCO = 'enem2 '
-LIMIT = ' LIMIT 1000000'
+LIMIT = ' LIMIT 1000'
 
 def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio"):
-    engine = create_engine("mysql+pymysql://icaro:tatakae@localhost/e_dados", pool_pre_ping=True)
+    engine = conect_db.connect()
 
     if(filtro_sexo != "vazio"):
         if(filtro_deficiencia != "vazio"):
