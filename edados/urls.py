@@ -22,7 +22,10 @@ from .view.contraste import view_contrast_quest_socio_notas
 urlpatterns = [
     path('', TemplateView.as_view(template_name="dashboard.html"), name="dashboard"),
     path('admin/', admin.site.urls),
+
+    # URLs do usuario da plataforma
     path('', include('usuarios.urls')),
+
     # path('teste/', views.teste, name='teste'),
     # path('manipulando/', views.index, name='page_dados'),
     # path('grafico_tabela/', view.Grafico_Tabela, name="grafico_tabela"),
