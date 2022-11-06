@@ -250,9 +250,11 @@ def contrast_quest_socio_notas(request):
                 ])
 
         relatorio_em_tabela = fig.to_html()
+        relatorio_em_tabela1 = fig.to_html()
 
         fig = px.line(dados)
         relatorio_linha = fig.to_html()
+        relatorio_linha1 = fig.to_html()
 
         context = {
             'form' : form,
@@ -260,8 +262,8 @@ def contrast_quest_socio_notas(request):
             # 'nome_do_relatorio' : nome_do_relatorio,
             'relatorio_em_tabela' : relatorio_em_tabela,
             'relatorio' : relatorio_linha,
-            'relatorio_em_tabela1' : relatorio_em_tabela,
-            'relatorio1' : relatorio_linha,
+            'relatorio_em_tabela1' : relatorio_em_tabela1,
+            'relatorio1' : relatorio_linha1,
             'dados' : dados
         }
 

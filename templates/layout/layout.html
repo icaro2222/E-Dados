@@ -38,7 +38,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"  href={% url "dashboard" %}>
                 <div class="sidebar-brand-icon">
-                    <img  width="53" height="55" src={% static "img/logo.svg" %} fill="white">  
+                    <img height="45" src={% static "img/logo.svg" %} fill="white">  
                 </div>
                 <div class="sidebar-brand-text mx-3">E-Dados</div>
             </a>
@@ -340,12 +340,9 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid">
-
                 <div class="container">
                     {% block conteudo %}      
-                    {% endblock %}              
-                  </div>
+                    {% endblock %}          
                 </div>
                 <!-- /.container-fluid -->
 
