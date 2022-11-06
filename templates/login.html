@@ -11,12 +11,14 @@
 </head>
 <body>
 	<main>
-		<form action={% url "dashboard" %} method="get">
+		<form action={% url "logar" %} method="POST">
             {%csrf_token%}
 		<div class="main-login">
 			<div class="left-login">
 				<h1>E-Dados</h1>
-				<img alt="E-Dados" src={% static "img/E-Dados.png" %} class="left-image-login">
+				<div class="sidebar-brand-icon">
+                    <img height="425" src={% static "img/logo.svg" %} fill="white">  
+                </div>					
 			</div>
 			<div class="right-login">
 				<div class="card-login">

@@ -15,7 +15,7 @@
 
     <!-- Custom fonts for this template-->
     <link href={% static "vendor/fontawesome-free/css/all.min.css" %} rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href={% static "img/E-Dados.png" %} type="image/x-icon">
+    <link rel="shortcut icon" href={% static "img/logo.svg" %} type="image/x-icon">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -36,9 +36,9 @@
         <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-thin fa-atom"></i>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"  href={% url "dashboard" %}>
+                <div class="sidebar-brand-icon">
+                    <img height="45" src={% static "img/logo_larga.svg" %} fill="white">  
                 </div>
                 <div class="sidebar-brand-text mx-3">E-Dados</div>
             </a>
@@ -70,12 +70,48 @@
                         <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                         <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
                       </svg>
-                    <span>Socioeconômico / Notas</span>
+                    <span>Análise Socioeconômica</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="{% url 'Quest_Soc_Notas' %}">Ques. Socias VS Notas</a>
                         <a class="collapse-item" href="{% url 'Quest_Soc_Notas_Sexo' %}">Soc/Notas VS Sexo</a>
+                        <a class="collapse-item" href="{% url 'Quest_Soc_Notas_Deficiencia' %}">Correlação Socioeconômico</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#contraste"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16">
+                        <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                      </svg>
+                    <span>Com e Sem Deficiênte</span>
+                </a>
+                <div id="contraste" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'Contrast_Quest_Soc_Notas_Deficiencia' %}">C. Q. Socioe vs Notas</a>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#demografica"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16">
+                        <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
+                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                      </svg>
+                    <span>Análise Demográfica</span>
+                </a>
+                <div id="demografica" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{% url 'Quest_Dem_Notas' %}">Q. Demográf / Notas</a>
+                        <a class="collapse-item" href="{% url 'Quest_Dem_Socioe' %}">Q. Demográf / Q. Socioe</a>
+                        <!-- <a class="collapse-item" href="{% url 'Quest_Soc_Notas_Sexo' %}">Demograf/Notas / Sexo</a>
+                        <a class="collapse-item" href="{% url 'Quest_Soc_Notas_Deficiencia' %}">Correlação Demograficas</a> -->
                     </div>
                 </div>
             </li>
@@ -305,11 +341,8 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                <div class="container">
                     {% block conteudo %}      
-                    {% endblock %}              
-                  </div>
+                    {% endblock %}          
                 </div>
                 <!-- /.container-fluid -->
 

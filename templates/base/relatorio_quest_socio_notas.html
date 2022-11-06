@@ -7,7 +7,7 @@ href={% static "css/styles_relatorio.css" %}>{% endblock %} {% block conteudo %}
     <div class="row">
       <!-- Page Heading -->
       <form class="col" action="." method="post">
-        {% csrf_token %} {{ form.as_p }}
+        {% csrf_token %} {{ form }}
         <hr class="mb-3" />
         <div class="row d-flex justify-content-end align-items-center">
           <div class="col-sm-4 mb-4 d-flex justify-content-end">

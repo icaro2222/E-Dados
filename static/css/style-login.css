@@ -55,7 +55,7 @@
 		padding: 30px 35px;
 		background: #8796ad;
 		border-radius: 15px; 
-		box-shadow: 0px 10px 40px #ffedba;
+		box-shadow: 0px 10px 40px #aeb1e2;
 	}
 	
 	.card-login > h1 {
@@ -78,7 +78,7 @@
 		border: none;
 		border-radius: 10px;
 		padding: 15px;
-		background: #b0b300;
+		background: #060c5f;
 		color: #000000;
 		font-size: 12pt;
 		outline: none;
@@ -86,7 +86,7 @@
 	}
 	
 	.textfield > label{
-		color: #ffbf28;
+		color: #060c5f;
 		margin-bottom: 10px;
 	}
 	
@@ -100,7 +100,7 @@
 		font-weight: 800;
 		letter-spacing: 3px;
 		color: #000000;
-		background: #ffbf28;
+		background: #aeb1e2;
 		cursor: pointer;
 		box-shadow: 0px 10px 40px -12px #0a2558;
 	}
@@ -117,7 +117,7 @@ footer{
 
 footer a{
     text-decoration: none;
-    color: #ffbf28;
+    color: #060c5f;
 }
 
 footer p{

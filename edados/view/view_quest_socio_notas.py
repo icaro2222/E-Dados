@@ -13,8 +13,9 @@ import base64
 from edados.formularios.form_questao_e_notas import MeuFormulario
 from edados.settings import BASE_DIR
 import numpy as np
+from edados.database import bd_quest_socio_notas
 
-caminho = os.path.join(BASE_DIR, 'dados/Microdado_PROVA_CH_N_Amostra.csv')
+caminho = os.path.join(BASE_DIR, 'dados/Microdado_Amostra.csv')
 
 def logar(request):
     # return render(request, 'indexTest.html')
@@ -55,14 +56,15 @@ def view_quest_socio_notas(request):
         Q = form.data['questao']
         prova = form.data['nota']
 
-        Microdado_Amostra = pd.read_csv(caminho, sep= ';', encoding = "ISO-8859-1")
-            
-        Amostra = [prova, Q, 'TP_SEXO']
-            
-        ChAmostra = Microdado_Amostra.filter(items = Amostra)
-            
-        ChAmostra = ChAmostra.sort_values(by=[Q])
+        # Processo de pegar os dados para a realização da análise
+        # Microdado_Amostra = pd.read_csv(caminho, sep= ';', encoding = "ISO-8859-1")
 
+        Amostra = [prova, Q, 'TP_SEXO']
+        Microdado_Amostra = bd_quest_socio_notas.buscar_dataframe_no_banco(Amostra)
+
+        # realizando um agrupamento, para criar uam estrutura para a análise
+        ChAmostra = Microdado_Amostra.filter(items = Amostra)
+        ChAmostra = ChAmostra.sort_values(by=[Q])
         dados = ChAmostra.groupby(Q)[prova]
         dados = dados.describe()
 
@@ -184,7 +186,7 @@ def view_quest_socio_notas(request):
         # plt.show(figura)
         buffer = BytesIO()
         savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        nome_do_relatorio = 'dados_imagens/' + str(uuid.uuid4()) + '.pdf'
+        nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
         nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
         plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
         # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')
@@ -200,7 +202,7 @@ def view_quest_socio_notas(request):
         # plt.show(figura)
         buffer = BytesIO()
         savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        nome_do_relatorio = 'dados_imagens/' + str(uuid.uuid4()) + '.pdf'
+        nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
         nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
         plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
         # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')

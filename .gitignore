@@ -1,4 +1,6 @@
 /venv/
-# /static/vendor/
-# /dados/
-/static/dados_imagens/*.pdf
+/static/vendor/
+/dados/
+/static/dados_relatorio/*.pdf
+edados/settings.py
+

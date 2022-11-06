@@ -10,7 +10,7 @@ from edados.formularios.form import MeuFormulario
 from edados.settings import BASE_DIR
 import numpy as np
 
-caminho = os.path.join(BASE_DIR, 'dados/Microdado_PROVA_CH_N_Amostra.csv')
+caminho = os.path.join(BASE_DIR, 'dados/Microdado_Amostra.csv')
 
 def logar(request):
     # return render(request, 'indexTest.html')
