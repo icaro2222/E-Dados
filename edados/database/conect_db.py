@@ -13,10 +13,10 @@ def connect():
 
     # Conexão POSTGRESQL
     # tipo_db = "postgresql"
-    # host="ec2-54-82-205-3.compute-1.amazonaws.com"
-    # user="sbipzhlapwnedk"
-    # passwod="d33c73442cc2ecc9a925c62e492092ef592dc228ad55db5d2ee01ba3258b07ac"
-    # database="d50ueqsv9ebsrf"
+    # host="ec2-54-87-179-4.compute-1.amazonaws.com"
+    # user="ccgapwggqseseb"
+    # passwod="bf9adeb9b12252a5a9377ede93702f53f404d6f23a9db8aeb77f3d2704a820f4"
+    # database="da0rf6a9o8h8v3"
     # porta= 5432
 
     conexao = str(tipo_db)+"://"+str(user)+":"+str(passwod)+"@"+str(host)+":" + str(porta)+"/"+str(database)

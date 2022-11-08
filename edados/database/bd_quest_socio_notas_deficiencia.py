@@ -17,7 +17,7 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
         if(filtro_deficiencia != "vazio"):
             query = 'SELECT ' + ",".join(amostra) + ','+ str(filtro_deficiencia)+ ' FROM ' + BANCO + ' WHERE ' + str(filtro_deficiencia) + ' = 1'
         else:
-            query = 'SELECT ' + ",".join(amostra) + ' FROM ' + BANCO
+            query = 'SELECT "' + '","'.join(amostra) + '" FROM ' + BANCO
     
     query = query + LIMIT
 

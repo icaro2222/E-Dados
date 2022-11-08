@@ -1,6 +1,6 @@
 /venv/
-/static/vendor/
+# /static/vendor/
 /dados/
 /static/dados_relatorio/*.pdf
-edados/settings.py
+# edados/settings.py
 
