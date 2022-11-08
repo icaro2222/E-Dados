@@ -3,10 +3,10 @@ import pandas as pd
 from edados.database import conect_db
 
 # Mysql
-BANCO = 'enem2 '
+# BANCO = 'enem2 '
 
 # Postgres
-BANCO = '"enem2" '
+BANCO = '"enem" '
 LIMIT = ' LIMIT 1000'
 
 def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio"):
