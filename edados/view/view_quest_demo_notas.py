@@ -89,9 +89,9 @@ def view_quest_demo_notas(request):
 
         buffer = BytesIO()
         savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
-        nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
-        plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
+        # nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
+        # nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
+        # plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
         
         buffer.seek(0)
         image_png = buffer.getvalue()
@@ -101,9 +101,9 @@ def view_quest_demo_notas(request):
 
         buffer = BytesIO()
         savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
-        nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
-        plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
+        # nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
+        # nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
+        # plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
         buffer.seek(0)
         image_png = buffer.getvalue()
         image = base64.b64encode(image_png)
@@ -143,7 +143,7 @@ def view_quest_demo_notas(request):
         context = {
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
-            'nome_do_relatorio' : nome_do_relatorio,
+            # 'nome_do_relatorio' : nome_do_relatorio,
             'relatorio_em_tabela' : relatorio_em_tabela,
             'relatorio' : relatorio_linha,
         }
