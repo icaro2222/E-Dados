@@ -3,21 +3,21 @@ from sqlalchemy import create_engine
 def connect():
 
     # Conexão MYSQL
-    tipo_db = "mysql+pymysql"
-    host="localhost"
-    user="icaro"
-    passwod="tatakae"
-    database="e_dados"
-    porta=3306
+    # tipo_db = "mysql+pymysql"
+    # host="localhost"
+    # user="icaro"
+    # passwod="tatakae"
+    # database="e_dados"
+    # porta=3306
 
 
     # Conexão POSTGRESQL
-    # tipo_db = "postgresql"
-    # host="ec2-54-87-179-4.compute-1.amazonaws.com"
-    # user="ccgapwggqseseb"
-    # passwod="bf9adeb9b12252a5a9377ede93702f53f404d6f23a9db8aeb77f3d2704a820f4"
-    # database="da0rf6a9o8h8v3"
-    # porta= 5432
+    tipo_db = "postgresql"
+    host="ec2-54-87-179-4.compute-1.amazonaws.com"
+    user="ccgapwggqseseb"
+    passwod="bf9adeb9b12252a5a9377ede93702f53f404d6f23a9db8aeb77f3d2704a820f4"
+    database="da0rf6a9o8h8v3"
+    porta= 5432
 
     conexao = str(tipo_db)+"://"+str(user)+":"+str(passwod)+"@"+str(host)+":" + str(porta)+"/"+str(database)
     
