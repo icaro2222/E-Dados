@@ -12,14 +12,17 @@ LIMIT = ' LIMIT 1000'
 def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio"):
     engine = conect_db.connect()
 
+
+    retorno_da_query = '"' + '","'.join(amostra) + '"'
+
     if(filtro_sexo != "vazio"):
         if(filtro_deficiencia != "vazio"):
-            query = 'SELECT "' + '","'.join(amostra) + '","'+ str(filtro_deficiencia)+ '" FROM  ' + BANCO + '  WHERE TP_SEXO ="' + str(filtro_sexo) + '" AND ' + str(filtro_deficiencia) + ' = "1" '
+            query = 'SELECT ' + retorno_da_query + ',"'+ str(filtro_deficiencia)+ '" FROM  ' + BANCO + '  WHERE "TP_SEXO" ="' + str(filtro_sexo) + '" AND "' + str(filtro_deficiencia) + '" = "1" '
         else:
-            query = 'SELECT "' + '","'.join(amostra) + '" FROM  ' + BANCO + '  WHERE TP_SEXO ="' + str(filtro_sexo) + '" '
+            query = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO + ' WHERE TP_SEXO ="' + str(filtro_sexo) + '" '
     else:
         if(filtro_deficiencia != "vazio"):
-            query = 'SELECT "' + '","'.join(amostra) + ','+ str(filtro_deficiencia)+ ' FROM ' + BANCO + ' WHERE ' + str(filtro_deficiencia) + ' = 1'
+            query = 'SELECT ' + retorno_da_query + ',"'+ str(filtro_deficiencia)+ '" FROM ' + BANCO + ' WHERE "' + str(filtro_deficiencia) + '" = 1'
         else:
             query = 'SELECT "' + '","'.join(amostra) + '" FROM ' + BANCO
     
