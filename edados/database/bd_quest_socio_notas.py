@@ -2,11 +2,7 @@ from ast import If
 import pandas as pd
 from edados.database import conect_db
 
-# Mysql
-# BANCO = 'enem2 '
-
-# Postgres
-BANCO = '"enem" '
+BANCO = conect_db.banco()
 LIMIT = ' LIMIT 10'
 
 def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio"):

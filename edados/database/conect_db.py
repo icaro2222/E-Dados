@@ -1,5 +1,16 @@
 from sqlalchemy import create_engine
 
+
+
+def banco():
+    # Mysql
+    # BANCO = 'enem2 '
+
+    # Postgres
+    BANCO = '"enem" '
+
+    return BANCO
+
 def connect():
 
     # Conexão MYSQL
