@@ -186,9 +186,9 @@ def view_quest_socio_notas(request):
         # plt.show(figura)
         buffer = BytesIO()
         savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
-        nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
-        plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
+        # nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
+        # nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
+        # plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
         # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')
         buffer.seek(0)
         image_png = buffer.getvalue()
@@ -202,9 +202,9 @@ def view_quest_socio_notas(request):
         # plt.show(figura)
         buffer = BytesIO()
         savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
-        nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
-        plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
+        # nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
+        # nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
+        # plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
         # plt.savefig(fname='dados/Relatório comparativo entre Questões Socioeconômicas e Desempenho no Enem.pdf' , format='pdf')
         buffer.seek(0)
         image_png = buffer.getvalue()
