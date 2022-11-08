@@ -216,7 +216,7 @@ def Quest_Soc_Notas_Sexo(request):
         context = {
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
-            'nome_do_relatorio' : nome_do_relatorio,
+            # 'nome_do_relatorio' : nome_do_relatorio,
             'relatorio' : relatorio,
             'dados' : dados
         }

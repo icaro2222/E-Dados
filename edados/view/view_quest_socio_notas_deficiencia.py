@@ -129,9 +129,9 @@ def Quest_Soc_Notas_Deficiencia(request):
 
         buffer = BytesIO()
         savefig = plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
-        nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
-        plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
+        # nome_do_relatorio = 'dados_relatorio/' + str(uuid.uuid4()) + '.pdf'
+        # nome_destino_do_relatorio = str(BASE_DIR) + '/static/' + nome_do_relatorio
+        # plt.savefig(fname=nome_destino_do_relatorio, format='pdf', facecolor='#e8eeff')
         buffer.seek(0)
         image_png = buffer.getvalue()
         image = base64.b64encode(image_png)
@@ -207,7 +207,7 @@ def Quest_Soc_Notas_Deficiencia(request):
         context = {
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
-            'nome_do_relatorio' : nome_do_relatorio,
+            # 'nome_do_relatorio' : nome_do_relatorio,
             'relatorio' : relatorio,
             'form_filtro' : form_filtro,
             'figura_com_criador_de_tabela' : figura_com_criador_de_tabela,

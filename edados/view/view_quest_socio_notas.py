@@ -257,7 +257,7 @@ def view_quest_socio_notas(request):
         context = {
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
-            'nome_do_relatorio' : nome_do_relatorio,
+            # 'nome_do_relatorio' : nome_do_relatorio,
             'relatorio_em_tabela' : relatorio_em_tabela,
             'relatorio' : relatorio_linha,
             'dados' : dados

@@ -235,7 +235,7 @@ def regiao(request):
         context = {
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
-            'nome_do_relatorio' : nome_do_relatorio,
+            # 'nome_do_relatorio' : nome_do_relatorio,
             'relatorio_tabela' : relatorio_tabela,
             'relatorio' : relatorio,
             'dados' : dados
