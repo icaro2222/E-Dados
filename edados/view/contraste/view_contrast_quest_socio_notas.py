@@ -31,7 +31,7 @@ def contrast_quest_socio_notas(request):
     prova = 'NU_NOTA_MT'
 
     if request.method == 'GET':
-        form = MeuFormulario(request.POST)
+        form = MeuFormulario()
 
         if form.is_valid():
             print(form.changed_data)
