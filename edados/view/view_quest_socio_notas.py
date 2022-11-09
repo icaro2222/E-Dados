@@ -216,11 +216,6 @@ def view_quest_socio_notas(request):
         #         header=dict(values=['medias', 'máximo', 'quant alunos', '25%', '50%', '75%']),
         #         cells=dict(values=[dados['mean'], dados['max'], dados['count'], dados['25%'], dados['50%'], dados['75%']]))
         #     ])
-
-        headerColor = 'grey'
-        rowEvenColor = 'lightgrey'
-        rowOddColor = 'white'
-
         # Amostra = ['NU_NOTA_CH', 'Q014', 'TP_SEXO']
 
         
@@ -228,6 +223,10 @@ def view_quest_socio_notas(request):
         # ChAmostra = ChAmostra.sort_values(by=['Q014'])
         # dados = ChAmostra.groupby('Q014')['NU_NOTA_CH']        
         # dados = dados.describe()
+
+        headerColor = 'grey'
+        rowEvenColor = 'lightgrey'
+        rowOddColor = 'white'
 
         fig = go.Figure(data=[go.Table(
                 header=dict(

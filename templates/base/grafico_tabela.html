@@ -10,7 +10,7 @@
             <!-- Page Heading -->
             <form class="col" action="." method="post">
                     {% csrf_token %}
-                    {{ form }}
+                    {{ form.as_p }}
                 <hr class="mb-3">
             <div class="col">                        
                 <input class="mb-4 md-12" type="submit" value="Enviar" name="Enviar">

@@ -13,12 +13,12 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
 
     if(filtro_sexo != "vazio"):
         if(filtro_deficiencia != "vazio"):
-            query = 'SELECT ' + retorno_da_query + ',"'+ str(filtro_deficiencia)+ '" FROM  ' + BANCO + '  WHERE "TP_SEXO" ="' + str(filtro_sexo) + '" AND "' + str(filtro_deficiencia) + '" = "1" '
+            query = 'SELECT ' + retorno_da_query + ' FROM  ' + BANCO + '  WHERE  "' + str(filtro_deficiencia) + '" = 1 '
         else:
             query = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO + ' WHERE "TP_SEXO" ="' + str(filtro_sexo) + '" '
     else:
         if(filtro_deficiencia != "vazio"):
-            query = 'SELECT ' + retorno_da_query + ',"'+ str(filtro_deficiencia)+ '" FROM ' + BANCO + ' WHERE "' + str(filtro_deficiencia) + '" = 1'
+            query = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO + ' WHERE "' + str(filtro_deficiencia) + '" = 1'
         else:
             query = 'SELECT "' + '","'.join(amostra) + '" FROM ' + BANCO
     

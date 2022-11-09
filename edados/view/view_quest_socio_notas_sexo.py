@@ -17,6 +17,9 @@ from edados.database import bd_quest_socio_notas
 
 caminho = os.path.join(BASE_DIR, 'dados/Microdado_Amostra.csv')
 
+def formatar(valor):
+    return "{:,.2f}".format(valor)
+    
 def Quest_Soc_Notas_Sexo(request):
 
     Q = 'TP_SEXO'
@@ -206,7 +209,32 @@ def Quest_Soc_Notas_Sexo(request):
         buffer.close()
 
         fig = px.line(dados)
+        rowEvenColor = 'lightgrey'
+        rowOddColor = 'white'
+
         relatorio = fig.to_html()
+
+        fig = go.Figure(data=[go.Table(
+                header=dict(
+                    values=['Respostas', 'medias', 'máximo', 'quant alunos', '25%', '50%', '75%'],
+                    fill_color='royalblue',
+                    height=40,
+                    line_color='darkslategray',
+                    align=['left','center'],
+                    font=dict(color='white', size=12)
+                ),
+                cells=dict(
+                    values=[dados.index,
+                    dados['mean'].apply(formatar), dados['max'], dados['count'], dados['25%'].apply(formatar), dados['50%'].apply(formatar), dados['75%'].apply(formatar)],
+                    line_color='darkslategray',
+                    # 2-D list of colors for alternating rows
+                    fill_color = [[rowOddColor,rowEvenColor,rowOddColor, rowEvenColor,rowOddColor]*5],
+                    align = ['left', 'center'],
+                    font = dict(color = 'darkslategray', size = 11)
+                    ))
+                ])
+
+        relatorio_em_tabela = fig.to_html()
 
         if form.is_valid():
             print(form.changed_data)
@@ -216,7 +244,7 @@ def Quest_Soc_Notas_Sexo(request):
         context = {
             'form' : form,
             'imagem_relatorio' : imagem_relatorio,
-            # 'nome_do_relatorio' : nome_do_relatorio,
+            'relatorio_em_tabela' : relatorio_em_tabela,
             'relatorio' : relatorio,
             'dados' : dados
         }
