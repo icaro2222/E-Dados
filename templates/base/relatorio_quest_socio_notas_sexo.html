@@ -1,4 +1,5 @@
-{% extends 'layout/layout.html' %} {%load static %} {% block titulo %}Contraste
+{% extends 'layout/layout.html' %} {%load static %}
+{% load crispy_forms_tags %} {% block titulo %}Contraste
 entre Sexo Nas Questões Socioeconômica vs notas {% endblock %} {% block css
 %}<link rel="stylesheet" href={% static "css/styles_relatorio.css" %}>{%
 endblock %} {% block conteudo %}
@@ -6,7 +7,7 @@ endblock %} {% block conteudo %}
 <div class="row">
   <!-- Page Heading -->
   <form class="col" action="." method="post">
-    {% csrf_token %} {{ form.as_p }}
+    {% csrf_token %} {{ form|crispy}}
     <hr class="mb-3" />
     <div class="row d-flex justify-content-end align-items-center">
       <div class="col-sm-4 mb-4 d-flex justify-content-end">

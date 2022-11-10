@@ -10,4 +10,4 @@ class DashboardFormulario(forms.Form):
                     ('2017' ,'2017'),
                     ('2016' ,'2016'))
 
-    ano = forms.ChoiceField(choices=choices_ano)
+    ano = forms.ChoiceField(label='Selecione o ano:', choices=choices_ano)

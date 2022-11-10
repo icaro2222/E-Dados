@@ -11,6 +11,7 @@ import matplotlib as mpl
 import plotly.express as px
 import base64
 from edados.formularios.contraste.form_contrast_questao_e_notas import MeuFormulario
+from edados.formularios.vazio.formulario_vazio import VazioFormulario
 from edados.settings import BASE_DIR
 import numpy as np
 from edados.database import bd_quest_socio_notas
@@ -53,6 +54,7 @@ def contrast_quest_socio_notas(request):
         return render(request, 'base/contraste/quest_contraste_socio_notas.html', context=context)
     else:
         form = MeuFormulario(request.POST)
+        form_vazio = VazioFormulario()
 
         Q = form.data['Questao_Socioeconomica_Com_Deficiencia']
         prova = form.data['Nota_da_prova_Com_Deficiencia']
@@ -391,6 +393,7 @@ def contrast_quest_socio_notas(request):
 
         context = {
             'form' : form,
+            'form_vazio' : form_vazio,
             'imagem_relatorio' : imagem_relatorio,
             'imagem_relatorio1' : imagem_relatorio1,
             # 'nome_do_relatorio' : nome_do_relatorio,

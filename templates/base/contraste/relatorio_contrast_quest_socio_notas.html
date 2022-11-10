@@ -1,5 +1,8 @@
-{% extends 'layout/layout.html' %} {%load static %} {% block titulo %}Questões
-Socioeconômica vs notas{% endblock %} {% block css %}<link rel="stylesheet"
+{% extends 'layout/layout.html' %} 
+{% load static %}
+{% load crispy_forms_tags %}
+{% block titulo %}Questões Socioeconômica vs notas{% endblock %} 
+{% block css %}<link rel="stylesheet"
 href={% static "css/styles_relatorio.css" %}>{% endblock %} {% block conteudo %}
 <!-- Begin Page Content -->
 <div class="row d-flex">
@@ -9,7 +12,8 @@ href={% static "css/styles_relatorio.css" %}>{% endblock %} {% block conteudo %}
         <!-- Page Heading -->
         <h3>Inscritos com alguma deficiência</h3>
         <label for="">Filtro por Questão socioeconômica:</label>
-        {% csrf_token %} {{ form.Questao_Socioeconomica_Com_Deficiencia }}
+        {% csrf_token %} 
+        {{ form.Questao_Socioeconomica_Com_Deficiencia|crispy }}
         <label class="mt-2" for="">Deseja análise a nota de qual prova?</label>
         {% csrf_token %} {{ form.Nota_da_prova_Com_Deficiencia }}
         <hr class="mb-3" />

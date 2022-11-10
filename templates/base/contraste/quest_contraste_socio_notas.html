@@ -1,5 +1,8 @@
-{% extends 'layout/layout.html' %} {%load static %} {% block titulo %}Questões
-Socioeconômica vs notas{% endblock %} {% block conteudo %}
+{% extends 'layout/layout.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block titulo %}Questões Socioeconômica vs notas{% endblock %} 
+{% block conteudo %}
 <!-- Begin Page Content -->
 <div class="container-fluid">
   <div class="container">
@@ -7,7 +10,8 @@ Socioeconômica vs notas{% endblock %} {% block conteudo %}
       <!-- Page Heading -->
       <form class="col" action="." method="post">
         <table>
-        {% csrf_token %} {{ form.as_table }}
+        {% csrf_token %} 
+        {{ form|crispy }}
       </table>
         <hr class="mb-3" />
         <div class="row d-flex justify-content-end">
