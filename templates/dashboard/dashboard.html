@@ -7,9 +7,8 @@ endblock %} {% block conteudo %}
 <div class="row">
   <!-- Page Heading -->
   <form class="col border border-white mb-3" action="." method="post">
-    <h3 class="mt-2">Selecione o ano:</h3>
-    <hr class="mb-3 mt-0" />
-    {% csrf_token %} {{ form.as_p }}
+    <h4 class="mt-2">Selecione o ano:   {{ form.ano }}</h4>
+    {% csrf_token %} 
     <hr class="mb-3" />
     <div class="row d-flex justify-content-end align-items-center">
       <div class="col-sm-4 mb-4 d-flex justify-content-end">
@@ -43,6 +42,6 @@ endblock %} {% block conteudo %}
     <div class="col md-11">{{relatorio_em_tabela|safe}}</div>
   </div>
 </div>
-<hr class="mb-3" />
+<!-- <hr class="mb-3" /> -->
 <!-- /.container-fluid -->
 {% endblock %}
