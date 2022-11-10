@@ -18,9 +18,10 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from .view import view_quest_demo_notas, view_quest_socio_notas, view_quest_demo_socioe, view_quest_socio_notas_sexo , view_quest_socio_notas_deficiencia, view_regiao, view_regiao_mapa#, views, view,  view_plot
 from .view.contraste import view_contrast_quest_socio_notas
+from .view.dashboard import dashboard
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="dashboard.html"), name="dashboard"),
+    path('', dashboard.Dashboard, name="dashboard"),
     path('admin/', admin.site.urls),
 
     # URLs do usuario da plataforma
