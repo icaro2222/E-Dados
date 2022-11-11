@@ -10,9 +10,10 @@ endblock %} {% block conteudo %}
     <div class="col-md-12 d-flex">
       {% csrf_token %} {{ form|crispy}}
     </div>
-    <div class="col-md-3">
+    <hr class="mb-3" />
       <h4>Filtros:</h4>
-      {% csrf_token %} {{ form_filtro|crispy }}
+    <div class="col-md-12 d-flex">
+      {{ form_filtro|crispy }}
     </div>
   <hr class="mb-3" />
     <div class="row d-flex justify-content-end align-items-center">

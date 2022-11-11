@@ -5,13 +5,13 @@
 %}<link rel="stylesheet" href={% static "css/styles_relatorio.css" %}>{%
 endblock %} {% block conteudo %}
 <!-- Begin Page Content -->
-<div class="row">
+<div class="row border border-white">
   <!-- Page Heading -->
-  <form class="col border border-white mb-3" action="." method="post">
-    <div class="col-md-4">
-      <h3>{{ form|crispy }}</h3>
-    </div>
+  <form class="col-md-12 mb-3" action="." method="post">
     {% csrf_token %} 
+    <div class="d-flex">
+      {{ form|crispy }}
+    </div>
     <hr class="mb-3" />
     <div class="row d-flex justify-content-end align-items-center">
       <div class="col-sm-4 mb-4 d-flex justify-content-end">
