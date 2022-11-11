@@ -1,13 +1,9 @@
 from random import choices
 from django import forms
+from edados.formularios.base import questionario_ano, questionario_de_deficiencia
 
 
 class DashboardFormulario(forms.Form):
 
-    choices_ano = (('todos' ,'TODOS'),    
-                    ('2019', '2019'),
-                    ('2018' ,'2018'),
-                    ('2017' ,'2017'),
-                    ('2016' ,'2016'))
-
-    ano = forms.ChoiceField(label='Selecione o ano:', choices=choices_ano)
+    ano = questionario_ano.questionario_ano(Form=forms.Form)
+    deficiencia = questionario_de_deficiencia.questionario_de_deficiencia(Form=forms.Form)

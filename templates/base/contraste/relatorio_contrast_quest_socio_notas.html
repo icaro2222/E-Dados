@@ -5,6 +5,9 @@
 {% block css %}<link rel="stylesheet"
 href={% static "css/styles_relatorio.css" %}>{% endblock %} {% block conteudo %}
 <!-- Begin Page Content -->
+<div class="col-md-12 d-flex">
+  {{form_ano|crispy}}
+</div>
 <div class="row d-flex">
   <form class="row" action="." method="post">
     <div class="col-md-6 border border-light rounded">
@@ -13,7 +16,7 @@ href={% static "css/styles_relatorio.css" %}>{% endblock %} {% block conteudo %}
         <h3>Inscritos com alguma deficiência</h3>
         <label for="">Filtro por Questão socioeconômica:</label>
         {% csrf_token %} 
-        {{ form.Questao_Socioeconomica_Com_Deficiencia|crispy }}
+        {{ form.Questao_Socioeconomica_Com_Deficiencia}}
         <label class="mt-2" for="">Deseja análise a nota de qual prova?</label>
         {% csrf_token %} {{ form.Nota_da_prova_Com_Deficiencia }}
         <hr class="mb-3" />

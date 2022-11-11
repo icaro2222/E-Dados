@@ -19,6 +19,7 @@ from django.views.generic import TemplateView
 from .view import view_quest_demo_notas, view_quest_socio_notas, view_quest_demo_socioe, view_quest_socio_notas_sexo , view_quest_socio_notas_deficiencia, view_regiao, view_regiao_mapa#, views, view,  view_plot
 from .view.contraste import view_contrast_quest_socio_notas
 from .view.dashboard import dashboard
+from .view.fomulario_2 import view_formulario_2
 
 urlpatterns = [
     path('', dashboard.Dashboard, name="dashboard"),
@@ -37,7 +38,7 @@ urlpatterns = [
     path('Desenpenho por Regiao/', view_regiao.regiao, name="Desenpenho_por_Regiao"),
     path('Desenpenho por Regiao Mapa/', view_regiao_mapa.view_regiao_mapa, name="Desenpenho_por_Regiao_Mapa"),
     path('Quest Soc Notas Sexo/', view_quest_socio_notas_sexo.Quest_Soc_Notas_Sexo, name="Quest_Soc_Notas_Sexo"),
-    path('Quest Soc Notas Deficiencia/', view_quest_socio_notas_deficiencia.Quest_Soc_Notas_Deficiencia, name="Quest_Soc_Notas_Deficiencia"),
+    path('Quest Soc Notas Deficiencia/', view_formulario_2.formulario_2, name="Quest_Soc_Notas_Deficiencia"),
 
     # URLs de Contraste entre Deficiêntes e Não deficiêntes
     path('Contrast Quest Soc Notas/', view_contrast_quest_socio_notas.contrast_quest_socio_notas, name="Contrast_Quest_Soc_Notas_Deficiencia"),

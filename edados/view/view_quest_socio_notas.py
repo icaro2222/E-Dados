@@ -71,7 +71,6 @@ def view_quest_socio_notas(request):
         NU_NOTA_CNCHAmostra = ChAmostra[prova]
         
         width = 0.25         # A largura das barras
-        plt.figure(figsize=(0,0))
 
         r1 = np.arange(len(NU_NOTA_CNCHAmostra))
         r2 = [x + width for x in r1]

@@ -8,7 +8,9 @@ endblock %} {% block conteudo %}
 <div class="row">
   <!-- Page Heading -->
   <form class="col border border-white mb-3" action="." method="post">
-    <h3>{{ form|crispy }}</h3>
+    <div class="col-md-4">
+      <h3>{{ form|crispy }}</h3>
+    </div>
     {% csrf_token %} 
     <hr class="mb-3" />
     <div class="row d-flex justify-content-end align-items-center">

@@ -6,12 +6,14 @@ Socioeconômica vs notas{% endblock %} {% block conteudo %}
   <!-- Page Heading -->
   <form class="col" action="." method="post">
     <h3>Variáveis de Contraste, correlação entre elas.</h3>
+      <div class="col-md-12 d-flex">
+        {% csrf_token %} {{ form|crispy}}
+      </div>
+      <div class="col-md-3">
+        <h4>Filtros:</h4>
+        {% csrf_token %} {{ form_filtro|crispy }}
+      </div>
     <hr class="mb-3" />
-      {% csrf_token %} {{ form|crispy }}
-      <hr class="mb-3" />
-      <h3>Filtros! Adicione um filtro à sua pesquisa.</h3>
-      {% csrf_token %} {{ form_filtro|crispy }}
-      <hr class="mb-3" />
     <div class="row d-flex justify-content-end">
       <div class="col-md-3">
         <button type="submit" class="mb-4 md-12 btn btn-outline-primary">

@@ -10,7 +10,7 @@ from io import BytesIO
 import matplotlib as mpl
 import plotly.express as px
 import base64
-from edados.formularios.form_filtro import MeuFormulario
+from edados.formularios.form_filtro import Formulario_filtro
 from edados.settings import BASE_DIR
 import numpy as np
 
@@ -22,14 +22,14 @@ def view_regiao_mapa(request):
     prova = 'NU_NOTA_MT'
 
     if request.method == 'GET':
-        form = MeuFormulario(request.POST)
+        form = Formulario_filtro(request.POST)
 
         if form.is_valid():
             print(form.changed_data)
 
         menssagem = ("Desempenho por Região")
 
-        form = MeuFormulario()
+        form = Formulario_filtro()
         context = {
             'form' : form,
             'menssagem' : menssagem
@@ -37,7 +37,7 @@ def view_regiao_mapa(request):
         return render(request, 'base/quest_socio_notas.html', context=context)
     else:
 
-        form = MeuFormulario(request.POST)
+        form = Formulario_filtro(request.POST)
 
         # Q = form.data['questao']
         # prova = form.data['nota']
