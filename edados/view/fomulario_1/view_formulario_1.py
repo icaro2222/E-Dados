@@ -7,15 +7,15 @@ import base64
 from edados.formularios.formulario_1.formulario_1 import Formulario_1
 from edados.formularios.filtros.filtros import Formulario_filtros
 import numpy as np
-from edados.database import bd_quest_socio_notas_deficiencia
+from edados.database import bd_formulario_1
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
 def formulario_1(request):
 
-    Q = 'TP_SEXO'
-    prova = 'NU_NOTA_MT'
+    questao= 'Q001'
+    demografico = 'TP_SEXO'
 
     if request.method == 'GET':        
         menssagem = ("Formulário 1.")
@@ -36,8 +36,8 @@ def formulario_1(request):
         form_filtro = Formulario_filtros(request.POST)
 
         # Variáveis vindas do Formulario
-        Q = form.data['questao']
-        prova = form.data['nota']
+        questao= form.data['questao']
+        demografico = form.data['demografico']
         filtro_deficiencia = form.data['deficiencia']
 
         # Formulario de Filtro
@@ -45,76 +45,85 @@ def formulario_1(request):
         filtro_ano = form_filtro.data['ano']
 
         if(filtro_sexo != 'ambos'):
-            Amostra = [prova, Q, 'TP_SEXO']
+            Amostra = [demografico, questao, 'TP_SEXO']
             if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+                Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
             else:
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_ano=filtro_ano)
+                Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_ano=filtro_ano)
         else:
-            Amostra = [prova, Q]
+            Amostra = [demografico, questao]
             if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+                Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
             else:
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_ano=filtro_ano)
-            
-        print(filtro_ano)
+                Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_ano=filtro_ano)
+        
+
+
+        menssagem = 'Formulário 1'
+
+        if(demografico == 'TP_SEXO'):
+            vetor = demografico_sexo(Microdado_Amostra, demografico, questao)
+            imagem_relatorio = vetor[0]
+            relatorio_em_linha = vetor[1]
+            relatorio_em_tabela_feminino = vetor[2]
+            relatorio_em_tabela_masculino = vetor[3]
+
+            context = {
+                'form' : form,
+                'form_filtro' : form_filtro,
+                'menssagem' : menssagem,
+                'imagem_relatorio' : imagem_relatorio,
+                'relatorio_em_linha' : relatorio_em_linha,
+                'relatorio_em_tabela_feminino' : relatorio_em_tabela_feminino,
+                'relatorio_em_tabela_masculino' : relatorio_em_tabela_masculino
+            }
+        else:
+
+            context = {
+                'form' : form,
+                'form_filtro' : form_filtro,
+                'menssagem' : menssagem,
+                'imagem_relatorio' : imagem_relatorio,
+                'relatorio_em_linha' : relatorio_em_linha,
+                'relatorio_em_tabela_feminino' : relatorio_em_tabela_feminino,
+                'relatorio_em_tabela_masculino' : relatorio_em_tabela_masculino
+            }
+
+    return render(request, 'base/formulario_1/relatorio_formulario_1.html', context=context)
+    
+
+def demografico_sexo(Microdado_Amostra, demografico, questao):
+
         width = 0.25         # A largura das barras
 
-        Dataframe = Microdado_Amostra.filter(items = Amostra)
-        Dataframe = Dataframe.sort_values(by=[Q])
-        Dataframe = Dataframe.groupby(Q)[prova]
-        Dataframe = Dataframe.describe()     
-
-        # Seleção conforme a escolha do usuário na tela do formulario
-        if filtro_deficiencia == 'ambos':
-            br1 = np.arange(len(Dataframe.index))
-            br2 = [x + width for x in br1]
-
-            figura = plt.figure(figsize=(12, 8))
-            figura.suptitle('Relatório de correlação entre: Questão socioeconômica e Desempenho no Enem', size=16)
-            figura.add_subplot(1,1,1)
-
-            bar_label_mean = plt.bar(br2, Dataframe['mean'], color='r', width=width, label="Média")
-            plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
-
-        else:
-            # caminho_a_deficiencia = caminho2 + filtro_deficiencia + '.csv'
-            # Microdado_Amostra = pd.read_csv(caminho_a_deficiencia, sep= ';', encoding = "ISO-8859-1")
-            # DataFrame = Microdado_Amostra.filter(items = Amostra)
-            # DataFrame = DataFrame.sort_values(by=[Q])
-            # DataFrame_dificiente = DataFrame[DataFrame[filtro_deficiencia]==1]
-
-            # DataFrame_dificiente = DataFrame_dificiente.sort_values(by=[Q])
-            # dados = DataFrame_dificiente.groupby(Q)[prova]
-            # dataset = dados.describe()
-            dataset = Dataframe
-            figura = plt.figure(figsize=(12, 8))
-            figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
-            'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=16)
-            figura.add_subplot(1,1,1)
-
-            br1 = np.arange(len(dataset.index))
-            br2 = [x + width for x in br1]
-            br3 = [x + width for x in br2]
-
-            bar_label_min = plt.bar(br1, dataset['min'], color='y', width=width, label="Mínimo")
-            bar_label_mean = plt.bar(br2, dataset['mean'], color='b', width=width, label="Média")
-            bar_label_max = plt.bar(br3, dataset['max'], color='r', width=width, label="Máximno")
+        DataFrame = Microdado_Amostra.sort_values(by=[questao])
+        DataFrame = DataFrame.groupby([demografico, questao])
+        DataFrame = DataFrame['TP_SEXO'].count()
+        Dataset_F = DataFrame['F']
+        Dataset_M = DataFrame['M']
             
-            plt.bar_label(bar_label_max, fmt='%.2f', padding=2)
-            plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
-            plt.bar_label(bar_label_min, fmt='%.2f', padding=2)
+        figura = plt.figure(figsize=(12, 8))
+        figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
+        'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=16)
+        figura.add_subplot(1,1,1)
 
-            labels = np.arange(len(dataset.index.tolist()))
-            print(labels)
-            plt.xticks(labels, dataset.index.tolist())
-            # plt.xticks()
+        br1 = np.arange(len(Dataset_F.index))
+        br2 = [x + width for x in br1]
 
+        bar_label_feminino = plt.bar(br1, Dataset_F, color='y', width=width, label="feminíno")
+        bar_label_masculino = plt.bar(br2, Dataset_M, color='b', width=width, label="masculíno")
+        
+        plt.bar_label(bar_label_feminino, fmt='%.2f', padding=2)
+        plt.bar_label(bar_label_masculino, fmt='%.2f', padding=2)
+
+        labels = np.arange(len(Dataset_F.index.tolist()))
+        print(labels)
+        plt.xticks(labels, Dataset_F.index.tolist())
 
         plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
-        plt.title(Q)
-        plt.ylabel('Notas dos Inscritos no Enem')
-        plt.xlabel('Respostas das Questão Socioeconômica')
+        plt.title(questao)
+        plt.ylabel('Quantidade de Inscritos por Questão Demográfica')
+        plt.xlabel('Respostas da Questão Socioeconômica')
 
         buffer = BytesIO()
         plt.savefig(buffer, format='png', facecolor='#e8eeff')
@@ -124,22 +133,31 @@ def formulario_1(request):
         imagem_relatorio = image.decode('utf-8')
         buffer.close()
 
-        fig = px.line(Dataframe)
+        fig = go.Figure()
+
+        fig.add_trace(go.Scatter(
+            y=Dataset_M,
+            x=Dataset_M.index,
+            name = 'masculíno', # Style name/legend entry with html tags
+            connectgaps=True # override default to connect the gaps
+        ))
+        fig.add_trace(go.Scatter(
+            y=Dataset_F,
+            x=Dataset_F.index,
+            name='feminíno',
+        ))
+
         relatorio = fig.to_html()
 
-        figura_com_criador_de_tabela = px.bar(Dataframe)
-        figura_com_criador_de_tabela = figura_com_criador_de_tabela.to_html()
-
-        figura_tabela_da_media = px.bar(Dataframe['mean'])
-        figura_tabela_da_media = figura_tabela_da_media.to_html()
-
-        headerColor = 'grey'
+        # Definindo cores que seram utilizadas na  tabela
         rowEvenColor = 'lightgrey'
         rowOddColor = 'white'
 
-        figura_tabela = go.Figure(data=[go.Table(
+
+        # Criando a tabela, utilizando a biblioteca "go".
+        figura_tabela_feminino = go.Figure(data=[go.Table(
                 header=dict(
-                    values=['Respostas', 'medias', 'máximo', 'quant alunos', '25%', '50%', '75%'],
+                    values=['Respostas', 'quantidade'],
                     fill_color='royalblue',
                     height=40,
                     line_color='darkslategray',
@@ -147,10 +165,7 @@ def formulario_1(request):
                     font=dict(color='white', size=12)
                 ),
                 cells=dict(
-                    values=[Dataframe.index,
-                    Dataframe['mean'].apply(formatar), Dataframe['max'], 
-                    Dataframe['count'], Dataframe['25%'].apply(formatar), 
-                    Dataframe['50%'].apply(formatar), Dataframe['75%'].apply(formatar)],
+                    values=[Dataset_F.index, Dataset_F],
                     line_color='darkslategray',
                     fill_color = [[rowOddColor,rowEvenColor,rowOddColor, rowEvenColor,rowOddColor]*5],
                     align = ['left', 'center'],
@@ -158,11 +173,30 @@ def formulario_1(request):
                     ))
                 ])
 
-        figura_tabela.add_trace(go.Bar(x=Dataframe.index, y=Dataframe['max']))
-        figura_tabela.add_trace(go.Bar(x=Dataframe.index, y=Dataframe['mean']))
+        figura_tabela_masculino = go.Figure(data=[go.Table(
+                header=dict(
+                    values=['Respostas', 'quantidade'],
+                    fill_color='royalblue',
+                    height=40,
+                    line_color='darkslategray',
+                    align=['left','center'],
+                    font=dict(color='white', size=12)
+                ),
+                cells=dict(
+                    values=[Dataset_M.index, Dataset_M],
+                    line_color='darkslategray',
+                    fill_color = [[rowOddColor,rowEvenColor,rowOddColor, rowEvenColor,rowOddColor]*5],
+                    align = ['left', 'center'],
+                    font = dict(color = 'darkslategray', size = 11)
+                    ))
+                ])
 
-        figura_tabela.update_layout(
-            title_text = 'Tabela de correlação entre o desempenho e a resposta da questão socioeconômica.',
+
+        figura_tabela_feminino.add_trace(go.Bar(x=Dataset_M.index, y=Dataset_M))
+        figura_tabela_feminino.add_trace(go.Bar(x=Dataset_F.index, y=Dataset_F))
+
+        figura_tabela_feminino.update_layout(
+            title_text = 'Tabela demográfica Feminína.',
             height = 800,
             margin = {'t':75, 'l':50},
             yaxis = {'domain': [0, .45]},
@@ -170,25 +204,16 @@ def formulario_1(request):
             yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'}
         )
 
-        relatorio_em_tabela = figura_tabela.to_html()
+        figura_tabela_masculino.update_layout(
+            title_text = 'Tabela demográfica Masculína.',
+            height = 800,
+            margin = {'t':75, 'l':50},
+            yaxis = {'domain': [0, .45]},
+            xaxis2 = {'anchor': 'y2'},
+            yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'}
+        )
 
-        if form.is_valid():
-            print(form.changed_data)
-        else:
-            pass
+        relatorio_em_tabela = figura_tabela_feminino.to_html()
+        figura_tabela_masculino = figura_tabela_masculino.to_html()
 
-        menssagem = 'Formulário 1'
-
-        context = {
-            'form' : form,
-            'menssagem' : menssagem,
-            'imagem_relatorio' : imagem_relatorio,
-            'relatorio' : relatorio,
-            'form_filtro' : form_filtro,
-            'figura_com_criador_de_tabela' : figura_com_criador_de_tabela,
-            'figura_tabela_da_media' : figura_tabela_da_media,
-            'relatorio_em_tabela' : relatorio_em_tabela
-        }
-
-    return render(request, 'base/formulario_1/relatorio_formulario_1.html', context=context)
-    
+        return [imagem_relatorio, relatorio, relatorio_em_tabela, figura_tabela_masculino]
