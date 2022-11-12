@@ -16,12 +16,16 @@ def formatar(valor):
 def Dashboard(request):
 
     if request.method == 'GET':        
-        menssagem = ("Dados Gerais do enem")
+        menssagem1 = ("Dados Gerais do enem")
 
+        menssagem = """Está é uma plataforma online, visando te possibilitar 
+                        uma análise de forma simples e eficiente, 
+                        de maneira que você não necessite gastar horas."""
         form = DashboardFormulario()
         context = {
             'form' : form,
-            'menssagem' : menssagem
+            'menssagem' : menssagem,
+            'menssagem1' : menssagem1
         }
         return render(request, 'dashboard/dashboard.html', context=context)
     else:
@@ -41,8 +45,13 @@ def Dashboard(request):
 
         relatorio = 1800
 
+        menssagem = """Está é uma ploataforma online, com o objetivo de te possibilitar 
+                        uma análise de forma simples e eficiênte, 
+                        de maneira que você não necessite gastar horas."""
+
         context = {
             'form' : form,
+            'menssagem' : menssagem,
             # 'nome_do_relatorio' : nome_do_relatorio,
             'relatorio' : relatorio,
         }

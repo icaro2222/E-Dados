@@ -39,10 +39,19 @@ endblock %} {% block conteudo %}
       </div>
     </div>
   </form>
-</div>
-<div class="col-md-6">
-  <div class="col-md-12 mb-3">
-    <div class="col md-11">{{relatorio_em_tabela|safe}}</div>
+  <div class="col-md-6">
+    <div class="col-md-12 mb-3">
+      <div class="col md-11">{{relatorio_em_tabela|safe}}</div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <hr class="mt-0" />
+    <h4>{{ menssagem1 }}:</h4>
+    <hr class="mt-0 bg-dark" />
+  </div>
+  <div class="col-md-12">
+    <h4>{{ menssagem }}</h4>
+    <hr class="mt-0 bg-dark" />
   </div>
 </div>
 <!-- <hr class="mb-3" /> -->

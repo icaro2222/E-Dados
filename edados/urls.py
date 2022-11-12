@@ -20,6 +20,7 @@ from .view import view_quest_demo_notas, view_quest_socio_notas, view_quest_demo
 from .view.contraste import view_contrast_quest_socio_notas
 from .view.dashboard import dashboard
 from .view.fomulario_2 import view_formulario_2
+from .view.fomulario_1 import view_formulario_1
 
 urlpatterns = [
     path('', dashboard.Dashboard, name="dashboard"),
@@ -28,6 +29,10 @@ urlpatterns = [
     # URLs do usuario da plataforma
     path('', include('usuarios.urls')),
 
+    # Formulários
+    path('Quest Soc Notas Deficiencia/', view_formulario_2.formulario_2, name="Quest_Soc_Notas_Deficiencia"),
+    path('Perfil do Inscrito/', view_formulario_1.formulario_1, name="formulario_1"),
+    
     # path('teste/', views.teste, name='teste'),
     # path('manipulando/', views.index, name='page_dados'),
     # path('grafico_tabela/', view.Grafico_Tabela, name="grafico_tabela"),
@@ -38,7 +43,6 @@ urlpatterns = [
     path('Desenpenho por Regiao/', view_regiao.regiao, name="Desenpenho_por_Regiao"),
     path('Desenpenho por Regiao Mapa/', view_regiao_mapa.view_regiao_mapa, name="Desenpenho_por_Regiao_Mapa"),
     path('Quest Soc Notas Sexo/', view_quest_socio_notas_sexo.Quest_Soc_Notas_Sexo, name="Quest_Soc_Notas_Sexo"),
-    path('Quest Soc Notas Deficiencia/', view_formulario_2.formulario_2, name="Quest_Soc_Notas_Deficiencia"),
 
     # URLs de Contraste entre Deficiêntes e Não deficiêntes
     path('Contrast Quest Soc Notas/', view_contrast_quest_socio_notas.contrast_quest_socio_notas, name="Contrast_Quest_Soc_Notas_Deficiencia"),

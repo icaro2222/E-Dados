@@ -12,13 +12,13 @@ from edados.database import bd_quest_socio_notas_deficiencia
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
-def formulario_2(request):
+def formulario_1(request):
 
     Q = 'TP_SEXO'
     prova = 'NU_NOTA_MT'
 
     if request.method == 'GET':        
-        menssagem = ("Correlação entre as questões socioeconômicas e desempenho no exame, somados a filtros.")
+        menssagem = ("Formulário 1.")
 
         form = Formulario_2()
         form_filtro = Formulario_filtros()
@@ -27,7 +27,7 @@ def formulario_2(request):
             'menssagem' : menssagem,
             'form_filtro' : form_filtro
         }
-        return render(request, 'base/formulario_2/quest_formulario_2.html', context=context)
+        return render(request, 'base/formulario_1/quest_formulario_1.html', context=context)
     else:
 
 
@@ -113,8 +113,8 @@ def formulario_2(request):
 
         plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
         plt.title(Q)
-        plt.ylabel('Desempenho dos Inscritos no Enem')
-        plt.xlabel('Respostas da Questão Socioeconômica: "'+Q+'"')
+        plt.ylabel('Notas dos Inscritos no Enem')
+        plt.xlabel('Respostas das Questão Socioeconômica')
 
         buffer = BytesIO()
         plt.savefig(buffer, format='png', facecolor='#e8eeff')
@@ -177,14 +177,11 @@ def formulario_2(request):
         else:
             pass
 
-        menssagem1 = """Formulário 2:"""
-        menssagem = """Correlação entre as respostas do questionário socioeconômico e
-        o desempenho no exame."""
+        menssagem = 'Formulário 1'
 
         context = {
             'form' : form,
             'menssagem' : menssagem,
-            'menssagem1' : menssagem1,
             'imagem_relatorio' : imagem_relatorio,
             'relatorio' : relatorio,
             'form_filtro' : form_filtro,
@@ -193,5 +190,5 @@ def formulario_2(request):
             'relatorio_em_tabela' : relatorio_em_tabela
         }
 
-    return render(request, 'base/formulario_2/relatorio_formulario_2.html', context=context)
+    return render(request, 'base/formulario_1/relatorio_formulario_1.html', context=context)
     
