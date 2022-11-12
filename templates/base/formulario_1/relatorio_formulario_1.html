@@ -13,12 +13,12 @@
   <!-- Page Heading -->
   <form class="col" action="." method="post">
     <div class="col-md-12 d-flex">{% csrf_token %} {{ form|crispy}}</div>
-    <hr class="mb-3" />
+    <hr class="m-0" />
     <h4>Filtros:</h4>
     <div class="col-md-12 d-flex">{{ form_filtro|crispy }}</div>
-    <hr class="mb-3" />
+    <hr class="m-1" />
     <div class="row d-flex justify-content-end align-items-center">
-      <div class="col-sm-4 mb-4 d-flex justify-content-end">
+      <div class="col-sm-4 mb-3 d-flex justify-content-end">
         <button type="submit" class="md-12 btn btn-outline-primary">
           Gerar Nova Análise
           <svg
@@ -44,23 +44,12 @@
     </div>
     <div class="col-md-12">
       <hr class="mt-0" />
-      <h4>{{ menssagem1 }}</h4>
       <h4>{{ menssagem }}</h4>
       <hr class="mt-0 bg-dark" />
     </div>
   </form>
 </div>
 <div class="text-dark rounded border border-dark">
-  <div class="row">
-    <div class="col md-12 border-0">
-      <div class="col md-11">{{relatorio_em_tabela_feminino|safe}}</div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col md-12 border-0">
-      <div class="col md-11">{{relatorio_em_tabela_masculino|safe}}</div>
-    </div>
-  </div>
   <hr class="mb-3" />
   <div class="row">
     <div class="col md-12">

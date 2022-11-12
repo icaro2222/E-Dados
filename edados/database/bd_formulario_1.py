@@ -3,7 +3,7 @@ import pandas as pd
 from edados.database import conect_db
 
 BANCO = conect_db.banco()
-LIMIT = ' LIMIT 1000'
+LIMIT = ' LIMIT 10000'
 
 def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
     engine = conect_db.connect()
