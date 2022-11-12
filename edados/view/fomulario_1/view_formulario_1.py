@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from io import BytesIO
 import plotly.express as px
 import base64
-from edados.formularios.formulario_2.formulario_2 import Formulario_2
+from edados.formularios.formulario_1.formulario_1 import Formulario_1
 from edados.formularios.filtros.filtros import Formulario_filtros
 import numpy as np
 from edados.database import bd_quest_socio_notas_deficiencia
@@ -20,7 +20,7 @@ def formulario_1(request):
     if request.method == 'GET':        
         menssagem = ("Formulário 1.")
 
-        form = Formulario_2()
+        form = Formulario_1()
         form_filtro = Formulario_filtros()
         context = {
             'form' : form,
@@ -32,7 +32,7 @@ def formulario_1(request):
 
 
         # Recebendo fomulario da tela
-        form = Formulario_2(request.POST)
+        form = Formulario_1(request.POST)
         form_filtro = Formulario_filtros(request.POST)
 
         # Variáveis vindas do Formulario
