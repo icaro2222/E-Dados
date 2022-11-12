@@ -15,7 +15,7 @@
 	.main-login{
 		width: 100vw;
 		height: 100vh;
-		background-color: #a8b0b6;
+		background-color: #eaeef0;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -53,9 +53,9 @@
 		align-items: center;
 		flex-direction: column;
 		padding: 30px 35px;
-		background: #8796ad;
+		background: #c3cee0;
 		border-radius: 15px; 
-		box-shadow: 0px 10px 40px #aeb1e2;
+		box-shadow: 0px 10px 40px #caccee;
 	}
 	
 	.card-login > h1 {
@@ -78,7 +78,7 @@
 		border: none;
 		border-radius: 10px;
 		padding: 15px;
-		background: #060c5f;
+		background: #ebebeb;
 		color: #000000;
 		font-size: 12pt;
 		outline: none;
@@ -102,7 +102,7 @@
 		color: #000000;
 		background: #aeb1e2;
 		cursor: pointer;
-		box-shadow: 0px 10px 40px -12px #0a2558;
+		box-shadow: 0px 10px 40px -12px #627db0;
 	}
 	
 footer{
@@ -117,7 +117,7 @@ footer{
 
 footer a{
     text-decoration: none;
-    color: #060c5f;
+    color: #070c58;
 }
 
 footer p{

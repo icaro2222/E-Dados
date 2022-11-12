@@ -42,20 +42,22 @@ def formulario_2(request):
 
         # Formulario de Filtro
         filtro_sexo = form_filtro.data['sexo']
+        filtro_ano = form_filtro.data['ano']
 
         if(filtro_sexo != 'ambos'):
             Amostra = [prova, Q, 'TP_SEXO']
             if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia)
+                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
             else:
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo)
+                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_ano=filtro_ano)
         else:
             Amostra = [prova, Q]
             if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia)
+                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
             else:
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra)
-
+                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_ano=filtro_ano)
+            
+        print(filtro_ano)
         width = 0.25         # A largura das barras
 
         Dataframe = Microdado_Amostra.filter(items = Amostra)
@@ -101,6 +103,12 @@ def formulario_2(request):
             plt.bar_label(bar_label_max, fmt='%.2f', padding=2)
             plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
             plt.bar_label(bar_label_min, fmt='%.2f', padding=2)
+
+            labels = np.arange(len(dataset.index.tolist()))
+            print(labels)
+            plt.xticks(labels, dataset.index.tolist())
+            # plt.xticks()
+
 
         plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
         plt.title(Q)

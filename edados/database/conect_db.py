@@ -35,6 +35,6 @@ def connect():
     # Conectando com o Banco de Dados
     engine = create_engine(conexao, pool_pre_ping=True)
 
-    print("Conexãop com o banco bem sucedida!")
+    print("Conexão com o banco bem sucedida!")
     
     return engine

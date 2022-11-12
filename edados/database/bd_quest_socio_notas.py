@@ -5,7 +5,7 @@ from edados.database import conect_db
 BANCO = conect_db.banco()
 LIMIT = ' LIMIT 10'
 
-def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio"):
+def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "todos", filtro_ano = "vazio"):
     engine = conect_db.connect()
 
     # Mysql
@@ -13,6 +13,12 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
 
     # Postgresql
     # retorno = '"'+'","'.join(amostra)+'"'
+
+    # filtrando o ano
+    if(filtro_ano != "todos"):
+        filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)
+    else:
+        filtro_ano = ''
 
     if(filtro_sexo != "vazio"):
         if(filtro_deficiencia != "vazio"):
@@ -25,7 +31,7 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
         else:
             query = 'SELECT "' + retorno + '" FROM ' + BANCO
     
-    query = query + LIMIT
+    query = query + filtro_ano + LIMIT
 
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))

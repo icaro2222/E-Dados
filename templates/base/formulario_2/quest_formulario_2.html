@@ -2,10 +2,10 @@
 {% load crispy_forms_tags %}{% block titulo %}Questões
 Socioeconômica vs notas{% endblock %} {% block conteudo %}
 <!-- Begin Page Content -->
-<div class="row">
+<div class="row text-dark">
   <!-- Page Heading -->
   <form class="col" action="." method="post">
-    <h3>Variáveis de Contraste, correlação entre elas.</h3>
+    <h4>Variáveis de contraste e correlação:</h4>
       <div class="col-md-12 d-flex">
         {% csrf_token %} {{ form|crispy}}
       </div>
@@ -28,11 +28,10 @@ Socioeconômica vs notas{% endblock %} {% block conteudo %}
       </div>
     </div>
   </form>
-</div>
-<div class="row">
-  <div class="col">
-    <hr />
-    <h3>{{ menssagem }}</h3>
+  <div class="col-md-12">
+    <hr class="mt-0" />
+    <h4>{{ menssagem }}</h4>
+    <hr class="mt-0 bg-dark" />
   </div>
 </div>
 <!-- /.container-fluid -->
