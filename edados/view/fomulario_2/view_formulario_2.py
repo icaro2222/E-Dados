@@ -96,9 +96,10 @@ def formulario_2(request):
             br1 = np.arange(len(dataset.index))
             br2 = [x + width for x in br1]
             br3 = [x + width for x in br2]
-            bar_label_max = plt.bar(br2, dataset['max'], color='r', width=width, label="Máximno")
-            bar_label_mean = plt.bar(br1, dataset['mean'], color='b', width=width, label="Média")
-            bar_label_min = plt.bar(br3, dataset['min'], color='y', width=width, label="Mínimo")
+
+            bar_label_min = plt.bar(br1, dataset['min'], color='y', width=width, label="Mínimo")
+            bar_label_mean = plt.bar(br2, dataset['mean'], color='b', width=width, label="Média")
+            bar_label_max = plt.bar(br3, dataset['max'], color='r', width=width, label="Máximno")
             
             plt.bar_label(bar_label_max, fmt='%.2f', padding=2)
             plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
@@ -112,8 +113,8 @@ def formulario_2(request):
 
         plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
         plt.title(Q)
-        plt.ylabel('Nota Média dos Inscritos')
-        plt.xlabel('Questão Socioeconômica')
+        plt.ylabel('Notas dos Inscritos no Enem')
+        plt.xlabel('Respostas das Questão Socioeconômica')
 
         buffer = BytesIO()
         plt.savefig(buffer, format='png', facecolor='#e8eeff')
