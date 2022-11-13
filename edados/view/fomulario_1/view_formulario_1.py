@@ -97,7 +97,6 @@ def formulario_1(request):
                 'menssagem' : menssagem,
                 'relatorio_em_linha' : relatorio_em_linha
             }
-
         elif(demografico == 'TP_NACIONALIDADE'):
             vetor = demografico_nascionalidade(Microdado_Amostra, demografico, questao)
             relatorio_em_linha = vetor[0]
@@ -108,9 +107,28 @@ def formulario_1(request):
                 'menssagem' : menssagem,
                 'relatorio_em_linha' : relatorio_em_linha
             }
-
         elif(demografico == 'TP_ESCOLA'):
             vetor = demografico_escolaridade(Microdado_Amostra, demografico, questao)
+            relatorio_em_linha = vetor[0]
+
+            context = {
+                'form' : form,
+                'form_filtro' : form_filtro,
+                'menssagem' : menssagem,
+                'relatorio_em_linha' : relatorio_em_linha
+            }
+        elif(demografico == 'TP_ENSINO'):
+            vetor = demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demografico, questao)
+            relatorio_em_linha = vetor[0]
+
+            context = {
+                'form' : form,
+                'form_filtro' : form_filtro,
+                'menssagem' : menssagem,
+                'relatorio_em_linha' : relatorio_em_linha
+            }
+        elif(demografico == 'TP_ANO_CONCLUIU'):
+            vetor = demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao)
             relatorio_em_linha = vetor[0]
 
             context = {
@@ -388,8 +406,142 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
 
         return [relatorio]
 
-
 def demografico_escolaridade(Microdado_Amostra, demografico, questao):
+
+        width = 0.25         # A largura das barras
+
+        DataFrame = Microdado_Amostra.sort_values(by=[questao])
+        DataFrame = DataFrame.groupby([demografico, questao])
+        DataFrame = DataFrame[demografico].count()
+
+        # rotacionar 
+        DataFrame = DataFrame.unstack()
+
+        lista_dos_index = DataFrame.index.to_list()
+        print(lista_dos_index)
+
+        # desrotacionar 
+        DataFrame = DataFrame.stack()
+
+        fig = go.Figure()
+
+        for index in lista_dos_index:
+            print(index)
+            if index=='0':
+                nome = 'Não informou'
+            elif index=='1':
+                nome = 'Pública'
+            elif index=='2':
+                nome = 'Privada'
+            else:
+                nome = 'Exterior'
+            fig.add_bar(
+                y=DataFrame[index],
+                x=DataFrame[index].index,
+                name = nome,
+
+            )
+            
+        fig.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500
+        )
+
+        relatorio = fig.to_html()
+
+        return [relatorio]
+
+def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
+
+        width = 0.25         # A largura das barras
+
+        DataFrame = Microdado_Amostra.sort_values(by=[questao])
+        DataFrame = DataFrame.groupby([demografico, questao])
+        DataFrame = DataFrame[demografico].count()
+
+        # rotacionar 
+        DataFrame = DataFrame.unstack()
+
+        lista_dos_index = DataFrame.index.to_list()
+        print(lista_dos_index)
+
+        # desrotacionar 
+        DataFrame = DataFrame.stack()
+
+        fig = go.Figure()
+
+        for index in lista_dos_index:
+            print(index)
+            if index=='0':
+                nome = 'Não informou'
+            elif index=='1':
+                nome = 'Pública'
+            elif index=='2':
+                nome = 'Privada'
+            else:
+                nome = 'Exterior'
+            fig.add_bar(
+                y=DataFrame[index],
+                x=DataFrame[index].index,
+                name = nome,
+
+            )
+            
+        fig.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500
+        )
+
+        relatorio = fig.to_html()
+
+        return [relatorio]
+
+def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao):
+
+        width = 0.25         # A largura das barras
+
+        DataFrame = Microdado_Amostra.sort_values(by=[questao])
+        DataFrame = DataFrame.groupby([demografico, questao])
+        DataFrame = DataFrame[demografico].count()
+
+        # rotacionar 
+        DataFrame = DataFrame.unstack()
+
+        lista_dos_index = DataFrame.index.to_list()
+        print(lista_dos_index)
+
+        # desrotacionar 
+        DataFrame = DataFrame.stack()
+
+        fig = go.Figure()
+
+        for index in lista_dos_index:
+            print(index)
+            if index=='0':
+                nome = 'Não informou'
+            elif index=='1':
+                nome = 'Pública'
+            elif index=='2':
+                nome = 'Privada'
+            else:
+                nome = 'Exterior'
+            fig.add_bar(
+                y=DataFrame[index],
+                x=DataFrame[index].index,
+                name = nome,
+
+            )
+            
+        fig.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500
+        )
+
+        relatorio = fig.to_html()
+
+        return [relatorio]
+
+def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demografico, questao):
 
         width = 0.25         # A largura das barras
 
