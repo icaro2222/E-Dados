@@ -3,14 +3,14 @@
 <html>
 <head>
 <title>Login</title>
-<link rel="shortcut icon" href={% static "img/E-Dados.png" %}>
+<link rel="shortcut icon" href={% static "img/logo.svg" %} type="image/x-icon">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href={% static "css/style-login.css" %}>
 </head>
 <body>
 	<main>
-		<form action={% url "logar" %} method="POST">
+		<form action="" method="POST">
             {%csrf_token%}
 		<div class="main-login">
 			<div class="left-login text-primary">
@@ -23,12 +23,14 @@
 				<div class="card-login">
 					<h1>LOGIN</h1>
 					<div class="textfield text-dark">
-						<label for="email">E-mail</label>
-		            	<input type="email" name="email" placeholder="E-mail" autofocus required>
+						<label for="email">Nome</label>
+						{{ form.username }}
+		            	<!-- <input type="email" name="email" placeholder="E-mail" autofocus required> -->
 					</div>
 					<div class="textfield">
 						<label for="senha">Senha</label>
-		            	<input type="password" name="senha" placeholder="Senha" required>
+						{{ form.password }}
+		            	<!-- <input type="password" name="senha" placeholder="Senha" required> -->
 					</div>
 					<input class="btn-login" id="login-Button" type="submit" name="salvar" value="Entrar">
 				</div>

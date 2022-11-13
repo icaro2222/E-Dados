@@ -1,4 +1,6 @@
 import os
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import lo
 from typing import Sized
 import plotly.graph_objects as go 
 from django.shortcuts import render
@@ -13,14 +15,16 @@ from edados.database import bd_quest_socio_notas_deficiencia, conect_db
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
+@login_required
 def Dashboard(request):
 
     if request.method == 'GET':        
         menssagem1 = ("Dados Gerais do enem")
 
-        menssagem = """Está é uma plataforma online, visando te possibilitar 
-                        uma análise de forma simples e eficiente, 
-                        de maneira que você não necessite gastar horas."""
+        menssagem = """Esta é uma plataforma online, que visa te possibilitar, 
+        realizar uma análise de forma simples e eficiente, 
+        de maneira que você não necessite gastar horas."""
+
         form = DashboardFormulario()
         context = {
             'form' : form,
