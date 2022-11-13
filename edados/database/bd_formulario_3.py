@@ -5,9 +5,10 @@ from edados.database import conect_db
 BANCO = conect_db.banco()
 LIMIT = ' '
 
-def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
+def buscar_dataframe_no_banco(amostra, filtro_cor_da_prova, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
     engine = conect_db.connect()
 
+    filtro_cor_da_prova = ' AND "' + amostra[0]+'"='+"'"+filtro_cor_da_prova+"'"
 
     if(filtro_deficiencia == 'todas'):
         filtro_deficiencias = filtro_de_ficiencia('1')
@@ -38,7 +39,7 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
         else:
             query = 'SELECT "' + '","'.join(amostra) + '" FROM ' +  BANCO + ano
     
-    query = query + filtro_deficiencias + LIMIT
+    query = query + filtro_deficiencias + filtro_cor_da_prova + LIMIT
 
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))
