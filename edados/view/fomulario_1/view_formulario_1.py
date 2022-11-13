@@ -77,17 +77,48 @@ def formulario_1(request):
                 'relatorio_em_tabela_feminino' : relatorio_em_tabela_feminino,
                 'relatorio_em_tabela_masculino' : relatorio_em_tabela_masculino
             }
-        else:
-            if(demografico == 'TP_ESTADO_CIVIL'):
-                vetor = demografico_estado_civil(Microdado_Amostra, demografico, questao)
-                relatorio_em_linha = vetor[0]
+        elif(demografico == 'TP_ESTADO_CIVIL'):
+            vetor = demografico_estado_civil(Microdado_Amostra, demografico, questao)
+            relatorio_em_linha = vetor[0]
 
-                context = {
-                    'form' : form,
-                    'form_filtro' : form_filtro,
-                    'menssagem' : menssagem,
-                    'relatorio_em_linha' : relatorio_em_linha
-                }
+            context = {
+                'form' : form,
+                'form_filtro' : form_filtro,
+                'menssagem' : menssagem,
+                'relatorio_em_linha' : relatorio_em_linha
+            }
+        elif(demografico == 'TP_COR_RACA'):
+            vetor = demografico_raca(Microdado_Amostra, demografico, questao)
+            relatorio_em_linha = vetor[0]
+
+            context = {
+                'form' : form,
+                'form_filtro' : form_filtro,
+                'menssagem' : menssagem,
+                'relatorio_em_linha' : relatorio_em_linha
+            }
+
+        elif(demografico == 'TP_NACIONALIDADE'):
+            vetor = demografico_nascionalidade(Microdado_Amostra, demografico, questao)
+            relatorio_em_linha = vetor[0]
+
+            context = {
+                'form' : form,
+                'form_filtro' : form_filtro,
+                'menssagem' : menssagem,
+                'relatorio_em_linha' : relatorio_em_linha
+            }
+
+        elif(demografico == 'TP_ESCOLA'):
+            vetor = demografico_escolaridade(Microdado_Amostra, demografico, questao)
+            relatorio_em_linha = vetor[0]
+
+            context = {
+                'form' : form,
+                'form_filtro' : form_filtro,
+                'menssagem' : menssagem,
+                'relatorio_em_linha' : relatorio_em_linha
+            }
 
     return render(request, 'base/formulario_1/relatorio_formulario_1.html', context=context)
     
@@ -217,6 +248,7 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         figura_tabela_masculino = figura_tabela_masculino.to_html()
 
         return [imagem_relatorio, relatorio, relatorio_em_tabela, figura_tabela_masculino]
+
 def demografico_estado_civil(Microdado_Amostra, demografico, questao):
 
         width = 0.25         # A largura das barras
@@ -256,6 +288,148 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao):
                 name = nome,
             ))
             
+        relatorio = fig.to_html()
+
+        return [relatorio]
+
+def demografico_raca(Microdado_Amostra, demografico, questao):
+
+        width = 0.25         # A largura das barras
+
+        DataFrame = Microdado_Amostra.sort_values(by=[questao])
+        DataFrame = DataFrame.groupby([demografico, questao])
+        DataFrame = DataFrame[demografico].count()
+
+        # rotacionar 
+        DataFrame = DataFrame.unstack()
+
+        print(DataFrame.index[0])
+
+
+        lista_dos_index = DataFrame.index.to_list()
+
+        # desrotacionar 
+        DataFrame = DataFrame.stack()
+
+        fig = go.Figure()
+
+        for index in lista_dos_index:
+            
+            if index=='0':
+                nome = 'Não informou'
+            elif index=='1':
+                nome = 'Branca'
+            elif index=='2':
+                nome = 'Preta'
+            elif index=='3':
+                nome = 'Parda'
+            elif index=='4':
+                nome = 'Amarela'
+            else:
+                nome = 'Indígena'
+            fig.add_bar(
+                y=DataFrame[index],
+                x=DataFrame[index].index,
+                name = nome,
+            )
+            
+        relatorio = fig.to_html()
+
+        return [relatorio]
+
+def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
+
+        width = 0.25         # A largura das barras
+
+        DataFrame = Microdado_Amostra.sort_values(by=[questao])
+        DataFrame = DataFrame.groupby([demografico, questao])
+        DataFrame = DataFrame[demografico].count()
+
+        # rotacionar 
+        DataFrame = DataFrame.unstack()
+
+        lista_dos_index = DataFrame.index.to_list()
+        print(lista_dos_index)
+
+        # desrotacionar 
+        DataFrame = DataFrame.stack()
+
+        fig = go.Figure()
+
+        for index in lista_dos_index:
+            print(index)
+            if index=='0':
+                nome = 'Não informou'
+            elif index=='1':
+                nome = 'Brasileiro(a)'
+            elif index=='2':
+                nome = 'Naturalizado(a)'
+            elif index=='3':
+                nome = 'Estrangeiro(a)'
+            else:
+                nome = 'Brasileiro(a) Nato(a), nascido(a) no exterior'
+            fig.add_bar(
+                y=DataFrame[index],
+                x=DataFrame[index].index,
+                name = nome,
+
+            )
+            
+        fig.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500,
+            # margin = {'t':75, 'l':50},
+            # yaxis = {'domain': [0, .45]},
+            # xaxis2 = {'anchor': 'y2'},
+            # yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'}
+        )
+
+        relatorio = fig.to_html()
+
+        return [relatorio]
+
+
+def demografico_escolaridade(Microdado_Amostra, demografico, questao):
+
+        width = 0.25         # A largura das barras
+
+        DataFrame = Microdado_Amostra.sort_values(by=[questao])
+        DataFrame = DataFrame.groupby([demografico, questao])
+        DataFrame = DataFrame[demografico].count()
+
+        # rotacionar 
+        DataFrame = DataFrame.unstack()
+
+        lista_dos_index = DataFrame.index.to_list()
+        print(lista_dos_index)
+
+        # desrotacionar 
+        DataFrame = DataFrame.stack()
+
+        fig = go.Figure()
+
+        for index in lista_dos_index:
+            print(index)
+            if index=='0':
+                nome = 'Não informou'
+            elif index=='1':
+                nome = 'Pública'
+            elif index=='2':
+                nome = 'Privada'
+            else:
+                nome = 'Exterior'
+            fig.add_bar(
+                y=DataFrame[index],
+                x=DataFrame[index].index,
+                name = nome,
+
+            )
+            
+        fig.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500
+        )
+
         relatorio = fig.to_html()
 
         return [relatorio]
