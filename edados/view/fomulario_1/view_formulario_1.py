@@ -46,17 +46,10 @@ def formulario_1(request):
 
         if(filtro_sexo != 'ambos'):
             Amostra = [demografico, questao, 'TP_SEXO']
-            if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
-                Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
-            else:
-                Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_ano=filtro_ano)
+            Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
         else:
             Amostra = [demografico, questao]
-            if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
-                Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
-            else:
-                Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_ano=filtro_ano)
-        
+            Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
 
 
         menssagem = 'Formulário 1'
@@ -147,7 +140,7 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
 
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
-        DataFrame = DataFrame['TP_SEXO'].count()
+        DataFrame = DataFrame[demografico].count()
         Dataset_F = DataFrame['F']
         Dataset_M = DataFrame['M']
             
@@ -182,88 +175,40 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         imagem_relatorio = image.decode('utf-8')
         buffer.close()
 
+        # rotacionar 
+        DataFrame = DataFrame.unstack()
+
+        lista_dos_index = DataFrame.index.to_list()
+        print(lista_dos_index)
+
+        # desrotacionar 
+        DataFrame = DataFrame.stack()
+
         fig = go.Figure()
 
-        fig.add_trace(go.Scatter(
-            y=Dataset_M,
-            x=Dataset_M.index,
-            name = 'masculíno', # Style name/legend entry with html tags
-            connectgaps=True # override default to connect the gaps
-        ))
-        fig.add_trace(go.Scatter(
-            y=Dataset_F,
-            x=Dataset_F.index,
-            name='feminíno',
-        ))
+        for index in lista_dos_index:
+            print(index)
+            if index=='M':
+                nome = 'masculíno'
+            else:
+                nome = 'feminíno'
+            fig.add_bar(
+                y=DataFrame[index],
+                x=DataFrame[index].index,
+                name = nome,
+
+            )
+            
+        fig.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500
+        )
 
         relatorio = fig.to_html()
 
-        # Definindo cores que seram utilizadas na  tabela
-        rowEvenColor = 'lightgrey'
-        rowOddColor = 'white'
 
-
-        # Criando a tabela, utilizando a biblioteca "go".
-        figura_tabela_feminino = go.Figure(data=[go.Table(
-                header=dict(
-                    values=['Respostas', 'quantidade'],
-                    fill_color='royalblue',
-                    height=40,
-                    line_color='darkslategray',
-                    align=['left','center'],
-                    font=dict(color='white', size=12)
-                ),
-                cells=dict(
-                    values=[Dataset_F.index, Dataset_F],
-                    line_color='darkslategray',
-                    fill_color = [[rowOddColor,rowEvenColor,rowOddColor, rowEvenColor,rowOddColor]*5],
-                    align = ['left', 'center'],
-                    font = dict(color = 'darkslategray', size = 11)
-                    ))
-                ])
-
-        figura_tabela_masculino = go.Figure(data=[go.Table(
-                header=dict(
-                    values=['Respostas', 'quantidade'],
-                    fill_color='royalblue',
-                    height=40,
-                    line_color='darkslategray',
-                    align=['left','center'],
-                    font=dict(color='white', size=12)
-                ),
-                cells=dict(
-                    values=[Dataset_M.index, Dataset_M],
-                    line_color='darkslategray',
-                    fill_color = [[rowOddColor,rowEvenColor,rowOddColor, rowEvenColor,rowOddColor]*5],
-                    align = ['left', 'center'],
-                    font = dict(color = 'darkslategray', size = 11)
-                    ))
-                ])
-
-
-        figura_tabela_feminino.add_trace(go.Bar(x=Dataset_M.index, y=Dataset_M))
-        figura_tabela_feminino.add_trace(go.Bar(x=Dataset_F.index, y=Dataset_F))
-
-        figura_tabela_feminino.update_layout(
-            title_text = 'Tabela demográfica Feminína.',
-            height = 500,
-            margin = {'t':75, 'l':50},
-            yaxis = {'domain': [0, .45]},
-            xaxis2 = {'anchor': 'y2'},
-            yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'}
-        )
-
-        figura_tabela_masculino.update_layout(
-            title_text = 'Tabela demográfica Masculína.',
-            height = 300,
-            margin = {'t':75, 'l':50},
-            yaxis = {'domain': [0, .45]},
-            xaxis2 = {'anchor': 'y2'},
-            yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'}
-        )
-
-        relatorio_em_tabela = figura_tabela_feminino.to_html()
-        figura_tabela_masculino = figura_tabela_masculino.to_html()
+        relatorio_em_tabela = relatorio
+        figura_tabela_masculino = relatorio
 
         return [imagem_relatorio, relatorio, relatorio_em_tabela, figura_tabela_masculino]
 
@@ -520,11 +465,31 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao):
             if index=='0':
                 nome = 'Não informou'
             elif index=='1':
-                nome = 'Pública'
+                nome = '2018'
             elif index=='2':
-                nome = 'Privada'
+                nome = '2017'
+            elif index=='3':
+                nome = '2016'
+            elif index=='4':
+                nome = '2015'
+            elif index=='5':
+                nome = '2014'
+            elif index=='6':
+                nome = '2013'
+            elif index=='7':
+                nome = '2012'
+            elif index=='8':
+                nome = '2011'
+            elif index=='9':
+                nome = '2010'
+            elif index=='10':
+                nome = '2009'
+            elif index=='11':
+                nome = '2008'
+            elif index=='12':
+                nome = '2007'
             else:
-                nome = 'Exterior'
+                nome = 'Antes de 2007'
             fig.add_bar(
                 y=DataFrame[index],
                 x=DataFrame[index].index,
