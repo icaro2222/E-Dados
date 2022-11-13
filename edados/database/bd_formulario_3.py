@@ -8,6 +8,9 @@ LIMIT = ' '
 def buscar_dataframe_no_banco(amostra, filtro_cor_da_prova, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
     engine = conect_db.connect()
 
+    retorno_da_query = '"' + '","'.join(amostra) + '"'
+    estrutura = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO
+
     filtro_cor_da_prova = ' AND "' + amostra[0]+'"='+"'"+filtro_cor_da_prova+"'"
 
     if(filtro_deficiencia == 'todas'):
@@ -15,31 +18,18 @@ def buscar_dataframe_no_banco(amostra, filtro_cor_da_prova, filtro_sexo = "vazio
     elif(filtro_deficiencia == 'nenhuma'):
         filtro_deficiencias = filtro_de_ficiencia('0')
     else:
-        filtro_deficiencias = ''
-        filtro_deficiencias = ''
+        filtro_deficiencias =  ' WHERE "' + str(filtro_deficiencia) + '" = 1 '
 
-    # filtrando o ano and 
-    if(filtro_ano != "todos"):
-        ano = ' WHERE "NU_ANO" = ' + str(filtro_ano)
-        filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)
+    if(filtro_sexo != 'vazio'):
+        filtro_sexo = ' AND "TP_SEXO" = '+"'"+str(filtro_sexo)+"' "
     else:
-        ano = ''
-        filtro_ano = ''
+        filtro_sexo = ''
 
-    retorno_da_query = '"' + '","'.join(amostra) + '"'
-
-    if(filtro_sexo != "vazio"):
-        if(filtro_deficiencia != "todas" and filtro_deficiencia!= "nenhuma"):
-            query = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO + '  WHERE  "' + str(filtro_deficiencia) + '" = 1 AND "TP_SEXO" = '+"'"+str(filtro_sexo)+"'" + filtro_ano
-        else:
-            query = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO + ' WHERE "TP_SEXO" = '+"'"+str(filtro_sexo)+"'" + filtro_ano
-    else:
-        if(filtro_deficiencia != "todas" and filtro_deficiencia!= "nenhuma"):
-            query = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO + ' WHERE "' + str(filtro_deficiencia) + '" = 1' + filtro_ano
-        else:
-            query = 'SELECT "' + '","'.join(amostra) + '" FROM ' +  BANCO + ano
+    # filtrando o ano
+    filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)
     
-    query = query + filtro_deficiencias + filtro_cor_da_prova + LIMIT
+    
+    query = estrutura + filtro_deficiencias + filtro_sexo + filtro_ano + filtro_cor_da_prova + LIMIT
 
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))

@@ -3,8 +3,7 @@ from django import forms
 
 def questionario_ano(Form):
 
-    choices_ano = (('todos' ,'Todos'),    
-                    ('2019', '2019'),
+    choices_ano = (('2019', '2019'),
                     ('2018' ,'2018'),
                     ('2017' ,'2017'),
                     ('2016' ,'2016'))

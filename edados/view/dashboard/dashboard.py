@@ -1,6 +1,5 @@
 import os
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import lo
 from typing import Sized
 import plotly.graph_objects as go 
 from django.shortcuts import render

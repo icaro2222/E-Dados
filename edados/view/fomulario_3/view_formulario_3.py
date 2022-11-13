@@ -40,47 +40,69 @@ def formulario_3(request):
         filtro_cor_da_prova = form.data['cor_da_prova']
         prova = form.data['prova']
         filtro_deficiencia = form.data['deficiencia']
+        acerto_erro = form.data['acerto_erro']
 
         # Formulario de Filtro
         filtro_sexo = form_filtro.data['sexo']
         filtro_ano = form_filtro.data['ano']
 
+        # Formulario de Filtro
+        if prova == 'CO_PROVA_LC':
+            respostas = "TX_RESPOSTAS_LC"
+            gabarito = "TX_GABARITO_LC"
+        elif prova == 'CO_PROVA_CN':
+            respostas = "TX_RESPOSTAS_CN"
+            gabarito = "TX_GABARITO_CN"
+        elif prova == 'CO_PROVA_MT':
+            respostas = "TX_RESPOSTAS_MT"
+            gabarito = "TX_GABARITO_MT"
+        elif prova == 'CO_PROVA_CH':
+            respostas = "TX_RESPOSTAS_CH"
+            gabarito = "TX_GABARITO_CH"
+
         if(filtro_sexo != 'ambos'):
-            Amostra = [prova, 'TP_SEXO', "TX_RESPOSTAS_CN", "TX_GABARITO_CN"]
+            Amostra = [prova, 'TP_SEXO', respostas, gabarito]
             Microdado_Amostra = bd_formulario_3.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_cor_da_prova=filtro_cor_da_prova, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
         else:
-            Amostra = [prova, "TX_RESPOSTAS_CN", "TX_GABARITO_CN"]
+            Amostra = [prova, respostas, gabarito]
             Microdado_Amostra = bd_formulario_3.buscar_dataframe_no_banco(Amostra, filtro_cor_da_prova=filtro_cor_da_prova, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
 
 
         menssagem = 'Formulário 3'
 
         Microdado_Amostra.reset_index(inplace=True)
-        resposta = Microdado_Amostra['TX_RESPOSTAS_CN']
-        quantidade_de_respostas = (Microdado_Amostra['TX_RESPOSTAS_CN'].count()-1)
-        gabarito = Microdado_Amostra['TX_GABARITO_CN']
+        resposta = Microdado_Amostra[respostas]
+        quantidade_de_respostas = (Microdado_Amostra[respostas].count()-1)
+        gabarito = Microdado_Amostra[gabarito]
 
         acertos = [0]*46
-        linha_do_gabarito = gabarito[1]
+        if(quantidade_de_respostas >= 0):
+            linha_do_gabarito = gabarito[quantidade_de_respostas]
 
         for j in range(0, 45):
             for i in range(0, quantidade_de_respostas):
-                print(i)
-                print(quantidade_de_respostas)
-                print('resposta[i]:'+resposta[i])
+                # print(i)
+                # print(quantidade_de_respostas)
+                # print('resposta[i]:'+resposta[i])
+                # print("linha_da_resposta[j] :" +linha_da_resposta[j] )
                 if(resposta[i] == ''):
                     resposta[i] = "............................................."
                 linha_da_resposta = resposta[i]
-                print("linha_da_resposta[j] :" +linha_da_resposta[j] )
 
                 resposta_gabarito = linha_do_gabarito[j]
                 resposta_candidato = linha_da_resposta[j]
 
-                if resposta_candidato == resposta_gabarito:
-                    x = (j+1)
-                    acertos[x] = acertos[x] + 1
-                    resposta_candidato = ''
-
+                if acerto_erro == 'acertos':
+                    if resposta_candidato == resposta_gabarito:
+                        x = (j+1)
+                        acertos[x] = acertos[x] + 1
+                        resposta_candidato = ''
+                else:
+                    if resposta_candidato != resposta_gabarito:
+                        x = (j+1)
+                        acertos[x] = acertos[x] + 1
+                        resposta_candidato = ''
+                
         acertos_pd = pd.DataFrame(acertos)
 
         fig = px.bar(acertos_pd)
