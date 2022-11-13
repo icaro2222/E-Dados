@@ -250,7 +250,12 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao):
                 x=DataFrame[index].index,
                 name = nome,
             ))
-            
+              
+        fig.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500
+        )
+
         relatorio = fig.to_html()
 
         return [relatorio]
@@ -295,7 +300,12 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
                 x=DataFrame[index].index,
                 name = nome,
             )
-            
+              
+        fig.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500
+        )
+
         relatorio = fig.to_html()
 
         return [relatorio]
