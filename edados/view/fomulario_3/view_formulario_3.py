@@ -15,14 +15,12 @@ def formatar(valor):
 
 def formulario_3(request):
 
-    filtro_cor_da_prova = '503'
-    prova = 'TP_SEXO'
-
     if request.method == 'GET':        
         menssagem = ("Formulário 3.")
 
         form = Formulario_3()
         form_filtro = Formulario_filtros()
+
         context = {
             'form' : form,
             'menssagem' : menssagem,
@@ -38,13 +36,59 @@ def formulario_3(request):
 
         # Variáveis vindas do Formulario
         filtro_cor_da_prova = form.data['cor_da_prova']
-        prova = form.data['prova']
         filtro_deficiencia = form.data['deficiencia']
         acerto_erro = form.data['acerto_erro']
 
         # Formulario de Filtro
         filtro_sexo = form_filtro.data['sexo']
         filtro_ano = form_filtro.data['ano']
+
+        if(filtro_cor_da_prova == '503' or 
+            filtro_cor_da_prova == '504' or
+            filtro_cor_da_prova == '505' or
+            filtro_cor_da_prova == '506' or
+            filtro_cor_da_prova == '519' or
+            filtro_cor_da_prova == '523' or
+            filtro_cor_da_prova == '543' or
+            filtro_cor_da_prova == '544' or
+            filtro_cor_da_prova == '545' or
+            filtro_cor_da_prova == '546'):
+            prova = 'CO_PROVA_CN'
+        elif(filtro_cor_da_prova == '507' or 
+            filtro_cor_da_prova == '508' or
+            filtro_cor_da_prova == '509' or
+            filtro_cor_da_prova == '510' or
+            filtro_cor_da_prova == '520' or
+            filtro_cor_da_prova == '524' or
+            filtro_cor_da_prova == '547' or
+            filtro_cor_da_prova == '548' or
+            filtro_cor_da_prova == '549' or
+            filtro_cor_da_prova == '550' or
+            filtro_cor_da_prova == '564'):
+            prova = 'CO_PROVA_CH'
+        elif(filtro_cor_da_prova == '511' or 
+            filtro_cor_da_prova == '512' or
+            filtro_cor_da_prova == '513' or
+            filtro_cor_da_prova == '514' or
+            filtro_cor_da_prova == '521' or
+            filtro_cor_da_prova == '525' or
+            filtro_cor_da_prova == '551' or
+            filtro_cor_da_prova == '552' or
+            filtro_cor_da_prova == '553' or
+            filtro_cor_da_prova == '554' or
+            filtro_cor_da_prova == '565'):
+            prova = 'CO_PROVA_LC'
+        elif(filtro_cor_da_prova == '515' or
+            filtro_cor_da_prova == '516' or
+            filtro_cor_da_prova == '517' or
+            filtro_cor_da_prova == '518' or
+            filtro_cor_da_prova == '522' or
+            filtro_cor_da_prova == '526' or
+            filtro_cor_da_prova == '555' or
+            filtro_cor_da_prova == '556' or
+            filtro_cor_da_prova == '557' or
+            filtro_cor_da_prova == '558'):
+            prova = 'CO_PROVA_MT'
 
         # Formulario de Filtro
         if prova == 'CO_PROVA_LC':
@@ -76,6 +120,7 @@ def formulario_3(request):
         gabarito = Microdado_Amostra[gabarito]
 
         acertos = [0]*46
+        acertos_porcentagem = [0]*46
         if(quantidade_de_respostas >= 0):
             linha_do_gabarito = gabarito[quantidade_de_respostas]
 
@@ -91,25 +136,40 @@ def formulario_3(request):
 
                 resposta_gabarito = linha_do_gabarito[j]
                 resposta_candidato = linha_da_resposta[j]
+                
+                x = (j+1)
 
                 if acerto_erro == 'acertos':
                     if resposta_candidato == resposta_gabarito:
-                        x = (j+1)
                         acertos[x] = acertos[x] + 1
                         resposta_candidato = ''
                 else:
                     if resposta_candidato != resposta_gabarito:
-                        x = (j+1)
                         acertos[x] = acertos[x] + 1
                         resposta_candidato = ''
-                
-        acertos_pd = pd.DataFrame(acertos)
 
-        fig = px.bar(acertos_pd)
+                acertos_porcentagem[j+1] = (acertos[x] / quantidade_de_respostas)*100
+        
+        # print(acertos_porcentagem)
+        acertos_pd = pd.DataFrame(acertos_porcentagem)
+
+        fig = px.bar(acertos_pd[0],
+        title="Percentual Conforme os critérios estabelecidos")
+
+        fig.update_traces(texttemplate="%{text:.1f}", textposition="outside")
+        fig.update_layout(
+            title="Percentual Conforme os critérios estabelecidos",
+           height = 500
+        )
 
         fig.update_layout(
-            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            # autosize=False,
+            xaxis=dict(
+                # tickvals=acertos_pd.index,
+                tickvals =acertos_pd.index,
+                tickmode="array",
+                titlefont=dict(size=10),
+            )
         )
 
         relatorio = fig.to_html()

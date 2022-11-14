@@ -7,7 +7,7 @@ def banco():
     # BANCO = 'enem2 '
 
     # Postgres
-    BANCO = '"enem" '
+    BANCO = '"enem1" '
 
     return BANCO
 
