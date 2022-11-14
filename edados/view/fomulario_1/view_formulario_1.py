@@ -44,19 +44,24 @@ def formulario_1(request):
         filtro_sexo = form_filtro.data['sexo']
         filtro_ano = form_filtro.data['ano']
 
-        if(filtro_sexo != 'ambos'):
-            Amostra = [demografico, questao, 'TP_SEXO']
-            Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
-        else:
-            Amostra = [demografico, questao]
-            Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+        # if(filtro_sexo != 'ambos'):
+        #     Amostra = [demografico, questao, 'TP_SEXO']
+        #     Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+        # else:
+        Amostra = [demografico, questao]
+        Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
 
 
         menssagem = 'Formulário 1'
 
         if(demografico == 'TP_SEXO'):
-            vetor = demografico_sexo(Microdado_Amostra, demografico, questao)
-            relatorio = vetor[0]
+
+            if(filtro_sexo == 'ambos'):
+                vetor = demografico_sexo(Microdado_Amostra, demografico, questao)
+                relatorio = vetor[0]
+            else:
+                vetor = demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_sexo)
+                relatorio = vetor[0]
 
         elif(demografico == 'TP_ESTADO_CIVIL'):
             vetor = demografico_estado_civil(Microdado_Amostra, demografico, questao)
@@ -94,8 +99,6 @@ def formulario_1(request):
 
 def demografico_sexo(Microdado_Amostra, demografico, questao):
 
-        width = 0.25         # A largura das barras
-
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
         DataFrame = DataFrame[demografico].count()
@@ -132,7 +135,48 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
 
 
         return [ relatorio]
+ 
 
+def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_sexo):
+
+        DataFrame = Microdado_Amostra.sort_values(by=[questao])
+        DataFrame = DataFrame.groupby([demografico, questao])
+        DataFrame = DataFrame[demografico].count()
+            
+        # rotacionar 
+        DataFrame = DataFrame.unstack()
+
+        lista_dos_index = DataFrame.index.to_list()
+
+        # desrotacionar 
+        DataFrame = DataFrame.stack()
+
+        fig = go.Figure()
+
+        print(filtro_sexo)
+        if filtro_sexo=='M':
+            nome = 'masculíno'
+            fig.add_bar(
+                y=DataFrame[filtro_sexo],
+                x=DataFrame[filtro_sexo].index,
+                name = nome,
+            )
+        else:
+            nome = 'feminíno'
+            fig.add_bar(
+                y=DataFrame[filtro_sexo],
+                x=DataFrame[filtro_sexo].index,
+                name = nome,
+            )
+            
+        fig.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500
+        )
+        relatorio = fig.to_html()
+
+        return [ relatorio]
+ 
 def demografico_estado_civil(Microdado_Amostra, demografico, questao):
 
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
