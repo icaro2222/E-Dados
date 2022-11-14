@@ -56,80 +56,38 @@ def formulario_1(request):
 
         if(demografico == 'TP_SEXO'):
             vetor = demografico_sexo(Microdado_Amostra, demografico, questao)
-            imagem_relatorio = vetor[0]
-            relatorio_em_linha = vetor[1]
-            relatorio_em_tabela_feminino = vetor[2]
-            relatorio_em_tabela_masculino = vetor[3]
+            relatorio = vetor[0]
 
-            context = {
-                'form' : form,
-                'form_filtro' : form_filtro,
-                'menssagem' : menssagem,
-                'imagem_relatorio' : imagem_relatorio,
-                'relatorio_em_linha' : relatorio_em_linha,
-                'relatorio_em_tabela_feminino' : relatorio_em_tabela_feminino,
-                'relatorio_em_tabela_masculino' : relatorio_em_tabela_masculino
-            }
         elif(demografico == 'TP_ESTADO_CIVIL'):
             vetor = demografico_estado_civil(Microdado_Amostra, demografico, questao)
-            relatorio_em_linha = vetor[0]
+            relatorio = vetor[0]
 
-            context = {
-                'form' : form,
-                'form_filtro' : form_filtro,
-                'menssagem' : menssagem,
-                'relatorio_em_linha' : relatorio_em_linha
-            }
         elif(demografico == 'TP_COR_RACA'):
             vetor = demografico_raca(Microdado_Amostra, demografico, questao)
-            relatorio_em_linha = vetor[0]
+            relatorio = vetor[0]
 
-            context = {
-                'form' : form,
-                'form_filtro' : form_filtro,
-                'menssagem' : menssagem,
-                'relatorio_em_linha' : relatorio_em_linha
-            }
         elif(demografico == 'TP_NACIONALIDADE'):
             vetor = demografico_nascionalidade(Microdado_Amostra, demografico, questao)
-            relatorio_em_linha = vetor[0]
+            relatorio = vetor[0]
 
-            context = {
-                'form' : form,
-                'form_filtro' : form_filtro,
-                'menssagem' : menssagem,
-                'relatorio_em_linha' : relatorio_em_linha
-            }
         elif(demografico == 'TP_ESCOLA'):
             vetor = demografico_escolaridade(Microdado_Amostra, demografico, questao)
-            relatorio_em_linha = vetor[0]
+            relatorio = vetor[0]
 
-            context = {
-                'form' : form,
-                'form_filtro' : form_filtro,
-                'menssagem' : menssagem,
-                'relatorio_em_linha' : relatorio_em_linha
-            }
         elif(demografico == 'TP_ENSINO'):
             vetor = demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demografico, questao)
-            relatorio_em_linha = vetor[0]
+            relatorio = vetor[0]
 
-            context = {
-                'form' : form,
-                'form_filtro' : form_filtro,
-                'menssagem' : menssagem,
-                'relatorio_em_linha' : relatorio_em_linha
-            }
         elif(demografico == 'TP_ANO_CONCLUIU'):
             vetor = demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao)
-            relatorio_em_linha = vetor[0]
+            relatorio = vetor[0]
 
-            context = {
-                'form' : form,
-                'form_filtro' : form_filtro,
-                'menssagem' : menssagem,
-                'relatorio_em_linha' : relatorio_em_linha
-            }
+        context = {
+            'form' : form,
+            'form_filtro' : form_filtro,
+            'menssagem' : menssagem,
+            'relatorio' : relatorio
+        }
 
     return render(request, 'base/formulario_1/relatorio_formulario_1.html', context=context)
     
@@ -141,45 +99,11 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
         DataFrame = DataFrame[demografico].count()
-        Dataset_F = DataFrame['F']
-        Dataset_M = DataFrame['M']
             
-        figura = plt.figure(figsize=(12, 8))
-        figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
-        'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=16)
-        figura.add_subplot(1,1,1)
-
-        br1 = np.arange(len(Dataset_F.index))
-        br2 = [x + width for x in br1]
-
-        bar_label_feminino = plt.bar(br1, Dataset_F, color='y', width=width, label="feminíno")
-        bar_label_masculino = plt.bar(br2, Dataset_M, color='b', width=width, label="masculíno")
-        
-        plt.bar_label(bar_label_feminino, fmt='%.2f', padding=2)
-        plt.bar_label(bar_label_masculino, fmt='%.2f', padding=2)
-
-        labels = np.arange(len(Dataset_F.index.tolist()))
-        print(labels)
-        plt.xticks(labels, Dataset_F.index.tolist())
-
-        plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
-        plt.title(questao)
-        plt.ylabel('Quantidade de Inscritos por Questão Demográfica')
-        plt.xlabel('Respostas da Questão Socioeconômica')
-
-        buffer = BytesIO()
-        plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        buffer.seek(0)
-        image_png = buffer.getvalue()
-        image = base64.b64encode(image_png)
-        imagem_relatorio = image.decode('utf-8')
-        buffer.close()
-
         # rotacionar 
         DataFrame = DataFrame.unstack()
 
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
 
         # desrotacionar 
         DataFrame = DataFrame.stack()
@@ -207,14 +131,9 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         relatorio = fig.to_html()
 
 
-        relatorio_em_tabela = relatorio
-        figura_tabela_masculino = relatorio
-
-        return [imagem_relatorio, relatorio, relatorio_em_tabela, figura_tabela_masculino]
+        return [ relatorio]
 
 def demografico_estado_civil(Microdado_Amostra, demografico, questao):
-
-        width = 0.25         # A largura das barras
 
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
@@ -222,9 +141,6 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao):
 
         # rotacionar 
         DataFrame = DataFrame.unstack()
-
-        print(DataFrame.index[0])
-
 
         lista_dos_index = DataFrame.index.to_list()
 
@@ -245,11 +161,10 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao):
                 nome = 'Divorciado(a)'
             else:
                 nome = 'Viúvo(a)'
-            fig.add_trace(go.Scatter(
+            fig.add_bar(
                 y=DataFrame[index],
-                x=DataFrame[index].index,
                 name = nome,
-            ))
+            )
               
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
@@ -262,17 +177,12 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao):
 
 def demografico_raca(Microdado_Amostra, demografico, questao):
 
-        width = 0.25         # A largura das barras
-
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
         DataFrame = DataFrame[demografico].count()
 
         # rotacionar 
         DataFrame = DataFrame.unstack()
-
-        print(DataFrame.index[0])
-
 
         lista_dos_index = DataFrame.index.to_list()
 
@@ -312,8 +222,6 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
 
 def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
 
-        width = 0.25         # A largura das barras
-
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
         DataFrame = DataFrame[demografico].count()
@@ -345,7 +253,6 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
                 y=DataFrame[index],
                 x=DataFrame[index].index,
                 name = nome,
-
             )
             
         fig.update_layout(
@@ -363,8 +270,6 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
 
 def demografico_escolaridade(Microdado_Amostra, demografico, questao):
 
-        width = 0.25         # A largura das barras
-
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
         DataFrame = DataFrame[demografico].count()
@@ -394,7 +299,6 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
                 y=DataFrame[index],
                 x=DataFrame[index].index,
                 name = nome,
-
             )
             
         fig.update_layout(
@@ -408,8 +312,6 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
 
 def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
 
-        width = 0.25         # A largura das barras
-
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
         DataFrame = DataFrame[demografico].count()
@@ -439,7 +341,6 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
                 y=DataFrame[index],
                 x=DataFrame[index].index,
                 name = nome,
-
             )
             
         fig.update_layout(
@@ -452,8 +353,6 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
         return [relatorio]
 
 def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao):
-
-        width = 0.25         # A largura das barras
 
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
@@ -517,8 +416,6 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao):
         return [relatorio]
 
 def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demografico, questao):
-
-        width = 0.25         # A largura das barras
 
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
