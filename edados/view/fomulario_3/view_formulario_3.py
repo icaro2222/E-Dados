@@ -266,7 +266,12 @@ def acertos_quantidade(Microdado_Amostra, prova, cor_da_prova):
             
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            height = 500,
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
 
         relatorio = fig.to_html()
@@ -315,7 +320,12 @@ def prova_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, prova, cor_d
             
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            height = 500,
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
 
         relatorio = fig.to_html()

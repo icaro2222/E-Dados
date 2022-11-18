@@ -66,18 +66,18 @@ def formulario_2(request):
         Dataframe = Dataframe.describe()     
 
         # Seleção conforme a escolha do usuário na tela do formulario
-        if filtro_deficiencia == 'ambos':
-            br1 = np.arange(len(Dataframe.index))
-            br2 = [x + width for x in br1]
+        # if filtro_deficiencia == 'ambos':
+            # br1 = np.arange(len(Dataframe.index))
+            # br2 = [x + width for x in br1]
 
-            figura = plt.figure(figsize=(12, 8))
-            figura.suptitle('Relatório de correlação entre: Questão socioeconômica e Desempenho no Enem', size=16)
-            figura.add_subplot(1,1,1)
+            # figura = plt.figure(figsize=(12, 8))
+            # figura.suptitle('Relatório de correlação entre: Questão socioeconômica e Desempenho no Enem', size=16)
+            # figura.add_subplot(1,1,1)
 
-            bar_label_mean = plt.bar(br2, Dataframe['mean'], color='r', width=width, label="Média")
-            plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
+            # bar_label_mean = plt.bar(br2, Dataframe['mean'], color='r', width=width, label="Média")
+            # plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
 
-        else:
+        # else:
             # caminho_a_deficiencia = caminho2 + filtro_deficiencia + '.csv'
             # Microdado_Amostra = pd.read_csv(caminho_a_deficiencia, sep= ';', encoding = "ISO-8859-1")
             # DataFrame = Microdado_Amostra.filter(items = Amostra)
@@ -87,42 +87,42 @@ def formulario_2(request):
             # DataFrame_dificiente = DataFrame_dificiente.sort_values(by=[Q])
             # dados = DataFrame_dificiente.groupby(Q)[prova]
             # dataset = dados.describe()
-            dataset = Dataframe
-            figura = plt.figure(figsize=(12, 8))
-            figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
-            'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=16)
-            figura.add_subplot(1,1,1)
+            # dataset = Dataframe
+            # figura = plt.figure(figsize=(12, 8))
+            # figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
+            # 'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=16)
+            # figura.add_subplot(1,1,1)
 
-            br1 = np.arange(len(dataset.index))
-            br2 = [x + width for x in br1]
-            br3 = [x + width for x in br2]
+            # br1 = np.arange(len(dataset.index))
+            # br2 = [x + width for x in br1]
+            # br3 = [x + width for x in br2]
 
-            bar_label_min = plt.bar(br1, dataset['min'], color='y', width=width, label="Mínimo")
-            bar_label_mean = plt.bar(br2, dataset['mean'], color='b', width=width, label="Média")
-            bar_label_max = plt.bar(br3, dataset['max'], color='r', width=width, label="Máximno")
+            # bar_label_min = plt.bar(br1, dataset['min'], color='y', width=width, label="Mínimo")
+            # bar_label_mean = plt.bar(br2, dataset['mean'], color='b', width=width, label="Média")
+            # bar_label_max = plt.bar(br3, dataset['max'], color='r', width=width, label="Máximno")
             
-            plt.bar_label(bar_label_max, fmt='%.2f', padding=2)
-            plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
-            plt.bar_label(bar_label_min, fmt='%.2f', padding=2)
+            # plt.bar_label(bar_label_max, fmt='%.2f', padding=2)
+            # plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
+            # plt.bar_label(bar_label_min, fmt='%.2f', padding=2)
 
-            labels = np.arange(len(dataset.index.tolist()))
-            print(labels)
-            plt.xticks(labels, dataset.index.tolist())
+            # labels = np.arange(len(dataset.index.tolist()))
+            # print(labels)
+            # plt.xticks(labels, dataset.index.tolist())
             # plt.xticks()
 
 
-        plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
-        plt.title(Q)
-        plt.ylabel('Desempenho dos Inscritos no Enem')
-        plt.xlabel('Respostas da Questão Socioeconômica: "'+Q+'"')
+        # plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
+        # plt.title(Q)
+        # plt.ylabel('Desempenho dos Inscritos no Enem')
+        # plt.xlabel('Respostas da Questão Socioeconômica: "'+Q+'"')
 
-        buffer = BytesIO()
-        plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        buffer.seek(0)
-        image_png = buffer.getvalue()
-        image = base64.b64encode(image_png)
-        imagem_relatorio = image.decode('utf-8')
-        buffer.close()
+        # buffer = BytesIO()
+        # plt.savefig(buffer, format='png', facecolor='#e8eeff')
+        # buffer.seek(0)
+        # image_png = buffer.getvalue()
+        # image = base64.b64encode(image_png)
+        # imagem_relatorio = image.decode('utf-8')
+        # buffer.close()
 
         figura_com_criador_de_tabela = px.bar(Dataframe)
         figura_com_criador_de_tabela = figura_com_criador_de_tabela.to_html()
@@ -130,7 +130,6 @@ def formulario_2(request):
         figura_tabela_da_media = px.bar(Dataframe['mean'])
         figura_tabela_da_media = figura_tabela_da_media.to_html()
 
-        headerColor = 'grey'
         rowEvenColor = 'lightgrey'
         rowOddColor = 'white'
 
@@ -173,12 +172,20 @@ def formulario_2(request):
             )
 
         figura_tabela.update_layout(
-            title_text = 'Tabela de correlação entre o desempenho e a resposta da questão socioeconômica.',
+            title_text = """Tabela de correlação entre o desempenho e a resposta da questão socioeconômica.""",
             height = 600,
             margin = {'t':75, 'l':50},
             yaxis = {'domain': [0, .45]},
             xaxis2 = {'anchor': 'y2'},
-            yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'}
+            xaxis_title="Respota do questionário socioeconômico",
+            yaxis_title="Desempenho",
+            yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
 
         relatorio_em_tabela = figura_tabela.to_html()
@@ -196,7 +203,7 @@ def formulario_2(request):
             'form' : form,
             'menssagem' : menssagem,
             'menssagem1' : menssagem1,
-            'imagem_relatorio' : imagem_relatorio,
+            # 'imagem_relatorio' : imagem_relatorio,
             'form_filtro' : form_filtro,
             'figura_com_criador_de_tabela' : figura_com_criador_de_tabela,
             'relatorio_em_tabela' : relatorio_em_tabela

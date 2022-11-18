@@ -53,12 +53,14 @@ def formulario_1(request):
 
 
         menssagem = 'Formulário 1'
+        relatorio_em_tabela = ''
 
         if(demografico == 'TP_SEXO'):
 
             if(filtro_sexo == 'ambos'):
                 vetor = demografico_sexo(Microdado_Amostra, demografico, questao)
                 relatorio = vetor[0]
+                relatorio_em_tabela = vetor[1]
             else:
                 vetor = demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_sexo)
                 relatorio = vetor[0]
@@ -66,6 +68,7 @@ def formulario_1(request):
         elif(demografico == 'TP_ESTADO_CIVIL'):
             vetor = demografico_estado_civil(Microdado_Amostra, demografico, questao)
             relatorio = vetor[0]
+            relatorio_em_tabela = vetor[1]
 
         elif(demografico == 'TP_COR_RACA'):
             vetor = demografico_raca(Microdado_Amostra, demografico, questao)
@@ -91,7 +94,8 @@ def formulario_1(request):
             'form' : form,
             'form_filtro' : form_filtro,
             'menssagem' : menssagem,
-            'relatorio' : relatorio
+            'relatorio' : relatorio,
+            'relatorio_em_tabela' : relatorio_em_tabela
         }
 
     return render(request, 'base/formulario_1/relatorio_formulario_1.html', context=context)
@@ -105,6 +109,7 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             
         # rotacionar 
         DataFrame = DataFrame.unstack()
+        DataFrame_para_criar_a_tabela = DataFrame
 
         lista_dos_index = DataFrame.index.to_list()
 
@@ -122,20 +127,29 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             fig.add_bar(
                 y=DataFrame[index],
                 x=DataFrame[index].index,
+                text=DataFrame[index],
                 name = nome,
-
             )
             
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Quantidade",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
+
+        relatorio_em_tabela = px.bar(DataFrame_para_criar_a_tabela, barmode='group')
+        relatorio_em_tabela = relatorio_em_tabela.to_html()
 
         relatorio = fig.to_html()
 
-
-        return [ relatorio]
- 
+        return [ relatorio, relatorio_em_tabela]
 
 def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_sexo):
 
@@ -152,30 +166,40 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
         DataFrame = DataFrame.stack()
 
         fig = go.Figure()
-
-        print(filtro_sexo)
-        if filtro_sexo=='M':
-            nome = 'masculíno'
-            fig.add_bar(
-                y=DataFrame[filtro_sexo],
-                x=DataFrame[filtro_sexo].index,
-                name = nome,
-            )
-        else:
-            nome = 'feminíno'
-            fig.add_bar(
-                y=DataFrame[filtro_sexo],
-                x=DataFrame[filtro_sexo].index,
-                name = nome,
-            )
+        
+        if(DataFrame.count() > 0):
+            if filtro_sexo=='M':
+                nome = 'masculíno'
+                fig.add_bar(
+                    y=DataFrame[filtro_sexo],
+                    x=DataFrame[filtro_sexo].index,
+                    text=DataFrame[filtro_sexo],
+                    name = nome,
+                )
+            else:
+                nome = 'feminíno'
+                fig.add_bar(
+                    y=DataFrame[filtro_sexo],
+                    x=DataFrame[filtro_sexo].index,
+                    text=DataFrame[filtro_sexo],
+                    name = nome,
+                )
             
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Quantidade",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
         relatorio = fig.to_html()
 
-        return [ relatorio]
+        return [relatorio]
  
 def demografico_estado_civil(Microdado_Amostra, demografico, questao):
 
@@ -185,6 +209,7 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao):
 
         # rotacionar 
         DataFrame = DataFrame.unstack()
+        DataFrame_para_criar_a_tabela = DataFrame
 
         lista_dos_index = DataFrame.index.to_list()
 
@@ -207,17 +232,28 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao):
                 nome = 'Viúvo(a)'
             fig.add_bar(
                 y=DataFrame[index],
+                text=DataFrame[index],
                 name = nome,
             )
               
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Quantidade",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
-
+        relatorio_em_tabela = px.bar(DataFrame_para_criar_a_tabela, barmode='group')
+        relatorio_em_tabela = relatorio_em_tabela.to_html()
+        
         relatorio = fig.to_html()
 
-        return [relatorio]
+        return [relatorio, relatorio_em_tabela]
 
 def demografico_raca(Microdado_Amostra, demografico, questao):
 
@@ -252,12 +288,21 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
             fig.add_bar(
                 y=DataFrame[index],
                 x=DataFrame[index].index,
+                text=DataFrame[index],
                 name = nome,
             )
               
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Quantidade",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
 
         relatorio = fig.to_html()
@@ -296,12 +341,21 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
             fig.add_bar(
                 y=DataFrame[index],
                 x=DataFrame[index].index,
+                text=DataFrame[index],
                 name = nome,
             )
             
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
             height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Quantidade",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            ),
             # margin = {'t':75, 'l':50},
             # yaxis = {'domain': [0, .45]},
             # xaxis2 = {'anchor': 'y2'},
@@ -342,12 +396,21 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
             fig.add_bar(
                 y=DataFrame[index],
                 x=DataFrame[index].index,
+                text=DataFrame[index],
                 name = nome,
             )
             
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Quantidade",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
 
         relatorio = fig.to_html()
@@ -384,12 +447,21 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
             fig.add_bar(
                 y=DataFrame[index],
                 x=DataFrame[index].index,
+                text=DataFrame[index],
                 name = nome,
             )
             
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Quantidade",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
 
         relatorio = fig.to_html()
@@ -446,13 +518,22 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao):
             fig.add_bar(
                 y=DataFrame[index],
                 x=DataFrame[index].index,
+                text=DataFrame[index],
                 name = nome,
 
             )
             
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Quantidade",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
 
         relatorio = fig.to_html()
@@ -489,13 +570,22 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
             fig.add_bar(
                 y=DataFrame[index],
                 x=DataFrame[index].index,
+                text=DataFrame[index],
                 name = nome,
 
             )
             
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500
+            height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Desempenho",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
         )
 
         relatorio = fig.to_html()
