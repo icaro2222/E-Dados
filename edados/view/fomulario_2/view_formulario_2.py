@@ -124,9 +124,6 @@ def formulario_2(request):
         imagem_relatorio = image.decode('utf-8')
         buffer.close()
 
-        fig = px.line(Dataframe)
-        relatorio = fig.to_html()
-
         figura_com_criador_de_tabela = px.bar(Dataframe)
         figura_com_criador_de_tabela = figura_com_criador_de_tabela.to_html()
 
@@ -139,7 +136,7 @@ def formulario_2(request):
 
         figura_tabela = go.Figure(data=[go.Table(
                 header=dict(
-                    values=['Respostas', 'medias', 'máximo', 'quant alunos', '25%', '50%', '75%'],
+                    values=['Respostas', 'média', 'máximo', 'quant alunos', '25%', '50%', '75%'],
                     fill_color='royalblue',
                     height=40,
                     line_color='darkslategray',
@@ -158,12 +155,26 @@ def formulario_2(request):
                     ))
                 ])
 
-        figura_tabela.add_trace(go.Bar(x=Dataframe.index, y=Dataframe['max']))
-        figura_tabela.add_trace(go.Bar(x=Dataframe.index, y=Dataframe['mean']))
+        figura_tabela.add_trace(go.Bar(
+            text=Dataframe['min'].apply(formatar),
+            x=Dataframe.index, 
+            y=Dataframe['min'],
+            name='mínimo'))
+        figura_tabela.add_trace(go.Bar(
+            text=Dataframe['mean'].apply(formatar),
+            x=Dataframe.index, 
+            y=Dataframe['mean'],
+            name='média'))
+        figura_tabela.add_trace(go.Bar(
+            text=Dataframe['max'].apply(formatar),
+            x=Dataframe.index, 
+            y=Dataframe['max'],
+            name='máximo'),
+            )
 
         figura_tabela.update_layout(
             title_text = 'Tabela de correlação entre o desempenho e a resposta da questão socioeconômica.',
-            height = 800,
+            height = 600,
             margin = {'t':75, 'l':50},
             yaxis = {'domain': [0, .45]},
             xaxis2 = {'anchor': 'y2'},
@@ -186,10 +197,8 @@ def formulario_2(request):
             'menssagem' : menssagem,
             'menssagem1' : menssagem1,
             'imagem_relatorio' : imagem_relatorio,
-            'relatorio' : relatorio,
             'form_filtro' : form_filtro,
             'figura_com_criador_de_tabela' : figura_com_criador_de_tabela,
-            'figura_tabela_da_media' : figura_tabela_da_media,
             'relatorio_em_tabela' : relatorio_em_tabela
         }
 

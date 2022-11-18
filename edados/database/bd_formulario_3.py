@@ -8,6 +8,14 @@ LIMIT = ' '
 def buscar_dataframe_no_banco(amostra, filtro_cor_da_prova, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
     engine = conect_db.connect()
 
+    print(filtro_ano)
+    if(filtro_ano == '2018'):
+        BANCO = '"enem_2018"'
+    else:
+        BANCO = conect_db.banco()
+    
+    print(BANCO)
+    
     retorno_da_query = '"' + '","'.join(amostra) + '"'
     estrutura = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO
 

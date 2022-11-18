@@ -137,39 +137,54 @@ def formulario_3(request):
                 resposta_gabarito = linha_do_gabarito[j]
                 resposta_candidato = linha_da_resposta[j]
                 
-                x = (j+1)
-
                 if acerto_erro == 'acertos':
                     if resposta_candidato == resposta_gabarito:
-                        acertos[x] = acertos[x] + 1
+                        acertos[j] = acertos[j] + 1
                         resposta_candidato = ''
                 else:
                     if resposta_candidato != resposta_gabarito:
-                        acertos[x] = acertos[x] + 1
+                        acertos[j] = acertos[j] + 1
                         resposta_candidato = ''
 
-                acertos_porcentagem[j+1] = (acertos[x] / quantidade_de_respostas)*100
+            acertos_porcentagem[j+1] = (acertos[j] / quantidade_de_respostas)*100
         
         # print(acertos_porcentagem)
         acertos_pd = pd.DataFrame(acertos_porcentagem)
+        
+        # Colocando nome no DataFrame
+        acertos_pd.columns = ['porcentagem_de_acertos']
+        texto = acertos_pd.porcentagem_de_acertos
+        
+        print(texto)
 
-        fig = px.bar(acertos_pd[0],
-        title="Percentual Conforme os critérios estabelecidos")
 
-        fig.update_traces(texttemplate="%{text:.1f}", textposition="outside")
+        fig = px.bar(acertos_pd,
+        x= acertos_pd.index,
+        y= acertos_pd['porcentagem_de_acertos'],
+        # text= acertos_pd.porcentagem_de_acertos,
+        text_auto=True,
+        error_y= (acertos_pd.porcentagem_de_acertos / quantidade_de_respostas),
+        # text_auto='.2s',
+        title="Percentual Conforme os critérios estabelecidos",
+        labels={'index':'Questão de número', 'porcentagem_de_acertos':'Porcentagem de acerto/erros'})
+
+        fig.update_traces(
+            # texttemplate='%{'+acertos_pd.porcentagem_de_acertos.to_list()+':.2s}', 
+            # textposition='outside', 
+            textfont_size=12, 
+            # extangle=0, 
+            # cliponaxis=False
+            )
+
         fig.update_layout(
-            title="Percentual Conforme os critérios estabelecidos",
-           height = 500
-        )
-
-        fig.update_layout(
-            # autosize=False,
             xaxis=dict(
                 # tickvals=acertos_pd.index,
                 tickvals =acertos_pd.index,
                 tickmode="array",
                 titlefont=dict(size=10),
-            )
+            ),
+            title="Percentual Conforme os critérios estabelecidos",
+           height = 500
         )
 
         relatorio = fig.to_html()
