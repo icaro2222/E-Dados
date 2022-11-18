@@ -144,7 +144,27 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             )
         )
 
-        relatorio_em_tabela = px.bar(DataFrame_para_criar_a_tabela, barmode='group')
+        relatorio_em_tabela = px.bar(
+            DataFrame_para_criar_a_tabela, 
+            barmode='group',
+            text_auto=True)
+
+        fig.update_traces(
+            textfont_size=12, 
+            )
+
+        relatorio_em_tabela.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Quantidade",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
+        )
         relatorio_em_tabela = relatorio_em_tabela.to_html()
 
         relatorio = fig.to_html()
