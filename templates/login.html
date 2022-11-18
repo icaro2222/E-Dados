@@ -33,10 +33,17 @@
 		            	<!-- <input type="password" name="senha" placeholder="Senha" required> -->
 					</div>
 					<input class="btn-login" id="login-Button" type="submit" name="salvar" value="Entrar">
+				</form>
+
+				<form action="" method="POST">
+					{%csrf_token%}
+					<input class="btn-login" id="login-Button" type="hidden" name="username" value="eren">
+					<input class="btn-login" id="login-Button" type="hidden" name="password" value="tatakae22">
+					<input class="btn-convidado" type="submit" name="salvar" value="Entrar como Convidado">
+				</form>
 				</div>
 			</div>	
 		</div>
-	</form>
 	</main>
 </body>
 	<footer>
