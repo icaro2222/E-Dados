@@ -66,7 +66,7 @@ def formulario_1(request):
                 relatorio = vetor[0]
 
         elif(demografico == 'TP_ESTADO_CIVIL'):
-            vetor = demografico_estado_civil(Microdado_Amostra, demografico, questao)
+            vetor = demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano)
             relatorio = vetor[0]
             relatorio_em_tabela = vetor[1]
 
@@ -87,7 +87,7 @@ def formulario_1(request):
             relatorio = vetor[0]
 
         elif(demografico == 'TP_ANO_CONCLUIU'):
-            vetor = demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao)
+            vetor = demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro_ano=filtro_ano)
             relatorio = vetor[0]
 
         context = {
@@ -221,7 +221,7 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
 
         return [relatorio]
  
-def demografico_estado_civil(Microdado_Amostra, demografico, questao):
+def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano):
 
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
@@ -239,19 +239,33 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao):
         fig = go.Figure()
 
         for index in lista_dos_index:
-            
-            if index=='0':
-                nome = 'Não informou'
-            elif index=='1':
-                nome = 'Solteiro(a)'
-            elif index=='2':
-                nome = 'Casado(a)'
-            elif index=='3':
-                nome = 'Divorciado(a)'
+            print(filtro_ano)
+            if filtro_ano=='2019':
+                if index=='0':
+                    nome = 'Não informou'
+                elif index=='1':
+                    nome = 'Solteiro(a)'
+                elif index=='2':
+                    nome = 'Casado(a)'
+                elif index=='3':
+                    nome = 'Divorciado(a)'
+                else:
+                    nome = 'Viúvo(a)'
             else:
-                nome = 'Viúvo(a)'
+                if index=='0':
+                    nome = 'Solteiro(a)'
+                elif index=='1':
+                    nome = 'Casado(a)'
+                elif index=='2':
+                    nome = 'Divorciado(a)'
+                elif index=='3':
+                    nome = 'Viúvo(a)'
+                else:
+                    nome = 'Não informou'
+
             fig.add_bar(
                 y=DataFrame[index],
+                x=DataFrame[index].index,
                 text=DataFrame[index],
                 name = nome,
             )
@@ -269,6 +283,19 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao):
             )
         )
         relatorio_em_tabela = px.bar(DataFrame_para_criar_a_tabela, barmode='group')
+
+        relatorio_em_tabela.update_layout(
+            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height = 500,
+            xaxis_title="Resposta do questionário socioeconômico",
+            yaxis_title="Quantidade",
+            legend_title="Legenda",
+            font=dict(
+                family="Courier New, monospace",
+                size=12,
+                color="black"
+            )
+        )
         relatorio_em_tabela = relatorio_em_tabela.to_html()
         
         relatorio = fig.to_html()
@@ -488,7 +515,7 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
 
         return [relatorio]
 
-def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao):
+def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro_ano):
 
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
@@ -506,35 +533,66 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao):
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(index)
-            if index=='0':
-                nome = 'Não informou'
-            elif index=='1':
-                nome = '2018'
-            elif index=='2':
-                nome = '2017'
-            elif index=='3':
-                nome = '2016'
-            elif index=='4':
-                nome = '2015'
-            elif index=='5':
-                nome = '2014'
-            elif index=='6':
-                nome = '2013'
-            elif index=='7':
-                nome = '2012'
-            elif index=='8':
-                nome = '2011'
-            elif index=='9':
-                nome = '2010'
-            elif index=='10':
-                nome = '2009'
-            elif index=='11':
-                nome = '2008'
-            elif index=='12':
-                nome = '2007'
-            else:
-                nome = 'Antes de 2007'
+            
+            if filtro_ano=='2019':
+                print(2019)
+                if index=='0':
+                    nome = 'Não informou'
+                elif index=='1':
+                    nome = '2018'
+                elif index=='2':
+                    nome = '2017'
+                elif index=='3':
+                    nome = '2016'
+                elif index=='4':
+                    nome = '2015'
+                elif index=='5':
+                    nome = '2014'
+                elif index=='6':
+                    nome = '2013'
+                elif index=='7':
+                    nome = '2012'
+                elif index=='8':
+                    nome = '2011'
+                elif index=='9':
+                    nome = '2010'
+                elif index=='10':
+                    nome = '2009'
+                elif index=='11':
+                    nome = '2008'
+                elif index=='12':
+                    nome = '2007'
+                else:
+                    nome = 'Antes de 2007'
+            elif filtro_ano=='2018':
+                print(2018)
+                if index=='0':
+                    nome = 'Não informou'
+                elif index=='1':
+                    nome = '2017'
+                elif index=='2':
+                    nome = '2016'
+                elif index=='3':
+                    nome = '2015'
+                elif index=='4':
+                    nome = '2014'
+                elif index=='5':
+                    nome = '2013'
+                elif index=='6':
+                    nome = '2012'
+                elif index=='7':
+                    nome = '2011'
+                elif index=='8':
+                    nome = '2010'
+                elif index=='9':
+                    nome = '2009'
+                elif index=='10':
+                    nome = '2008'
+                elif index=='11':
+                    nome = '2007'
+                else:
+                    nome = 'Antes de 2007'
+
             fig.add_bar(
                 y=DataFrame[index],
                 x=DataFrame[index].index,

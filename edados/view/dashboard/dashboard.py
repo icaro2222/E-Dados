@@ -29,23 +29,41 @@ def Dashboard(request):
         form = DashboardFormulario()
 
         fig = go.Figure(data=[go.Table(
-            header=dict(values=['Ano', 'Quantidade de alunos']),
-            cells=dict(values=[['2021', '2020', '2019', '2018', '2017', '2016'],
-                               [5335345, 2537645, 3433078, 5775045, 6475045, 4098045]
-                               ]))
+            header=dict(
+                values=['Ano', 'Quantidade de alunos']),
+            cells=dict(
+                values=[['2021', '2020', '2019', '2018', '2017', '2016',
+                         '2015', '2014', '2013', '2012', '2011', '2010'],
+                        [4004764, 5783357, 5095308, 5513662,
+                         6731186, 8627371, 7792025, 8722290,
+                         7173574, 5791332, 5380857, 4626094
+                         ]
+                        ]))
         ])
 
         figura = go.Figure()
 
-        figura.add_bar(x=['2021', '2020', '2019', '2018', '2017', '2016'],
-                    y=[5335345, 2537645, 3433078, 5775045, 6475045, 4098045])
-        figura.add_scatter(x=['2021', '2020', '2019', '2018', '2017', '2016'],
-                    y=[5335345, 2537645, 3433078, 5775045, 6475045, 4098045])
+        figura.add_bar(
+            x=['2010', '2011', '2012', '2013', '2014', '2015',
+               '2016', '2017', '2018', '2019', '2020', '2021'],
+            y=[4626094, 5380857,  5791332, 7173574,
+               8722290, 7792025,  8627371,	6731186,
+               5513662, 5095308, 5783357, 4004764
+               ],
+            name='num de inscritos')
 
+        figura.add_scatter(
+            x=['2010', '2011', '2012', '2013', '2014', '2015',
+               '2016', '2017', '2018', '2019', '2020', '2021'],
+            y=[4626094, 5380857,  5791332, 7173574,
+               8722290, 7792025,  8627371,	6731186,
+               5513662, 5095308, 5783357, 4004764
+               ],
+            name='num de inscritos')
 
         figura.update_layout(
-            title_text = 'Quantidade de inscrições no Enem, por ano.',
-            height = 400,
+            title_text='Quantidade de inscrições no Enem, por ano.',
+            height=400,
             xaxis_title="Ano",
             yaxis_title="Quantidade de Inscritos",
             legend_title="Legenda",
@@ -57,8 +75,8 @@ def Dashboard(request):
         )
 
         fig.update_layout(
-            title_text = 'Tabela.',
-            height = 400,
+            title_text='Tabela.',
+            height=400,
             width=500,
             xaxis_title="Ano",
             yaxis_title="Quantidade de Inscritos",
