@@ -175,7 +175,7 @@ def formulario_3(request):
             # extangle=0, 
             # cliponaxis=False
             )
-
+            
         fig.update_layout(
             xaxis=dict(
                 # tickvals=acertos_pd.index,
@@ -183,10 +183,22 @@ def formulario_3(request):
                 tickmode="array",
                 titlefont=dict(size=10),
             ),
-            title="Percentual Conforme os critérios estabelecidos",
-           height = 500
+            title="Percentual de " + acerto_erro + " da prova " + prova + " no ano de " + filtro_ano + " dos inscritos que possuem " + filtro_deficiencia + " deficiência.",
+            # title_text = """Tabela de percentual Conforme os critérios estabelecidos""",
+            height = 500,
+            margin = {'t':75, 'l':50},
+            yaxis = {'domain': [0, 1]},
+            xaxis2 = {'anchor': 'y2'},
+            xaxis_title=("Número da da questão na prova: "+prova),
+            yaxis_title="Desempenho em percentual de acertos.",
+            yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
+            legend_title="Legenda",
+            font=dict(
+                family="Arial",
+                size=12,
+                color="black"
+            )
         )
-
         relatorio = fig.to_html()
 
         context = {
@@ -263,16 +275,34 @@ def acertos_quantidade(Microdado_Amostra, prova, cor_da_prova):
                 name = nome,
 
             )
-            
+
         fig.update_layout(
-            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            title_text = """Tabela de correlação entre o desempenho e a resposta da questão socioeconômica.""",
+            height = 600,
+            margin = {'t':75, 'l':50},
+            yaxis = {'domain': [0, .45]},
+            xaxis2 = {'anchor': 'y2'},
+            xaxis_title="Respota do questionário socioeconômico",
+            yaxis_title="Desempenho",
+            yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
+            legend_title="Legenda",
             font=dict(
                 family="Arial",
                 size=12,
                 color="black"
             )
         )
+
+            
+        # fig.update_layout(
+        #     title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+        #     height = 500,
+        #     font=dict(
+        #         family="Arial",
+        #         size=12,
+        #         color="black"
+        #     )
+        # )
 
         relatorio = fig.to_html()
 
