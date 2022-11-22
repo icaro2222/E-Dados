@@ -182,7 +182,7 @@ def formulario_2(request):
             yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )

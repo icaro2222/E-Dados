@@ -68,7 +68,7 @@ def Dashboard(request):
             yaxis_title="Quantidade de Inscritos",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
@@ -82,7 +82,7 @@ def Dashboard(request):
             yaxis_title="Quantidade de Inscritos",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )

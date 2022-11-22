@@ -142,7 +142,7 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
@@ -164,7 +164,7 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
@@ -212,11 +212,11 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
         fig.update_layout(
             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
             height = 500,
-            xaxis_title="Resposta do questionário socioeconômico",
+            xaxis_title="Resposta do questionário socioeconômico por sexo.",
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
@@ -281,7 +281,7 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
@@ -295,7 +295,7 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
@@ -350,7 +350,7 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
@@ -403,7 +403,7 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             ),
@@ -458,7 +458,7 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
@@ -509,7 +509,7 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
@@ -612,7 +612,7 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
@@ -664,7 +664,7 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
             yaxis_title="Desempenho",
             legend_title="Legenda",
             font=dict(
-                family="times new roman",
+                family="Arial",
                 size=12,
                 color="black"
             )
