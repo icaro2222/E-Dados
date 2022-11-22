@@ -22,9 +22,9 @@ def Dashboard(request):
     if request.method == 'GET':
 
         menssagem1 = "Dados Gerais do enem"
-        menssagem = """Esta é uma plataforma online, que visa te possibilitar, 
-        realizar uma análise de forma simples, eficiente, 
-        e no menor período possível."""
+        menssagem = """Esta é uma plataforma online que possibilitar a realização
+         de uma análise de forma simples, eficiente, e no menor período possível 
+         referente aos microdados socioeconômicos do ENEM nos períodos de 2018 e 2019."""
 
         form = DashboardFormulario()
 
@@ -68,21 +68,21 @@ def Dashboard(request):
             yaxis_title="Quantidade de Inscritos",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
         )
 
         fig.update_layout(
-            title_text='Tabela.',
+            title_text='Quantidade de inscrições no Enem, por ano.',
             height=400,
             width=500,
             xaxis_title="Ano",
             yaxis_title="Quantidade de Inscritos",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
@@ -115,9 +115,9 @@ def Dashboard(request):
         relatorio = 1800
 
         menssagem1 = "Dados Gerais do enem"
-        menssagem = """Esta é uma plataforma online, que visa te possibilitar, 
-        realizar uma análise de forma simples, eficiente, 
-        e no menor período possível."""
+        menssagem = """Esta é uma plataforma online que possibilitar a realização
+         de uma análise de forma simples, eficiente, e no menor período possível 
+         referente aos microdados socioeconomicos do ENEM nos periodos de 2018 e 2019."""
 
         fig = go.Figure(data=[go.Table(
             header=dict(values=['Ano', 'Quantidade de alunos']),

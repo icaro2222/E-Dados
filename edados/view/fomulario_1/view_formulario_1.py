@@ -19,12 +19,16 @@ def formulario_1(request):
 
     if request.method == 'GET':        
         menssagem = ("Formulário 1.")
+        menssagem1 = """Este é um formulário que possibilitar a realização
+         de uma análise exploratória que correlaciona entre os microdados socioeconômicos
+         e demográficos do ENEM nos períodos de 2018 e 2019."""
 
         form = Formulario_1()
         form_filtro = Formulario_filtros()
         context = {
             'form' : form,
             'menssagem' : menssagem,
+            'menssagem1' : menssagem1,
             'form_filtro' : form_filtro
         }
         return render(request, 'base/formulario_1/quest_formulario_1.html', context=context)
@@ -138,7 +142,7 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
@@ -160,7 +164,7 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
@@ -212,7 +216,7 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
@@ -277,7 +281,7 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
@@ -291,7 +295,7 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
@@ -346,7 +350,7 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
@@ -399,7 +403,7 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             ),
@@ -454,7 +458,7 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
@@ -505,7 +509,7 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
@@ -608,7 +612,7 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
             yaxis_title="Quantidade",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
@@ -660,7 +664,7 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
             yaxis_title="Desempenho",
             legend_title="Legenda",
             font=dict(
-                family="Courier New, monospace",
+                family="times new roman",
                 size=12,
                 color="black"
             )
