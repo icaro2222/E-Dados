@@ -2,11 +2,15 @@ from ast import If
 import pandas as pd
 from edados.database import conect_db
 
-BANCO = conect_db.banco()
 LIMIT = ' LIMIT 10000'
 
 def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "todos", filtro_ano = "vazio"):
     engine = conect_db.connect()
+
+    if(filtro_ano == '2018'):
+        BANCO = '"enem_2018"'
+    else:
+        BANCO = conect_db.banco()
 
     # Mysql
     retorno = '","'.join(amostra)
