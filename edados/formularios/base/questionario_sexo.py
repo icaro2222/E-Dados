@@ -3,7 +3,7 @@ from django import forms
 
 def questionario_sexo(Form):
 
-    choices_sexo = (('ambos' ,'Ambos'),    
+    choices_sexo = (('todos' ,'Ambos'),    
                     ('F', 'Femilino'),
                     ('M' ,'Masculino'))
 

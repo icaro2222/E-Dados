@@ -104,7 +104,7 @@ def formulario_3(request):
             respostas = "TX_RESPOSTAS_CH"
             gabarito = "TX_GABARITO_CH"
 
-        if(filtro_sexo != 'ambos'):
+        if(filtro_sexo != 'todos'):
             Amostra = [prova, 'TP_SEXO', respostas, gabarito]
             Microdado_Amostra = bd_formulario_3.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_cor_da_prova=filtro_cor_da_prova, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
         else:
@@ -277,20 +277,21 @@ def acertos_quantidade(Microdado_Amostra, prova, cor_da_prova):
             )
 
         fig.update_layout(
-            title_text = """Tabela de correlação entre o desempenho e a resposta da questão socioeconômica.""",
+            title_text = """Tabela de correlação entre o desempenho e a resposta da questão 
+            socioeconômica.""",
             height = 600,
-            margin = {'t':75, 'l':50},
-            yaxis = {'domain': [0, .45]},
-            xaxis2 = {'anchor': 'y2'},
-            xaxis_title="Respota do questionário socioeconômico",
-            yaxis_title="Desempenho",
-            yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
-            legend_title="Legenda",
-            font=dict(
-                family="Arial",
-                size=12,
-                color="black"
-            )
+            # margin = {'t':75, 'l':50},
+            # yaxis = {'domain': [0, .45]},
+            # xaxis2 = {'anchor': 'y2'},
+            # xaxis_title="Respota do questionário socioeconômico",
+            # yaxis_title="Desempenho",
+            # yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
+            # legend_title="Legenda",
+            # font=dict(
+            #     family="Arial",
+            #     size=12,
+            #     color="black"
+            # )
         )
 
             

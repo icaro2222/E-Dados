@@ -44,7 +44,7 @@ def formulario_2(request):
         filtro_sexo = form_filtro.data['sexo']
         filtro_ano = form_filtro.data['ano']
 
-        if(filtro_sexo != 'ambos'):
+        if(filtro_sexo != 'todos'):
             Amostra = [prova, Q, 'TP_SEXO']
             if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
                 Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
@@ -172,7 +172,7 @@ def formulario_2(request):
             )
 
         figura_tabela.update_layout(
-            title_text = """Tabela de correlação entre o desempenho e a resposta da questão socioeconômica.""",
+            title_text = """Quadro de correlação entre o desempenho e a resposta da questão socioeconômica.""",
             height = 600,
             margin = {'t':75, 'l':50},
             yaxis = {'domain': [0, .45]},

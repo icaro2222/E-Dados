@@ -1,0 +1,72 @@
+{% extends 'layout/layout.html' %}
+{%load static %}
+{% load crispy_forms_tags %}
+{% block titulo %}Formulário 1.4
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href={% static "css/styles_relatorio.css" %}>
+{% endblock %}
+{% block conteudo %}
+
+<!-- Begin Page Content -->
+<div class="row text-dark">
+  <!-- Page Heading -->
+  <form class="col" action="." method="post">
+    <hr class="m-0" />
+    <h4>Visualização:</h4>
+    <div class="col-md-12 d-flex">{% csrf_token %} {{ form|crispy}}</div>
+    <hr class="m-0" />
+    <h4>Filtros:</h4>
+    <div class="col-md-12 d-flex">{{ form_filtro|crispy }}</div>
+    <hr class="m-1" />
+    <div class="row d-flex justify-content-end align-items-center">
+      <div class="col-sm-4 mb-3 d-flex justify-content-end">
+        <button type="submit" class="md-12 btn btn-outline-primary">
+          Gerar Nova Análise
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-clipboard-data"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"
+            />
+            <path
+              d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
+            />
+            <path
+              d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <hr class="mt-0" />
+      <h4>{{ menssagem }}</h4>
+      <hr class="mt-0 bg-dark" />
+    </div>
+  </form>
+</div>
+<div class="text-dark ">
+  <div class="row">
+    <div class="col md-12">
+      <div class="col md-11">
+        <h4>
+        Somatório dos alunos que responderam:
+        {{quantidadeParcial}}
+        </h4>
+      </div>
+      <div class="col md-11">
+        <h4>
+        Somatório de todos os alunos:
+        {{quantidadeTotal}}
+        </h4></div> 
+      <div class="col md-11">{{relatorio_em_tabela|safe}}</div>     
+    </div>
+  </div>
+</div>
+{% endblock %}

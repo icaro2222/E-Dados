@@ -88,7 +88,7 @@ def Dashboard(request):
             )
         )
 
-        relatorio_em_tabela = fig.to_html()
+        relatorio_em_quadro = fig.to_html()
         relatorio = figura.to_html()
 
         context = {
@@ -96,7 +96,7 @@ def Dashboard(request):
             'menssagem': menssagem,
             'menssagem1': menssagem1,
             'relatorio': relatorio,
-            'relatorio_em_tabela': relatorio_em_tabela
+            'relatorio_em_quadro': relatorio_em_quadro
         }
         return render(request, 'dashboard/dashboard.html', context=context)
     else:
@@ -126,13 +126,13 @@ def Dashboard(request):
                                ]))
         ])
 
-        relatorio_em_tabela = fig.to_html()
+        relatorio_em_quadro = fig.to_html()
 
         context = {
             'form': form,
             'menssagem': menssagem,
             'menssagem1': menssagem1,
-            'relatorio_em_tabela': relatorio_em_tabela,
+            'relatorio_em_quadro': relatorio_em_quadro,
             'relatorio': relatorio,
         }
 

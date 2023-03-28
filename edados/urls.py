@@ -21,7 +21,7 @@ from .view.outros import view_quest_demo_notas
 # from .view import view_quest_socio_notas, view_quest_demo_socioe, view_quest_socio_notas_sexo , view_quest_socio_notas_deficiencia, view_regiao, view_regiao_mapa#, views, view,  view_plot
 from .view.contraste import view_contrast_quest_socio_notas
 from .view.dashboard import dashboard
-from .view.fomulario_1 import view_formulario_1, view_formulario_1_2
+from .view.fomulario_1 import view_formulario_1, view_formulario_1_4, view_formulario_1_2, view_formulario_1_3
 from .view.fomulario_2 import view_formulario_2
 from .view.fomulario_3 import view_formulario_3
 
@@ -34,8 +34,10 @@ urlpatterns = [
 
     # Formulários
     path('Quest Soc Notas Deficiencia/', view_formulario_2.formulario_2, name="Quest_Soc_Notas_Deficiencia"),
-    path('Perfil do Inscrito/', view_formulario_1_2.formulario_2, name="formulario_1_2"),
-    path('Perfil do Inscrito/', view_formulario_1.formulario_1, name="formulario_1"),
+    path('Perfil_2_do_Inscrito/', view_formulario_1_2.formulario_2, name="formulario_1_2"),
+    path('Perfil_3_do_Inscrito/', view_formulario_1_3.formulario_3, name="formulario_1_3"),
+    path('Perfil_4_do_Inscrito/', view_formulario_1_4.formulario_4, name="formulario_1_4"),
+    path('Perfil_do_Inscrito/', view_formulario_1.formulario_1, name="formulario_1"),
     path('Acerto_por_Prova/', view_formulario_3.formulario_3, name="formulario_3"),
     
     # path('teste/', views.teste, name='teste'),

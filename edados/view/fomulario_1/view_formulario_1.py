@@ -48,20 +48,19 @@ def formulario_1(request):
         filtro_sexo = form_filtro.data['sexo']
         filtro_ano = form_filtro.data['ano']
 
-        # if(filtro_sexo != 'ambos'):
-        #     Amostra = [demografico, questao, 'TP_SEXO']
-        #     Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
-        # else:
         Amostra = [demografico, questao]
-        Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
-
+        if demografico != 'TP_SEXO' and filtro_sexo != 'todos':
+            Amostra.append('TP_SEXO')
+            Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+        else:
+            Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
 
         menssagem = 'Formulário 1'
         relatorio_em_grafico = ''
 
         if(demografico == 'TP_SEXO'):
 
-            if(filtro_sexo == 'ambos'):
+            if(filtro_sexo == 'todos'):
                 vetor = demografico_sexo(Microdado_Amostra, demografico, questao)
                 relatorio = vetor[0]
                 relatorio_em_grafico = vetor[1]
@@ -245,24 +244,24 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
         for index in lista_dos_index:
             print(filtro_ano)
             if filtro_ano=='2019':
-                if index=='0':
+                if (index=='0' or index==0):
                     nome = 'Não informou'
-                elif index=='1':
+                elif (index=='1' or index==1):
                     nome = 'Solteiro(a)'
-                elif index=='2':
+                elif (index=='2' or index==2):
                     nome = 'Casado(a)'
-                elif index=='3':
+                elif (index=='3' or index==3):
                     nome = 'Divorciado(a)'
                 else:
                     nome = 'Viúvo(a)'
             else:
-                if index=='0':
+                if (index=='0' or index==0):
                     nome = 'Solteiro(a)'
-                elif index=='1':
+                elif (index=='1' or index==1):
                     nome = 'Casado(a)'
-                elif index=='2':
+                elif (index=='2' or index==2):
                     nome = 'Divorciado(a)'
-                elif index=='3':
+                elif (index=='3' or index==3):
                     nome = 'Viúvo(a)'
                 else:
                     nome = 'Não informou'
@@ -312,9 +311,13 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
         DataFrame = DataFrame.groupby([demografico, questao])
         DataFrame = DataFrame[demografico].count()
 
+        # DataFrame = Microdado_Amostra.sort_values(by=questao)
+        # DataFrame = DataFrame.groupby([demografico, questao])[demografico].count()
+
         # rotacionar 
         DataFrame = DataFrame.unstack()
 
+        # Pegando lista de index pra usá-los posteriomente.
         lista_dos_index = DataFrame.index.to_list()
 
         # desrotacionar 
@@ -324,15 +327,15 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
 
         for index in lista_dos_index:
             
-            if index=='0':
+            if (index=='0' or index==0):
                 nome = 'Não informou'
-            elif index=='1':
+            elif (index=='1' or index==1):
                 nome = 'Branca'
-            elif index=='2':
+            elif (index=='2' or index==2):
                 nome = 'Preta'
-            elif index=='3':
+            elif (index=='3' or index==3):
                 nome = 'Parda'
-            elif index=='4':
+            elif (index=='4' or index==4):
                 nome = 'Amarela'
             else:
                 nome = 'Indígena'
@@ -379,13 +382,13 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
 
         for index in lista_dos_index:
             print(index)
-            if index=='0':
+            if (index=='0' or index==0):
                 nome = 'Não informou'
-            elif index=='1':
+            elif (index=='1' or index==1):
                 nome = 'Brasileiro(a)'
-            elif index=='2':
+            elif (index=='2' or index==2):
                 nome = 'Naturalizado(a)'
-            elif index=='3':
+            elif (index=='3' or index==3):
                 nome = 'Estrangeiro(a)'
             else:
                 nome = 'Brasileiro(a) Nato(a), nascido(a) no exterior'
@@ -436,11 +439,11 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
 
         for index in lista_dos_index:
             print(index)
-            if index=='0':
+            if (index=='0' or index==0):
                 nome = 'Não informou'
-            elif index=='1':
+            elif (index=='1' or index==1):
                 nome = 'Pública'
-            elif index=='2':
+            elif (index=='2' or index==2):
                 nome = 'Privada'
             else:
                 nome = 'Exterior'
@@ -486,12 +489,12 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(index)
-            if index=='0':
+            print('INDEX= '+index)
+            if (index=='0' or index==0):
                 nome = 'Não informou'
-            elif index=='1':
+            elif (index=='1' or index==1):
                 nome = 'Pública'
-            elif index=='2':
+            elif (index=='2' or index==2):
                 nome = 'Privada'
             else:
                 nome = 'Exterior'
@@ -540,59 +543,59 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
             
             if filtro_ano=='2019':
                 print(2019)
-                if index=='0':
+                if (index=='0' or index==0):
                     nome = 'Não informou'
-                elif index=='1':
+                elif (index=='1' or index==1):
                     nome = '2018'
-                elif index=='2':
+                elif (index=='2' or index==2):
                     nome = '2017'
-                elif index=='3':
+                elif (index=='3' or index==3):
                     nome = '2016'
-                elif index=='4':
+                elif (index=='4' or index==4):
                     nome = '2015'
-                elif index=='5':
+                elif (index=='5' or index==5):
                     nome = '2014'
-                elif index=='6':
+                elif (index=='6' or index==6):
                     nome = '2013'
-                elif index=='7':
+                elif (index=='7' or index==7):
                     nome = '2012'
-                elif index=='8':
+                elif (index=='8' or index==8):
                     nome = '2011'
-                elif index=='9':
+                elif (index=='9' or index==9):
                     nome = '2010'
-                elif index=='10':
+                elif (index=='10' or index==10):
                     nome = '2009'
-                elif index=='11':
+                elif (index=='11' or index==11):
                     nome = '2008'
-                elif index=='12':
+                elif (index=='12' or index==12):
                     nome = '2007'
                 else:
                     nome = 'Antes de 2007'
             elif filtro_ano=='2018':
                 print(2018)
-                if index=='0':
+                if (index=='0' or index==0):
                     nome = 'Não informou'
-                elif index=='1':
+                elif (index=='1' or index==1):
                     nome = '2017'
-                elif index=='2':
+                elif (index=='2' or index==2):
                     nome = '2016'
-                elif index=='3':
+                elif (index=='3' or index==3):
                     nome = '2015'
-                elif index=='4':
+                elif (index=='4' or index==4):
                     nome = '2014'
-                elif index=='5':
+                elif (index=='5' or index==5):
                     nome = '2013'
-                elif index=='6':
+                elif (index=='6' or index==6):
                     nome = '2012'
-                elif index=='7':
+                elif (index=='7' or index==7):
                     nome = '2011'
-                elif index=='8':
+                elif (index=='8' or index==8):
                     nome = '2010'
-                elif index=='9':
+                elif (index=='9' or index==9):
                     nome = '2009'
-                elif index=='10':
+                elif (index=='10' or index==10):
                     nome = '2008'
-                elif index=='11':
+                elif (index=='11' or index==11):
                     nome = '2007'
                 else:
                     nome = 'Antes de 2007'
@@ -641,11 +644,11 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
 
         for index in lista_dos_index:
             print(index)
-            if index=='0':
+            if (index=='0' or index==0):
                 nome = 'Não informou'
-            elif index=='1':
+            elif (index=='1' or index==1):
                 nome = 'Pública'
-            elif index=='2':
+            elif (index=='2' or index==2):
                 nome = 'Privada'
             else:
                 nome = 'Exterior'
