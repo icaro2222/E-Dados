@@ -2,24 +2,37 @@ from ast import If
 import pandas as pd
 from edados.database import conect_db
 
-BANCO = 'enem2 '
-LIMIT = ' LIMIT 1000'
 
-def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio"):
+def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
     engine = conect_db.connect()
+    
+    BANCO = conect_db.banco(filtro_ano=filtro_ano)
+
+    RESTRICAO = ' AND "' + amostra[0] + '" > 0 '
+
+    # filtrando o ano
+    if(filtro_ano != "todos"):
+        ano = ' WHERE "NU_ANO" = ' + str(filtro_ano)
+        filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)
+    else:
+        ano = ' WHERE "' + amostra[0] + '" > 0 '
+        filtro_ano = ''
+        pass
+
+    retorno_da_query = '"' + '","'.join(amostra) + '"'
 
     if(filtro_sexo != "vazio"):
         if(filtro_deficiencia != "vazio"):
-            query = 'SELECT ' + ",".join(amostra) + ','+ str(filtro_deficiencia)+ ' FROM  ' + BANCO + '  WHERE TP_SEXO ="' + str(filtro_sexo) + '" AND ' + str(filtro_deficiencia) + ' = "1" '
+            query = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO + '  WHERE  "' + str(filtro_deficiencia) + '" = 1 AND "TP_SEXO" = '+"'"+str(filtro_sexo)+"'" + filtro_ano
         else:
-            query = 'SELECT ' + ",".join(amostra) + ' FROM  ' + BANCO + '  WHERE TP_SEXO ="' + str(filtro_sexo) + '" '
+            query = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO + ' WHERE "TP_SEXO" = '+"'"+str(filtro_sexo)+"'" + filtro_ano
     else:
         if(filtro_deficiencia != "vazio"):
-            query = 'SELECT ' + ",".join(amostra) + ','+ str(filtro_deficiencia)+ ' FROM ' + BANCO + ' WHERE ' + str(filtro_deficiencia) + ' = 1'
+            query = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO + ' WHERE "' + str(filtro_deficiencia) + '" = 1' + filtro_ano
         else:
-            query = 'SELECT ' + ",".join(amostra) + ' FROM ' + BANCO
+            query = 'SELECT "' + '","'.join(amostra) + '" FROM ' +  BANCO + ano
     
-    query = query + LIMIT
+    query = query + RESTRICAO + conect_db.LIMIT
 
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))

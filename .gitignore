@@ -2,5 +2,5 @@
 /static/vendor/
 /dados/
 /static/dados_relatorio/*.pdf
-edados/settings.py
-
+/edados/settings.py
+edados/database/conect_db.py

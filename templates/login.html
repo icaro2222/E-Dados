@@ -1,45 +1,49 @@
 {%load static%}
-
 <!DOCTYPE html>
 <html>
 <head>
 <title>Login</title>
-<link rel="shortcut icon" href={% static "img/E-Dados.png" %}>
+<link rel="shortcut icon" href={% static "img/logo.svg" %} type="image/x-icon">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href={% static "css/style-login.css" %}>
 </head>
 <body>
 	<main>
-		<form action={% url "logar" %} method="POST">
+		<form action="" method="POST">
             {%csrf_token%}
 		<div class="main-login">
-			<div class="left-login">
+			<div class="left-login text-primary">
 				<h1>E-Dados</h1>
 				<div class="sidebar-brand-icon">
-                    <img height="425" src={% static "img/logo.svg" %} fill="white">  
+                    <img height="370" src={% static "img/logo.svg" %} fill="white">  
                 </div>					
 			</div>
 			<div class="right-login">
 				<div class="card-login">
 					<h1>LOGIN</h1>
-					<div class="textfield">
-						<label for="email">E-mail</label>
-		            	<input type="email" name="email" placeholder="E-mail" autofocus required>
-		            	<!-- <input type="hidden" name="questao">
-		            	<input type="hidden" name="nota">
-		            	<input type="hidden" name="sexo">
-		            	<input type="hidden" name="tipo_de_grafico"> -->
+					<div class="textfield text-dark">
+						<label for="email">Nome</label>
+						{{ form.username }}
+		            	<!-- <input type="email" name="email" placeholder="E-mail" autofocus required> -->
 					</div>
 					<div class="textfield">
 						<label for="senha">Senha</label>
-		            	<input type="password" name="senha" placeholder="Senha" required>
+						{{ form.password }}
+		            	<!-- <input type="password" name="senha" placeholder="Senha" required> -->
 					</div>
 					<input class="btn-login" id="login-Button" type="submit" name="salvar" value="Entrar">
+				</form>
+
+				<form action="" method="POST">
+					{%csrf_token%}
+					<input class="btn-login" id="login-Button" type="hidden" name="username" value="eren">
+					<input class="btn-login" id="login-Button" type="hidden" name="password" value="tatakae22">
+					<input class="btn-convidado" type="submit" name="salvar" value="Entrar como Convidado">
+				</form>
 				</div>
 			</div>	
 		</div>
-	</form>
 	</main>
 </body>
 	<footer>

@@ -2,7 +2,7 @@ from random import choices
 from django import forms
 
 
-class MeuFormulario(forms.Form):
+class Formulario_filtro(forms.Form):
 
     choices_sexo = (('ambos' ,'Ambos'),    
                     ('F', 'Filtrar Apenas Femilino'),

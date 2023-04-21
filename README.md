@@ -11,10 +11,4 @@
 - Imprimir Resultados na tela por meio de Dashboard interativa
 - Imprimir Resultados na tela por meio de Gráficos, Tabelas, Histogramas, Mapas, ect.
 
-![Captura de tela de 2022-10-23 10-59-43](https://user-images.githubusercontent.com/71037296/197396906-9b419f80-85b2-4c65-b535-ca5428dbae0f.png)
-
-
-![Captura de tela de 2022-10-23 11-00-24](https://user-images.githubusercontent.com/71037296/197396908-bf6cf659-54ec-4b3e-9576-5ce545cdae36.png)
-
-
-![Captura de tela de 2022-10-23 11-01-00](https://user-images.githubusercontent.com/71037296/197396910-f692a535-37ff-4c0d-9496-be92e33ffcee.png)
+![Captura de tela de 2023-03-28 14-50-35](https://user-images.githubusercontent.com/71037296/228325365-a3def359-e01a-4c9d-83f1-3877616fd55b.png)

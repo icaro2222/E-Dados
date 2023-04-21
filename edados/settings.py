@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'usuarios',
+    'crispy_forms',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,6 +53,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'edados.urls'
@@ -79,10 +84,35 @@ WSGI_APPLICATION = 'edados.wsgi.application'
 
 # Comentei o código referente a conecxão com o banco mysql, para começar a fazer uso do banco Postgress
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+# HERoKU
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'da0rf6a9o8h8v3',
+#         'USER': 'ccgapwggqseseb',
+#         'PASSWORD': 'bf9adeb9b12252a5a9377ede93702f53f404d6f23a9db8aeb77f3d2704a820f4',
+#         'HOST': 'ec2-54-87-179-4.compute-1.amazonaws.com',
+#         'PORT': '5432'
+#     }
+# }
+
+
+    # Conexão POSTGRESQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'e-dados',
+        'USER': 'postgres',
+        'PASSWORD': 'tatakae22',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
@@ -159,4 +189,13 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 django_on_heroku.settings(locals())
+
+# Configurações de Login
+LOGIN_REDIRECT_URL = 'dashboard'
+LOGOUT_REDIRECT_URL = 'login'
+LOGIN_URL = 'login'
+SESSION_EXPIRE_SECONDS = 3600
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True

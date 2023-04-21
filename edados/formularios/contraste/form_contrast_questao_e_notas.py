@@ -14,6 +14,10 @@ class MeuFormulario(forms.Form):
                     ('NU_NOTA_COMP3', 'Nota da competência 3'),
                     ('NU_NOTA_REDACAO', 'Nota da prova de redação'))
                     
+    # Formulario para os inscritos que se declararam com algum tipo de deficiência
+    Questao_Socioeconomica_Com_Deficiencia = questionario_socioeconomico.questionario_socioeconomico(Form=forms.Form)
+    Nota_da_prova_Com_Deficiencia = forms.ChoiceField(choices=choices_nota)
 
-    Questao_Socioeconomica = questionario_socioeconomico.questionario_socioeconomico(Form=forms.Form)
-    Nota_da_prova = forms.ChoiceField(choices=choices_nota)
+    # Formulario para os inscritos que declararam possuir nenhuma  deficiência
+    Questao_Socioeconomica_Sem_Deficiencia = questionario_socioeconomico.questionario_socioeconomico(Form=forms.Form)
+    Nota_da_prova_Sem_Deficiencia = forms.ChoiceField(choices=choices_nota)
