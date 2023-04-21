@@ -102,7 +102,6 @@ def formulario_1(request):
 
     return render(request, 'base/formulario_1/relatorio_formulario_1.html', context=context)
     
-
 def demografico_sexo(Microdado_Amostra, demografico, questao):
 
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
@@ -248,10 +247,32 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
             
         fig.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            height=700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico.",
             yaxis_title="Quantidade",
             legend_title="Legenda",
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.7,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
             font=dict(
                 family="Arial",
                 size=12,
@@ -313,10 +334,32 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
               
         fig.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            height = 700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.7,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
             font=dict(
                 family="Arial",
                 size=12,
@@ -327,10 +370,32 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
 
         relatorio_em_grafico.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            height = 700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.7,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
             font=dict(
                 family="Arial",
                 size=12,
@@ -386,10 +451,32 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
               
         fig.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            height = 700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.7,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
             font=dict(
                 family="Arial",
                 size=12,
@@ -439,10 +526,32 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
             
         fig.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            height = 700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.7,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
             font=dict(
                 family="Arial",
                 size=12,
@@ -494,10 +603,32 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
             
         fig.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            height = 700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.7,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
             font=dict(
                 family="Arial",
                 size=12,
@@ -545,10 +676,32 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
             
         fig.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            height = 700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.7,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
             font=dict(
                 family="Arial",
                 size=12,
@@ -648,10 +801,32 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
             
         fig.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            height = 700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.7,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
             font=dict(
                 family="Arial",
                 size=12,
@@ -700,10 +875,32 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
             
         fig.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            height = 700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Desempenho",
             legend_title="Legenda",
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.7,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
             font=dict(
                 family="Arial",
                 size=12,
