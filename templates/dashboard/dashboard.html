@@ -1,17 +1,62 @@
 {% extends 'layout/layout.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block titulo %}E-Dados{% endblock %} {% block css
-%}<link rel="stylesheet" href={% static "css/styles_relatorio.css" %}>{%
-endblock %} {% block conteudo %}
-<!-- Begin Page Content -->
-<div class="row border border-white">
+{% block titulo %}E-Dados{% endblock %} 
+{% block css%} <link rel="stylesheet" href={% static "css/styles_relatorio.css" %}> {%endblock %} 
+{% block conteudo %}
 
-  <div class="col-md-12 text-dark">
-    <h4>{{ menssagem1 }}:</h4>
-    <hr class="mt-0 bg-dark" />
+<head>
+  <title>Tela de Instruções</title>
+  <style>
+    /* Estilo para o texto e título da tela de instruções */
+    #texto, #sejabemvindo {
+      color: rgb(17, 0, 110);
+    }
+
+/* Estilo para a tela de instruções */
+#instrucoes {
+  position: fixed; /* Define a posição como fixa para que a tela fique "grudada" no topo */
+  top: 0; /* Define a posição no topo */
+  left: 0; /* Define a posição à esquerda */
+  width: 100%; /* Define a largura como 100% da tela */
+  height: 100%; /* Define a altura como 100% da tela */
+  font-size: larger; /* Define o tamanho da fonte */
+  background-color: rgba(0, 0, 0, 0.5); /* Define a cor de fundo com transparência */
+  z-index: 999; /* Define a ordem de empilhamento acima de todos os outros elementos */
+  display: none; /* Define que a tela de instruções começa escondida */
+}
+
+/* Estilo para o conteúdo dentro da tela de instruções */
+#instrucoes .conteudo {
+  border-radius: 10px; /* Define a borda arredondada */
+  position: absolute; /* Define a posição como absoluta para que possa ser centralizado */
+  top: 50%; /* Define a posição no centro vertical */
+  left: 50%; /* Define a posição no centro horizontal */
+  transform: translate(-50%, -50%); /* Centraliza o elemento */
+  width: 80%; /* Define a largura como 80% da tela */
+  height: 80%; /* Define a altura como 80% da tela */
+  background-color: #fff; /* Define a cor de fundo como branca */
+  padding: 20px; /* Define o espaçamento interno */
+  text-align: center; /* Centraliza o texto horizontalmente */
+}
+  </style>
+</head>
+<body>
+  <!-- Tela de instruções -->
+  <div id="instrucoes">
+    <div class="conteudo">
+      <h2 id="sejabemvindo">Seja bem-vindo!</h2>
+      <p id="texto"></p>
+      <button type="button" class="btn btn-danger" id="fechar-instrucoes">Fechar</button>
+    </div>
   </div>
-
+  <!-- Conteúdo da página -->
+  <div class="row border border-white">
+    <div class="col-md-12 text-dark">
+      <h4>{{ menssagem1 }}:</h4>
+      <hr class="mt-0 bg-dark" />
+    </div>
+    
   <!-- Page Heading -->
   <form class="col-md-12 mb-3" action="." method="post">
     {% csrf_token %} 
@@ -54,6 +99,50 @@ endblock %} {% block conteudo %}
     <hr class="mt-0 bg-dark" />
   </div>
 </div>
+
+    <script>
+      // Verifica se já foi exibida a tela de instruções
+      if (!localStorage.getItem('exibiuInstrucoes')) {
+        // Exibe a tela de instruções
+        document.getElementById('instrucoes').style.display = 'block';
+        
+        // Define a ação do botão de fechar
+        document.getElementById('fechar-instrucoes').addEventListener('click', function() {
+          // Esconde a tela de instruções
+          document.getElementById('instrucoes').style.display = 'none';
+          // Marca que a tela de instruções já foi exibida
+          localStorage.setItem('exibiuInstrucoes', true);
+        });
+      }
+
+      const texto = "Bem-vindo à nossa plataforma web! Aqui você encontrará uma ferramenta poderosa para auxiliar na análise dos microdados do ENEM. Sabemos que interpretar e entender esses dados pode ser um desafio para muitos, por isso criamos essa plataforma com o intuito de tornar esse processo mais fácil e intuitivo. Com nossas funcionalidades, você pode selecionar e visualizar os dados de acordo com suas necessidades, filtrando por ano, região, escola e outras variáveis importantes. Além disso, oferecemos gráficos e tabelas interativas para ajudar a interpretar as informações e identificar tendências e padrões. Nosso objetivo é tornar a análise dos microdados do ENEM acessível e útil para todos, desde estudantes e professores até pesquisadores e analistas de dados. Acreditamos que ao entender melhor esses dados, podemos tomar decisões mais informadas e criar soluções mais eficazes para melhorar a educação no nosso país. Esperamos que você aproveite nossa plataforma e que ela seja útil na sua jornada de análise dos microdados do ENEM. Se tiver alguma dúvida ou sugestão, não hesite em entrar em contato conosco. Estamos sempre buscando maneiras de melhorar e atender às necessidades de nossos usuários."
+      let index = 0;
+
+      function escrever() {
+        if (index < texto.length) {
+          document.getElementById("texto").innerHTML += texto.charAt(index);
+          index++;
+          setTimeout(escrever, 50);
+        }
+      }
+      
+      escrever();
+
+      
+      function escrever() {
+        if (index < texto.length) {
+          document.getElementById("texto").insertAdjacentHTML('beforeend', texto.charAt(index));
+          index++;
+          setTimeout(escrever, 50);
+        }
+      }
+
+      escrever();
+
+    </script>
+  </body>
+
+
 <!-- <hr class="mb-3" /> -->
 <!-- /.container-fluid -->
 {% endblock %}
