@@ -8,5 +8,6 @@ class Formulario_2(forms.Form):
     questao = questionario_socioeconomico.questionario_socioeconomico(Form=forms.Form)
     nota = questionario_de_nota.questionario_de_nota(Form=forms.Form)
     deficiencia = questionario_de_deficiencia.questionario_de_deficiencia(Form=forms.Form)
+    ano = questionario_ano.questionario_ano(Form=forms.Form)
 
 

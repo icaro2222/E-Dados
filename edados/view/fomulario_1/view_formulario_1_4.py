@@ -37,6 +37,9 @@ def formatarFrequenciaAbsoluta(valor):
     
 def formulario_4(request):
 
+    global CONTAGEM
+    global CONTAGEMMicrodado_Amostra
+
     questao= 'Q001'
     demografico = 'TP_SEXO'
 
@@ -89,6 +92,19 @@ def formulario_4(request):
 
         Dataframe = Microdado_Amostra.groupby(filtro_questao)['NU_IDADE']
         Dataframe = Dataframe.describe()     
+        print(Dataframe.count().count)
+        if Dataframe.empty:
+
+            CONTAGEM = 0
+            menssagem = """Nenhum dos inscritos com essas características!"""
+            context = {
+                'form' : form,
+                'form_filtro' : form_filtro,
+                'menssagem' : menssagem,
+                'quantidadeParcial' : CONTAGEM,
+                'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
+            }
+            return render(request, 'base/formulario_1/relatorio_formulario_4.html', context=context)
 
         figura_com_criador_de_tabela = px.bar(Dataframe)
         figura_com_criador_de_tabela = figura_com_criador_de_tabela.to_html()
@@ -99,10 +115,8 @@ def formulario_4(request):
         rowEvenColor = 'lightgrey'
         rowOddColor = 'white'
 
-        global CONTAGEM
         CONTAGEM = Dataframe['count'].sum()
 
-        global CONTAGEMMicrodado_Amostra
         # CONTAGEMMicrodado_Amostra = Microdado_Amostra['NU_IDADE'].sum()
 
         print("contage = " + str(CONTAGEM))

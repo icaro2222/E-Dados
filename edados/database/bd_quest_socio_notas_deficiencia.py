@@ -2,15 +2,11 @@ from ast import If
 import pandas as pd
 from edados.database import conect_db
 
-LIMIT = ' LIMIT 10000'
 
 def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
     engine = conect_db.connect()
     
-    if(filtro_ano == '2018'):
-        BANCO = '"enem_2018"'
-    else:
-        BANCO = conect_db.banco()
+    BANCO = conect_db.banco(filtro_ano=filtro_ano)
 
     RESTRICAO = ' AND "' + amostra[0] + '" > 0 '
 
@@ -36,7 +32,7 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
         else:
             query = 'SELECT "' + '","'.join(amostra) + '" FROM ' +  BANCO + ano
     
-    query = query + RESTRICAO + LIMIT
+    query = query + RESTRICAO + conect_db.LIMIT
 
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))

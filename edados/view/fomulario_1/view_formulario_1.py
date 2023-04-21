@@ -5,7 +5,7 @@ from io import BytesIO
 import plotly.express as px
 import base64
 from edados.formularios.formulario_1.formulario_1 import Formulario_1
-from edados.formularios.filtros.filtros import Formulario_filtros
+from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 import numpy as np
 from edados.database import bd_formulario_1
 
@@ -19,9 +19,8 @@ def formulario_1(request):
 
     if request.method == 'GET':        
         menssagem = ("Formulário 1.")
-        menssagem1 = """Este é um formulário que possibilitar a realização
-         de uma análise exploratória que correlaciona entre os microdados socioeconômicos
-         e demográficos do ENEM nos períodos de 2018 e 2019."""
+        menssagem1 = """Este formulário permite realizar uma análise exploratória que correlaciona os microdados socioeconômicos e demográficos do ENEM nos anos de 2016, 2017, 2018 e 2019. 
+        É possível obter resultados em porcentagem, o que possibilita a comparação entre os anos estudados."""
 
         form = Formulario_1()
         form_filtro = Formulario_filtros()
@@ -122,7 +121,6 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(index)
             if index=='M':
                 nome = 'masculíno'
             else:
@@ -136,10 +134,32 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             
         fig.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            height = 700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.8,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
             font=dict(
                 family="Arial",
                 size=12,
@@ -152,22 +172,40 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             barmode='group',
             text_auto=True)
 
-        fig.update_traces(
-            textfont_size=12, 
-            )
-
         relatorio_em_grafico.update_layout(
-            title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
+            title_text='Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+            height=700,
+            margin=dict(l=50, r=50, b=300, t=50),
             xaxis_title="Resposta do questionário socioeconômico por sexo.",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            font=dict(
-                family="Arial",
-                size=12,
-                color="black"
-            )
+            annotations=[
+                {
+                    'x': 0,
+                    'y': -0.8,
+                    'xref': "paper",
+                    'yref': "paper",
+                    'text': """A Legenda: "F e M" se referem ao sexo do inscrito: <br>F: Significa que se refere aos inscritos que se declararam do sexo feminino.
+                            <br>M: Significa que se refere aos inscritos que se declararam do sexo masculino.
+                            <br>--
+                            <br>A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
+                            <br>A: Não informado
+                            <br>B: Nenhuma escolaridade
+                            <br>C: Ensino fundamental incompleto
+                            <br>D: Ensino fundamental completo
+                            <br>E: Ensino médio incompleto
+                            <br>F: Ensino médio completo
+                            <br>G: Ensino superior incompleto
+                            <br>H: Ensino superior completo
+                            <br>I: Pós-graduação""",
+                    'showarrow': False,
+                    'align': 'left',
+                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
+                }
+            ],
+            font={'family': "Arial", 'size': 12, 'color': "black"}
         )
+
         relatorio_em_grafico = relatorio_em_grafico.to_html()
 
         relatorio = fig.to_html()

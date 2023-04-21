@@ -1,13 +1,17 @@
 from sqlalchemy import create_engine
 
+LIMIT = "LIMIT 100"
 
+def banco(filtro_ano):
 
-def banco():
-    # Mysql
-    # BANCO = 'enem2 '
-
-    # Postgres
-    BANCO = '"enem_2019_1" '
+    if(filtro_ano == '2016'):
+        BANCO = '"enem_2016"'
+    elif(filtro_ano == '2017'):
+        BANCO = '"enem_2017"'
+    elif(filtro_ano == '2018'):
+        BANCO = '"enem_2018"'
+    else:
+        BANCO = '"enem_2019_1"'
 
     return BANCO
 

@@ -2,16 +2,10 @@ from ast import If
 import pandas as pd
 from edados.database import conect_db
 
-BANCO = conect_db.banco()
-LIMIT = ' '
-
 def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
     engine = conect_db.connect()
 
-    if(filtro_ano == '2018'):
-        BANCO = '"enem_2018"'
-    else:
-        BANCO = conect_db.banco()
+    BANCO = conect_db.banco(filtro_ano=filtro_ano)
     
     retorno_da_query = '"' + '","'.join(amostra) + '"'
     estrutura = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO
@@ -33,7 +27,7 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
     filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)
     
 
-    query = estrutura + filtro_deficiencia + filtro_sexo + filtro_ano + LIMIT
+    query = estrutura + filtro_deficiencia + filtro_sexo + filtro_ano + conect_db.LIMIT
 
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))
@@ -95,10 +89,7 @@ def buscar_dataframe_no_banco(amostra,
         filtro_questao = ' "' + filtro_questao + '", '
 
 
-    if(filtro_ano == '2018'):
-        BANCO = '"enem_2018"'
-    else:
-        BANCO = conect_db.banco()
+    BANCO = conect_db.banco(filtro_ano=filtro_ano)
     
     retorno_da_query = filtro_questao
     estrutura = 'SELECT '+ retorno_da_query + ' "TP_SEXO", "TP_COR_RACA", "NU_IDADE", "NU_NOTA_CN", "NU_NOTA_CH", "NU_NOTA_LC", "NU_NOTA_MT" FROM ' + BANCO
@@ -121,7 +112,7 @@ def buscar_dataframe_no_banco(amostra,
                 filtro_ano  + 
                 filtro_escola  + 
                 filtro_nacionalidade  + 
-                LIMIT)
+                conect_db.LIMIT)
 
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))

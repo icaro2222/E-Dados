@@ -2,17 +2,12 @@ from ast import If
 import pandas as pd
 from edados.database import conect_db
 
-BANCO = conect_db.banco()
-LIMIT = ' '
-
 def buscar_dataframe_no_banco(amostra, filtro_cor_da_prova, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
     engine = conect_db.connect()
 
     print(filtro_ano)
-    if(filtro_ano == '2018'):
-        BANCO = '"enem_2018"'
-    else:
-        BANCO = conect_db.banco()
+
+    BANCO = conect_db.banco(filtro_ano=filtro_ano)
     
     print(BANCO)
     
@@ -37,7 +32,7 @@ def buscar_dataframe_no_banco(amostra, filtro_cor_da_prova, filtro_sexo = "vazio
     filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)
     
     
-    query = estrutura + filtro_deficiencia + filtro_sexo + filtro_ano + filtro_cor_da_prova + LIMIT
+    query = estrutura + filtro_deficiencia + filtro_sexo + filtro_ano + filtro_cor_da_prova + conect_db.LIMIT
 
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))

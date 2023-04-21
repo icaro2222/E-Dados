@@ -5,7 +5,7 @@ from io import BytesIO
 import plotly.express as px
 import base64
 from edados.formularios.formulario_2.formulario_2 import Formulario_2
-from edados.formularios.filtros.filtros import Formulario_filtros
+from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 import numpy as np
 from edados.database import bd_quest_socio_notas_deficiencia
 
@@ -126,7 +126,7 @@ def formulario_2(request):
 
         figura_com_criador_de_tabela = px.bar(Dataframe)
         figura_com_criador_de_tabela = figura_com_criador_de_tabela.to_html()
-
+        
         figura_tabela_da_media = px.bar(Dataframe['mean'])
         figura_tabela_da_media = figura_tabela_da_media.to_html()
 

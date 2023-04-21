@@ -2,16 +2,10 @@ from ast import If
 import pandas as pd
 from edados.database import conect_db
 
-BANCO = conect_db.banco()
-LIMIT = ' '
-
 def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
     engine = conect_db.connect()
 
-    if(filtro_ano == '2018'):
-        BANCO = '"enem_2018"'
-    else:
-        BANCO = conect_db.banco()
+    BANCO = conect_db.banco(filtro_ano=filtro_ano)
     
     retorno_da_query = '"' + '","'.join(amostra) + '"'
     estrutura = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO
@@ -33,7 +27,7 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
     filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)
     
 
-    query = estrutura + filtro_deficiencia + filtro_sexo + filtro_ano + LIMIT
+    query = estrutura + filtro_deficiencia + filtro_sexo + filtro_ano + conect_db.LIMIT
 
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))
@@ -47,10 +41,7 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
 def buscar_dataframe_no_banco_1_2(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
     engine = conect_db.connect()
 
-    if(filtro_ano == '2018'):
-        BANCO = '"enem_2018"'
-    else:
-        BANCO = conect_db.banco()
+    BANCO = conect_db.banco(filtro_ano=filtro_ano)
     
     retorno_da_query = '"' + '","'.join(amostra) + '"'
     estrutura = 'SELECT ' + retorno_da_query + ' ,"NU_IDADE" , "NO_MUNICIPIO_PROVA" ,"SG_UF_PROVA" , "TP_LINGUA" FROM ' + BANCO
@@ -72,7 +63,7 @@ def buscar_dataframe_no_banco_1_2(amostra, filtro_sexo = "vazio", filtro_deficie
     filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)
     
 
-    query = estrutura + filtro_deficiencia + filtro_sexo + filtro_ano + LIMIT
+    query = estrutura + filtro_deficiencia + filtro_sexo + filtro_ano + conect_db.LIMIT
 
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))
