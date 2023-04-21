@@ -1,0 +1,40 @@
+{% extends 'layout/layout.html' %} {%load static %} 
+{% load crispy_forms_tags %}
+{% block titulo %}Formulário 3{% endblock %}
+{% block conteudo %}
+<!-- Begin Page Content -->
+<div class="row text-dark">
+  <!-- Page Heading -->
+  <form class="col" action="." method="post">
+    <h4>Variáveis de contraste e correlação:</h4>
+      <div class="col-md-12 d-flex">
+        {% csrf_token %} {{ form|crispy}}
+      </div>
+      <hr class="mb-3" />
+        <h4>Filtros:</h4>
+      <div class="col-md-12 d-flex">
+        {{ form_filtro|crispy }}
+      </div>
+    <hr class="mb-3" />
+    <div class="row d-flex justify-content-end">
+      <div class="col-md-3">
+        <button type="submit" class="mb-4 md-12 btn btn-outline-primary">
+          Gerar Análise  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16">
+            <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
+            <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+            <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+          </svg>
+    </button>
+        </button>
+      </div>
+    </div>
+  </form>
+  <div class="col-md-12">
+    <h4>{{ menssagem }}</h4>
+    <hr class="mb-3" />
+    <h4>{{ menssagem_informativa }}</h4>
+    <hr class="mt-0 bg-dark" />
+  </div>
+</div>
+<!-- /.container-fluid -->
+{% endblock %}

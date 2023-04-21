@@ -24,6 +24,7 @@ from .view.dashboard import dashboard
 from .view.fomulario_1 import view_formulario_1, view_formulario_1_4, view_formulario_1_2, view_formulario_1_3
 from .view.fomulario_2 import view_formulario_2
 from .view.fomulario_3 import view_formulario_3
+from .view.fomulario_4 import view_formulario_4
 
 urlpatterns = [
     path('', dashboard.Dashboard, name="dashboard"),
@@ -39,6 +40,7 @@ urlpatterns = [
     path('Perfil_4_do_Inscrito/', view_formulario_1_4.formulario_4, name="formulario_1_4"),
     path('Perfil_do_Inscrito/', view_formulario_1.formulario_1, name="formulario_1"),
     path('Acerto_por_Prova/', view_formulario_3.formulario_3, name="formulario_3"),
+    path('regiao_demografica/', view_formulario_4.formulario_4, name="formulario_4"),
     
     # path('teste/', views.teste, name='teste'),
     # path('manipulando/', views.index, name='page_dados'),

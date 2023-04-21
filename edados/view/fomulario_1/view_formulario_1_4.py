@@ -117,8 +117,6 @@ def formulario_4(request):
 
         CONTAGEM = Dataframe['count'].sum()
 
-        # CONTAGEMMicrodado_Amostra = Microdado_Amostra['NU_IDADE'].sum()
-
         print("contage = " + str(CONTAGEM))
         print("contage = " + str(CONTAGEMMicrodado_Amostra))
 
@@ -142,18 +140,7 @@ def formulario_4(request):
                     font = dict(color = 'darkslategray', size = 11)
                     ))
                 ])
-
-        # figura_tabela.add_trace(go.Bar(
-        #     text=Dataframe['count'],
-        #     x=Dataframe.index, 
-        #     y=Dataframe['count'].apply(formatarFrequencia),
-        #     name='quantidade de alunos'))
-        # figura_tabela.add_trace(go.Bar(
-        #     text=Dataframe['count'].apply(formatarFrequenciaSemPorcentagem),
-        #     x=Dataframe.index, 
-        #     y=Dataframe['count'].apply(formatarFrequenciaSemPorcentagem),
-        #     name='porcentagem parcial'))
-
+        
         figura_tabela.update_layout(
             title_text = """Quadro de contagem das respostas das questões socioeconômicas.""",
             height = 600,
@@ -187,7 +174,6 @@ def formulario_4(request):
             'menssagem' : menssagem,
             'quantidadeParcial' : CONTAGEM,
             'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
-            # 'relatorio' : relatorio,
             'relatorio_em_tabela' : relatorio_em_tabela
         }
 
