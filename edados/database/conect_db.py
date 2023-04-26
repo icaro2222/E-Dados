@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine
 
-LIMIT = "LIMIT 100000"
+LIMIT = "LIMIT 1000"
 
 def banco(filtro_ano):
 
