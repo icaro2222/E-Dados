@@ -15,6 +15,27 @@
 - abra a pasta que foi criada com o vs code
 - crie sua venv
 
+- Entre no vs code
+- dê um "git clone https://github.com/icaro2222/E-Dados.git" no terminal
+- abra a pasta que foi criada com o vs code
+- crie sua venv
+
+
+$ sudo apt-get install python3-pip
+
+$ pip3 install virtualenv
+
+$ virtualenv venv -p python3
+
+$ source venv/bin/activate
+
+(venv) $ pip install -r requirements.txt  # Note we are now on the virtual environment we created
+
+(venv) $ pip install django==3.2.8
+
+(venv) $ python manage.py runserver 0.0.0.0:8000 # abra seu browser e coloque <seu endereço IP>:8000
+
+Já estará rodando sua aplicação
 
 $ sudo apt-get install python3-pip
 

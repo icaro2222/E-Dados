@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
-import django_on_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -62,7 +61,7 @@ ROOT_URLCONF = 'edados.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR/'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,12 +83,12 @@ WSGI_APPLICATION = 'edados.wsgi.application'
 
 # Comentei o código referente a conecxão com o banco mysql, para começar a fazer uso do banco Postgress
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        }
+}
 
 # HERoKU
 # DATABASES = {
@@ -105,16 +104,16 @@ WSGI_APPLICATION = 'edados.wsgi.application'
 
 
     # Conexão POSTGRESQL
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'e-dados',
-        'USER': 'postgres',
-        'PASSWORD': 'tatakae22',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'e-dados',
+#         'USER': 'postgres',
+#         'PASSWORD': 'tatakae22',
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
+# }
 
 # Localhost
 # DATABASES = {
@@ -190,8 +189,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-django_on_heroku.settings(locals())
 
 # Configurações de Login
 LOGIN_REDIRECT_URL = 'dashboard'
