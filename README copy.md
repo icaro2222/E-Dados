@@ -25,4 +25,7 @@
 
 # - instalar postgres
 - 
+- inserir 5095270 registros no banco de 2019
 - inserir 5513747 registros no banco de 2018
+- inserir 6731341 registros no banco de 2017
+
