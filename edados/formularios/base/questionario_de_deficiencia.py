@@ -5,8 +5,8 @@ from django import forms
 def questionario_de_deficiencia(Form):
 
     choices_deficiencia = (
-        ('todas', 'Todas deficiências'),
         ('nenhuma', 'Nenhuma deficiência'),
+        ('todas', 'Todas deficiências'),
         ('IN_BAIXA_VISAO', 'baixa visão'),
         ('IN_CEGUEIRA', 'cegueira'),
         ('IN_SURDEZ', 'surdez'),

@@ -1,6 +1,6 @@
-/venv/
-/static/vendor/
+/venv*/
+/static/vendor*/
 /dados/
-/static/dados_relatorio/*.pdf
+/static/dados_relatorio/
 /edados/settings.py
 edados/database/conect_db.py
