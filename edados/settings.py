@@ -90,56 +90,6 @@ DATABASES = {
         }
 }
 
-# HERoKU
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'da0rf6a9o8h8v3',
-#         'USER': 'ccgapwggqseseb',
-#         'PASSWORD': 'bf9adeb9b12252a5a9377ede93702f53f404d6f23a9db8aeb77f3d2704a820f4',
-#         'HOST': 'ec2-54-87-179-4.compute-1.amazonaws.com',
-#         'PORT': '5432'
-#     }
-# }
-
-
-    # Conexão POSTGRESQL
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'e-dados',
-#         'USER': 'postgres',
-#         'PASSWORD': 'tatakae22',
-#         'HOST': 'localhost',
-#         'PORT': '5432'
-#     }
-# }
-
-# Localhost
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'e_dados',
-#         'USER': 'root',
-#         'PASSWORD': '',
-#         'HOST': 'localhost',
-#         'PORT': '3306'
-#     }
-# }
-
-#  Realizando a conecxão do Django, com o banco postgress, usando o banco do sisfis no ceteia
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'e_dados',
-#         'USER': 'sisfis',
-#         'PASSWORD': 'sisfis2022',
-#         'HOST': '200.128.100.19',
-#         'PORT': '15432'
-#     }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
