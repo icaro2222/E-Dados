@@ -35,7 +35,7 @@ python3 manage.py migrate
 
 ## Instalação e configuração do PostgreSQL
 
-Para inserir 5513747 registros no banco de 2018, siga as instruções contidas no arquivo `postgre_installation.md`.
+Para inserir 5513747 registros no banco de 2018, siga as instruções contidas no arquivo [conf_banco.md](conf_banco.md)
 
 ## Instruções para executar a aplicação
 
