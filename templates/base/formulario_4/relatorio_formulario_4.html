@@ -13,9 +13,38 @@
   <!-- Page Heading -->
   <form class="col" action="." method="post">
     <div class="col-md-12 d-flex">{% csrf_token %} {{ form|crispy}}</div>
+
     <hr class="m-0" />
-    <h4>Filtros:</h4>
-    <div class="col-md-12 d-flex">{{ form_filtro|crispy }}</div>
+    <h4 class="mt-3">Filtros:</h4>
+    <div class="row d-flex">
+        <div class="col-md-4">
+            {% csrf_token %} 
+            {{ form_filtro.sexo|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {% csrf_token %} 
+            {{ form_filtro.escola|as_crispy_field }}
+        </div>
+        <div class="col-md-2">
+            {% csrf_token %} 
+            {{ form_filtro.cor|as_crispy_field }}
+        </div>
+        <div class="col-md-2">
+            {% csrf_token %} 
+            {{ form_filtro.estado_civil|as_crispy_field }}
+        </div>
+    </div>
+    
+    <div class="row d-flex">
+      <div class="col-md-6">
+          {% csrf_token %} 
+          {{ form_filtro.deficiencia|as_crispy_field }}
+      </div>
+      <div class="col-md-6">
+          {% csrf_token %} 
+          {{ form_filtro.nacionalidade|as_crispy_field}}
+      </div>
+  </div>
     <hr class="m-1" />
     <div class="row d-flex justify-content-end align-items-center">
       <div class="col-sm-4 mb-3 d-flex justify-content-end">

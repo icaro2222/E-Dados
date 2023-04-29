@@ -101,7 +101,253 @@ def formulario_1(request):
         }
 
     return render(request, 'base/formulario_1/relatorio_formulario_1.html', context=context)
+
+
+def anotacao(Questao):
+
+    if Questao == 'Q001':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 1 no questionario socioeconômico:
+                            <br>A: Nunca estudou.
+                            <br>B: Não completou a 4ª série/5º ano do Ensino Fundamental.
+                            <br>C: Completou a 4ª série/5º ano, mas não completou a 8ª série/9º ano do Ensino Fundamental.
+                            <br>D: Completou a 8ª série/9º ano do Ensino Fundamental, mas não completou o Ensino Médio.
+                            <br>E: Completou o Ensino Médio, mas não completou a Faculdade.
+                            <br>F: Completou a Faculdade, mas não completou a Pós-graduação.
+                            <br>G: Completou a Pós-graduação.
+                            <br>H: Não sei."""
+    elif Questao =='Q002':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>A: Nunca estudou.
+                            <br>B: Não completou a 4ª série/5º ano do Ensino Fundamental.
+                            <br>C: Completou a 4ª série/5º ano, mas não completou a 8ª série/9º ano do Ensino Fundamental.
+                            <br>D: Completou a 8ª série/9º ano do Ensino Fundamental, mas não completou o Ensino Médio.
+                            <br>E: Completou o Ensino Médio, mas não completou a Faculdade.
+                            <br>F: Completou a Faculdade, mas não completou a Pós-graduação.
+                            <br>G: Completou a Pós-graduação.
+                            <br>H: Não sei."""
+    elif Questao =='Q003':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q004':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q005':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q006':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q007':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q008':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q009':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q010':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q011':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q012':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q013':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q014':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q015':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q016':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q017':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q018':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q019':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q020':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q021':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q022':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q023':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q024':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao =='Q025':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor, pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, faxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel, professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+
+    annotations = [
+        {
+            'x': 0,
+            'y': -0.8,
+            'xref': "paper",
+            'yref': "paper",
+            'text': texto,
+            'showarrow': False,
+            'align': 'left',
+            'font': {'family': "Arial", 'size': 13, 'color': "black"}
+        }
+    ]
     
+    return annotations
+
 def demografico_sexo(Microdado_Amostra, demografico, questao):
 
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
@@ -117,20 +363,27 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         # desrotacionar 
         DataFrame = DataFrame.stack()
 
+        QUNATIDADE_TOTAL = 1000
         fig = go.Figure()
+        texttemplate='%{text:.1f}%',
+        textposition='auto'
 
         for index in lista_dos_index:
-            if index=='M':
-                nome = 'masculíno'
-            else:
+            if index=='F':
                 nome = 'feminíno'
+            else:
+                nome = 'masculíno'
             fig.add_bar(
-                y=DataFrame[index],
+                y=((DataFrame[index]/QUNATIDADE_TOTAL)*100),
                 x=DataFrame[index].index,
-                text=DataFrame[index],
-                name = nome,
+                text=((DataFrame[index]/QUNATIDADE_TOTAL)*100),
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=nome
             )
-            
+        print('----------------------------------------------')
+        print(DataFrame.index.names[1])
+
         fig.update_layout(
             title_text = 'Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
             height = 700,
@@ -138,27 +391,7 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.8,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font=dict(
                 family="Arial",
                 size=12,
@@ -178,30 +411,7 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             xaxis_title="Resposta do questionário socioeconômico por sexo.",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.8,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A Legenda: "F e M" se referem ao sexo do inscrito: <br>F: Significa que se refere aos inscritos que se declararam do sexo feminino.
-                            <br>M: Significa que se refere aos inscritos que se declararam do sexo masculino.
-                            <br>--
-                            <br>A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font={'family': "Arial", 'size': 12, 'color': "black"}
         )
 
@@ -252,27 +462,7 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
             xaxis_title="Resposta do questionário socioeconômico.",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.7,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font=dict(
                 family="Arial",
                 size=12,
@@ -339,27 +529,7 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.7,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font=dict(
                 family="Arial",
                 size=12,
@@ -375,27 +545,7 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.7,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font=dict(
                 family="Arial",
                 size=12,
@@ -456,27 +606,7 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.7,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font=dict(
                 family="Arial",
                 size=12,
@@ -531,27 +661,7 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.7,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font=dict(
                 family="Arial",
                 size=12,
@@ -608,27 +718,7 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.7,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font=dict(
                 family="Arial",
                 size=12,
@@ -681,27 +771,7 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.7,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font=dict(
                 family="Arial",
                 size=12,
@@ -806,27 +876,7 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Quantidade",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.7,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font=dict(
                 family="Arial",
                 size=12,
@@ -880,27 +930,7 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
             xaxis_title="Resposta do questionário socioeconômico",
             yaxis_title="Desempenho",
             legend_title="Legenda",
-            annotations=[
-                {
-                    'x': 0,
-                    'y': -0.7,
-                    'xref': "paper",
-                    'yref': "paper",
-                    'text': """A legenda: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                            <br>A: Não informado
-                            <br>B: Nenhuma escolaridade
-                            <br>C: Ensino fundamental incompleto
-                            <br>D: Ensino fundamental completo
-                            <br>E: Ensino médio incompleto
-                            <br>F: Ensino médio completo
-                            <br>G: Ensino superior incompleto
-                            <br>H: Ensino superior completo
-                            <br>I: Pós-graduação""",
-                    'showarrow': False,
-                    'align': 'left',
-                    'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                }
-            ],
+            annotations=anotacao(DataFrame.index.names[1]),
             font=dict(
                 family="Arial",
                 size=12,

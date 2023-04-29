@@ -60,7 +60,6 @@
             <div class="sidebar-heading">
                 Formularios
             </div>
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#perfil"
@@ -72,13 +71,14 @@
                       </svg>
                     <span>Análise Demográfica</span>
                 </a>
-                <div id="perfil" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="perfil" class="collapse {% if request.resolver_match.url_name == 'formulario_1' or request.resolver_match.url_name == 'formulario_1_2' or request.resolver_match.url_name == 'formulario_1_4' %}show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'formulario_1' %}">Perfil_1 grafico demografico</a>
-                        <a class="collapse-item" href="{% url 'formulario_1_2' %}">Perfil_2 filtrar</a>
-                        <a class="collapse-item" href="{% url 'formulario_1_4' %}">Perfil_3 percentual</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1' %} active{% endif %}" href="{% url 'formulario_1' %}">Perfil_1 grafico demografico</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_2' %} active{% endif %}" href="{% url 'formulario_1_2' %}">Perfil_2 filtrar</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_4' %} active{% endif %}" href="{% url 'formulario_1_4' %}">Perfil_3 percentual</a>
                     </div>
                 </div>
+                
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -90,10 +90,10 @@
                       </svg>
                     <span>Análise Socioeconômica</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo" class="collapse {% if request.resolver_match.url_name == 'formulario_1_3' or request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia'%}show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'formulario_1_3' %}">2-form: Dados brutos</a>
-                        <a class="collapse-item" href="{% url 'Quest_Soc_Notas_Deficiencia' %}">2-form: Socio. VS nota</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_3' %} active{% endif %}" href="{% url 'formulario_1_3' %}">2-form: Dados brutos</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia' %} active{% endif %}" href="{% url 'Quest_Soc_Notas_Deficiencia' %}">2-form: Socio. VS nota</a>
                     </div>
                 </div>
             </li>
@@ -107,9 +107,9 @@
                       </svg>
                     <span>Análise de Acertos</span>
                 </a>
-                <div id="acertos_por_prova" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="acertos_por_prova" class="collapse {% if request.resolver_match.url_name == 'formulario_3' %} show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'formulario_3' %}">3-form: Acertos por Prova</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_3' %} active{% endif %}" href="{% url 'formulario_3' %}">3-form: Acertos por Prova</a>
                     </div>
                 </div>
             </li>
@@ -124,9 +124,9 @@
                       </svg>
                     <span>Densidade demográfica</span>
                 </a>
-                <div id="densidade_demografica" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="densidade_demografica" class="collapse {% if request.resolver_match.url_name == 'formulario_4' %} show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{% url 'formulario_4' %}">4-form: Densidade demográfica</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_4' %} active{% endif %}" href="{% url 'formulario_4' %}">4-form: Densidade demográfica</a>
                     </div>
                 </div>
             </li>
@@ -232,6 +232,20 @@
             </div>
         </div>
     </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // percorre todas as opções da sidebar
+        $(".nav-item").each(function() {
+            // verifica se a opção está marcada como "active"
+            if ($(this).find(".nav-link").hasClass("active")) {
+                // se sim, adiciona a classe "show" à div correspondente
+                $(this).find(".collapse").addClass("show");
+            }
+        });
+      </script>
+
 
     <!-- Bootstrap core JavaScript-->
     <script src={% static "vendor/jquery/jquery.min.js" %} ></script>
@@ -242,6 +256,12 @@
 
     <!-- Custom scripts for all pages-->
     <script src={% static "js/sb-admin-2.min.js" %} ></script>
+    <!-- Page level plugins -->
+    {% comment %} <script src={% static "vendor/chart.js/Chart.min.js" %} ></script> {% endcomment %}
+
+    <!-- Page level custom scripts -->
+    {% comment %} <script src={% static "js/demo/chart-area-demo.js" %} ></script>
+    <script src={% static "js/demo/chart-pie-demo.js" %} ></script> {% endcomment %}
 
 </body>
 

@@ -7,14 +7,53 @@
   <!-- Page Heading -->
   <form class="col" action="." method="post">
     <h4>Variáveis de contraste e correlação:</h4>
-      <div class="col-md-12 d-flex">
-        {% csrf_token %} {{ form|crispy}}
+    <div class="row d-flex">
+        <div class="col-md-6">
+            {% csrf_token %} 
+            {{ form.questao|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {% csrf_token %} 
+            {{ form.demografico|as_crispy_field }}
+        </div>
+        <div class="col-md-2">
+            {% csrf_token %} 
+            {{ form.ano|as_crispy_field }}
+        </div>
+    </div>
+      
+    <hr class="m-0" />
+    <h4 class="mt-3">Filtros:</h4>
+    <div class="row d-flex">
+        <div class="col-md-4">
+            {% csrf_token %} 
+            {{ form_filtro.sexo|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+            {% csrf_token %} 
+            {{ form_filtro.escola|as_crispy_field }}
+        </div>
+        <div class="col-md-2">
+            {% csrf_token %} 
+            {{ form_filtro.cor|as_crispy_field }}
+        </div>
+        <div class="col-md-2">
+            {% csrf_token %} 
+            {{ form_filtro.estado_civil|as_crispy_field }}
+        </div>
+    </div>
+    
+    <div class="row d-flex">
+      <div class="col-md-6">
+          {% csrf_token %} 
+          {{ form_filtro.deficiencia|as_crispy_field }}
       </div>
-      <hr class="mb-3" />
-        <h4>Filtros:</h4>
-      <div class="col-md-12 d-flex">
-        {{ form_filtro|crispy }}
+      <div class="col-md-6">
+          {% csrf_token %} 
+          {{ form_filtro.nacionalidade|as_crispy_field}}
       </div>
+  </div>
+
     <div class="row d-flex justify-content-end">
       <div class="col-md-3">
         <button type="submit" class="mb-4 md-12 btn btn-outline-primary">

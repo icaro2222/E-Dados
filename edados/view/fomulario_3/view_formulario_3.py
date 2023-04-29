@@ -6,7 +6,7 @@ import pandas as pd
 import plotly.express as px
 import base64
 from edados.formularios.formulario_3.formulario_3 import Formulario_3
-from edados.formularios.filtros.filtros import Formulario_filtros
+from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 import numpy as np
 from edados.database import bd_formulario_3
 
