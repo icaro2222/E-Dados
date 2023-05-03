@@ -8,6 +8,7 @@ import base64
 from edados.formularios.formulario_3.formulario_3 import Formulario_3
 from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 import numpy as np
+from django.utils.html import format_html_join
 from edados.database import bd_formulario_3
 
 def formatar(valor):
@@ -17,7 +18,20 @@ def formulario_3(request):
 
     if request.method == 'GET':        
         menssagem = ("Formulário 3.")
-        menssagem1 = """informacões"""
+        menssagem_informativa = """A análise de dados é uma das habilidades mais importantes na era digital em que vivemos, e é especialmente útil quando se trata de quantificar o desempenho em testes como o Exame Nacional do Ensino Médio (ENEM). Uma plataforma online com filtros pode ser uma ferramenta poderosa para analisar dados do ENEM e determinar o nível de sucesso de um determinado grupo de estudantes.
+
+        Usando uma plataforma online com filtros, é possível analisar vários dados do ENEM, como a nota geral, a pontuação em cada área de conhecimento e a nota de redação. Além disso, é possível filtrar esses dados por região, tipo de escola, renda familiar, entre outros fatores.
+
+        Com essa plataforma, é possível determinar o nível de sucesso de um determinado grupo de estudantes, comparando-os com o desempenho geral de outros grupos. Por exemplo, é possível analisar os dados dos estudantes de uma determinada escola de ensino médio em relação aos dados gerais de todas as escolas de ensino médio na região.
+
+        Essa análise de dados pode ajudar a identificar possíveis áreas de melhoria no processo de ensino e aprendizagem, permitindo que os educadores tomem decisões informadas sobre a forma como ensinam e avaliam os alunos. Também pode ajudar a identificar os estudantes que precisam de mais apoio e fornecer informações valiosas para os pais sobre o desempenho dos seus filhos.
+
+
+        Em resumo, a análise de dados usando uma plataforma online com filtros pode fornecer informações valiosas sobre o desempenho dos alunos no ENEM, ajudando a identificar áreas de melhoria e fornecer informações importantes para os educadores e pais."""
+        
+        menssagem_informativa = menssagem_informativa.split('\n')
+        menssagem_informativa = format_html_join('\n', '<p>{}</p>', ((line,) for line in menssagem_informativa))
+        
 
         form = Formulario_3()
         form_filtro = Formulario_filtros()
@@ -25,7 +39,7 @@ def formulario_3(request):
         context = {
             'form' : form,
             'menssagem' : menssagem,
-            'menssagem1' : menssagem1,
+            'menssagem_informativa' : menssagem_informativa,
             'form_filtro' : form_filtro
         }
         return render(request, 'base/formulario_3/quest_formulario_3.html', context=context)

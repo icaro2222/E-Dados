@@ -7,6 +7,7 @@ import base64
 from edados.formularios.formulario_2.formulario_2 import Formulario_2
 from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 import numpy as np
+from django.utils.html import format_html_join
 from edados.database import bd_quest_socio_notas_deficiencia
 
 def formatar(valor):
@@ -17,14 +18,28 @@ def formulario_2(request):
     Q = 'TP_SEXO'
     prova = 'NU_NOTA_MT'
 
-    if request.method == 'GET':        
-        menssagem = ("Correlação entre as questões socioeconômicas e desempenho no exame, somados a filtros.")
-
+    if request.method == 'GET':    
+          
+        menssagem = "Formulário:"          
+        menssagem1 = ("Correlação entre as questões socioeconômicas e desempenho no exame, somados a filtros.")
+        menssagem_informativa = """
+        A análise de dados é uma ferramenta poderosa para compreender e tirar conclusões a partir de grandes quantidades de informações. Uma aplicação interessante da análise de dados é na área da educação, mais especificamente na análise do desempenho dos alunos em exames, como o Enem.
+        Ao analisar o desempenho dos alunos no Enem, é possível identificar padrões e correlações entre o desempenho e fatores socioeconômicos, como renda familiar, escolaridade dos pais e acesso à internet. Essas informações podem ser obtidas por meio de questionários aplicados aos alunos ou de dados do IBGE.
+        Uma plataforma online que ofereça filtros pode ser de grande ajuda nessa análise. Por exemplo, é possível filtrar os dados por região, tipo de escola e nível socioeconômico dos alunos. Isso permite que sejam identificadas correlações específicas para cada grupo de alunos, o que pode ser de grande ajuda para a elaboração de políticas públicas mais eficazes.
+        Além disso, a plataforma pode oferecer um indicador de acertos por questão, permitindo que sejam identificadas as questões em que os alunos têm mais dificuldade e que exigem maior atenção por parte dos professores e gestores escolares.
+        Portanto, a análise de dados combinada com uma plataforma online que ofereça filtros pode ser uma ferramenta poderosa para compreender as correlações entre fatores socioeconômicos e desempenho no Enem, além de fornecer informações valiosas para a elaboração de políticas públicas e para a gestão escolar."""
+        
+        menssagem_informativa = menssagem_informativa.split('\n')
+        menssagem_informativa = format_html_join('\n', '<p>{}</p>', ((line,) for line in menssagem_informativa))
+        
+        
+        
         form = Formulario_2()
         form_filtro = Formulario_filtros()
         context = {
             'form' : form,
             'menssagem' : menssagem,
+            'menssagem1' : menssagem_informativa,
             'form_filtro' : form_filtro
         }
         return render(request, 'base/formulario_2/quest_formulario_2.html', context=context)
