@@ -17,6 +17,7 @@ def formulario_3(request):
 
     if request.method == 'GET':        
         menssagem = ("Formulário 3.")
+        menssagem1 = """informacões"""
 
         form = Formulario_3()
         form_filtro = Formulario_filtros()
@@ -24,6 +25,7 @@ def formulario_3(request):
         context = {
             'form' : form,
             'menssagem' : menssagem,
+            'menssagem1' : menssagem1,
             'form_filtro' : form_filtro
         }
         return render(request, 'base/formulario_3/quest_formulario_3.html', context=context)

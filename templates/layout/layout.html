@@ -24,7 +24,11 @@
     <link href={% static "css/sb-admin-2.min.css" %} rel="stylesheet">
     {% block css%}{% endblock %}
     <link rel="stylesheet" href={% static "css/styles_layout.css" %}>
-
+<style>
+    label {
+        margin-bottom:0rem;
+      }
+</style>
 </head>
 
 <body id="page-top">
@@ -234,8 +238,31 @@
     </div>
     
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    
     <script>
+        //funciona, mas ta com uns bugs
+        {% comment %} function toggleSidebar() {
+            document.body.classList.toggle("sidebar-toggled");
+            document.querySelector(".sidebar").classList.toggle("toggled");
+            const isCollapsed = document.querySelector(".sidebar").classList.contains("toggled");
+            localStorage.setItem("sidebar-collapsed", isCollapsed);
+          }
+          
+          document.addEventListener("DOMContentLoaded", function() {
+            const isCollapsed = localStorage.getItem("sidebar-collapsed") === "true";
+            if (isCollapsed) {
+              document.body.classList.add("sidebar-toggled");
+              document.querySelector(".sidebar").classList.add("toggled");
+            }
+          }); {% endcomment %}
+          
+    
+    // Adiciona um ouvinte de eventos ao botão para alternar a barra lateral
+    document.getElementById("sidebarToggle").addEventListener("click", toggleSidebar);
+    
+    // Define a largura da barra lateral ao carregar a página
+    setSidebarWidth();
+    
         // percorre todas as opções da sidebar
         $(".nav-item").each(function() {
             // verifica se a opção está marcada como "active"

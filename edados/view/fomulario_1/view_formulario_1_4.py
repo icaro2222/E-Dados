@@ -32,6 +32,247 @@ def formatarFrequenciaSemPorcentagem(valor):
 def formatarFrequenciaAbsoluta(valor):
     valor =  (valor/CONTAGEMMicrodado_Amostra)*100
     return "{:,.6f}%".format(valor)
+
+def anotacao(Questao):
+
+    if Questao == 'Q001':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 1 no questionario socioeconômico:
+<br>A: Nunca estudou.
+<br>B: Não completou a 4ª série/5º ano do Ensino Fundamental.
+<br>C: Completou a 4ª série/5º ano, mas não completou a 8ª série/9º ano do Ensino Fundamental.
+<br>D: Completou a 8ª série/9º ano do Ensino Fundamental, mas não completou o Ensino Médio.
+<br>E: Completou o Ensino Médio, mas não completou a Faculdade.
+<br>F: Completou a Faculdade, mas não completou a Pós-graduação.
+<br>G: Completou a Pós-graduação.
+<br>H: Não sei."""
+    elif Questao == 'Q002':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>A: Nunca estudou.
+                            <br>B: Não completou a 4ª série/5º ano do Ensino Fundamental.
+                            <br>C: Completou a 4ª série/5º ano, mas não completou a 8ª série/9º ano do Ensino Fundamental.
+                            <br>D: Completou a 8ª série/9º ano do Ensino Fundamental, mas não completou o Ensino Médio.
+                            <br>E: Completou o Ensino Médio, mas não completou a Faculdade.
+                            <br>F: Completou a Faculdade, mas não completou a Pós-graduação.
+                            <br>G: Completou a Pós-graduação.
+                            <br>H: Não sei."""
+    elif Questao == 'Q003':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 3 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor,
+<br> pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, f
+<br>axineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, 
+<br>soldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), 
+<br>policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de
+<br> empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel,
+<br> professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao == 'Q004':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 4 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavradora, agricultora sem empregados, bóia fria, criadora de animais (gado, porcos, galinhas, ovelhas,
+<br> cavalos etc.), apicultora, pescadora, lenhadora, seringueira, extrativista.
+<br>Grupo 2: Diarista, empregada doméstica, cuidadora de idosos, babá, cozinheira (em casas particulares), motorista particular, jardineira, 
+<br>faxineira de empresas e prédios, vigilante, porteira, carteira, office-boy, vendedora, caixa, atendente de loja, auxiliar administrativa, recepcionista, servente de pedreiro, repositora de mercadoria.
+<br>Grupo 3: Padeira, cozinheira industrial ou em restaurantes, sapateira, costureira, joalheira, torneira mecânica, operadora de máquinas, 
+<br>soldadora, operária de fábrica, trabalhadora da mineração, pedreira, pintora, eletricista, encanadora, motorista, caminhoneira, taxista.
+<br>Grupo 4: Professora (de ensino fundamental ou médio, idioma, música, artes etc.), técnica (de enfermagem, contabilidade, eletrônica etc.), 
+<br>policial, militar de baixa patente (soldado, cabo, sargento), corretora de imóveis, supervisora, gerente, mestre de obras, pastora,
+<br> microempresária (proprietária de empresa com menos de 10 empregados), pequena comerciante, pequena proprietária de terras, trabalhadora autônoma ou por conta própria.
+<br>Grupo 5: Médica, engenheira, dentista, psicóloga, economista, advogada, juíza, promotora, defensora, delegada, tenente, capitã, coronel,
+<br> professora universitária, diretora em empresas públicas ou privadas, política, proprietária de empresas com mais de 10 empregados.
+<br>Não sei."""
+    elif Questao == 'Q005':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 5 no questionario socioeconômico:
+                            <br><br>1: Moro sozinho(a)
+<br>2: 2 pessoas
+<br>3: 3 pessoas
+<br>4: 4 pessoas
+<br>5: 5 pessoas
+<br>6: 6 pessoas
+<br>7: 7 pessoas
+<br>8: 8 pessoas
+<br>9: 9 pessoas
+<br>10: 10 pessoas
+<br>11: 11 pessoas
+<br>12: 12 pessoas
+<br>13: 13 pessoas
+<br>14: 14 pessoas
+<br>15: 15 pessoas
+<br>16: 16 pessoas
+<br>17: 17 pessoas
+<br>18: 18 pessoas
+<br>19: 19 pessoas
+<br>20: 20 pessoas"""
+    elif Questao == 'Q006':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 6 no questionario socioeconômico:
+                            <br>
+                            <br>A: Nenhuma renda
+<br>B: Até R$ 998,00
+<br>C: De R$ 998,01 até R$ 1.497,00
+<br>D: De R$ 1.497,01 até R$ 1.996,00
+<br>E: De R$ 1.996,01 até R$ 2.495,00
+<br>F: De R$ 2.495,01 até R$ 2.994,00
+<br>G: De R$ 2.994,01 até R$ 3.992,00
+<br>H: De R$ 3.992,01 até R$ 4.990,00
+<br>I: De R$ 4.990,01 até R$ 5.988,00
+<br>J: De R$ 5.988,01 até R$ 6.986,00
+<br>K: De R$ 6.986,01 até R$ 7.984,00
+<br>L: De R$ 7.984,01 até R$ 8.982,00
+<br>M: De R$ 8.982,01 até R$ 9.980,00
+<br>N: De R$ 9.980,01 até R$ 11.976,00
+<br>O: De R$ 11.976,01 até R$ 14.970,00
+<br>P: De R$ 14.970,01 até R$ 19.960,00
+<br>Q: Mais de R$ 19.960,00"""
+    elif Questao == 'Q007':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 7 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um ou dois dias por semana.
+<br>C: Sim, três ou quatro dias por semana.
+<br>D: Sim, pelo menos cinco dias por semana."""
+    elif Questao == 'Q008':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 8 no questionario socioeconômico:
+                            <br>
+                            <br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q009':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 9 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q010':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 10 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q011':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 11 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q012':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 12 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q013':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 13 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q014':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 14 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q015':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 15 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q016':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 16 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q017':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 17 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q018':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 18 no questionario socioeconômico:
+                            <br><br>A: Sim.
+<br>B Não."""
+    elif Questao == 'Q019':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 19 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q020':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 20 no questionario socioeconômico:
+                            <br><br>A: Sim.
+<br>B Não."""
+    elif Questao == 'Q021':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 21 no questionario socioeconômico:
+                            <br><br>A: Sim.
+<br>B Não."""
+    elif Questao == 'Q022':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 22 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q023':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 23 no questionario socioeconômico:
+                            <br><br>A: Sim.
+<br>B Não."""
+    elif Questao == 'Q024':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 24 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q025':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 25 no questionario socioeconômico:
+                            <br><br>A: Sim.
+<br>B Não."""
+
+
+    texto = """INFORMATIVO:
+                                <br>Nesta tela, é possível realizar tanto o somatório dos dados, com a visualização dos percentuais parcial e absoluto, 
+                                <br>quanto a análise comparativa entre a filtragem de dados e as respostas do questionário socioeconômico; 
+                                <br><br>O percentual parcial: se refere à porcentagem de inscritos que se enquadram nas diferentes respostas do questionário socioeconômico. 
+                                <br>Essa análise é feita após a realização da filtragem e o somatório desses percentuais resulta em 100%, 
+                                <br>considerando todos os inscritos que passaram pelos filtros selecionados na tela de análise de dados; 
+                                <br>Percentual absoluto: é o percentual de inscritos no Enem que foram filtrados em comparação com o total de todos os alunos inscritos, sem qualquer filtro aplicado; 
+                                <br><br>Somatório dos inscritos que responderam: Corresponde ao somatório de todos inscritos após a filtragem nos filtros acima; 
+                                
+                                <br>""" + texto
+
+    annotations = [
+        {
+            'x': 0,
+            'y': -0.8,
+            'xref': "paper",
+            'yref': "paper",
+            'text': texto,
+            'showarrow': False,
+            'align': 'left',
+            'font': {'family': "Arial", 'size': 13, 'color': "black"}
+        }
+    ]
+
+    return annotations
+
     
 def formulario_4(request):
 
@@ -204,44 +445,15 @@ def formulario_4(request):
         else:
             figura_tabela.update_layout(
                 title_text = """Quadro de contagem das respostas das questões socioeconômicas.""",
-                height = 600,
-                margin = {'t':75, 'l':50},
-                yaxis = {'domain': [0, .45]},
-                xaxis2 = {'anchor': 'y2'},
-                xaxis_title="Respota do questionário socioeconômico",
-                yaxis_title="Porcentagem",
-                yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
-                legend_title="Legenda",
-                annotations=[
-                    {
-                        'x': 0,
-                        'y': -0.3,
-                        'xref': "paper",
-                        'yref': "paper",
-                        'text': """INFORMATIVO:
-                                <br>Nesta tela, é possível realizar tanto o somatório dos dados, com a visualização dos percentuais parcial e absoluto, 
-                                <br>quanto a análise comparativa entre a filtragem de dados e as respostas do questionário socioeconômico; 
-                                <br><br>O percentual parcial: se refere à porcentagem de inscritos que se enquadram nas diferentes respostas do questionário socioeconômico. 
-                                <br>Essa análise é feita após a realização da filtragem e o somatório desses percentuais resulta em 100%, 
-                                <br>considerando todos os inscritos que passaram pelos filtros selecionados na tela de análise de dados; 
-                                <br>Percentual absoluto: é o percentual de inscritos no Enem que foram filtrados em comparação com o total de todos os alunos inscritos, sem qualquer filtro aplicado; 
-                                <br><br>Somatório dos inscritos que responderam: Corresponde ao somatório de todos inscritos após a filtragem nos filtros acima; 
-                                
-                                <br><br>A LEGENDA: "A, B, C, D, ..." se referem às opções de resposta do questionário socioeconômico:
-                                <br>A: Não informado
-                                <br>B: Nenhuma escolaridade
-                                <br>C: Ensino fundamental incompleto
-                                <br>D: Ensino fundamental completo
-                                <br>E: Ensino médio incompleto
-                                <br>F: Ensino médio completo
-                                <br>G: Ensino superior incompleto
-                                <br>H: Ensino superior completo
-                                <br>I: Pós-graduação""",
-                        'showarrow': False,
-                        'align': 'left',
-                        'font': {'family': "Arial", 'size': 13, 'color': "black"}
-                    }
-                ],
+                height = 700,
+                margin=dict(l=50, r=50, b=290, t=45),
+                # yaxis = {'domain': [0, .45]},
+                # xaxis2 = {'anchor': 'y2'},
+                # xaxis_title="Respota do questionário socioeconômico",
+                # yaxis_title="Porcentagem",
+                # yaxis2 = {'domain': [.1, 1], 'anchor': 'x2', 'title': 'Goals'},
+                # legend_title="Legenda",
+                annotations=anotacao(filtro_questao),
                 font=dict(
                     family="Arial",
                     size=12,
