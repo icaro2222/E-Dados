@@ -13,4 +13,4 @@ class Formulario_filtros(forms.Form):
     nacionalidade = questionario_de_nacionalidade.questionario_de_nacionalidade(Form=forms.Form)
     
     # esta função de estado ainda não está implementada
-    estado_estado = questionario_estado.questionario_estado(Form=forms.Form)
+    estado = questionario_estado.questionario_estado(Form=forms.Form)

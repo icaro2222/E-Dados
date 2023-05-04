@@ -73,13 +73,13 @@
                         <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                         <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
                       </svg>
-                    <span>Análise Demográfica</span>
+                    <span>Análise Socioeconômica</span>
                 </a>
                 <div id="perfil" class="collapse {% if request.resolver_match.url_name == 'formulario_1' or request.resolver_match.url_name == 'formulario_1_2' or request.resolver_match.url_name == 'formulario_1_4' %}show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1' %} active{% endif %}" href="{% url 'formulario_1' %}">Perfil_1 grafico demografico</a>
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_2' %} active{% endif %}" href="{% url 'formulario_1_2' %}">Perfil_2 filtrar</a>
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_4' %} active{% endif %}" href="{% url 'formulario_1_4' %}">Perfil_3 percentual</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_2' %} active{% endif %}" href="{% url 'formulario_1_2' %}">Perfil_1 dados brutos</a>                                 
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_4' %} active{% endif %}" href="{% url 'formulario_1_4' %}">Perfil_1 percentual</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1' %} active{% endif %}" href="{% url 'formulario_1' %}">Perfil_2 grafico Socioeconômica</a>
                     </div>
                 </div>
                 
@@ -92,12 +92,12 @@
                         <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
                         <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
                       </svg>
-                    <span>Análise Socioeconômica</span>
+                    <span>Análise de Desempenho</span>
                 </a>
                 <div id="collapseTwo" class="collapse {% if request.resolver_match.url_name == 'formulario_1_3' or request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia'%}show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_3' %} active{% endif %}" href="{% url 'formulario_1_3' %}">2-form: Dados brutos</a>
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia' %} active{% endif %}" href="{% url 'Quest_Soc_Notas_Deficiencia' %}">2-form: Socio. VS nota</a>
+                        {% comment %} <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_3' %} active{% endif %}" href="{% url 'formulario_1_3' %}">2-form: Dados brutos</a> {% endcomment %}
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia' %} active{% endif %}" href="{% url 'Quest_Soc_Notas_Deficiencia' %}">1-form: Socio. VS nota</a>
                     </div>
                 </div>
             </li>
@@ -200,7 +200,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; <a href="https://github.com/icaro2222" style="text-decoration: none;">Ícaro Dias</a> 2022</span>
+                        {% comment %} <span>Copyright &copy; <a href="https://github.com/icaro2222" style="text-decoration: none;">Ícaro Dias</a> 2022</span> {% endcomment %}
                     </div>
                 </div>
             </footer>

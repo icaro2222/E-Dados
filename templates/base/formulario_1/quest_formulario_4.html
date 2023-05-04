@@ -42,13 +42,17 @@
     </div>
     
     <div class="row d-flex">
-      <div class="col-md-4">
-          {% csrf_token %} 
-          {{ form_filtro.deficiencia|as_crispy_field }}
+      <div class="col-md-3">
+        {% csrf_token %}
+        {{ form_filtro.deficiencia|as_crispy_field }}
       </div>
-      <div class="col-md-4">
-          {% csrf_token %} 
-          {{ form_filtro.nacionalidade|as_crispy_field}}
+      <div class="col-md-3">
+        {% csrf_token %}
+        {{ form_filtro.nacionalidade|as_crispy_field }}
+      </div>
+      <div class="col-md-3">
+        {% csrf_token %}
+        {{ form_filtro.estado|as_crispy_field }}
       </div>
       <div class="row col">
         <div class="col d-flex align-items-center justify-content-center">
