@@ -1,7 +1,12 @@
 *{
     padding: 0%;
 }
-
+/* icaro que adicionou */
+abbr {
+    border-bottom: 1px dotted;
+    cursor: help;
+  }
+  
 .navbar {
     background-image: linear-gradient(87deg,#f3f7fa 20%,#eaeef0 100%);
 }

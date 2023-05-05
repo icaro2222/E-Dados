@@ -2,7 +2,10 @@ from ast import If
 import pandas as pd
 from edados.database import conect_db
 
-def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
+def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", 
+                              filtro_amostra = "vazio", 
+                              filtro_deficiencia = "vazio", 
+                              filtro_ano = "vazio"):
     engine = conect_db.connect()
 
     BANCO = conect_db.banco(filtro_ano=filtro_ano)
@@ -10,10 +13,11 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
     retorno_da_query = '"' + '","'.join(amostra) + '"'
     estrutura = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO
 
+
     if(filtro_deficiencia == 'todas'):
-        filtro_deficiencia = def_filtro_deficiencia('1')
+        filtro_deficiencia = conect_db.filtro_de_ficiencia('1')
     elif(filtro_deficiencia == 'nenhuma'):
-        filtro_deficiencia = def_filtro_deficiencia('0')
+        filtro_deficiencia = conect_db.filtro_de_ficiencia('0')
     else:
         filtro_deficiencia =  ' WHERE "' + str(filtro_deficiencia) + '" = 1 '
 
@@ -42,6 +46,10 @@ def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", filtro_deficiencia
 
 def buscar_dataframe_no_banco(amostra, 
                                     filtro_questao = "vazio", 
+                                    filtro_recurso = "vazio", 
+                                    filtro_localizacao_da_escola = "vazio", 
+                                    filtro_amostra = "vazio", 
+                                    filtro_estado = "vazio", 
                                     filtro_sexo = "vazio", 
                                     filtro_deficiencia = "vazio", 
                                     filtro_ano = "vazio", 
@@ -50,11 +58,38 @@ def buscar_dataframe_no_banco(amostra,
                                     filtro_escola = "vazio", 
                                     filtro_nacionalidade = "vazio"):
     engine = conect_db.connect()
+    conect_db.LIMIT = filtro_amostra
 
     if(filtro_cor == 'todos'):
         filtro_cor = ''
     else:
         filtro_cor =  ' AND "TP_COR_RACA" =' +"'" +filtro_cor+"'"
+        
+    if(filtro_recurso == 'todos'):
+        filtro_recurso = ''
+    elif(filtro_recurso == 'nenhum'):
+        filtro_recurso = """ AND
+            ("IN_BRAILLE" = 1 OR
+            "IN_AMPLIADA_24" = 1 OR
+            "IN_AMPLIADA_18" = 1 OR
+            "IN_LEDOR" = 1 OR
+            "IN_ACESSO" = 1 OR
+            "IN_TRANSCRICAO"= 1 OR
+            "IN_LIBRAS" = 1 OR
+            "IN_TEMPO_ADICIONAL" = 1)
+            """
+    else:
+        filtro_recurso =  ' AND "'+ filtro_recurso +'" =1'
+        
+    if(filtro_localizacao_da_escola == 'todos'):
+        filtro_localizacao_da_escola = ''
+    else:
+        filtro_localizacao_da_escola =  ' AND "TP_LOCALIZACAO_ESC" =' +"'" +filtro_localizacao_da_escola+"'"
+
+    if(filtro_estado == 'todos'):
+        filtro_estado = ''
+    else:
+        filtro_estado =  ' AND "SG_UF_RESIDENCIA" =' +"'" +filtro_estado+"'"
 
     if(filtro_escola == 'todos'):
         filtro_escola = ''
@@ -95,9 +130,9 @@ def buscar_dataframe_no_banco(amostra,
     estrutura = 'SELECT '+ retorno_da_query + ' "TP_SEXO", "TP_COR_RACA", "NU_IDADE", "NU_NOTA_CN", "NU_NOTA_CH", "NU_NOTA_LC", "NU_NOTA_MT" FROM ' + BANCO
 
     if(filtro_deficiencia == 'todas'):
-        filtro_deficiencia = def_filtro_deficiencia('1')
+        filtro_deficiencia = conect_db.filtro_de_ficiencia('1')
     elif(filtro_deficiencia == 'nenhuma'):
-        filtro_deficiencia = def_filtro_deficiencia('0')
+        filtro_deficiencia = conect_db.filtro_de_ficiencia('0')
     else:
         filtro_deficiencia =  ' WHERE "' + str(filtro_deficiencia) + '" = 1 '
 
@@ -112,54 +147,13 @@ def buscar_dataframe_no_banco(amostra,
                 filtro_ano  + 
                 filtro_escola  + 
                 filtro_nacionalidade  + 
+                filtro_estado  + 
+                filtro_recurso  + 
+                filtro_localizacao_da_escola  + 
                 conect_db.LIMIT)
 
     print(query)
-    # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))
     df = pd.read_sql(query, engine)
     df = pd.DataFrame(df)
     
     return df
-
-
-def def_filtro_deficiencia(filtro):
-
-    if(filtro=='1'):
-        variavel_filtro_deficiencia = (' WHERE ("IN_BAIXA_VISAO" =' + filtro +
-            ' OR "IN_CEGUEIRA" =' + filtro +
-            ' OR "IN_SURDEZ" =' + filtro +
-            ' OR "IN_DEFICIENCIA_AUDITIVA" =' + filtro +
-            ' OR "IN_SURDO_CEGUEIRA" =' + filtro +
-            ' OR "IN_DEFICIENCIA_FISICA" =' + filtro +
-            ' OR "IN_DEFICIENCIA_MENTAL" =' + filtro +
-            ' OR "IN_DEFICIT_ATENCAO" =' + filtro +
-            ' OR "IN_DISLEXIA" =' + filtro +
-            ' OR "IN_DISCALCULIA" =' + filtro +
-            ' OR "IN_AUTISMO" =' + filtro +
-            ' OR "IN_VISAO_MONOCULAR" =' + filtro +
-            ' OR "IN_OUTRA_DEF" =' + filtro + ')')
-    else:
-        variavel_filtro_deficiencia = (' WHERE ("IN_BAIXA_VISAO" =' + filtro +
-            ' AND "IN_CEGUEIRA" =' + filtro +
-            ' AND "IN_SURDEZ" =' + filtro +
-            ' AND "IN_DEFICIENCIA_AUDITIVA" =' + filtro +
-            ' AND "IN_SURDO_CEGUEIRA" =' + filtro +
-            ' AND "IN_DEFICIENCIA_FISICA" =' + filtro +
-            ' AND "IN_DEFICIENCIA_MENTAL" =' + filtro +
-            ' AND "IN_DEFICIT_ATENCAO" =' + filtro +
-            ' AND "IN_DISLEXIA" =' + filtro +
-            ' AND "IN_DISCALCULIA" =' + filtro +
-            ' AND "IN_AUTISMO" =' + filtro +
-            ' AND "IN_VISAO_MONOCULAR" =' + filtro +
-            ' AND "IN_OUTRA_DEF" =' + filtro + ')')
-
-    return variavel_filtro_deficiencia
-
-
-
-
-
-
-
-
-

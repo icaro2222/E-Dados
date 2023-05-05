@@ -8,7 +8,7 @@
   <div class="row text-dark">
     <!-- Page Heading -->
     <form class="col mt-0" action="." method="post">
-      <h4 class="mt-0 mb-0">Variáveis de contraste e correlação:</h4>
+      <h5 class="mt-0 mb-0">Variáveis de contraste e correlação:</h5>
       <hr class="mt-0 mb-2" />
       <div class="row d-flex">
         <div class="col-md-6">
@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <h4 class="mt-0 mb-0">Filtros:</h4>
+      <h5 class="mt-0 mb-0"><i class="fas fa-search" style="font-size: 0.8em;"></i>Filtros:</h5>
       <hr class="mt-0 mb-2" />
       <div class="row d-flex">
         <div class="col-md-2">
@@ -48,21 +48,25 @@
           {% csrf_token %}
           {{ form_filtro.deficiencia|as_crispy_field }}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           {% csrf_token %}
           {{ form_filtro.nacionalidade|as_crispy_field }}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           {% csrf_token %}
           {{ form_filtro.estado|as_crispy_field }}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           {% csrf_token %}
           {{ form_filtro.localizacao_da_escola|as_crispy_field }}
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
           {% csrf_token %}
           {{ form_filtro.recurso|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {% csrf_token %}
+          {{ form_filtro.amostra|as_crispy_field }}
         </div>
         <div class="row col">
           <div class="col d-flex align-items-center justify-content-center">

@@ -313,6 +313,10 @@ def formulario_4(request):
         filtro_ano = form_filtro.data['ano']
         filtro_escola = form_filtro.data['escola']
         filtro_nacionalidade = form_filtro.data['nacionalidade']
+        filtro_estado = form_filtro.data['estado']
+        filtro_amostra = form_filtro.data['amostra']
+        filtro_recurso = form_filtro.data['recurso']
+        filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
 
         print("teste: "+filtro_escola)
 
@@ -320,6 +324,10 @@ def formulario_4(request):
         Microdado_Amostra = bd_formulario_1_4.buscar_dataframe_no_banco(
             Amostra, 
             filtro_sexo=filtro_sexo, 
+            filtro_recurso=filtro_recurso, 
+            filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
+            filtro_amostra=filtro_amostra, 
+            filtro_estado=filtro_estado, 
             filtro_questao=filtro_questao, 
             filtro_deficiencia=filtro_deficiencia, 
             filtro_ano=filtro_ano, 

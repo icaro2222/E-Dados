@@ -8,20 +8,12 @@
   <div class="row text-dark">
     <!-- Page Heading -->
     <form class="col" action="." method="post">
-      <h4 class="mt-3">Filtros:</h4>
-      <hr class="m-0" />
+      <h5 class="mt-0 mb-0"><i class="fas fa-search" style="font-size: 0.8em;"></i>Filtros:</h5>
+      <hr class="m-0 mb-3" />
       <div class="row d-flex">
         <div class="col-md-2">
           {% csrf_token %}
-          {% csrf_token %} {{ form|crispy }}
-        </div>
-        <div class="col-md-2">
-          {% csrf_token %}
           {{ form_filtro.sexo|as_crispy_field }}
-        </div>
-        <div class="col-md-3">
-          {% csrf_token %}
-          {{ form_filtro.estado_civil|as_crispy_field }}
         </div>
         <div class="col-md-3">
           {% csrf_token %}
@@ -31,13 +23,33 @@
           {% csrf_token %}
           {{ form_filtro.cor|as_crispy_field }}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
+          {% csrf_token %}
+          {{ form_filtro.estado_civil|as_crispy_field }}
+        </div>
+        <div class="col-md-3">
           {% csrf_token %}
           {{ form_filtro.deficiencia|as_crispy_field }}
         </div>
         <div class="col-md-4">
           {% csrf_token %}
           {{ form_filtro.nacionalidade|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {% csrf_token %}
+          {{ form_filtro.estado|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {% csrf_token %}
+          {{ form_filtro.localizacao_da_escola|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {% csrf_token %}
+          {{ form_filtro.recurso|as_crispy_field }}
+        </div>
+        <div class="col-md-4">
+          {% csrf_token %}
+          {{ form_filtro.amostra|as_crispy_field }}
         </div>
         <div class="row col">
           <div class="col d-flex align-items-center justify-content-center">

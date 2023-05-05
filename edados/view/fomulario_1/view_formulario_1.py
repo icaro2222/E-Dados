@@ -47,12 +47,13 @@ def formulario_1(request):
         # Formulario de Filtro
         filtro_sexo = form_filtro.data['sexo']
         filtro_ano = form_filtro.data['ano']
+        filtro_amostra = form_filtro.data['amostra']
 
         Amostra = [demografico, questao]
         if demografico != 'TP_SEXO' and filtro_sexo != 'todos':
             Amostra.append('TP_SEXO')
             Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(
-                Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+                Amostra, filtro_sexo=filtro_sexo, filtro_amostra=filtro_amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
         else:
             Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(
                 Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)

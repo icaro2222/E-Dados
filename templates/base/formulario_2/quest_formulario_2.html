@@ -1,86 +1,99 @@
 {% extends 'layout/layout.html' %} {% load static %}
 {% load crispy_forms_tags %}
 {% block titulo %}
-  Formulário 2
+Formulário 2
 {% endblock %}
 {% block conteudo %}
-  <!-- Begin Page Content -->
-  <div class="row text-dark">
-    <!-- Page Heading -->
-    <form class="col mt-0" action="." method="post">
-      <h4 class="mt-0 mb-0">Variáveis de contraste e correlação:</h4>
-      <hr class="mt-0 mb-2" />
-      <div class="row d-flex">
-        <div class="col-md-6">
-          {% csrf_token %}
-          {{ form.questao|as_crispy_field }}
-        </div>
-        <div class="col-md-4">
-          {% csrf_token %}
-          {{ form.nota|as_crispy_field }}
-        </div>
-        <div class="col-md-2">
-          {% csrf_token %}
-          {{ form.ano|as_crispy_field }}
-        </div>
+<!-- Begin Page Content -->
+<div class="row text-dark">
+  <!-- Page Heading -->
+  <form class="col mt-0" action="." method="post">
+    <h5 class="mt-0 mb-0">Variáveis de contraste e correlação:</h5>
+    <hr class="mt-0 mb-2" />
+    <div class="row d-flex">
+      <div class="col-md-6">
+        {% csrf_token %}
+        {{ form.questao|as_crispy_field }}
       </div>
-
-      <h4 class="mt-0 mb-0">Filtros:</h4>
-      <hr class="mt-0 mb-2" />
-      <div class="row d-flex">
-        <div class="col-md-4">
-          {% csrf_token %}
-          {{ form_filtro.sexo|as_crispy_field }}
-        </div>
-        <div class="col-md-4">
-          {% csrf_token %}
-          {{ form_filtro.escola|as_crispy_field }}
-        </div>
-        <div class="col-md-2">
-          {% csrf_token %}
-          {{ form_filtro.cor|as_crispy_field }}
-        </div>
-        <div class="col-md-2">
-          {% csrf_token %}
-          {{ form_filtro.estado_civil|as_crispy_field }}
-        </div>
+      <div class="col-md-4">
+        {% csrf_token %}
+        {{ form.nota|as_crispy_field }}
       </div>
-
-      <div class="row d-flex">
-        <div class="col-md-3">
-          {% csrf_token %}
-          {{ form_filtro.deficiencia|as_crispy_field }}
-        </div>
-        <div class="col-md-3">
-          {% csrf_token %}
-          {{ form_filtro.nacionalidade|as_crispy_field }}
-        </div>
-        <div class="col-md-3">
-          {% csrf_token %}
-          {{ form_filtro.estado|as_crispy_field }}
-        </div>
-        <div class="row col">
-          <div class="col d-flex align-items-center justify-content-center">
-            <button type="submit" class="btn btn-outline-primary">
-              Gerar Análise<svg xmlns="http://www.w3.org/2000/svg" width="86" height="44" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16">
-                <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
-                <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
-                <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-      <hr>
-    </form>
-
-    <div class="text-dark rounded border border-dark">
-      <div class="col-md-12">
-        <h4 class="mt-3 mb-0">{{ menssagem }}</h4>
-        <hr class="mt-0 mb-2 bg-dark" />
-        <h4 class="mb-0 mt-0">{{ menssagem1 }}</h4>
+      <div class="col-md-2">
+        {% csrf_token %}
+        {{ form.ano|as_crispy_field }}
       </div>
     </div>
+
+    <h5 class="mt-0 mb-0"><i class="fas fa-search" style="font-size: 0.8em;"></i>Filtros:</h5>
+    <hr class="mt-0 mb-2" />
+    <div class="row d-flex">
+      <div class="col-md-2">
+        {% csrf_token %}
+        {{ form_filtro.sexo|as_crispy_field }}
+      </div>
+      <div class="col-md-3">
+        {% csrf_token %}
+        {{ form_filtro.escola|as_crispy_field }}
+      </div>
+      <div class="col-md-2">
+        {% csrf_token %}
+        {{ form_filtro.cor|as_crispy_field }}
+      </div>
+      <div class="col-md-2">
+        {% csrf_token %}
+        {{ form_filtro.estado_civil|as_crispy_field }}
+      </div>
+      <div class="col-md-3">
+        {% csrf_token %}
+        {{ form_filtro.deficiencia|as_crispy_field }}
+      </div>
+      <div class="col-md-4">
+        {% csrf_token %}
+        {{ form_filtro.nacionalidade|as_crispy_field }}
+      </div>
+      <div class="col-md-4">
+        {% csrf_token %}
+        {{ form_filtro.estado|as_crispy_field }}
+      </div>
+      <div class="col-md-4">
+        {% csrf_token %}
+        {{ form_filtro.localizacao_da_escola|as_crispy_field }}
+      </div>
+      <div class="col-md-4">
+        {% csrf_token %}
+        {{ form_filtro.recurso|as_crispy_field }}
+      </div>
+      <div class="col-md-4">
+        {% csrf_token %}
+        {{ form_filtro.amostra|as_crispy_field }}
+      </div>
+      <div class="row col">
+        <div class="col d-flex align-items-center justify-content-center">
+          <button type="submit" class="btn btn-outline-primary">
+            Gerar Análise<svg xmlns="http://www.w3.org/2000/svg" width="86" height="44" fill="currentColor"
+              class="bi bi-clipboard-data" viewBox="0 0 16 16">
+              <path
+                d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
+              <path
+                d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+              <path
+                d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </form>
+
+  <div class="text-dark rounded border border-dark">
+    <div class="col-md-12">
+      <h4 class="mt-3 mb-0">{{ menssagem }}</h4>
+      <hr class="mt-0 mb-2 bg-dark" />
+      <h4 class="mb-0 mt-0">{{ menssagem1 }}</h4>
+    </div>
   </div>
-  <!-- /.container-fluid -->
+</div>
+<!-- /.container-fluid -->
 {% endblock %}

@@ -14,5 +14,5 @@ def questionario_demografico(Form):
                         # ('IN_TREINEIRO', 'Indica se o inscrito fez a prova com intuito de apenas treinar seus conhecimentos')
                         )
             
-    questao = forms.ChoiceField(label='demográfico', choices=choices_questao)
+    questao = forms.ChoiceField(label='Demográfico', choices=choices_questao)
     return questao

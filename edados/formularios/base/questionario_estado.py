@@ -4,6 +4,7 @@ from django import forms
 def questionario_estado(Form):
 
     choices_estados = (
+        ('todos', 'Todos'),
         ('AC', 'Acre'),
         ('AL', 'Alagoas'),
         ('AP', 'Amapá'),
