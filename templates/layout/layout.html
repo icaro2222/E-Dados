@@ -24,11 +24,11 @@
     <link href={% static "css/sb-admin-2.min.css" %} rel="stylesheet">
     {% block css%}{% endblock %}
     <link rel="stylesheet" href={% static "css/styles_layout.css" %}>
-<style>
-    label {
-        margin-bottom:0rem;
-      }
-</style>
+    <style>
+        label {
+            margin-bottom: 0rem;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -40,9 +40,9 @@
         <ul class="navbar-nav sidebar border-right accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center"  href={% url "dashboard" %}>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href={% url "dashboard" %}>
                 <div class="sidebar-brand-icon">
-                    <img height="45" src={% static "img/logo_larga.svg" %} fill="white">  
+                    <img height="45" src={% static "img/logo_larga.svg" %} fill="white">
                 </div>
                 <div class="sidebar-brand-text mx-3">E-Dados</div>
             </a>
@@ -66,54 +66,78 @@
             </div>
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#perfil"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16">
-                        <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
-                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                      </svg>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#perfil" aria-expanded="true"
+                    aria-controls="collapseTwo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-clipboard-data" viewBox="0 0 16 16">
+                        <path
+                            d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
+                        <path
+                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                        <path
+                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                    </svg>
                     <span>Análise Socioeconômica</span>
                 </a>
-                <div id="perfil" class="collapse {% if request.resolver_match.url_name == 'formulario_1' or request.resolver_match.url_name == 'formulario_1_2' or request.resolver_match.url_name == 'formulario_1_4' %}show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="perfil"
+                    class="collapse {% if request.resolver_match.url_name == 'formulario_1' or request.resolver_match.url_name == 'formulario_1_2' or request.resolver_match.url_name == 'formulario_1_4' %}show{% endif %}"
+                    aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_2' %} active{% endif %}" href="{% url 'formulario_1_2' %}">Perfil_1 dados brutos</a>                                 
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_4' %} active{% endif %}" href="{% url 'formulario_1_4' %}">Perfil_1 percentual</a>
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1' %} active{% endif %}" href="{% url 'formulario_1' %}">Perfil_2 grafico Socioeconômica</a>
+                        <!-- <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_2' %} active{% endif %}" href="{% url 'formulario_1_2' %}">Perfil_1 </a>                                  -->
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_4' %} active{% endif %}"
+                            href="{% url 'formulario_1_4' %}">Dados brutos informativo</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1' %} active{% endif %}"
+                            href="{% url 'formulario_1' %}">Gráfico Socioeconômica</a>
                     </div>
                 </div>
-                
+
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16">
-                        <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
-                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                      </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-clipboard-data" viewBox="0 0 16 16">
+                        <path
+                            d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
+                        <path
+                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                        <path
+                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                    </svg>
                     <span>Análise de Desempenho</span>
                 </a>
-                <div id="collapseTwo" class="collapse {% if request.resolver_match.url_name == 'formulario_1_3' or request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia'%}show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="collapseTwo"
+                    class="collapse {% if request.resolver_match.url_name == 'formulario_1_3' or request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia'%}show{% endif %}"
+                    aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        {% comment %} <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_3' %} active{% endif %}" href="{% url 'formulario_1_3' %}">2-form: Dados brutos</a> {% endcomment %}
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia' %} active{% endif %}" href="{% url 'Quest_Soc_Notas_Deficiencia' %}">1-form: Socio. VS nota</a>
+                        {% comment %} <a
+                            class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_3' %} active{% endif %}"
+                            href="{% url 'formulario_1_3' %}">2-form: Dados brutos</a> {% endcomment %}
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia' %} active{% endif %}"
+                            href="{% url 'Quest_Soc_Notas_Deficiencia' %}">Desempenho no exame</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#acertos_por_prova"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16">
-                        <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
-                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                      </svg>
-                    <span>Análise de Acertos</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-clipboard-data" viewBox="0 0 16 16">
+                        <path
+                            d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
+                        <path
+                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                        <path
+                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                    </svg>
+                    <span>Análise de Acertos/Erros</span>
                 </a>
-                <div id="acertos_por_prova" class="collapse {% if request.resolver_match.url_name == 'formulario_3' %} show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="acertos_por_prova"
+                    class="collapse {% if request.resolver_match.url_name == 'formulario_3' %} show{% endif %}"
+                    aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_3' %} active{% endif %}" href="{% url 'formulario_3' %}">3-form: Acertos por Prova</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_3' %} active{% endif %}"
+                            href="{% url 'formulario_3' %}">Acertos / Erros nas Provas</a>
                     </div>
                 </div>
             </li>
@@ -121,16 +145,23 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#densidade_demografica"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-data" viewBox="0 0 16 16">
-                        <path d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"/>
-                        <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                        <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                      </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-clipboard-data" viewBox="0 0 16 16">
+                        <path
+                            d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
+                        <path
+                            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+                        <path
+                            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+                    </svg>
                     <span>Densidade demográfica</span>
                 </a>
-                <div id="densidade_demografica" class="collapse {% if request.resolver_match.url_name == 'formulario_4' %} show{% endif %}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div id="densidade_demografica"
+                    class="collapse {% if request.resolver_match.url_name == 'formulario_4' %} show{% endif %}"
+                    aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_4' %} active{% endif %}" href="{% url 'formulario_4' %}">4-form: Densidade demográfica</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_4' %} active{% endif %}"
+                            href="{% url 'formulario_4' %}">4-form: Densidade demográfica</a>
                     </div>
                 </div>
             </li>
@@ -164,11 +195,10 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href={% url "dashboard" %} id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href={% url "dashboard" %} id="userDropdown"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-dark small">Convidado</span>
-                                <img class="img-profile rounded-circle"
-                                    src={% static "img/undraw_profile.svg" %}>
+                                <img class="img-profile rounded-circle" src={% static "img/undraw_profile.svg" %}>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -188,8 +218,8 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid text-dark">
-                    {% block conteudo %}      
-                    {% endblock %}          
+                    {% block conteudo %}
+                    {% endblock %}
                 </div>
                 <!-- /.container-fluid -->
 
@@ -200,7 +230,8 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        {% comment %} <span>Copyright &copy; <a href="https://github.com/icaro2222" style="text-decoration: none;">Ícaro Dias</a> 2022</span> {% endcomment %}
+                        {% comment %} <span>Copyright &copy; <a href="https://github.com/icaro2222"
+                                style="text-decoration: none;">Ícaro Dias</a> 2022</span> {% endcomment %}
                     </div>
                 </div>
             </footer>
@@ -231,14 +262,14 @@
                 <div class="modal-body">Selecioone "Sair" caso deseje encerrar a sessão.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a class="btn btn-primary" href="{% url 'logout' %}"  >Sair</a>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Sair</a>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <script>
         //funciona, mas ta com uns bugs
         {% comment %} function toggleSidebar() {
@@ -246,49 +277,51 @@
             document.querySelector(".sidebar").classList.toggle("toggled");
             const isCollapsed = document.querySelector(".sidebar").classList.contains("toggled");
             localStorage.setItem("sidebar-collapsed", isCollapsed);
-          }
-          
-          document.addEventListener("DOMContentLoaded", function() {
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
             const isCollapsed = localStorage.getItem("sidebar-collapsed") === "true";
             if (isCollapsed) {
-              document.body.classList.add("sidebar-toggled");
-              document.querySelector(".sidebar").classList.add("toggled");
+                document.body.classList.add("sidebar-toggled");
+                document.querySelector(".sidebar").classList.add("toggled");
             }
-          }); {% endcomment %}
-          
-    
-    // Adiciona um ouvinte de eventos ao botão para alternar a barra lateral
-    document.getElementById("sidebarToggle").addEventListener("click", toggleSidebar);
-    
-    // Define a largura da barra lateral ao carregar a página
-    setSidebarWidth();
-    
+        }); {% endcomment %}
+
+
+        // Adiciona um ouvinte de eventos ao botão para alternar a barra lateral
+        document.getElementById("sidebarToggle").addEventListener("click", toggleSidebar);
+
+        // Define a largura da barra lateral ao carregar a página
+        setSidebarWidth();
+
         // percorre todas as opções da sidebar
-        $(".nav-item").each(function() {
+        $(".nav-item").each(function () {
             // verifica se a opção está marcada como "active"
             if ($(this).find(".nav-link").hasClass("active")) {
                 // se sim, adiciona a classe "show" à div correspondente
                 $(this).find(".collapse").addClass("show");
             }
         });
-      </script>
+    </script>
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src={% static "vendor/jquery/jquery.min.js" %} ></script>
-    <script src={% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %} ></script>
+    <script src={% static "vendor/jquery/jquery.min.js" %}></script>
+    <script src={% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}></script>
 
     <!-- Core plugin JavaScript-->
-    <script src={% static "vendor/jquery-easing/jquery.easing.min.js" %} ></script>
+    <script src={% static "vendor/jquery-easing/jquery.easing.min.js" %}></script>
 
     <!-- Custom scripts for all pages-->
-    <script src={% static "js/sb-admin-2.min.js" %} ></script>
+    <script src={% static "js/sb-admin-2.min.js" %}></script>
     <!-- Page level plugins -->
-    {% comment %} <script src={% static "vendor/chart.js/Chart.min.js" %} ></script> {% endcomment %}
+    {% comment %}
+    <script src={% static "vendor/chart.js/Chart.min.js" %}></script> {% endcomment %}
 
     <!-- Page level custom scripts -->
-    {% comment %} <script src={% static "js/demo/chart-area-demo.js" %} ></script>
-    <script src={% static "js/demo/chart-pie-demo.js" %} ></script> {% endcomment %}
+    {% comment %}
+    <script src={% static "js/demo/chart-area-demo.js" %}></script>
+    <script src={% static "js/demo/chart-pie-demo.js" %}></script> {% endcomment %}
 
 </body>
 

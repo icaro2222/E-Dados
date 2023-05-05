@@ -79,63 +79,22 @@
         </div>
       </div>
     </div>
+    <hr>
   </form>
 
-  <div class="col-md-12">
-    <h4 class="mt-0 mb-0">{{ menssagem }}</h4>
-    <hr class="mt-0 mb-1 bg-dark" />
-  </div>
 </div>
 <div class="text-dark rounded border border-dark">
   <div class="row">
     <div class="col md-12">
+  <div class="col-md-12">
+    <h4 class="mt-3 mb-0">{{ menssagem }}</h4>
+    <hr class="mt-0 mb-3 bg-dark" />
+  </div>
       {% comment %} <div class="col md-11">{{relatorio_em_grafico|safe}}</div> {% endcomment %}
       {% comment %} <hr class="m-1" /> {% endcomment %}
       <div class="col md-11">{{relatorio|safe}}</div>
     </div>
   </div>
-  <!-- <hr class="mb-3" />
-  <div class="row d-flex justify-content-end align-items-center m-3">
-    <div class="col-md-4 d-flex justify-content-end">
-      <button type="button" class="btn btn-success">
-        <a
-          class="downloader__btn active"
-          id="pickfiles"
-          href="{%"
-          static
-          nome_do_relatorio
-          %}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-file-earmark-arrow-down"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"
-            />
-            <path
-              d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"
-            />
-          </svg>
-          Baixar o Relatório</a
-        >
-      </button>
-    </div>
-  </div>
-  <div class="row"> -->
-    <!-- class="relatorio" -->
-    <!-- <div class="col">
-      <img
-        class="col md-12"
-        src="data:image/png;base64, {{relatorio|safe}}"
-      />
-      <iframe src={% static nome_do_relatorio %} title="relatorio" width="100%" height="100%">teste</iframe>
-    </div> 
-  </div> -->
 </div>
 <!-- /.container-fluid -->
 {% endblock %}

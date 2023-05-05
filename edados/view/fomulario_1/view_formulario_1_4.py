@@ -328,6 +328,12 @@ def formulario_4(request):
             filtro_escola=filtro_escola, 
             filtro_nacionalidade=filtro_nacionalidade)
         
+        relatorio_dados_brutos = Microdado_Amostra.to_html(
+            max_rows=10, justify='center', 
+            classes="""table table-striped table-bordered table-sm
+            text-dark"""
+            )
+        
         if filtro_questao == 'nenhum':
             Dataframe = Microdado_Amostra
             print('--------------------------------------------------------------------')
@@ -470,6 +476,7 @@ def formulario_4(request):
             'form_filtro' : form_filtro,
             'menssagem' : menssagem,
             'quantidadeParcial' : CONTAGEM,
+            'relatorio_dados_brutos' : relatorio_dados_brutos,
             'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
             'relatorio_em_tabela' : relatorio_em_tabela
         }
