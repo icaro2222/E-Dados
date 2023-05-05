@@ -13,6 +13,235 @@ from edados.database import bd_quest_socio_notas_deficiencia
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
+def anotacao(Questao):
+
+    if Questao == 'Q001':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 1 no questionario socioeconômico:
+                            <br>A: Nunca estudou.
+                            <br>B: Não completou a 4ª série/5º ano do Ensino Fundamental.
+                            <br>C: Completou a 4ª série/5º ano, mas não completou a 8ª série/9º ano do Ensino Fundamental.
+                            <br>D: Completou a 8ª série/9º ano do Ensino Fundamental, mas não completou o Ensino Médio.
+                            <br>E: Completou o Ensino Médio, mas não completou a Faculdade.
+                            <br>F: Completou a Faculdade, mas não completou a Pós-graduação.
+                            <br>G: Completou a Pós-graduação.
+                            <br>H: Não sei."""
+    elif Questao == 'Q002':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
+                            <br>A: Nunca estudou.
+                            <br>B: Não completou a 4ª série/5º ano do Ensino Fundamental.
+                            <br>C: Completou a 4ª série/5º ano, mas não completou a 8ª série/9º ano do Ensino Fundamental.
+                            <br>D: Completou a 8ª série/9º ano do Ensino Fundamental, mas não completou o Ensino Médio.
+                            <br>E: Completou o Ensino Médio, mas não completou a Faculdade.
+                            <br>F: Completou a Faculdade, mas não completou a Pós-graduação.
+                            <br>G: Completou a Pós-graduação.
+                            <br>H: Não sei."""
+    elif Questao == 'Q003':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 3 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor,
+<br pescador, lenhador, seringueiro, extrativista.
+                            <br>Grupo 2: Diarista, empregado doméstico, cuidador de idosos, babá, cozinheiro (em casas particulares), motorista particular, jardineiro, f
+<braxineiro de empresas e prédios, vigilante, porteiro, carteiro, office-boy, vendedor, caixa, atendente de loja, auxiliar administrativo, recepcionista, servente de pedreiro, repositor de mercadoria.
+                            <br>Grupo 3: Padeiro, cozinheiro industrial ou em restaurantes, sapateiro, costureiro, joalheiro, torneiro mecânico, operador de máquinas, 
+<brsoldador, operário de fábrica, trabalhador da mineração, pedreiro, pintor, eletricista, encanador, motorista, caminhoneiro, taxista.
+                            <br>Grupo 4: Professor (de ensino fundamental ou médio, idioma, música, artes etc.), técnico (de enfermagem, contabilidade, eletrônica etc.), 
+<brpolicial, militar de baixa patente (soldado, cabo, sargento), corretor de imóveis, supervisor, gerente, mestre de obras, pastor, microempresário (proprietário de
+<br empresa com menos de 10 empregados), pequeno comerciante, pequeno proprietário de terras, trabalhador autônomo ou por conta própria.
+                            <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel,
+<br professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
+                            <br>Não sei.."""
+    elif Questao == 'Q004':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 4 no questionario socioeconômico:
+                            <br>
+                            <br>Grupo 1: Lavradora, agricultora sem empregados, bóia fria, criadora de animais (gado, porcos, galinhas, ovelhas,
+<br cavalos etc.), apicultora, pescadora, lenhadora, seringueira, extrativista.
+<br>Grupo 2: Diarista, empregada doméstica, cuidadora de idosos, babá, cozinheira (em casas particulares), motorista particular, jardineira, 
+<brfaxineira de empresas e prédios, vigilante, porteira, carteira, office-boy, vendedora, caixa, atendente de loja, auxiliar administrativa, recepcionista, servente de pedreiro, repositora de mercadoria.
+<br>Grupo 3: Padeira, cozinheira industrial ou em restaurantes, sapateira, costureira, joalheira, torneira mecânica, operadora de máquinas, 
+<brsoldadora, operária de fábrica, trabalhadora da mineração, pedreira, pintora, eletricista, encanadora, motorista, caminhoneira, taxista.
+<br>Grupo 4: Professora (de ensino fundamental ou médio, idioma, música, artes etc.), técnica (de enfermagem, contabilidade, eletrônica etc.), 
+<brpolicial, militar de baixa patente (soldado, cabo, sargento), corretora de imóveis, supervisora, gerente, mestre de obras, pastora,
+<br microempresária (proprietária de empresa com menos de 10 empregados), pequena comerciante, pequena proprietária de terras, trabalhadora autônoma ou por conta própria.
+<br>Grupo 5: Médica, engenheira, dentista, psicóloga, economista, advogada, juíza, promotora, defensora, delegada, tenente, capitã, coronel,
+<br professora universitária, diretora em empresas públicas ou privadas, política, proprietária de empresas com mais de 10 empregados.
+<br>Não sei."""
+    elif Questao == 'Q005':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 5 no questionario socioeconômico:
+                            <br><br>1: Moro sozinho(a)
+<br>2: 2 pessoas
+<br>3: 3 pessoas
+<br>4: 4 pessoas
+<br>5: 5 pessoas
+<br>6: 6 pessoas
+<br>7: 7 pessoas
+<br>8: 8 pessoas
+<br>9: 9 pessoas
+<br>10: 10 pessoas
+<br>11: 11 pessoas
+<br>12: 12 pessoas
+<br>13: 13 pessoas
+<br>14: 14 pessoas
+<br>15: 15 pessoas
+<br>16: 16 pessoas
+<br>17: 17 pessoas
+<br>18: 18 pessoas
+<br>19: 19 pessoas
+<br>20: 20 pessoas"""
+    elif Questao == 'Q006':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 6 no questionario socioeconômico:
+                            <br>
+                            <br>A: Nenhuma renda
+<br>B: Até R$ 998,00
+<br>C: De R$ 998,01 até R$ 1.497,00
+<br>D: De R$ 1.497,01 até R$ 1.996,00
+<br>E: De R$ 1.996,01 até R$ 2.495,00
+<br>F: De R$ 2.495,01 até R$ 2.994,00
+<br>G: De R$ 2.994,01 até R$ 3.992,00
+<br>H: De R$ 3.992,01 até R$ 4.990,00
+<br>I: De R$ 4.990,01 até R$ 5.988,00
+<br>J: De R$ 5.988,01 até R$ 6.986,00
+<br>K: De R$ 6.986,01 até R$ 7.984,00
+<br>L: De R$ 7.984,01 até R$ 8.982,00
+<br>M: De R$ 8.982,01 até R$ 9.980,00
+<br>N: De R$ 9.980,01 até R$ 11.976,00
+<br>O: De R$ 11.976,01 até R$ 14.970,00
+<br>P: De R$ 14.970,01 até R$ 19.960,00
+<br>Q: Mais de R$ 19.960,00"""
+    elif Questao == 'Q007':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 7 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um ou dois dias por semana.
+<br>C: Sim, três ou quatro dias por semana.
+<br>D: Sim, pelo menos cinco dias por semana."""
+    elif Questao == 'Q008':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 8 no questionario socioeconômico:
+                            <br>
+                            <br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q009':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 9 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q010':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 10 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q011':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 11 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q012':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 12 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q013':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 13 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q014':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 14 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q015':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 15 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q016':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 16 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q017':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 17 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q018':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 18 no questionario socioeconômico:
+                            <br><br>A: Sim.
+<br>B Não."""
+    elif Questao == 'Q019':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 19 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q020':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 20 no questionario socioeconômico:
+                            <br><br>A: Sim.
+<br>B Não."""
+    elif Questao == 'Q021':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 21 no questionario socioeconômico:
+                            <br><br>A: Sim.
+<br>B Não."""
+    elif Questao == 'Q022':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 22 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q023':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 23 no questionario socioeconômico:
+                            <br><br>A: Sim.
+<br>B Não."""
+    elif Questao == 'Q024':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 24 no questionario socioeconômico:
+                            <br><br>A: Não.
+<br>B: Sim, um.
+<br>C: Sim, dois.
+<br>D: Sim, três.
+<br>E: Sim, quatro ou mais."""
+    elif Questao == 'Q025':
+        texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 25 no questionario socioeconômico:
+                            <br><br>A: Sim.
+<br>B Não."""
+
+    annotations = [
+        {
+            'x': 0,
+            'y': -0.8,
+            'xref': "paper",
+            'yref': "paper",
+            'text': texto,
+            'showarrow': False,
+            'align': 'left',
+            'font': {'family': "Arial", 'size': 13, 'color': "black"}
+        }
+    ]
+
+    return annotations
+
+
 def formulario_2(request):
 
     Q = 'TP_SEXO'
@@ -80,71 +309,31 @@ def formulario_2(request):
         Dataframe = Dataframe.groupby(Q)[prova]
         Dataframe = Dataframe.describe()     
 
-        # Seleção conforme a escolha do usuário na tela do formulario
-        # if filtro_deficiencia == 'ambos':
-            # br1 = np.arange(len(Dataframe.index))
-            # br2 = [x + width for x in br1]
-
-            # figura = plt.figure(figsize=(12, 8))
-            # figura.suptitle('Relatório de correlação entre: Questão socioeconômica e Desempenho no Enem', size=16)
-            # figura.add_subplot(1,1,1)
-
-            # bar_label_mean = plt.bar(br2, Dataframe['mean'], color='r', width=width, label="Média")
-            # plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
-
-        # else:
-            # caminho_a_deficiencia = caminho2 + filtro_deficiencia + '.csv'
-            # Microdado_Amostra = pd.read_csv(caminho_a_deficiencia, sep= ';', encoding = "ISO-8859-1")
-            # DataFrame = Microdado_Amostra.filter(items = Amostra)
-            # DataFrame = DataFrame.sort_values(by=[Q])
-            # DataFrame_dificiente = DataFrame[DataFrame[filtro_deficiencia]==1]
-
-            # DataFrame_dificiente = DataFrame_dificiente.sort_values(by=[Q])
-            # dados = DataFrame_dificiente.groupby(Q)[prova]
-            # dataset = dados.describe()
-            # dataset = Dataframe
-            # figura = plt.figure(figsize=(12, 8))
-            # figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
-            # 'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=16)
-            # figura.add_subplot(1,1,1)
-
-            # br1 = np.arange(len(dataset.index))
-            # br2 = [x + width for x in br1]
-            # br3 = [x + width for x in br2]
-
-            # bar_label_min = plt.bar(br1, dataset['min'], color='y', width=width, label="Mínimo")
-            # bar_label_mean = plt.bar(br2, dataset['mean'], color='b', width=width, label="Média")
-            # bar_label_max = plt.bar(br3, dataset['max'], color='r', width=width, label="Máximno")
-            
-            # plt.bar_label(bar_label_max, fmt='%.2f', padding=2)
-            # plt.bar_label(bar_label_mean, fmt='%.2f', padding=2)
-            # plt.bar_label(bar_label_min, fmt='%.2f', padding=2)
-
-            # labels = np.arange(len(dataset.index.tolist()))
-            # print(labels)
-            # plt.xticks(labels, dataset.index.tolist())
-            # plt.xticks()
-
-
-        # plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
-        # plt.title(Q)
-        # plt.ylabel('Desempenho dos Inscritos no Enem')
-        # plt.xlabel('Respostas da Questão Socioeconômica: "'+Q+'"')
-
-        # buffer = BytesIO()
-        # plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        # buffer.seek(0)
-        # image_png = buffer.getvalue()
-        # image = base64.b64encode(image_png)
-        # imagem_relatorio = image.decode('utf-8')
-        # buffer.close()
-
         figura_com_criador_de_tabela = px.bar(Dataframe)
         figura_com_criador_de_tabela = figura_com_criador_de_tabela.to_html()
         
         figura_tabela_da_media = px.bar(Dataframe['mean'])
         figura_tabela_da_media = figura_tabela_da_media.to_html()
-
+       
+        # Crie um estilo CSS externo para estilizar a tabela
+        # CSS_STYLE = """
+        #     .table-header {
+        #         background-color: royalblue;
+        #         height: 30px;
+        #         line-color: darkslategray;
+        #         text-align: center;
+        #         font-color: white;
+        #         font-size: 12px;
+        #     }
+        #     .table-cell {
+        #         line-color: darkslategray;
+        #         text-align: center;
+        #         height: 30px;
+        #         font-color: darkslategray;
+        #         font-size: 11px;
+        #     }
+        # """
+        
         rowEvenColor = 'lightgrey'
         rowOddColor = 'white'
 
@@ -188,14 +377,15 @@ def formulario_2(request):
 
         figura_tabela.update_layout(
             title_text = """Quadro de correlação entre o desempenho e a resposta da questão socioeconômica.""",
-            height = 600,
-            margin = {'t':75, 'l':50},
+            height=700,
+            margin=dict(l=50, r=50, b=300, t=50),
             yaxis = {'domain': [0, .45]},
             xaxis2 = {'anchor': 'y2'},
             xaxis_title="Respota do questionário socioeconômico",
             yaxis_title="Desempenho",
             yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
             legend_title="Legenda",
+            annotations=anotacao(Q),
             font=dict(
                 family="Arial",
                 size=12,

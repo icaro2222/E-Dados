@@ -83,7 +83,6 @@
                     class="collapse {% if request.resolver_match.url_name == 'formulario_1' or request.resolver_match.url_name == 'formulario_1_2' or request.resolver_match.url_name == 'formulario_1_4' %}show{% endif %}"
                     aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <!-- <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_2' %} active{% endif %}" href="{% url 'formulario_1_2' %}">Perfil_1 </a>                                  -->
                         <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_4' %} active{% endif %}"
                             href="{% url 'formulario_1_4' %}">Dados brutos informativo</a>
                         <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1' %} active{% endif %}"
@@ -110,9 +109,6 @@
                     class="collapse {% if request.resolver_match.url_name == 'formulario_1_3' or request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia'%}show{% endif %}"
                     aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        {% comment %} <a
-                            class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_3' %} active{% endif %}"
-                            href="{% url 'formulario_1_3' %}">2-form: Dados brutos</a> {% endcomment %}
                         <a class="collapse-item {% if request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia' %} active{% endif %}"
                             href="{% url 'Quest_Soc_Notas_Deficiencia' %}">Desempenho no exame</a>
                     </div>

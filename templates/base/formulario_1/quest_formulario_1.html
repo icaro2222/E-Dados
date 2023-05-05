@@ -28,11 +28,11 @@
       <h4 class="mt-0 mb-0">Filtros:</h4>
       <hr class="mt-0 mb-2" />
       <div class="row d-flex">
-        <div class="col-md-4">
+        <div class="col-md-2">
           {% csrf_token %}
           {{ form_filtro.sexo|as_crispy_field }}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
           {% csrf_token %}
           {{ form_filtro.escola|as_crispy_field }}
         </div>
@@ -44,9 +44,6 @@
           {% csrf_token %}
           {{ form_filtro.estado_civil|as_crispy_field }}
         </div>
-      </div>
-
-      <div class="row d-flex">
         <div class="col-md-3">
           {% csrf_token %}
           {{ form_filtro.deficiencia|as_crispy_field }}
@@ -58,6 +55,14 @@
         <div class="col-md-3">
           {% csrf_token %}
           {{ form_filtro.estado|as_crispy_field }}
+        </div>
+        <div class="col-md-3">
+          {% csrf_token %}
+          {{ form_filtro.localizacao_da_escola|as_crispy_field }}
+        </div>
+        <div class="col-md-3">
+          {% csrf_token %}
+          {{ form_filtro.recurso|as_crispy_field }}
         </div>
         <div class="row col">
           <div class="col d-flex align-items-center justify-content-center">

@@ -1,6 +1,6 @@
 from random import choices
 from django import forms
-from edados.formularios.base import questionario_estado, questionario_de_nacionalidade,questionario_sexo, questionario_de_escola, questionario_cor, questionario_estado_civil, questionario_de_deficiencia
+from edados.formularios.base import questionario_recursos, questionario_localizacao_da_escola, questionario_estado, questionario_de_nacionalidade,questionario_sexo, questionario_de_escola, questionario_cor, questionario_estado_civil, questionario_de_deficiencia
 
 
 class Formulario_filtros(forms.Form):
@@ -13,4 +13,6 @@ class Formulario_filtros(forms.Form):
     nacionalidade = questionario_de_nacionalidade.questionario_de_nacionalidade(Form=forms.Form)
     
     # esta função de estado ainda não está implementada
+    recurso = questionario_recursos.questionario_recursos_especializados(Form=forms.Form)
     estado = questionario_estado.questionario_estado(Form=forms.Form)
+    localizacao_da_escola = questionario_localizacao_da_escola.questionario_localizacao(Form=forms.Form)
