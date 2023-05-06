@@ -238,15 +238,15 @@ def acertos_quantidade(Microdado_Amostra, prova, cor_da_prova):
         Dataset_M = DataFrame['M']
             
         figura = plt.figure(figsize=(12, 8))
-        figura.suptitle('Relatório de Compreenssão em formato de gráfico, \n'+
+        figura.suptitle('Relatório de Compreensão em formato de gráfico, \n'+
         'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=16)
         figura.add_subplot(1,1,1)
 
         br1 = np.arange(len(Dataset_F.index))
         br2 = [x + width for x in br1]
 
-        bar_label_feminino = plt.bar(br1, Dataset_F, color='y', width=width, label="feminíno")
-        bar_label_masculino = plt.bar(br2, Dataset_M, color='b', width=width, label="masculíno")
+        bar_label_feminino = plt.bar(br1, Dataset_F, color='y', width=width, label="feminino")
+        bar_label_masculino = plt.bar(br2, Dataset_M, color='b', width=width, label="masculino")
         
         plt.bar_label(bar_label_feminino, fmt='%.2f', padding=2)
         plt.bar_label(bar_label_masculino, fmt='%.2f', padding=2)
@@ -282,9 +282,9 @@ def acertos_quantidade(Microdado_Amostra, prova, cor_da_prova):
         for index in lista_dos_index:
             print(index)
             if index=='M':
-                nome = 'masculíno'
+                nome = 'masculino'
             else:
-                nome = 'feminíno'
+                nome = 'feminino'
             fig.add_bar(
                 y=DataFrame[index],
                 x=DataFrame[index].index,

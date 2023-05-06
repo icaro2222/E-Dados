@@ -426,7 +426,7 @@ def formulario_4(request):
                 margin = {'t':75, 'l':50},
                 yaxis = {'domain': [0, .45]},
                 xaxis2 = {'anchor': 'y2'},
-                xaxis_title="Respota do questionário socioeconômico",
+                xaxis_title="Resposta do questionário socioeconômico",
                 yaxis_title="Porcentagem",
                 yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
                 legend_title="Legenda",
@@ -443,7 +443,7 @@ def formulario_4(request):
                                 <br>Essa análise é feita após a realização da filtragem e o somatório desses percentuais resulta em 100%, 
                                 <br>considerando todos os inscritos que passaram pelos filtros selecionados na tela de análise de dados; 
                                 <br>Percentual absoluto: é o percentual de inscritos no Enem que foram filtrados em comparação com o total de todos os alunos inscritos, sem qualquer filtro aplicado; 
-                                <br><br>Somatório dos inscritos que responderam: Corresponde ao somatório de todos inscritos após a filtragem nos filtros acima; 
+                                <br><br>Somatório dos inscritos que responderam: Corresponde ao somatório de todos os inscritos após a filtragem nos filtros acima; 
                                 """,
                         'showarrow': False,
                         'align': 'left',

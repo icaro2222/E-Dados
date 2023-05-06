@@ -17,9 +17,9 @@ def aba_de_informacoes(request):
         menssagem1 ="""Informações da plataforma E-DADOS V1.23""" 
         # menssagem = """"""
         menssagem = """
-A E-DADOS é uma plataforma online que tem por objetivo estudar os dados do Enem em busca de informações relevantes sobre as pessoas com deficiência. Ela oferece uma solução para a análise de microdados socioeconômicos do ENEM referentes aos anos de 2016, 2017, 2018 e 2019 de maneira eficiente e ágil.
+A E-DADOS é uma plataforma online cujo objetivo é estudar os dados do Enem em busca de informações relevantes sobre as pessoas com deficiência. Ela oferece uma solução para a análise de microdados socioeconômicos do ENEM referentes aos anos de 2016, 2017, 2018 e 2019 de maneira eficiente e ágil.
 
-Utilizando técnicas avançadas da ciência de dados, a plataforma possibilita uma análise precisa e detalhada dos dados, com o objetivo de fornecer insights valiosos para a tomada de decisões estratégicas em relação ao desempenho dos candidatos nas provas. Com uma interface intuitiva e funcionalidades de filtragem e visualização de dados, a plataforma é uma ferramenta poderosa para pesquisadores, gestores educacionais e profissionais da área de educação interessados em aprimorar a compreensão dos fatores que influenciam o desempenho dos estudantes no ENEM.
+Utilizando técnicas avançadas da ciência de dados, a plataforma possibilita uma análise precisa e detalhada dos dados, visando fornecer insights valiosos para a tomada de decisões estratégicas em relação ao desempenho dos candidatos nas provas. Com uma interface intuitiva e funcionalidades de filtragem e visualização de dados, a plataforma é uma ferramenta poderosa para pesquisadores, gestores educacionais e profissionais da área de educação interessados em aprimorar a compreensão dos fatores que influenciam o desempenho dos estudantes no ENEM.
 
 A E-DADOS foi desenvolvida utilizando Django, um framework web de alto nível em Python que incentiva o desenvolvimento rápido e o design limpo e pragmático. O backend da plataforma utiliza PostgreSQL, um sistema de gerenciamento de banco de dados relacional de código aberto e muito popular. Já para o frontend, a plataforma utiliza Bootstrap, um framework front-end popular para design responsivo e de fácil utilização.
 
@@ -46,7 +46,7 @@ Para acessar a plataforma, é necessário fazer login utilizando um usuário e s
 
         menssagem1 = "Dados Gerais do enem"
         menssagem = """<br>
-        Esta é uma plataforma online quM nos periodos de 2018 e 2019."""
+        Esta é uma plataforma online que nos períodos de 2018 e 2019."""
 
 
         context = {
@@ -62,7 +62,7 @@ def correcoes_bugs(request):
 
         correcoes ="""Informe-nos erros ou bugs que você encontrou na plataforma:""" 
         # menssagem = """"""
-        menssagem = """Nossa equipe esta trabalhando arduamente em busca de trazer as melhores ferramentas à plataforma."""
+        menssagem = """Nossa equipe está trabalhando arduamente em busca de trazer as melhores ferramentas à plataforma."""
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(
@@ -88,7 +88,7 @@ def correcoes_bugs(request):
         
         correcao = Correcao(nome=nome, descricao=descricao, email=email)
         correcao.save()
-        messages.success(request, 'Relatorio enviada com sucesso!')
+        messages.success(request, 'Relatório enviada com sucesso!')
         form = form_correcoes(request.POST)
         if form.is_valid():
             # Lida com os dados do formulário aqui
@@ -101,7 +101,7 @@ def correcoes_bugs(request):
 
         correcoes ="""Informe-nos erros ou bugs que você encontrou na plataforma:""" 
         # menssagem = """"""
-        menssagem = """Nossa equipe esta trabalhando arduamente em busca de trazer as melhores ferramentas à plataforma."""
+        menssagem = """Nossa equipe está trabalhando arduamente em busca de trazer as melhores ferramentas à plataforma."""
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(
@@ -209,7 +209,7 @@ def criadores(request):
 
         menssagem1 = "Dados Gerais do enem"
         menssagem = """<br>
-        Esta é uma plataforma online que nos periodos de 2018 e 2019."""
+        Esta é uma plataforma online que nos períodos de 2016, 2017, 2018 e 2019."""
 
 
         context = {

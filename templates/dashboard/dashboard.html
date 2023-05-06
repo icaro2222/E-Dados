@@ -5,51 +5,8 @@
 {% block css%} <link rel="stylesheet" href={% static "css/styles_relatorio.css" %}> {%endblock %} 
 {% block conteudo %}
 
-<head>
-  <title>Tela de Instruções</title>
-  <style>
-    /* Estilo para o texto e título da tela de instruções */
-    #texto, #sejabemvindo {
-      color: rgb(17, 0, 110);
-    }
-
-/* Estilo para a tela de instruções */
-#instrucoes {
-  position: fixed; /* Define a posição como fixa para que a tela fique "grudada" no topo */
-  top: 0; /* Define a posição no topo */
-  left: 0; /* Define a posição à esquerda */
-  width: 100%; /* Define a largura como 100% da tela */
-  height: 100%; /* Define a altura como 100% da tela */
-  font-size: larger; /* Define o tamanho da fonte */
-  background-color: rgba(0, 0, 0, 0.5); /* Define a cor de fundo com transparência */
-  z-index: 999; /* Define a ordem de empilhamento acima de todos os outros elementos */
-  display: none; /* Define que a tela de instruções começa escondida */
-}
-
-/* Estilo para o conteúdo dentro da tela de instruções */
-#instrucoes .conteudo {
-  border-radius: 10px; /* Define a borda arredondada */
-  position: absolute; /* Define a posição como absoluta para que possa ser centralizado */
-  top: 50%; /* Define a posição no centro vertical */
-  left: 50%; /* Define a posição no centro horizontal */
-  transform: translate(-50%, -50%); /* Centraliza o elemento */
-  width: 80%; /* Define a largura como 80% da tela */
-  height: 80%; /* Define a altura como 80% da tela */
-  background-color: #fff; /* Define a cor de fundo como branca */
-  padding: 20px; /* Define o espaçamento interno */
-  text-align: center; /* Centraliza o texto horizontalmente */
-}
-  </style>
-</head>
 <body>
-  <!-- Tela de instruções -->
-  <div id="instrucoes">
-    <div class="conteudo">
-      <h2 id="sejabemvindo">Seja bem-vindo!</h2>
-      <p id="texto"></p>
-      <button type="button" class="btn btn-danger" id="fechar-instrucoes">Fechar</button>
-    </div>
-  </div>
+  
   <!-- Conteúdo da página -->
   <div class="row border border-break">
     <div class="col-md-12 text-dark">

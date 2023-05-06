@@ -22,7 +22,7 @@ def Dashboard(request):
 
     if request.method == 'GET':
 
-        menssagem1 = "Dados Gerais do enem"
+        menssagem1 = "Dados Gerais do Enem"
         # menssagem = """Essa plataforma online oferece uma solução para a análise de microdados socioeconômicos do ENEM referentes aos anos de 2016, 2017, 2018 e 2019 de maneira eficiente e ágil. Utilizando técnicas avançadas da ciência de dados, a plataforma possibilita uma análise precisa e detalhada dos dados, com o objetivo de fornecer insights valiosos para a tomada de decisões estratégicas em relação ao desempenho dos candidatos nas provas. Com uma interface intuitiva e funcionalidades de filtragem e visualização de dados, a plataforma é uma ferramenta poderosa para pesquisadores, gestores educacionais e profissionais da área de educação interessados em aprimorar a compreensão dos fatores que influenciam o desempenho dos estudantes no ENEM."""
         menssagem = """Esta plataforma é online e oferece uma solução para a análise de microdados socioeconômicos do ENEM.
             Os anos de referência são 2016, 2017, 2018 e 2019.
@@ -164,7 +164,7 @@ def Dashboard(request):
         menssagem = """<br>
         Esta é uma plataforma online que possibilitar a realização
          de uma análise de forma simples, eficiente, e no menor período possível 
-         referente aos microdados socioeconomicos do ENEM nos periodos de 2018 e 2019."""
+         referente aos microdados socioeconômicos do ENEM nos períodos de 2018 e 2019."""
 
         fig = go.Figure(data=[go.Table(
             header=dict(values=['Ano', 'Quantidade de Inscritos']),

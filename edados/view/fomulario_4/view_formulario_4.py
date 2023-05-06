@@ -49,7 +49,7 @@ def formulario_4(request):
 
         # Formulario de Filtro
         menssagem = ("Mapa de Distribuição de Alunos")
-        menssagem_informativa = """O tela web em questão disponibiliza uma ferramenta de análise da densidade demográfica 
+        menssagem_informativa = """A tela web em questão disponibiliza uma ferramenta de análise da densidade demográfica 
         dos inscritos no ENEM utilizando os microdados."""
 
         df = pd.read_csv('/home/icaro/Documentos/e-dados/edados/view/fomulario_4/municipios_brasileiros.csv')
