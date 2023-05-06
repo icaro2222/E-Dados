@@ -1,17 +1,9 @@
-import os
 from django.contrib.auth.decorators import login_required
-from typing import Sized
-import plotly.graph_objects as go
-from django.shortcuts import render
-import pandas as pd
-import matplotlib.pyplot as plt
-import plotly.express as px
-import matplotlib as mpl
-from edados.formularios.dashboard.formulario_dashboard import DashboardFormulario
-import numpy as np
-from edados.database import bd_quest_socio_notas_deficiencia, conect_db
+from django.shortcuts import render, redirect
+from edados.formularios.aba_informacoes.correcoes import form_correcoes
 from django.utils.html import format_html_join
-
+from  correcoes.models import Correcao
+from django.contrib import messages
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
@@ -37,6 +29,10 @@ Para acessar a plataforma, é necessário fazer login utilizando um usuário e s
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(
             '\n', '<p class="font-weight-normal">{}</p>', ((line,) for line in menssagem))
+
+        menssagem1 = menssagem1.split('\n')
+        menssagem1 = format_html_join(
+            '\n', '<h4 class="font-weight-normal mb-0 mt-3">{}</h4>', ((line,) for line in menssagem1))
 
         context = {
             # 'form': form,
@@ -64,36 +60,62 @@ def correcoes_bugs(request):
 
     if request.method == 'GET':
 
-        correcoes ="""Informe-nós erros ou bugs que você encontrou na plataforma:""" 
+        correcoes ="""Informe-nos erros ou bugs que você encontrou na plataforma:""" 
         # menssagem = """"""
         menssagem = """Nossa equipe esta trabalhando arduamente em busca de trazer as melhores ferramentas à plataforma."""
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(
-            '\n', '<h5 class="font-weight-normal">{}</h5>', ((line,) for line in menssagem))
+            '\n', '<h6 class="font-weight-normal">{}</h6>', ((line,) for line in menssagem))
 
         correcoes = correcoes.split('\n')
         correcoes = format_html_join(
-            '\n', '<h3 class="font-weight-normal mt-3 mb-0">{}</h3>', ((line,) for line in correcoes))
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
+        
+        form = form_correcoes()
 
         context = {
-            # 'form': form,
+            'form': form,
             'menssagem': menssagem,
             'correcoes': correcoes,
         }
         return render(request, 'base/aba_de_informacoes/correcoes_bugs.html', context=context)
     else:
+        
+        nome = request.POST.get('nome')
+        descricao = request.POST.get('descricao')
+        email = request.POST.get('email')
+        
+        correcao = Correcao(nome=nome, descricao=descricao, email=email)
+        correcao.save()
+        messages.success(request, 'Relatorio enviada com sucesso!')
+        form = form_correcoes(request.POST)
+        if form.is_valid():
+            # Lida com os dados do formulário aqui
+            nome = form.cleaned_data['nome']
+            descricao = form.cleaned_data['descricao']
+            email = form.cleaned_data['email']
+            # Limpa o formulário
 
+        form = form_correcoes()
 
+        correcoes ="""Informe-nos erros ou bugs que você encontrou na plataforma:""" 
+        # menssagem = """"""
+        menssagem = """Nossa equipe esta trabalhando arduamente em busca de trazer as melhores ferramentas à plataforma."""
 
-        menssagem1 = "Dados Gerais do enem"
-        menssagem = """<br>
-        Esta é uma plataforma online quM nos periodos de 2018 e 2019."""
+        menssagem = menssagem.split('\n')
+        menssagem = format_html_join(
+            '\n', '<h6 class="font-weight-normal">{}</h6>', ((line,) for line in menssagem))
 
+        correcoes = correcoes.split('\n')
+        correcoes = format_html_join(
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
+        
 
         context = {
+            'form': form,
             'menssagem': menssagem,
-            'menssagem1': menssagem1
+            'correcoes': correcoes,
         }
         return render(request, 'base/aba_de_informacoes/correcoes_bugs.html', context=context)
 
@@ -133,7 +155,7 @@ def criadores(request):
 
         menssagem1 = menssagem1.split('\n')
         menssagem1 = format_html_join(
-            '\n', '<h3 class="font-weight-normal mt-2 mb-0 d-flex aligh-items-center justify-content-center">{}</h3>', ((line,) for line in menssagem1))
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0 d-flex aligh-items-center justify-content-center">{}</h4>', ((line,) for line in menssagem1))
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(

@@ -1,64 +1,64 @@
 {% extends 'layout/layout.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block titulo %}E-Dados{% endblock %} 
-{% block css%} <link rel="stylesheet" href={% static "css/styles_relatorio.css" %}> {%endblock %} 
+{% block titulo %}E-Dados{% endblock %}
+{% block css%}
+<link rel="stylesheet" href={% static "css/styles_relatorio.css" %}> {%endblock %}
 {% block conteudo %}
 
 <body>
-  
+
   <!-- Conteúdo da página -->
   <div class="row border border-dark">
     <div class="col-md-12 text-dark">{{ correcoes }}
-    <hr class="mt-0 bg-dark" />
-    </div>
-    
-  <!-- Page Heading -->
-  <form class="col-md-12 mb-3" action="." method="post">
-    {% csrf_token %} 
-    <div class="">
-      <label for="">Seu Nome:</label><br>
-      <input type="text"><br>
-      <label for="">Descrição do Bugs:</label><br>
-      <input type="text" value=""><br>
-      <label for="">Informe nos o seu e-mail:</label><br>
-      <input type="email" name="" id="">
-      <!-- {{ form|crispy }} -->
-    </div>
-    <div class="d-flex justify-content-end align-items-center">
-      <div class="col-sm-4 mb-4 d-flex justify-content-end">
-        <button type="submit" class="md-3 btn btn-outline-primary">
-          Relatar Erro ou Bugs
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-clipboard-data"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"
-            />
-            <path
-              d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
-            />
-            <path
-              d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
-            />
-          </svg>
-        </button>
+      <hr class="mt-0 bg-dark" />
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success">
+        {{ message }}
       </div>
-    </div>
-  <hr class="mt-0" />
-  </form>
-  <div class="col-md-12 ">
-    <h6 class="text-dark d-flex ">{{ menssagem }}</h6>
-    <!-- <div><hr class="mt-0"></div> -->
-  </div>
-</div>
+      {% endfor %}
+      {% endif %}
 
-    <!-- <script>
+    </div>
+
+    <!-- Page Heading -->
+    <form class="col-md-12 mb-3" action="." method="post">
+      <div class="row d-flex">
+        <div class="col-md-6">
+          {% csrf_token %}
+          {{ form.nome|as_crispy_field }}
+        </div>
+        <div class="col-md-6">
+          {% csrf_token %}
+          {{ form.email|as_crispy_field }}
+        </div>
+        <div class="col-md-12">
+          {% csrf_token %}
+          {{ form.descricao|as_crispy_field }}
+        </div>
+      </div>
+      <div class="d-flex justify-content-end align-items-center">
+        <div class="col-sm-4 mb-4 d-flex justify-content-end">
+          <button type="submit" class="md-3 btn btn-outline-primary">
+            Relatar Erro ou Bugs
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bug"
+              viewBox="0 0 16 16">
+              <path
+                d="M4.355.522a.5.5 0 0 1 .623.333l.291.956A4.979 4.979 0 0 1 8 1c1.007 0 1.946.298 2.731.811l.29-.956a.5.5 0 1 1 .957.29l-.41 1.352A4.985 4.985 0 0 1 13 6h.5a.5.5 0 0 0 .5-.5V5a.5.5 0 0 1 1 0v.5A1.5 1.5 0 0 1 13.5 7H13v1h1.5a.5.5 0 0 1 0 1H13v1h.5a1.5 1.5 0 0 1 1.5 1.5v.5a.5.5 0 1 1-1 0v-.5a.5.5 0 0 0-.5-.5H13a5 5 0 0 1-10 0h-.5a.5.5 0 0 0-.5.5v.5a.5.5 0 1 1-1 0v-.5A1.5 1.5 0 0 1 2.5 10H3V9H1.5a.5.5 0 0 1 0-1H3V7h-.5A1.5 1.5 0 0 1 1 5.5V5a.5.5 0 0 1 1 0v.5a.5.5 0 0 0 .5.5H3c0-1.364.547-2.601 1.432-3.503l-.41-1.352a.5.5 0 0 1 .333-.623zM4 7v4a4 4 0 0 0 3.5 3.97V7H4zm4.5 0v7.97A4 4 0 0 0 12 11V7H8.5zM12 6a3.989 3.989 0 0 0-1.334-2.982A3.983 3.983 0 0 0 8 2a3.983 3.983 0 0 0-2.667 1.018A3.989 3.989 0 0 0 4 6h8z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <hr class="mt-0" />
+    </form>
+    <div class="col-md-12 ">
+      <h6 class="text-dark d-flex ">{{ menssagem }}</h6>
+      <!-- <div><hr class="mt-0"></div> -->
+    </div>
+  </div>
+
+  <!-- <script>
       // Verifica se já foi exibida a tela de instruções
       if (!localStorage.getItem('exibiuInstrucoes')) {
         // Exibe a tela de instruções
@@ -98,8 +98,13 @@
       escrever();
 
     </script> -->
-  </body>
+</body>
 
+<script>
+  setTimeout(function() {
+      $('.alert').fadeOut('slow');
+  }, 1600);
+</script>
 
 <!-- <hr class="mb-3" /> -->
 <!-- /.container-fluid -->
