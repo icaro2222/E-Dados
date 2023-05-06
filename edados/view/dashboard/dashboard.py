@@ -35,114 +35,114 @@ def Dashboard(request):
         menssagem = format_html_join(
             '\n', '<p class="font-weight-normal">{}</p>', ((line,) for line in menssagem))
 
-        form = DashboardFormulario()
+        # form = DashboardFormulario()
 
-        fig = go.Figure(data=[go.Table(
-            header=dict(
-                values=['Ano', 'Quantidade de Inscritos']),
-            cells=dict(
-                values=[['2021', '2020', '2019', '2018', '2017', '2016',
-                         '2015', '2014', '2013', '2012', '2011', '2010'],
-                        [4004764, 5783357, 5095308, 5513662,
-                         6731186, 8627371, 7792025, 8722290,
-                         7173574, 5791332, 5380857, 4626094
-                         ]
-                        ]))
-        ])
+        # fig = go.Figure(data=[go.Table(
+        #     header=dict(
+        #         values=['Ano', 'Quantidade de Inscritos']),
+        #     cells=dict(
+        #         values=[['2021', '2020', '2019', '2018', '2017', '2016',
+        #                  '2015', '2014', '2013', '2012', '2011', '2010'],
+        #                 [4004764, 5783357, 5095308, 5513662,
+        #                  6731186, 8627371, 7792025, 8722290,
+        #                  7173574, 5791332, 5380857, 4626094
+        #                  ]
+        #                 ]))
+        # ])
 
-        figura = go.Figure()
+        # figura = go.Figure()
 
-        figura.add_bar(
-            x=['2010', '2011', '2012', '2013', '2014', '2015',
-               '2016', '2017', '2018', '2019', '2020', '2021'],
-            y=[4626094, 5380857,  5791332, 7173574,
-               8722290, 7792025,  8627371,	6731186,
-               5513662, 5095308, 5783357, 4004764
-               ],
-            name='Num de inscritos')
+        # figura.add_bar(
+        #     x=['2010', '2011', '2012', '2013', '2014', '2015',
+        #        '2016', '2017', '2018', '2019', '2020', '2021'],
+        #     y=[4626094, 5380857,  5791332, 7173574,
+        #        8722290, 7792025,  8627371,	6731186,
+        #        5513662, 5095308, 5783357, 4004764
+        #        ],
+        #     name='Num de inscritos')
 
-        figura.add_scatter(
-            x=['2010', '2011', '2012', '2013', '2014', '2015',
-               '2016', '2017', '2018', '2019', '2020', '2021'],
-            y=[4626094, 5380857,  5791332, 7173574,
-               8722290, 7792025,  8627371,	6731186,
-               5513662, 5095308, 5783357, 4004764
-               ],
-            name='Num de inscritos')
+        # figura.add_scatter(
+        #     x=['2010', '2011', '2012', '2013', '2014', '2015',
+        #        '2016', '2017', '2018', '2019', '2020', '2021'],
+        #     y=[4626094, 5380857,  5791332, 7173574,
+        #        8722290, 7792025,  8627371,	6731186,
+        #        5513662, 5095308, 5783357, 4004764
+        #        ],
+        #     name='Num de inscritos')
 
-        figura.update_layout(
-            title_text='Quantidade de inscrições no Enem, por ano.',
-            width=500,
-            margin=dict(l=50, r=50, b=150, t=50),
-            xaxis=dict(
-                title="Ano",
-                title_standoff=10
-            ),
-            yaxis_title="Quantidade de Inscritos",
-            font=dict(
-                family="Arial",
-                size=12,
-                color="black"
-            ),
-            annotations=[
-                dict(
-                    x=0,
-                    y=-0.5,
-                    xref="paper",
-                    yref="paper",
-                    text="Legenda: <br>Num de inscritos: esta legenda indica o número de alunos<br>que realizaram a inscrição no Enem no respectivo ano.",
-                    showarrow=False,
-                    align="left",
-                    font=dict(
-                        family="Arial",
-                        size=13,
-                        color="black"
-                    )
-                )
-            ],
-            plot_bgcolor='white'
-        )
+        # figura.update_layout(
+        #     title_text='Quantidade de inscrições no Enem, por ano.',
+        #     width=500,
+        #     margin=dict(l=50, r=50, b=150, t=50),
+        #     xaxis=dict(
+        #         title="Ano",
+        #         title_standoff=10
+        #     ),
+        #     yaxis_title="Quantidade de Inscritos",
+        #     font=dict(
+        #         family="Arial",
+        #         size=12,
+        #         color="black"
+        #     ),
+        #     annotations=[
+        #         dict(
+        #             x=0,
+        #             y=-0.5,
+        #             xref="paper",
+        #             yref="paper",
+        #             text="Legenda: <br>Num de inscritos: esta legenda indica o número de alunos<br>que realizaram a inscrição no Enem no respectivo ano.",
+        #             showarrow=False,
+        #             align="left",
+        #             font=dict(
+        #                 family="Arial",
+        #                 size=13,
+        #                 color="black"
+        #             )
+        #         )
+        #     ],
+        #     plot_bgcolor='white'
+        # )
 
-        fig.update_layout(
-            title_text='Quantidade de inscrições no Enem, por ano.',
-            width=500,
-            xaxis_title="Ano",
-            yaxis_title="Quantidade de Inscritos",
-            legend_title="Legenda",
-            margin=dict(l=50, r=50, b=150, t=50),
-            font=dict(
-                family="Arial",
-                size=12,
-                color="black"
-            ),
-            annotations=[
-                dict(
-                    x=0,
-                    y=-0.5,
-                    xref="paper",
-                    yref="paper",
-                    text="Legenda: <br>Quantidade de Inscritos: esta legenda indica o número de alunos<br>que realizaram a inscrição no Enem no respectivo ano.",
-                    showarrow=False,
-                    align="left"
-                    # ,
-                    # font=dict(
-                    #     family="Arial",
-                    #     size=13,
-                    #     color="dark"
-                    # )
-                )
-            ]
-        )
+        # fig.update_layout(
+        #     title_text='Quantidade de inscrições no Enem, por ano.',
+        #     width=500,
+        #     xaxis_title="Ano",
+        #     yaxis_title="Quantidade de Inscritos",
+        #     legend_title="Legenda",
+        #     margin=dict(l=50, r=50, b=150, t=50),
+        #     font=dict(
+        #         family="Arial",
+        #         size=12,
+        #         color="black"
+        #     ),
+        #     annotations=[
+        #         dict(
+        #             x=0,
+        #             y=-0.5,
+        #             xref="paper",
+        #             yref="paper",
+        #             text="Legenda: <br>Quantidade de Inscritos: esta legenda indica o número de alunos<br>que realizaram a inscrição no Enem no respectivo ano.",
+        #             showarrow=False,
+        #             align="left"
+        #             # ,
+        #             # font=dict(
+        #             #     family="Arial",
+        #             #     size=13,
+        #             #     color="dark"
+        #             # )
+        #         )
+        #     ]
+        # )
 
-        relatorio_em_quadro = fig.to_html()
-        relatorio = figura.to_html()
+        # relatorio_em_quadro = fig.to_html()
+        # relatorio = figura.to_html()
 
         context = {
-            'form': form,
+            # 'form': form,
             'menssagem': menssagem,
             'menssagem1': menssagem1,
-            'relatorio': relatorio,
-            'relatorio_em_quadro': relatorio_em_quadro
+            # 'relatorio': relatorio,
+            # 'relatorio_em_quadro': relatorio_em_quadro
         }
         return render(request, 'dashboard/dashboard.html', context=context)
     else:
