@@ -21,6 +21,7 @@ from .view.outros import view_quest_demo_notas
 # from .view import view_quest_socio_notas, view_quest_demo_socioe, view_quest_socio_notas_sexo , view_quest_socio_notas_deficiencia, view_regiao, view_regiao_mapa#, views, view,  view_plot
 from .view.contraste import view_contrast_quest_socio_notas
 from .view.dashboard import dashboard
+from .view.aba_de_informacoes import view_aba_de_informacoes
 from .view.fomulario_1 import view_formulario_1, view_formulario_1_4
 from .view.fomulario_2 import view_formulario_2
 from .view.fomulario_3 import view_formulario_3
@@ -41,6 +42,7 @@ urlpatterns = [
     path('Perfil_do_Inscrito/', view_formulario_1.formulario_1, name="formulario_1"),
     path('Acerto_por_Prova/', view_formulario_3.formulario_3, name="formulario_3"),
     path('regiao_demografica/', view_formulario_4.formulario_4, name="formulario_4"),
+    path('Infor/', view_aba_de_informacoes.aba_de_informacoes, name="aba_de_informacoes"),
     
     # path('teste/', views.teste, name='teste'),
     # path('manipulando/', views.index, name='page_dados'),
