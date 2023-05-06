@@ -51,10 +51,10 @@
     </div>
   </div>
   <!-- Conteúdo da página -->
-  <div class="row border border-white">
+  <div class="row border border-break">
     <div class="col-md-12 text-dark">
-      <h4>{{ menssagem1 }}:</h4>
-      <hr class="mt-0 bg-dark" />
+      <h4 class="text-dark">{{ menssagem1 }}:</h4>
+      <hr class="mt-0 bg-break" />
     </div>
     
   <!-- Page Heading -->
@@ -94,13 +94,13 @@
       <div class="col md-6">{{relatorio_em_quadro|safe}}</div>
       <div class="col md-6">{{relatorio|safe}}</div>
   </div>
-  <div class="col-md-12">
-    <h4>{{ menssagem }}</h4>
+  <div class="col-md-12 ">
+    <h5 class="text-dark" >{{ menssagem }}</h5>
     <hr class="mt-0 bg-dark" />
   </div>
 </div>
 
-    <script>
+    <!-- <script>
       // Verifica se já foi exibida a tela de instruções
       if (!localStorage.getItem('exibiuInstrucoes')) {
         // Exibe a tela de instruções
@@ -139,7 +139,7 @@
 
       escrever();
 
-    </script>
+    </script> -->
   </body>
 
 

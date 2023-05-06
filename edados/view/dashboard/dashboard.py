@@ -33,7 +33,7 @@ def Dashboard(request):
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(
-            '\n', '<p>{}</p>', ((line,) for line in menssagem))
+            '\n', '<p class="font-weight-normal">{}</p>', ((line,) for line in menssagem))
 
         form = DashboardFormulario()
 
@@ -123,12 +123,13 @@ def Dashboard(request):
                     yref="paper",
                     text="Legenda: <br>Quantidade de Inscritos: esta legenda indica o número de alunos<br>que realizaram a inscrição no Enem no respectivo ano.",
                     showarrow=False,
-                    align="left",
-                    font=dict(
-                        family="Arial",
-                        size=13,
-                        color="black"
-                    )
+                    align="left"
+                    # ,
+                    # font=dict(
+                    #     family="Arial",
+                    #     size=13,
+                    #     color="dark"
+                    # )
                 )
             ]
         )

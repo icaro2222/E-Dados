@@ -5,7 +5,7 @@
 	
 	body{
 		margin: 0;
-		font-family: 'Montserrat ital', sans-serif;
+		font-family: "IBM Plex Sans", sans-serif, 'Montserrat ital';
 	}
 	
 	body * {
