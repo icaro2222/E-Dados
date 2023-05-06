@@ -17,7 +17,7 @@ def formatar(valor):
 def formulario_3(request):
 
     if request.method == 'GET':        
-        menssagem = ("Formulário 3.")
+        menssagem = """Análise da Quantidade de Acertos e Erros por Prova e Filtros:"""
         menssagem_informativa = """A análise de dados é uma das habilidades mais importantes na era digital em que vivemos, e é especialmente útil quando se trata de quantificar o desempenho em testes como o Exame Nacional do Ensino Médio (ENEM). Uma plataforma online com filtros pode ser uma ferramenta poderosa para analisar dados do ENEM e determinar o nível de sucesso de um determinado grupo de estudantes.
 
         Usando uma plataforma online com filtros, é possível analisar vários dados do ENEM, como a nota geral, a pontuação em cada área de conhecimento e a nota de redação. Além disso, é possível filtrar esses dados por região, tipo de escola, renda familiar, entre outros fatores.
@@ -128,7 +128,7 @@ def formulario_3(request):
             Microdado_Amostra = bd_formulario_3.buscar_dataframe_no_banco(Amostra, filtro_cor_da_prova=filtro_cor_da_prova, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
 
 
-        menssagem = 'Formulário 3'
+        menssagem = 'Análise do Desempenho Acadêmico de Pessoas com Deficiência: Quantidade de Acertos e Erros por Prova e Filtros Socioeconômicos'
 
         Microdado_Amostra.reset_index(inplace=True)
         resposta = Microdado_Amostra[respostas]

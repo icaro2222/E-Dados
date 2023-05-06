@@ -20,7 +20,7 @@ def formulario_1(request):
     demografico = 'TP_SEXO'
 
     if request.method == 'GET':
-        menssagem = ("Formulário 1.")
+        menssagem = 'Análise de Dados Socioeconômicos do ENEM'
         menssagem1 = """Este formulário permite realizar uma análise exploratória que correlaciona os microdados socioeconômicos e demográficos do ENEM nos anos de 2016, 2017, 2018 e 2019. 
         É possível obter resultados em porcentagem, o que possibilita a comparação entre os anos estudados."""
 
@@ -58,7 +58,7 @@ def formulario_1(request):
             Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(
                 Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
 
-        menssagem = 'Formulário 1'
+        menssagem = 'Análise de Dados Socioeconômicos do ENEM'
         relatorio_em_grafico = ''
 
         if (demografico == 'TP_SEXO'):

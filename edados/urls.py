@@ -43,6 +43,9 @@ urlpatterns = [
     path('Acerto_por_Prova/', view_formulario_3.formulario_3, name="formulario_3"),
     path('regiao_demografica/', view_formulario_4.formulario_4, name="formulario_4"),
     path('Infor/', view_aba_de_informacoes.aba_de_informacoes, name="aba_de_informacoes"),
+    path('Criadores/', view_aba_de_informacoes.criadores, name="criadores"),
+    
+    path('Correcoes/', view_aba_de_informacoes.correcoes_bugs, name="correcoes"),
     
     # path('teste/', views.teste, name='teste'),
     # path('manipulando/', views.index, name='page_dados'),

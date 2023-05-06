@@ -283,7 +283,7 @@ def formulario_4(request):
     demografico = 'TP_SEXO'
 
     if request.method == 'GET':        
-        menssagem = ("Formulário 1.4")
+        menssagem = ("Análise de Dados Socioeconômicos do ENEM")
         menssagem1 = """Esta é uma tela web que permite realizar o somatório dos alunos que responderam ao ENEM. Esta tela também possui filtros que permitem reduzir o somatório para fins de análise dos microdados. O resultado desse somatório é obtido após a aplicação desses filtros."""
 
         form = Formulario()
@@ -477,7 +477,7 @@ def formulario_4(request):
 
         relatorio_em_tabela = figura_tabela.to_html()
 
-        menssagem = 'Formulário 1.4'
+        menssagem = 'Análise de Dados Socioeconômicos do ENEM'
 
         context = {
             'form' : form,

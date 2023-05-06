@@ -249,7 +249,7 @@ def formulario_2(request):
 
     if request.method == 'GET':    
           
-        menssagem = "Formulário:"          
+        menssagem = "Análise do Desempenho Acadêmico de Pessoas com Deficiência e seus Dados Socioeconômicos:"          
         menssagem1 = ("Correlação entre as questões socioeconômicas e desempenho no exame, somados a filtros.")
         menssagem_informativa = """
         A análise de dados é uma ferramenta poderosa para compreender e tirar conclusões a partir de grandes quantidades de informações. Uma aplicação interessante da análise de dados é na área da educação, mais especificamente na análise do desempenho dos alunos em exames, como o Enem.

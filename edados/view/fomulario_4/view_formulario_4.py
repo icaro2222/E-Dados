@@ -17,7 +17,7 @@ def formulario_4(request):
 
     if request.method == 'GET':        
         
-        menssagem = ("Form 4: Densidade Demográfica")
+        menssagem = ("Mapa de Distribuição de Alunos")
         menssagem_informativa = """O formulário web em questão disponibiliza uma ferramenta de análise da densidade demográfica dos inscritos no ENEM utilizando os microdados. Através dessa plataforma, é possível realizar análises comparativas entre diferentes regiões demográficas e identificar padrões que possam estar relacionados aos dados socioeconômicos dos inscritos.
 
         Com o objetivo de oferecer uma experiência de usuário intuitiva e acessível, a tela do site apresenta de forma clara e organizada as diferentes opções de análise disponíveis. É possível selecionar diferentes regiões demográficas e        comparar a densidade de inscritos em cada uma delas, além de visualizar gráficos e tabelas com informações detalhadas         sobre os dados socioeconômicos dos inscritos em cada região.
@@ -48,7 +48,7 @@ def formulario_4(request):
 
 
         # Formulario de Filtro
-        menssagem = ("Form 4: Densidade Demográfica")
+        menssagem = ("Mapa de Distribuição de Alunos")
         menssagem_informativa = """O tela web em questão disponibiliza uma ferramenta de análise da densidade demográfica 
         dos inscritos no ENEM utilizando os microdados."""
 

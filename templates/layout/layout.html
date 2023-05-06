@@ -178,11 +178,15 @@
                     <span>Sobre</span>
                 </a>
                 <div id="aba_de_informacoes"
-                    class="collapse {% if request.resolver_match.url_name == 'aba_de_informacoes' %} show{% endif %}"
+                    class="collapse {% if request.resolver_match.url_name == 'aba_de_informacoes'  or request.resolver_match.url_name == 'criadores' or request.resolver_match.url_name == 'correcoes' %} show{% endif %}"
                     aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item {% if request.resolver_match.url_name == 'aba_de_informacoes' %} active{% endif %}"
-                            href="{% url 'aba_de_informacoes' %}">Criadores</a>
+                            href="{% url 'aba_de_informacoes' %}">A plataforma</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'criadores' %} active{% endif %}"
+                            href="{% url 'criadores' %}">Os criadores</a>
+                        <a class="collapse-item {% if request.resolver_match.url_name == 'correcoes' %} active{% endif %}"
+                            href="{% url 'correcoes' %}">Bugs e Correções</a>
                     </div>
                 </div>
             </li>
