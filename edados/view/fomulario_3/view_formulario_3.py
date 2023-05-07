@@ -19,8 +19,8 @@ def formatar(valor):
 
 def formulario_3(request):
 
-    if request.method == 'GET':        
-        menssagem = """Análise da Quantidade de Acertos e Erros por Prova e Filtros:"""
+    if request.method == 'GET':
+        menssagem = 'Análise do Desempenho Acadêmico: Quantidade de Acertos e Erros por Prova e Filtros Socioeconômicos'
         menssagem_informativa = """A análise de dados é uma das habilidades mais importantes na era digital em que vivemos, e é especialmente útil quando se trata de quantificar o desempenho em testes como o Exame Nacional do Ensino Médio (ENEM). Uma plataforma online com filtros pode ser uma ferramenta poderosa para analisar dados do ENEM e determinar o nível de sucesso de um determinado grupo de estudantes.
 
         Usando uma plataforma online com filtros, é possível analisar vários dados do ENEM, como a nota geral, a pontuação em cada área de conhecimento e a nota de redação. Além disso, é possível filtrar esses dados por região, tipo de escola, renda familiar, entre outros fatores.
@@ -169,7 +169,7 @@ def formulario_3(request):
         print('------------------------------------')
         print(CONTAGEM)
         print('---===================================-')
-        menssagem = 'Análise do Desempenho Acadêmico de Pessoas com Deficiência: Quantidade de Acertos e Erros por Prova e Filtros Socioeconômicos'
+        menssagem = 'Análise do Desempenho Acadêmico: Quantidade de Acertos e Erros por Prova e Filtros Socioeconômicos'
 
         Microdado_Amostra.reset_index(inplace=True)
         resposta = Microdado_Amostra[respostas]
@@ -240,7 +240,7 @@ def formulario_3(request):
                 tickmode="array",
                 titlefont=dict(size=10),
             ),
-            title="Percentual de " + acerto_erro + " da prova " + prova + " no ano de " + filtro_ano + " dos inscritos que possuem " + filtro_deficiencia + " deficiência.",
+            title="Percentual de " + acerto_erro + " nas questões na prova de " + prova + " no ano de " + filtro_ano + " dos inscritos que possuem " + filtro_deficiencia + " deficiência.",
             # title_text = """Tabela de percentual Conforme os critérios estabelecidos""",
             height = 500,
             margin = {'t':75, 'l':50},
@@ -262,6 +262,8 @@ def formulario_3(request):
             'form' : form,
             'form_filtro' : form_filtro,
             'menssagem' : menssagem,
+            'quantidadeParcial' : CONTAGEM,
+            'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
             'relatorio' : relatorio
         }
 

@@ -77,6 +77,22 @@
 
 
 <div class="text-dark rounded border border-dark">
+
+  <div class="col-md-12">
+    <h5 class="mt-2 mb-0">{{ menssagem }}</h5>
+    <hr class="mt-0 mb-3 bg-dark" />
+    <div>
+      <h6>
+        O número total de alunos após a aplicação do filtro é:
+        {{quantidadeParcial}}
+      </h6>
+      <h6>
+        O número total de alunos que se inscreveram no Enem:
+        {{quantidadeTotal}}
+      </h6>
+    </div>
+  </div>
+  <hr class="mt-0 mb-3 bg-dark" />
   <div class="row">
     <div class="col md-12">
       <div class="col md-11">{{relatorio|safe}}</div>

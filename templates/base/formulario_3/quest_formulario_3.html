@@ -11,19 +11,15 @@ Formulário 3
     <h5 class="mt-0 mb-0">Variáveis de contraste e correlação:</h5>
     <hr class="mt-0 mb-2" />
     <div class="row d-flex">
-      <div class="col-md-4">
+      <div class="col-md-5">
         {% csrf_token %}
         {{ form.cor_da_prova|as_crispy_field }}
       </div>
-      <div class="col-md-3">
+      <div class="col-md-4">
         {% csrf_token %}
         {{ form.acerto_erro|as_crispy_field }}
       </div>
       <div class="col-md-3">
-        {% csrf_token %}
-        {{ form.deficiencia|as_crispy_field }}
-      </div>
-      <div class="col-md-2">
         {% csrf_token %}
         {{ form.ano|as_crispy_field }}
       </div>

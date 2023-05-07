@@ -368,8 +368,8 @@ def formulario_4(request):
         rowEvenColor = 'lightgrey'
         rowOddColor = 'white'
 
-        # print("contage = " + str(CONTAGEM))
-        # print("contage = " + str(CONTAGEMMicrodado_Amostra))
+        print("contage = " + str(CONTAGEM))
+        print("contage = " + str(CONTAGEMMicrodado_Amostra))
         
 
         if filtro_questao == 'nenhum':
@@ -482,8 +482,8 @@ def formulario_4(request):
             'form_filtro' : form_filtro,
             'menssagem' : menssagem,
             'quantidadeParcial' : CONTAGEM,
-            'relatorio_dados_brutos' : relatorio_dados_brutos,
             'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
+            'relatorio_dados_brutos' : relatorio_dados_brutos,
             'relatorio_em_tabela' : relatorio_em_tabela
         }
 

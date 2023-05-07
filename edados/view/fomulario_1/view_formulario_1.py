@@ -138,6 +138,8 @@ def formulario_1(request):
             'form_filtro': form_filtro,
             'menssagem': menssagem,
             'relatorio': relatorio,
+            'quantidadeParcial' : CONTAGEM,
+            'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
             'relatorio_em_grafico': relatorio_em_grafico
         }
 

@@ -25,8 +25,8 @@ from django import forms
 def questionario_recursos_especializados(Form):
 
     recursos_especializados = (
-        ('todos', 'Todos os recursos'),
         ('nenhum', 'Nenhum recurso'),
+        ('todos', 'Todos os recursos'),
         ('IN_SEM_RECURSO', 'IN_SEM_RECURSO'),
         ('IN_BRAILLE', 'IN_BRAILLE'),
         ('IN_AMPLIADA_24', 'IN_AMPLIADA_24'),

@@ -479,8 +479,9 @@ def formulario_2(request):
             'form' : form,
             'menssagem' : menssagem,
             'menssagem1' : menssagem1,
-            # 'imagem_relatorio' : imagem_relatorio,
             'form_filtro' : form_filtro,
+            'quantidadeParcial' : CONTAGEM,
+            'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
             'figura_com_criador_de_tabela' : figura_com_criador_de_tabela,
             'relatorio_em_tabela' : relatorio_em_tabela
         }

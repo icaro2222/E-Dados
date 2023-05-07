@@ -5,6 +5,9 @@ from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 from edados.formularios.filtros.filtros_ano import Formulario_filtro_ano
 from django.utils.html import format_html_join
 
+CONTAGEM = 0
+CONTAGEMMicrodado_Amostra = 5096019
+
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
@@ -83,8 +86,10 @@ def formulario_4(request):
 
         context = {
             'form' : form,
-            'form_filtro' : form_filtro,
             'menssagem' : menssagem,
+            'form_filtro' : form_filtro,
+            'quantidadeParcial' : CONTAGEM,
+            'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
             'menssagem_informativa' : menssagem_informativa,
             'relatorio' : relatorio
         }

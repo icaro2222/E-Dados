@@ -92,22 +92,32 @@
   </form>
 
 </div>
+
+
 <div class="text-dark rounded border border-dark">
+
+
   <div class="col-md-12">
-    <h5 class="mt-2 mb-0">{{ menssagem1 }}</h5>
-    <hr class="mt-0 mb-2 bg-dark" />
+    <h5 class="mt-2 mb-0">{{ menssagem }}</h5>
+    <hr class="mt-0 mb-3 bg-dark" />
+    <div>
+      <h6>
+        O número total de alunos após a aplicação do filtro é:
+        {{quantidadeParcial}}
+      </h6>
+      <h6>
+        O número total de alunos que se inscreveram no Enem:
+        {{quantidadeTotal}}
+      </h6>
+    </div>
   </div>
+  <!-- Relatório em formato de tabelaa percentual -->
   <div class="row">
     <div class="col md-12">
+      <hr class="mt-0 mb-3 bg-dark" />
       <div class="col md-11">{{relatorio_em_tabela|safe}}</div>
     </div>
   </div>
-  <!-- <hr class="mb-3" />
-  <div class="row">
-    <div class="col md-12">
-      <div class="col md-11">{{relatorio|safe}}</div>
-    </div>
-  </div> -->
   <hr class="mb-3" />
   <div class="row d-flex justify-content-end align-items-center m-3">
     <div class="col-md-4 d-flex justify-content-end">
