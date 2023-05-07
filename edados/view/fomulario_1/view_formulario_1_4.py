@@ -318,8 +318,6 @@ def formulario_4(request):
         filtro_recurso = form_filtro.data['recurso']
         filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
 
-        print("teste: "+filtro_escola)
-
         Amostra = [demografico, questao]
         Microdado_Amostra = bd_formulario_1_4.buscar_dataframe_no_banco(
             Amostra, 

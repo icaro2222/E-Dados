@@ -1,4 +1,3 @@
-from ast import If
 import pandas as pd
 from edados.database import conect_db
 
