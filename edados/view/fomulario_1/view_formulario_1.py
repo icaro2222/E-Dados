@@ -9,6 +9,8 @@ from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 import numpy as np
 from edados.database import bd_formulario_1
 
+CONTAGEM = 0
+CONTAGEMMicrodado_Amostra = 5096019
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
@@ -45,19 +47,47 @@ def formulario_1(request):
         filtro_deficiencia = form.data['deficiencia']
 
         # Formulario de Filtro
+        # Formulario de Filtro
+        filtro_deficiencia = form_filtro.data['deficiencia']
+        filtro_estado_civil = form_filtro.data['estado_civil']
+        filtro_cor = form_filtro.data['cor']
         filtro_sexo = form_filtro.data['sexo']
         filtro_ano = form_filtro.data['ano']
+        filtro_escola = form_filtro.data['escola']
+        filtro_nacionalidade = form_filtro.data['nacionalidade']
+        filtro_estado = form_filtro.data['estado']
         filtro_amostra = form_filtro.data['amostra']
+        filtro_recurso = form_filtro.data['recurso']
+        filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
 
         Amostra = [demografico, questao]
         if demografico != 'TP_SEXO' and filtro_sexo != 'todos':
             Amostra.append('TP_SEXO')
             Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(
-                Amostra, filtro_sexo=filtro_sexo, filtro_amostra=filtro_amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+                Amostra, 
+                filtro_sexo=filtro_sexo, 
+                filtro_amostra=filtro_amostra, 
+                filtro_deficiencia=filtro_deficiencia,
+                filtro_ano=filtro_ano)
         else:
             Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(
-                Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+                Amostra, 
+                filtro_amostra=filtro_amostra, 
+                filtro_deficiencia=filtro_deficiencia,
+                filtro_cor=filtro_cor, 
+                filtro_estado=filtro_estado, 
+                filtro_recurso=filtro_recurso, 
+                filtro_questao=questao, 
+                filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
+                filtro_estado_civil=filtro_estado_civil, 
+                filtro_escola=filtro_escola, 
+                filtro_nacionalidade=filtro_nacionalidade,
+                filtro_ano=filtro_ano)
+            
 
+        CONTAGEM  = Microdado_Amostra[questao].count()
+        print('---------------------------------------------')
+        print(CONTAGEM)
         menssagem = 'Análise de Dados Socioeconômicos do ENEM'
         relatorio_em_grafico = ''
 

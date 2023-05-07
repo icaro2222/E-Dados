@@ -1,14 +1,13 @@
 from django.shortcuts import render
 import plotly.graph_objects as go
-import matplotlib.pyplot as plt
-from io import BytesIO
 import plotly.express as px
-import base64
 from edados.formularios.formulario_2.formulario_2 import Formulario_2
 from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
-import numpy as np
 from django.utils.html import format_html_join
 from edados.database import bd_quest_socio_notas_deficiencia
+
+CONTAGEM = 0
+CONTAGEMMicrodado_Amostra = 5096019
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
@@ -282,7 +281,18 @@ def formulario_2(request):
         # Variáveis vindas do Formulario
         Q = form.data['questao']
         prova = form.data['nota']
-        filtro_deficiencia = form.data['deficiencia']
+        filtro_deficiencia = form_filtro.data['deficiencia']
+        filtro_estado_civil = form_filtro.data['estado_civil']
+        filtro_cor = form_filtro.data['cor']
+        filtro_sexo = form_filtro.data['sexo']
+        filtro_ano = form_filtro.data['ano']
+        filtro_escola = form_filtro.data['escola']
+        filtro_nacionalidade = form_filtro.data['nacionalidade']
+        filtro_estado = form_filtro.data['estado']
+        filtro_amostra = form_filtro.data['amostra']
+        filtro_recurso = form_filtro.data['recurso']
+        filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
+
 
         # Formulario de Filtro
         filtro_sexo = form_filtro.data['sexo']
@@ -291,17 +301,78 @@ def formulario_2(request):
         if(filtro_sexo != 'todos'):
             Amostra = [prova, Q, 'TP_SEXO']
             if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(
+                    Amostra, 
+                    filtro_sexo=filtro_sexo,                
+                    filtro_amostra=filtro_amostra, 
+                    filtro_deficiencia=filtro_deficiencia,
+                    filtro_cor=filtro_cor, 
+                    filtro_estado=filtro_estado, 
+                    filtro_recurso=filtro_recurso, 
+                    filtro_questao=Q, 
+                    filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
+                    filtro_estado_civil=filtro_estado_civil, 
+                    filtro_escola=filtro_escola, 
+                    filtro_nacionalidade=filtro_nacionalidade,
+                    filtro_ano=filtro_ano)
             else:
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_ano=filtro_ano)
+                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(
+                    Amostra, 
+                    filtro_sexo=filtro_sexo,                
+                    filtro_amostra=filtro_amostra, 
+                    filtro_cor=filtro_cor, 
+                    filtro_estado=filtro_estado, 
+                    filtro_recurso=filtro_recurso, 
+                    filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
+                    filtro_estado_civil=filtro_estado_civil, 
+                    filtro_escola=filtro_escola, 
+                    filtro_nacionalidade=filtro_nacionalidade,
+                    filtro_ano=filtro_ano)
         else:
             Amostra = [prova, Q]
             if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(
+                    Amostra,              
+                    filtro_amostra=filtro_amostra, 
+                    filtro_deficiencia=filtro_deficiencia,
+                    filtro_cor=filtro_cor, 
+                    filtro_estado=filtro_estado, 
+                    filtro_recurso=filtro_recurso, 
+                    filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
+                    filtro_estado_civil=filtro_estado_civil, 
+                    filtro_escola=filtro_escola, 
+                    filtro_nacionalidade=filtro_nacionalidade,
+                    filtro_ano=filtro_ano)
             else:
-                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(Amostra, filtro_ano=filtro_ano)
+                Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(
+                    Amostra,                
+                    filtro_amostra=filtro_amostra, 
+                    filtro_cor=filtro_cor, 
+                    filtro_estado=filtro_estado, 
+                    filtro_recurso=filtro_recurso, 
+                    filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
+                    filtro_estado_civil=filtro_estado_civil, 
+                    filtro_escola=filtro_escola, 
+                    filtro_nacionalidade=filtro_nacionalidade,
+                    filtro_ano=filtro_ano)
             
-        print(filtro_ano)
+        CONTAGEM = Microdado_Amostra[Q].count()
+        print(CONTAGEM)
+        print('++++++++++++++++++++++++++++++++++++++++++++++++++++')
+        if(CONTAGEM==0):
+            menssagem = """Nenhum aluno com esse perfil:"""
+            menssagem1 = """Nenhum aluno com esse perfil:"""
+            context = {
+                'form' : form,
+                'menssagem' : menssagem,
+                'menssagem1' : menssagem1,
+                'form_filtro' : form_filtro,
+                # 'figura_com_criador_de_tabela' : figura_com_criador_de_tabela,
+                # 'relatorio_em_tabela' : relatorio_em_tabela
+            }
+
+            return render(request, 'base/formulario_2/relatorio_formulario_2.html', context=context)
+    
         width = 0.25         # A largura das barras
 
         Dataframe = Microdado_Amostra.filter(items = Amostra)

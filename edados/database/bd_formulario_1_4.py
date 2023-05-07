@@ -2,48 +2,6 @@ from ast import If
 import pandas as pd
 from edados.database import conect_db
 
-def buscar_dataframe_no_banco(amostra, filtro_sexo = "vazio", 
-                              filtro_amostra = "vazio", 
-                              filtro_deficiencia = "vazio", 
-                              filtro_ano = "vazio"):
-    engine = conect_db.connect()
-
-    BANCO = conect_db.banco(filtro_ano=filtro_ano)
-    
-    retorno_da_query = '"' + '","'.join(amostra) + '"'
-    estrutura = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO
-
-
-    if(filtro_deficiencia == 'todas'):
-        filtro_deficiencia = conect_db.filtro_de_ficiencia('1')
-    elif(filtro_deficiencia == 'nenhuma'):
-        filtro_deficiencia = conect_db.filtro_de_ficiencia('0')
-    else:
-        filtro_deficiencia =  ' WHERE "' + str(filtro_deficiencia) + '" = 1 '
-
-    if(filtro_sexo != 'vazio'):
-        filtro_sexo = ' AND "TP_SEXO" = '+"'"+str(filtro_sexo)+"' "
-    else:
-        filtro_sexo = ''
-
-
-    # filtrando o ano
-    filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)
-    
-
-    query = estrutura + filtro_deficiencia + filtro_sexo + filtro_ano + conect_db.LIMIT
-
-    print(query)
-    # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))
-    
-    df = pd.read_sql(query, engine)
-    df = pd.DataFrame(df)
-    pd.set_option('display.max_colwidth',4)
-    
-    return df
-
-
-
 def buscar_dataframe_no_banco(amostra, 
                                     filtro_questao = "vazio", 
                                     filtro_recurso = "vazio", 
@@ -60,6 +18,7 @@ def buscar_dataframe_no_banco(amostra,
     engine = conect_db.connect()
     conect_db.LIMIT = filtro_amostra
 
+    # filtros
     if(filtro_cor == 'todos'):
         filtro_cor = ''
     else:
@@ -129,12 +88,7 @@ def buscar_dataframe_no_banco(amostra,
     retorno_da_query = filtro_questao
     estrutura = 'SELECT '+ retorno_da_query + ' "TP_SEXO", "TP_COR_RACA", "NU_IDADE", "NU_NOTA_CN", "NU_NOTA_CH", "NU_NOTA_LC", "NU_NOTA_MT" FROM ' + BANCO
 
-    if(filtro_deficiencia == 'todas'):
-        filtro_deficiencia = conect_db.filtro_de_ficiencia('1')
-    elif(filtro_deficiencia == 'nenhuma'):
-        filtro_deficiencia = conect_db.filtro_de_ficiencia('0')
-    else:
-        filtro_deficiencia =  ' WHERE "' + str(filtro_deficiencia) + '" = 1 '
+    filtro_deficiencia = conect_db.filtro_de_ficiencia(filtro_deficiencia)
 
     # filtrando o ano
     filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)

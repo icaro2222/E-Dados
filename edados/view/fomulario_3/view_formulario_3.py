@@ -11,6 +11,9 @@ import numpy as np
 from django.utils.html import format_html_join
 from edados.database import bd_formulario_3
 
+CONTAGEM = 0
+CONTAGEMMicrodado_Amostra = 5096019
+
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
@@ -56,8 +59,17 @@ def formulario_3(request):
         acerto_erro = form.data['acerto_erro']
 
         # Formulario de Filtro
+        filtro_deficiencia = form_filtro.data['deficiencia']
+        filtro_estado_civil = form_filtro.data['estado_civil']
+        filtro_cor = form_filtro.data['cor']
         filtro_sexo = form_filtro.data['sexo']
         filtro_ano = form_filtro.data['ano']
+        filtro_escola = form_filtro.data['escola']
+        filtro_nacionalidade = form_filtro.data['nacionalidade']
+        filtro_estado = form_filtro.data['estado']
+        filtro_amostra = form_filtro.data['amostra']
+        filtro_recurso = form_filtro.data['recurso']
+        filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
 
         if(filtro_cor_da_prova == '503' or 
             filtro_cor_da_prova == '504' or
@@ -122,12 +134,41 @@ def formulario_3(request):
 
         if(filtro_sexo != 'todos'):
             Amostra = [prova, 'TP_SEXO', respostas, gabarito]
-            Microdado_Amostra = bd_formulario_3.buscar_dataframe_no_banco(Amostra, filtro_sexo=filtro_sexo, filtro_cor_da_prova=filtro_cor_da_prova, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
+            Microdado_Amostra = bd_formulario_3.buscar_dataframe_no_banco(
+                Amostra, 
+                filtro_sexo=filtro_sexo, 
+                filtro_cor_da_prova=filtro_cor_da_prova, 
+                filtro_deficiencia=filtro_deficiencia,
+                filtro_amostra=filtro_amostra, 
+                filtro_cor=filtro_cor, 
+                filtro_estado=filtro_estado, 
+                filtro_recurso=filtro_recurso,
+                filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
+                filtro_estado_civil=filtro_estado_civil, 
+                filtro_escola=filtro_escola, 
+                filtro_nacionalidade=filtro_nacionalidade,
+                filtro_ano=filtro_ano)
         else:
             Amostra = [prova, respostas, gabarito]
-            Microdado_Amostra = bd_formulario_3.buscar_dataframe_no_banco(Amostra, filtro_cor_da_prova=filtro_cor_da_prova, filtro_deficiencia=filtro_deficiencia, filtro_ano=filtro_ano)
-
-
+            Microdado_Amostra = bd_formulario_3.buscar_dataframe_no_banco(
+                Amostra, 
+                filtro_sexo=filtro_sexo, 
+                filtro_cor_da_prova=filtro_cor_da_prova, 
+                filtro_deficiencia=filtro_deficiencia,
+                filtro_amostra=filtro_amostra, 
+                filtro_cor=filtro_cor, 
+                filtro_estado=filtro_estado, 
+                filtro_recurso=filtro_recurso,
+                filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
+                filtro_estado_civil=filtro_estado_civil, 
+                filtro_escola=filtro_escola, 
+                filtro_nacionalidade=filtro_nacionalidade,
+                filtro_ano=filtro_ano)
+        
+        CONTAGEM = Microdado_Amostra[prova].count()
+        print('------------------------------------')
+        print(CONTAGEM)
+        print('---===================================-')
         menssagem = 'Análise do Desempenho Acadêmico de Pessoas com Deficiência: Quantidade de Acertos e Erros por Prova e Filtros Socioeconômicos'
 
         Microdado_Amostra.reset_index(inplace=True)

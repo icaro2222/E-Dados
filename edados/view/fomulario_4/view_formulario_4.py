@@ -1,14 +1,9 @@
 from django.shortcuts import render
 import plotly.graph_objects as go
-import matplotlib.pyplot as plt
-from io import BytesIO
 import pandas as pd
-from edados.formularios.formulario_4.formulario_4 import Formulario_4
 from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 from edados.formularios.filtros.filtros_ano import Formulario_filtro_ano
-import numpy as np
 from django.utils.html import format_html_join
-from edados.database import bd_formulario_4
 
 def formatar(valor):
     return "{:,.2f}".format(valor)

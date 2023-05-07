@@ -2,28 +2,99 @@ from ast import If
 import pandas as pd
 from edados.database import conect_db
 
-def buscar_dataframe_no_banco(amostra, filtro_cor_da_prova, filtro_sexo = "vazio", filtro_deficiencia = "vazio", filtro_ano = "vazio"):
+def buscar_dataframe_no_banco(    amostra, 
+                    filtro_cor_da_prova, 
+                    filtro_questao = "vazio", 
+                    filtro_recurso = "vazio", 
+                    filtro_localizacao_da_escola = "vazio", 
+                    filtro_amostra = "vazio", 
+                    filtro_estado = "vazio", 
+                    filtro_sexo = "vazio", 
+                    filtro_deficiencia = "vazio", 
+                    filtro_ano = "vazio", 
+                    filtro_cor = "vazio", 
+                    filtro_estado_civil = "vazio", 
+                    filtro_escola = "vazio", 
+                    filtro_nacionalidade = "vazio"
+                              ):
     engine = conect_db.connect()
 
     print(filtro_ano)
+    conect_db.LIMIT = filtro_amostra
 
     BANCO = conect_db.banco(filtro_ano=filtro_ano)
     
+    
+    # filtros
+    if(filtro_cor == 'todos'):
+        filtro_cor = ''
+    else:
+        filtro_cor =  ' AND "TP_COR_RACA" =' +"'" +filtro_cor+"'"
+        
+    if(filtro_recurso == 'todos'):
+        filtro_recurso = ''
+    elif(filtro_recurso == 'nenhum'):
+        filtro_recurso = """ AND
+            ("IN_BRAILLE" = 1 OR
+            "IN_AMPLIADA_24" = 1 OR
+            "IN_AMPLIADA_18" = 1 OR
+            "IN_LEDOR" = 1 OR
+            "IN_ACESSO" = 1 OR
+            "IN_TRANSCRICAO"= 1 OR
+            "IN_LIBRAS" = 1 OR
+            "IN_TEMPO_ADICIONAL" = 1)
+            """
+    else:
+        filtro_recurso =  ' AND "'+ filtro_recurso +'" =1'
+        
+    if(filtro_localizacao_da_escola == 'todos'):
+        filtro_localizacao_da_escola = ''
+    else:
+        filtro_localizacao_da_escola =  ' AND "TP_LOCALIZACAO_ESC" =' +"'" +filtro_localizacao_da_escola+"'"
+
+    if(filtro_estado == 'todos'):
+        filtro_estado = ''
+    else:
+        filtro_estado =  ' AND "SG_UF_RESIDENCIA" =' +"'" +filtro_estado+"'"
+
+    if(filtro_escola == 'todos'):
+        filtro_escola = ''
+    else:
+        filtro_escola =  ' AND "TP_ESCOLA" =' +"'" +filtro_escola+"'"
+
+    if(filtro_nacionalidade == 'todos'):
+        filtro_nacionalidade = ''
+    else:
+        filtro_nacionalidade =  ' AND "TP_NACIONALIDADE" =' +"'" +filtro_nacionalidade+"'"
+
+    if(filtro_estado_civil == 'todos'):
+        filtro_estado_civil = ''
+    else:
+        filtro_estado_civil =  ' AND "TP_ESTADO_CIVIL" =' +"'" + filtro_estado_civil +"'"
+
+    if(filtro_questao == 'todos'):
+        filtro_questao = (' "Q001", "Q002","Q003","Q004","Q005","Q006","Q007","Q008","Q009",'
+        '"Q010","Q011","Q012","Q013",'
+                '"Q014","Q015","Q016","Q017",'
+                '"Q018","Q019","Q020","Q021",'
+                '"Q022","Q023","Q024","Q025", ')
+    
+    elif(filtro_questao == 'nenhum'):
+        filtro_questao = ''
+    else:
+        filtro_questao = ' "' + filtro_questao + '", '
+
     print(BANCO)
+    print('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx')
     
     retorno_da_query = '"' + '","'.join(amostra) + '"'
     estrutura = 'SELECT ' + retorno_da_query + ' FROM ' + BANCO
 
     filtro_cor_da_prova = ' AND "' + amostra[0]+'"='+"'"+filtro_cor_da_prova+"'"
 
-    if(filtro_deficiencia == 'todas'):
-        filtro_deficiencia = conect_db.filtro_de_ficiencia('1')
-    elif(filtro_deficiencia == 'nenhuma'):
-        filtro_deficiencia = conect_db.filtro_de_ficiencia('0')
-    else:
-        filtro_deficiencia =  ' WHERE "' + filtro_deficiencia + '" = 1 '
+    filtro_deficiencia = conect_db.filtro_de_ficiencia(filtro_deficiencia)
 
-    if(filtro_sexo != 'vazio'):
+    if(filtro_sexo != 'vazio' and filtro_sexo != 'todos'):
         filtro_sexo = ' AND "TP_SEXO" = '+"'"+ filtro_sexo +"' "
     else:
         filtro_sexo = ''
@@ -31,9 +102,18 @@ def buscar_dataframe_no_banco(amostra, filtro_cor_da_prova, filtro_sexo = "vazio
     # filtrando o ano
     filtro_ano = ' AND "NU_ANO" = ' + str(filtro_ano)
     
+    query = (estrutura + filtro_deficiencia + 
+                filtro_sexo +
+                filtro_cor  + 
+                filtro_cor_da_prova  + 
+                filtro_estado_civil +  
+                filtro_escola  + 
+                filtro_nacionalidade  + 
+                filtro_estado  + 
+                filtro_recurso  + 
+                filtro_localizacao_da_escola  + 
+                conect_db.LIMIT)
     
-    query = estrutura + filtro_deficiencia + filtro_sexo + filtro_ano + filtro_cor_da_prova + conect_db.LIMIT
-
     print(query)
     # print(pd.read_sql( ('SELECT count(Q001) FROM ' + BANCO), engine))
     df = pd.read_sql(query, engine)
