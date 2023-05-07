@@ -6,7 +6,8 @@ def questionario_ano(Form):
     choices_ano = (('2019', '2019'),
                     ('2018' ,'2018'),
                     ('2017' ,'2017'),
-                    ('2016' ,'2016'))
+                    # ('2016' ,'2016')
+                    )
 
     ano = forms.ChoiceField(label='Ano:', choices=choices_ano)
     return ano
