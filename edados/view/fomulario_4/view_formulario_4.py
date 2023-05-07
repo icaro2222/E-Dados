@@ -4,9 +4,11 @@ import pandas as pd
 from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 from edados.formularios.filtros.filtros_ano import Formulario_filtro_ano
 from django.utils.html import format_html_join
+from pathlib import Path
 
 CONTAGEM = 0
 CONTAGEMMicrodado_Amostra = 5096019
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
@@ -50,7 +52,7 @@ def formulario_4(request):
         menssagem_informativa = """A tela web em questão disponibiliza uma ferramenta de análise da densidade demográfica 
         dos inscritos no ENEM utilizando os microdados."""
 
-        df = pd.read_csv('/home/icaro/Documentos/e-dados/edados/view/fomulario_4/municipios_brasileiros.csv')
+        df = pd.read_csv(BASE_DIR/'fomulario_4/municipios_brasileiros.csv')
 
         trace = go.Scattergeo(
             locationmode = 'ISO-3',
