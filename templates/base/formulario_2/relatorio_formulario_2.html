@@ -8,29 +8,6 @@
 {% endblock %}
 {% block conteudo %}
 
-<style>
-  @media print {
-    body {
-      zoom: 0.85;
-    }
-  }
-  
-</style>
-<!-- 
-    .plotly-graph-div {
-      width: 110% !important;
-      height: 30% !important;
-      position: relative;
-    }
-  @media (max-width: 768px) {
-    body {
-      transform: scale(0.8);
-      transform-origin: top left;
-    }
-  }
-    
-    display: none; -->
-
 <!-- Begin Page Content -->
 <div class="row text-dark">
   <!-- Page Heading -->
@@ -97,7 +74,7 @@
       </div>
       <div class="row col">
         <div class="col d-flex align-items-center justify-content-center">
-          <button type="submit" class="btn btn-outline-primary">
+          <button id="preloader2"  type="submit" class="btn btn-outline-primary">
             Gerar Análise<svg xmlns="http://www.w3.org/2000/svg" width="86" height="44" fill="currentColor"
               class="bi bi-clipboard-data" viewBox="0 0 16 16">
               <path
@@ -111,7 +88,12 @@
         </div>
       </div>
     </div>
-    <hr>
+    <div class="loading" id="preloader">
+      <h4 class="loading_preloader justify-content-center align-items-center">
+        Processar todos os dados pode tornar o processo mais pesado e, por isso, pode levar um tempo para ser concluído.
+      </h4>
+    </div>
+    <hr id="progressbar">
   </form>
 
 </div>
@@ -162,13 +144,21 @@
 </div>
 
 <script>
-  // Toggle the side navigation
-  function imprimirComDelay() {
-    setTimeout(function () {
-      window.print();
-    }, 100);
-  }
-</script>
 
+  var selectElement = document.getElementById("id_amostra"); // substitua "id_amostra" pelo ID do seu campo de formulário
+
+  // Adicione um ouvinte de eventos para o evento "change" no campo "select"
+  selectElement.addEventListener("change", function() {
+    var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+    
+    if (selectedOption == "todos_os_dados") {
+      document.getElementById("preloader2").addEventListener("click", function() {
+        document.getElementById("preloader").style.display = "block";
+      });
+    }
+  });
+
+</script>
+<script src={% static "js/js_formulario.js" %}></script>
 <!-- /.container-fluid -->
 {% endblock %}

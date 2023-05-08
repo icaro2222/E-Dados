@@ -127,17 +127,25 @@ def criadores(request):
         instituicao ="""Instituição: IFBAIANO Campos Guanambi""" 
         
         aluno ="""Discente: Ícaro Dias dos Santos""" 
-        menssagem_aluno ="""TATAKAE, TATAKAE,TATAKAE,TATAKAE,TATAKAE,TATAKAEEEEEEeeeeeeeeeeeeeeee...
+        menssagem_aluno ="""ÁREA DE FORMAÇÃO: Graduando em Análise e Desenvolvimento de Sistema (IFBaiano)
+        TITULAÇÃO MÁXIMA: Graduando
         icarodias2222@gmail.com""" 
         
         
-        orientador ="""Orientador: Woquiton Fernandes""" 
-        menssagem_orientador ="""Ícaro, isso ta errado...
+        orientador ="""Orientador: Woquiton Lima Fernandes""" 
+        menssagem_orientador ="""ÁREA DE FORMAÇÃO: Processamentos de Dados, 2003, FATEC SP/UNESC
+        MESTRADO: Tecnologia da Informação e Comunicação na Formação em EAD. 2007. UFC
+        DOUTORADO: Educação Especial.2016. UFSCAR
+        TITULAÇÃO MÁXIMA: Doutorado
+        ÁREA DE INGRESSO: INFORMÁTICA
         woquiton.fernandes@ifbaiano.edu.br""" 
         
         
-        coo_orientador ="""Coo Orientadora: Daniela Brito Trindade""" 
-        menssagem_coo_orientador ="""Ícaro, concordo com Woquiton...
+        coo_orientador ="""Coo Orientadora: Daniele de Brito Trindade""" 
+        menssagem_coo_orientador ="""ÁREA DE FORMAÇÃO: Bacharelado em Estatística (Matemática / Estatística )
+        MESTRADO: Mestrado em Estatística (CCEN)
+        DOUTORADO: Doutorado em Estatística (CCEN)
+        TITULAÇÃO MÁXIMA: Doutorado
         daniele.trindade@ifbaiano.edu.br""" 
         
         

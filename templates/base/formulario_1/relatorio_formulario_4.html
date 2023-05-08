@@ -4,100 +4,14 @@
 {% block titulo %}Formulário 1.4
 {% endblock %}
 {% block css %}
+
 <link rel="stylesheet" href={% static "css/styles_relatorio.css" %}>
 {% endblock %}
 {% block conteudo %}
 
-
-
-<style>
-  @media print {
-    body {
-      zoom: 0.85;
-    }
-    
-  }
-
-  #progressbar {
-    width: 10%;
-    background-color: #ccc;
-  animation: brilho 1s ease-in-out infinite;
-}
-
-@keyframes brilho {
-  0% {
-    border-color: rgba(255, 255, 255, 0.7);
-  }
-  10% {
-    border-color:  rgb(147, 146, 146);
-  }
-}
-
-  .loading {
-    position: fixed;
-    display: none;
-    z-index: 9999;
-    background-color: rgba(255, 255, 255, 0.7);
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .loading:before {
-    content: "";
-    position: absolute;
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3498db;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    top: 46%;
-    left: 50%;
-    margin: -10px 0 0 -10px;
-    animation: spin 
-    2s linear infinite;
-  }
-
-  .loading_preloader {
-    position: absolute;
-    z-index: 9999;
-    margin: 0.5rem auto; /* define a margem superior e inferior como 0.5rem e a margem esquerda e direita como automática */
-    font-weight: 400;
-    line-height: 1.2;
-    text-align: center;
-    top: 54%; /* posiciona o elemento verticalmente no meio */
-    left: 50%; /* posiciona o elemento horizontalmente no meio */
-    transform: translate(-50%, -50%); /* move o elemento para a esquerda e para cima em 50% do seu tamanho para centralizá-lo completamente */
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  } 
-</style>
-
-<!--plotly-graph-div {
-      width: 110% !important;
-      height: 30% !important;
-      position: relative;
-    }
-  @media (max-width: 768px) {
-    body {
-      transform: scale(0.8);
-      transform-origin: top left;
-    }
-  }
-    
-    display: none; -->
-
 <!-- Begin Page Content -->
 <div class="row text-dark">
+
   <!-- Page Heading -->
   <form class="col mt-0" action="." method="post">
     <h5 class="mt-0 mb-0">Variáveis de contraste e correlação:</h5>
@@ -158,7 +72,7 @@
       </div>
       <div class="row col">
         <div class="col d-flex align-items-center justify-content-center">
-          <button id="preloader2" onclick="geraranalise()" type="submit" class="btn btn-outline-primary">
+          <button id="preloader2" type="submit" class="btn btn-outline-primary">
             Gerar Análise
             <svg xmlns="http://www.w3.org/2000/svg" width="86" height="44" fill="currentColor"
               class="bi bi-clipboard-data" viewBox="0 0 16 16">
@@ -178,8 +92,6 @@
         Processar todos os dados pode tornar o processo mais pesado e, por isso, pode levar um tempo para ser concluído.
       </h4>
     </div>
-    
-    
     <hr id="progressbar">
   </form>
 </div>
@@ -236,28 +148,7 @@
 </div>
 
 <script>
-  // Toggle the side navigation
-  function imprimirComDelay() {
-    setTimeout(function () {
-      window.print();
-    }, 100);
-  }
 
-  window.onload = function geraranalise() {
-    var progressbar = document.getElementById("progressbar");
-    var width = 0;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-      } else {
-        width++;
-        progressbar.style.width = width + '%';
-      }
-    }
-  };
-  
-  
   var selectElement = document.getElementById("id_amostra"); // substitua "id_amostra" pelo ID do seu campo de formulário
 
   // Adicione um ouvinte de eventos para o evento "change" no campo "select"
@@ -271,18 +162,7 @@
     }
   });
 
-
-  document.getElementById("progressbar").style.animation = "none";
-    
-
 </script>
-<!-- 
-
--------------------------------------------
-
-
--->
-
-
+<script src={% static "js/js_formulario.js" %}></script>
 
 {% endblock %}

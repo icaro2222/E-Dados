@@ -78,7 +78,12 @@
         </div>
       </div>
     </div>
-    <hr class="" />
+    <div class="loading" id="preloader">
+      <h4 class="loading_preloader justify-content-center align-items-center">
+        Processar todos os dados pode tornar o processo mais pesado e, por isso, pode levar um tempo para ser concluído.
+      </h4>
+    </div>
+    <hr id="progressbar">
   </form>
 </div>
 
@@ -123,13 +128,7 @@
   </div>
 </div>
 
-<script>
-  // Toggle the side navigation
-  function imprimirComDelay() {
-    setTimeout(function () {
-      window.print();
-    }, 100);
-  }
-</script>
+
+<script src={% static "js/js_formulario.js" %}></script>
 <!-- /.container-fluid -->
 {% endblock %}
