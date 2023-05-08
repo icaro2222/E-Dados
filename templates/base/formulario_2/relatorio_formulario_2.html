@@ -10,14 +10,26 @@
 
 <style>
   @media print {
-    .plotly-graph-div {
-      width: 30% !important;
-      height: 30% !important;
-      position:relative;
+    body {
+      zoom: 0.85;
     }
   }
+  
 </style>
-      <!-- display: none; -->
+<!-- 
+    .plotly-graph-div {
+      width: 110% !important;
+      height: 30% !important;
+      position: relative;
+    }
+  @media (max-width: 768px) {
+    body {
+      transform: scale(0.8);
+      transform-origin: top left;
+    }
+  }
+    
+    display: none; -->
 
 <!-- Begin Page Content -->
 <div class="row text-dark">
@@ -134,8 +146,8 @@
   <hr class="mb-3" />
   <div class="row d-flex justify-content-end align-items-center m-3">
     <div class="col-md-4 d-flex justify-content-end">
-      <button onclick="window.print()" type="button" class="btn btn-success print-button">
-        <a class="downloader__btn active" id="sidebarToggle" href="#">
+      <button id="sidebarToggle" onclick="imprimirComDelay()" type="button" class="btn btn-success print-button">
+        <a class="downloader__btn active" href="#">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
             class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16">
             <path
@@ -148,5 +160,15 @@
     </div>
   </div>
 </div>
+
+<script>
+  // Toggle the side navigation
+  function imprimirComDelay() {
+    setTimeout(function () {
+      window.print();
+    }, 100);
+  }
+</script>
+
 <!-- /.container-fluid -->
 {% endblock %}
