@@ -15,12 +15,23 @@
     body {
       zoom: 0.85;
     }
+    
   }
 
   #progressbar {
-    width: 0%;
+    width: 10%;
     background-color: #ccc;
+  animation: brilho 2s ease-in-out infinite;
+}
+
+@keyframes brilho {
+  0% {
+    border-color: rgba(255, 255, 255, 0.7);
   }
+  10% {
+    border-color:  rgb(189, 189, 189);
+  }
+}
 
   .loading {
     position: fixed;
@@ -260,6 +271,8 @@
     }
   });
 
+
+  document.getElementById("progressbar").style.animation = "none";
     
 
 </script>
