@@ -64,20 +64,9 @@
         <div>
           {{ form_filtro.amostra|as_crispy_field }} </div>
       </div>
-
-      <!--      
-      <div class="col-md-4">
-        {% csrf_token %}
-        <a href="#" title="informação adicional aqui">{{ form_filtro.amostra|as_crispy_field }} </a>
-      </div>
-
-      <div class="col-md-4">
-        {% csrf_token %}
-        <abbr title="amostra">{{ form_filtro.amostra|as_crispy_field }}</abbr>
-      </div> -->
       <div class="row col">
         <div class="col d-flex align-items-center justify-content-center">
-          <button type="submit" class="btn btn-outline-primary">
+          <button id="preloader2" type="submit" class="btn btn-outline-primary">
             Gerar Análise
             <svg xmlns="http://www.w3.org/2000/svg" width="86" height="44" fill="currentColor"
               class="bi bi-clipboard-data" viewBox="0 0 16 16">

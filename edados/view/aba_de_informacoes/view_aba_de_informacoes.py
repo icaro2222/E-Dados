@@ -60,9 +60,9 @@ def correcoes_bugs(request):
 
     if request.method == 'GET':
 
-        correcoes ="""Informe-nos erros ou bugs que você encontrou na plataforma:""" 
+        correcoes =""" Informe-nos os erros ou bugs que você encontrou na plataforma:""" 
         # menssagem = """"""
-        menssagem = """Nossa equipe está trabalhando arduamente em busca de trazer as melhores ferramentas à plataforma."""
+        menssagem = """Nossa equipe está empenhada em fornecer as melhores ferramentas para aprimorar ainda mais nossa plataforma."""
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(
@@ -99,9 +99,9 @@ def correcoes_bugs(request):
 
         form = form_correcoes()
 
-        correcoes ="""Informe-nos erros ou bugs que você encontrou na plataforma:""" 
+        correcoes =""" Informe-nos os erros ou bugs que você encontrou na plataforma:""" 
         # menssagem = """"""
-        menssagem = """Nossa equipe está trabalhando arduamente em busca de trazer as melhores ferramentas à plataforma."""
+        menssagem = """Nossa equipe está empenhada em fornecer as melhores ferramentas para aprimorar ainda mais nossa plataforma."""
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(
@@ -149,7 +149,6 @@ def criadores(request):
         daniele.trindade@ifbaiano.edu.br""" 
         
         
-        # menssagem = """"""
         menssagem = """   Instituto Federal de Educação, Ciência e Tecnologia Baiano – Campus Guanambi
         
         Zona Rural - Distrito de Ceraíma, Bahia - CEP: 46430-000
