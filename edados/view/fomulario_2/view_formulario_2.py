@@ -223,8 +223,9 @@ def anotacao(Questao):
     elif Questao == 'Q025':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 25 no questionario socioeconômico:
                             <br><br>A: Sim.
-<br>B Não."""
-
+                            <br>B Não."""
+    else:
+        texto = """BOMMMM DIIIIA AMIGÂOOO, essa opção ta em "desenvolvimento"!!!"""
     annotations = [
         {
             'x': 0,
@@ -299,7 +300,10 @@ def formulario_2(request):
         filtro_ano = form_filtro.data['ano']
 
         if(filtro_sexo != 'todos'):
-            Amostra = [prova, Q, 'TP_SEXO']
+            if(Q=='nenhum'):            
+                Amostra = [prova, 'TP_SEXO']
+            else:
+                Amostra = [prova, Q, 'TP_SEXO']
             if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
                 Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(
                     Amostra, 
@@ -329,7 +333,10 @@ def formulario_2(request):
                     filtro_nacionalidade=filtro_nacionalidade,
                     filtro_ano=filtro_ano)
         else:
-            Amostra = [prova, Q]
+            if(Q=='nenhum'):            
+                Amostra = [prova]
+            else:
+                Amostra = []
             if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
                 Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(
                     Amostra,              
@@ -356,7 +363,7 @@ def formulario_2(request):
                     filtro_nacionalidade=filtro_nacionalidade,
                     filtro_ano=filtro_ano)
             
-        CONTAGEM = Microdado_Amostra[Q].count()
+        CONTAGEM = Microdado_Amostra[prova].count()
         print(CONTAGEM)
         print('++++++++++++++++++++++++++++++++++++++++++++++++++++')
         if(CONTAGEM==0):
@@ -374,12 +381,21 @@ def formulario_2(request):
             return render(request, 'base/formulario_2/relatorio_formulario_2.html', context=context)
     
         width = 0.25         # A largura das barras
-
+        
         Dataframe = Microdado_Amostra.filter(items = Amostra)
-        Dataframe = Dataframe.sort_values(by=[Q])
-        Dataframe = Dataframe.groupby(Q)[prova]
-        Dataframe = Dataframe.describe()     
-
+            
+        if Q == 'nenhum':
+            Dataframe = Microdado_Amostra
+            print('--------------------------------------------------------------------')
+            print(Dataframe) 
+            print('--------------------------------------------------------------------')
+            Dataframe = Dataframe.describe().T
+        else:
+            Dataframe = Dataframe.sort_values(by=[Q])
+            Dataframe = Dataframe.groupby(Q)[prova]    
+            Dataframe = Dataframe.describe()    
+            
+            
         figura_com_criador_de_tabela = px.bar(Dataframe)
         figura_com_criador_de_tabela = figura_com_criador_de_tabela.to_html()
         
