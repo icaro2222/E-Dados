@@ -336,7 +336,7 @@ def formulario_2(request):
             if(Q=='nenhum'):            
                 Amostra = [prova]
             else:
-                Amostra = []
+                Amostra = [prova, Q]
             if(filtro_deficiencia != 'todas' and filtro_deficiencia != 'nenhuma'):
                 Microdado_Amostra = bd_quest_socio_notas_deficiencia.buscar_dataframe_no_banco(
                     Amostra,              

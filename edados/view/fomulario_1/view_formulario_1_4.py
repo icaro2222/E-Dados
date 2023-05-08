@@ -12,7 +12,7 @@ from edados.database import bd_formulario_1_4
 import numpy as np
 
 CONTAGEM = 0
-CONTAGEMMicrodado_Amostra = 5096019
+CONTAGEMMicrodado_Amostra = 3702008
 
 def formatar(valor):
     return "{:,.2f}".format(valor)

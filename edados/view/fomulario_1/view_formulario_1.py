@@ -10,14 +10,32 @@ import numpy as np
 from edados.database import bd_formulario_1
 
 CONTAGEM = 0
-CONTAGEMMicrodado_Amostra = 5096019
+CONTAGEMMicrodado_Amostra = 3702008
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
+def formatarContagem(valor):
+    valor = CONTAGEM
+    return "{:,.2f}".format(valor)
+
+def formatarFrequencia(valor):
+    valor =  (valor/CONTAGEM)*100
+    return "{:,.4f}%".format(valor)
+
+def formatarFrequenciaSemPorcentagem(valor):
+    valor =  (valor/CONTAGEM)*100
+    return "{:,.4f}".format(valor)
+
+def formatarFrequenciaAbsoluta(valor):
+    valor =  (valor/CONTAGEMMicrodado_Amostra)*100
+    return "{:,.6f}%".format(valor)
 
 def formulario_1(request):
 
+    global CONTAGEM
+    global CONTAGEMMicrodado_Amostra
+    
     questao = 'Q001'
     demografico = 'TP_SEXO'
 
@@ -63,26 +81,21 @@ def formulario_1(request):
         Amostra = [demografico, questao]
         if demografico != 'TP_SEXO' and filtro_sexo != 'todos':
             Amostra.append('TP_SEXO')
-            Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(
-                Amostra, 
-                filtro_sexo=filtro_sexo, 
-                filtro_amostra=filtro_amostra, 
-                filtro_deficiencia=filtro_deficiencia,
-                filtro_ano=filtro_ano)
-        else:
-            Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(
-                Amostra, 
-                filtro_amostra=filtro_amostra, 
-                filtro_deficiencia=filtro_deficiencia,
-                filtro_cor=filtro_cor, 
-                filtro_estado=filtro_estado, 
-                filtro_recurso=filtro_recurso, 
-                filtro_questao=questao, 
-                filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
-                filtro_estado_civil=filtro_estado_civil, 
-                filtro_escola=filtro_escola, 
-                filtro_nacionalidade=filtro_nacionalidade,
-                filtro_ano=filtro_ano)
+            
+        Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(
+            Amostra, 
+            filtro_sexo=filtro_sexo, 
+            filtro_amostra=filtro_amostra, 
+            filtro_deficiencia=filtro_deficiencia,
+            filtro_cor=filtro_cor, 
+            filtro_estado=filtro_estado, 
+            filtro_recurso=filtro_recurso, 
+            filtro_questao=questao, 
+            filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
+            filtro_estado_civil=filtro_estado_civil, 
+            filtro_escola=filtro_escola, 
+            filtro_nacionalidade=filtro_nacionalidade,
+            filtro_ano=filtro_ano)
             
 
         CONTAGEM  = Microdado_Amostra[questao].count()
@@ -374,7 +387,6 @@ def anotacao(Questao):
 
     return annotations
 
-
 def demografico_sexo(Microdado_Amostra, demografico, questao):
 
     DataFrame = Microdado_Amostra.sort_values(by=[questao])
@@ -394,6 +406,8 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
     fig = go.Figure()
     texttemplate = '%{text:.1f}%',
     textposition = 'auto'
+    print(CONTAGEM)
+    print('++++++++++++++++++++++++++++++++++++++')
 
     for index in lista_dos_index:
         if index == 'F':
@@ -401,9 +415,9 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         else:
             nome = 'masculino'
         fig.add_bar(
-            y=((DataFrame[index]/QUNATIDADE_TOTAL)*100),
+            y=((DataFrame[index]/CONTAGEM)*100),
             x=DataFrame[index].index,
-            text=((DataFrame[index]/QUNATIDADE_TOTAL)*100),
+            text=((DataFrame[index]/CONTAGEM)*100),
             texttemplate='%{text:.2f}%',
             textposition='auto',
             name=nome
@@ -448,7 +462,6 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
 
     return [relatorio, relatorio_em_grafico]
 
-
 def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_sexo):
 
     DataFrame = Microdado_Amostra.sort_values(by=[questao])
@@ -469,18 +482,22 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
         if filtro_sexo == 'M':
             nome = 'masculino'
             fig.add_bar(
-                y=DataFrame[filtro_sexo],
-                x=DataFrame[filtro_sexo].index,
-                text=DataFrame[filtro_sexo],
-                name=nome,
+            y=((DataFrame[filtro_sexo]/CONTAGEM)*100),
+            x=DataFrame[filtro_sexo].index,
+            text=((DataFrame[filtro_sexo]/CONTAGEM)*100),
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=nome
             )
         else:
             nome = 'feminino'
             fig.add_bar(
-                y=DataFrame[filtro_sexo],
-                x=DataFrame[filtro_sexo].index,
-                text=DataFrame[filtro_sexo],
-                name=nome,
+            y=((DataFrame[filtro_sexo]/CONTAGEM)*100),
+            x=DataFrame[filtro_sexo].index,
+            text=((DataFrame[filtro_sexo]/CONTAGEM)*100),
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=nome
             )
 
     fig.update_layout(
@@ -500,7 +517,6 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
     relatorio = fig.to_html()
 
     return [relatorio]
-
 
 def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano):
 
@@ -545,11 +561,14 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
                 nome = 'Não informou'
 
         fig.add_bar(
-            y=DataFrame[index],
+            y=((DataFrame[index]/CONTAGEM)*100),
             x=DataFrame[index].index,
-            text=DataFrame[index],
-            name=nome,
-        )
+            text=((DataFrame[index]/CONTAGEM)*100),
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=nome
+            )
+
 
     fig.update_layout(
         title_text='Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
@@ -588,7 +607,6 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
 
     return [relatorio, relatorio_em_grafico]
 
-
 def demografico_raca(Microdado_Amostra, demografico, questao):
 
     DataFrame = Microdado_Amostra.sort_values(by=[questao])
@@ -623,12 +641,15 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
             nome = 'Amarela'
         else:
             nome = 'Indígena'
+
         fig.add_bar(
-            y=DataFrame[index],
+            y=((DataFrame[index]/CONTAGEM)*100),
             x=DataFrame[index].index,
-            text=DataFrame[index],
-            name=nome,
-        )
+            text=((DataFrame[index]/CONTAGEM)*100),
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=nome
+            )
 
     fig.update_layout(
         title_text='Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
@@ -648,7 +669,6 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
     relatorio = fig.to_html()
 
     return [relatorio]
-
 
 def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
 
@@ -679,12 +699,15 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
             nome = 'Estrangeiro(a)'
         else:
             nome = 'Brasileiro(a) Nato(a), nascido(a) no exterior'
+
         fig.add_bar(
-            y=DataFrame[index],
+            y=((DataFrame[index]/CONTAGEM)*100),
             x=DataFrame[index].index,
-            text=DataFrame[index],
-            name=nome,
-        )
+            text=((DataFrame[index]/CONTAGEM)*100),
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=nome
+            )
 
     fig.update_layout(
         title_text='Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
@@ -708,7 +731,6 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
     relatorio = fig.to_html()
 
     return [relatorio]
-
 
 def demografico_escolaridade(Microdado_Amostra, demografico, questao):
 
@@ -737,12 +759,15 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
             nome = 'Privada'
         else:
             nome = 'Exterior'
+
         fig.add_bar(
-            y=DataFrame[index],
+            y=((DataFrame[index]/CONTAGEM)*100),
             x=DataFrame[index].index,
-            text=DataFrame[index],
-            name=nome,
-        )
+            text=((DataFrame[index]/CONTAGEM)*100),
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=nome
+            )
 
     fig.update_layout(
         title_text='Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
@@ -762,7 +787,6 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
     relatorio = fig.to_html()
 
     return [relatorio]
-
 
 def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
 
@@ -791,12 +815,15 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
             nome = 'Privada'
         else:
             nome = 'Exterior'
+
         fig.add_bar(
-            y=DataFrame[index],
+            y=((DataFrame[index]/CONTAGEM)*100),
             x=DataFrame[index].index,
-            text=DataFrame[index],
-            name=nome,
-        )
+            text=((DataFrame[index]/CONTAGEM)*100),
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=nome
+            )
 
     fig.update_layout(
         title_text='Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
@@ -816,7 +843,6 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
     relatorio = fig.to_html()
 
     return [relatorio]
-
 
 def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro_ano):
 
@@ -897,12 +923,13 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
                 nome = 'Antes de 2007'
 
         fig.add_bar(
-            y=DataFrame[index],
+            y=((DataFrame[index]/CONTAGEM)*100),
             x=DataFrame[index].index,
-            text=DataFrame[index],
-            name=nome,
-
-        )
+            text=((DataFrame[index]/CONTAGEM)*100),
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=nome
+            )
 
     fig.update_layout(
         title_text='Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
@@ -922,7 +949,6 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
     relatorio = fig.to_html()
 
     return [relatorio]
-
 
 def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demografico, questao):
 
@@ -951,13 +977,15 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
             nome = 'Privada'
         else:
             nome = 'Exterior'
-        fig.add_bar(
-            y=DataFrame[index],
-            x=DataFrame[index].index,
-            text=DataFrame[index],
-            name=nome,
 
-        )
+        fig.add_bar(
+            y=((DataFrame[index]/CONTAGEM)*100),
+            x=DataFrame[index].index,
+            text=((DataFrame[index]/CONTAGEM)*100),
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=nome
+            )
 
     fig.update_layout(
         title_text='Gráfico de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
