@@ -18,7 +18,10 @@ def filtro(
             filtro_cor_da_prova = ""
             ):
     
-    conect_db.LIMIT = filtro_amostra   
+    if(filtro_amostra!="todos_os_dados"):   
+        conect_db.LIMIT = filtro_amostra
+    else:
+        conect_db.LIMIT = ""
     
     # filtros
     print(filtro_deficiencia)
