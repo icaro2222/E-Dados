@@ -1,15 +1,12 @@
 from django.shortcuts import render
 import plotly.graph_objects as go
-import matplotlib.pyplot as plt
-from io import BytesIO
-import pandas as pd
-import plotly.express as px
-import base64
 from edados.formularios.formulario_1.formulario_1_4 import Formulario
 from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
-import numpy as np
 from edados.database import bd_formulario_1_4
-import numpy as np
+import numpy as np 
+import pandas as pd
+import csv
+from django.http import HttpResponse
 
 CONTAGEM = 0
 CONTAGEMMicrodado_Amostra = 3702008
@@ -317,12 +314,18 @@ def formulario_4(request):
         filtro_amostra = form_filtro.data['amostra']
         filtro_recurso = form_filtro.data['recurso']
         filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
-
+        
+        # filtros sendo desenvolvidos
+        filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
+        filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
+        
         Amostra = [demografico, questao]
         Microdado_Amostra = bd_formulario_1_4.buscar_dataframe_no_banco(
             Amostra, 
             filtro_sexo=filtro_sexo, 
-            filtro_recurso=filtro_recurso, 
+            filtro_recurso=filtro_recurso,             
+            filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
+            filtro_ano_de_conclusao=filtro_ano_de_conclusao,             
             filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
             filtro_amostra=filtro_amostra, 
             filtro_estado=filtro_estado, 
@@ -464,7 +467,7 @@ def formulario_4(request):
                 # xaxis_title="Respota do questionário socioeconômico",
                 # yaxis_title="Porcentagem",
                 # yaxis2 = {'domain': [.1, 1], 'anchor': 'x2', 'title': 'Goals'},
-                # legend_title="Legenda",
+                legend_title="Legenda",
                 annotations=anotacao(filtro_questao),
                 font=dict(
                     family="Arial",
@@ -476,6 +479,8 @@ def formulario_4(request):
         relatorio_em_tabela = figura_tabela.to_html()
 
         menssagem = 'Análise de Dados Socioeconômicos do ENEM'
+        CONTAGEM = '{:.0f}'.format(CONTAGEM)
+
 
         context = {
             'form' : form,
@@ -486,6 +491,20 @@ def formulario_4(request):
             'relatorio_dados_brutos' : relatorio_dados_brutos,
             'relatorio_em_tabela' : relatorio_em_tabela
         }
-
-    return render(request, 'base/formulario_1/relatorio_formulario_4.html', context=context)
+        
+    if request.POST.get('button')=='gerar_analise':
+        return render(request, 'base/formulario_1/relatorio_formulario_4.html', context=context)
     
+    # Cria o objeto response com o cabeçalho CSV
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="microdados_enem.csv"'
+    
+    # Cria o escritor CSV e escreve as linhas no objeto response
+    writer = csv.writer(response)
+    Microdado_Amostra = Microdado_Amostra.to_csv(index=False)
+
+    for row in csv.reader(Microdado_Amostra.splitlines()):
+        writer.writerow(row)
+ 
+
+    return response

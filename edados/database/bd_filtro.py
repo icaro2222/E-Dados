@@ -3,6 +3,8 @@ import pandas as pd
 from edados.database import conect_db
 
 def filtro(                       
+            filtro_ltp_adm_escola="vazio",              
+            filtro_ano_de_conclusao="vazio",   
             filtro_questao = "nenhum", 
             filtro_recurso = "vazio", 
             filtro_localizacao_da_escola = "vazio", 
@@ -18,15 +20,21 @@ def filtro(
             filtro_cor_da_prova = ""
             ):
     
+    if(filtro_ano_de_conclusao=="vazio"):   
+        filtro_ano_de_conclusao = ''
+    else:
+        filtro_ano_de_conclusao = ' AND "TP_ANO_CONCLUIU" = ' +"'" + filtro_ano_de_conclusao+"'"
+    
+    if(filtro_ltp_adm_escola=="vazio"):   
+        filtro_ltp_adm_escola = ''
+    else:
+        filtro_ltp_adm_escola = ' AND "TP_DEPENDENCIA_ADM_ESC" = ' +"'" + filtro_ltp_adm_escola+"'"
+    
     if(filtro_amostra!="todos_os_dados"):   
         conect_db.LIMIT = filtro_amostra
     else:
         conect_db.LIMIT = ""
     
-    # filtros
-    print(filtro_deficiencia)
-    
-    print('8888888888888888888888888888888888888888888888888888888888888')
     filtro_deficiencia = conect_db.filtro_de_ficiencia(filtro_deficiencia)
     
     if(filtro_cor == 'todos'):
@@ -115,10 +123,11 @@ def filtro(
                 filtro_localizacao_da_escola  + 
                 filtro_cor_da_prova +
                 restricao +
+                filtro_ano_de_conclusao +
+                filtro_ltp_adm_escola +
                 conect_db.LIMIT)
     
-    print('8888888888888888888888888888888888888888888888888888888888888')
-    
-    print(filtro)
-    
+    print('*************************************************************************')    
+    print(filtro)    
+    print('*************************************************************************')
     return filtro
