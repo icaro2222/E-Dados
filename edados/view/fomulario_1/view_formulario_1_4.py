@@ -5,6 +5,7 @@ from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 from edados.database import bd_formulario_1_4
 import numpy as np 
 import pandas as pd
+import time
 import csv
 from django.http import HttpResponse
 
@@ -273,6 +274,12 @@ def anotacao(Questao):
     
 def formulario_4(request):
 
+    # Medindo o tempo que a view demora para executar
+    tempo_inicial = time.time()
+
+    # Imprimindo o tempo em segundos
+    # print(f"A view demorou {tempo_execucao:.2f} segundos para executar.")
+
     global CONTAGEM
     global CONTAGEMMicrodado_Amostra
 
@@ -292,9 +299,10 @@ def formulario_4(request):
             'form_filtro' : form_filtro
         }
         return render(request, 'base/formulario_1/quest_formulario_4.html', context=context)
-    else:
-
-
+    elif request.POST.get('button')!='baixar_csv_completo':
+        
+        print(request.POST.get('button'))
+        print('000000000000000000000000000000000000000000000000000000000')
         # Recebendo fomulario da tela
         form = Formulario(request.POST)
         form_filtro = Formulario_filtros(request.POST)
@@ -492,19 +500,84 @@ def formulario_4(request):
             'relatorio_em_tabela' : relatorio_em_tabela
         }
         
-    if request.POST.get('button')=='gerar_analise':
-        return render(request, 'base/formulario_1/relatorio_formulario_4.html', context=context)
-    
-    # Cria o objeto response com o cabeçalho CSV
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="microdados_enem.csv"'
-    
-    # Cria o escritor CSV e escreve as linhas no objeto response
-    writer = csv.writer(response)
-    Microdado_Amostra = Microdado_Amostra.to_csv(index=False)
+        # Captura o tempo de fim da execução
+        tempo_final = time.time()
+        tempo = tempo_final - tempo_inicial
+        # Exibe o tempo de execução no terminal
+        print('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+        print(f"Tempo de execução: {tempo:.6f} segundos")
+        
+        if request.POST.get('button')=='gerar_analise':
+            return render(request, 'base/formulario_1/relatorio_formulario_4.html', context=context)
+        
+        if request.POST.get('button')=='baixar_csv':
+            # Cria o objeto response com o cabeçalho CSV
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="microdados_enem.csv"'
+            
+            # Cria o escritor CSV e escreve as linhas no objeto response
+            writer = csv.writer(response)
+            Microdado_Amostra = Microdado_Amostra.to_csv(index=False)
 
-    for row in csv.reader(Microdado_Amostra.splitlines()):
-        writer.writerow(row)
- 
+            for row in csv.reader(Microdado_Amostra.splitlines()):
+                writer.writerow(row)
+        
+            return response
+    else:
+        # Recebendo fomulario da tela
+        form = Formulario(request.POST)
+        form_filtro = Formulario_filtros(request.POST)
 
-    return response
+        # Variáveis vindas do Formulario
+        filtro_questao = form.data['questao']
+
+        print(request.POST.get('button'))
+        print('000000000000000000000000000000000000000000000000000000000')
+        # Formulario de Filtro
+        filtro_deficiencia = form_filtro.data['deficiencia']
+        filtro_estado_civil = form_filtro.data['estado_civil']
+        filtro_cor = form_filtro.data['cor']
+        filtro_sexo = form_filtro.data['sexo']
+        filtro_ano = form_filtro.data['ano']
+        filtro_escola = form_filtro.data['escola']
+        filtro_nacionalidade = form_filtro.data['nacionalidade']
+        filtro_estado = form_filtro.data['estado']
+        filtro_amostra = form_filtro.data['amostra']
+        filtro_recurso = form_filtro.data['recurso']
+        filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
+        
+        # filtros sendo desenvolvidos
+        filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
+        filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
+        
+        Amostra = '*'
+        Microdado_Amostra = bd_formulario_1_4.buscar_dataframe_no_banco(
+            Amostra, 
+            filtro_sexo=filtro_sexo, 
+            filtro_recurso=filtro_recurso,             
+            filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
+            filtro_ano_de_conclusao=filtro_ano_de_conclusao,             
+            filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
+            filtro_amostra=filtro_amostra, 
+            filtro_estado=filtro_estado, 
+            filtro_questao=filtro_questao, 
+            filtro_deficiencia=filtro_deficiencia, 
+            filtro_ano=filtro_ano, 
+            filtro_cor=filtro_cor, 
+            filtro_estado_civil=filtro_estado_civil, 
+            filtro_escola=filtro_escola, 
+            filtro_nacionalidade=filtro_nacionalidade)
+        
+
+        # Cria o objeto response com o cabeçalho CSV
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename="microdados_enem.csv"'
+        
+        # Cria o escritor CSV e escreve as linhas no objeto response
+        writer = csv.writer(response)
+        Microdado_Amostra = Microdado_Amostra.to_csv(index=False)
+
+        for row in csv.reader(Microdado_Amostra.splitlines()):
+            writer.writerow(row)
+
+        return response

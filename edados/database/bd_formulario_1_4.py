@@ -50,8 +50,11 @@ def buscar_dataframe_no_banco(amostra,
     BANCO = conect_db.banco(filtro_ano=filtro_ano)
     
     retorno_da_query = filtro_questao
-    estrutura = 'SELECT '+ retorno_da_query + ' "TP_SEXO", "TP_COR_RACA", "NU_IDADE", "NU_NOTA_CN", "NU_NOTA_CH", "NU_NOTA_LC", "NU_NOTA_MT" FROM ' + BANCO
-
+    if amostra != '*':
+        estrutura = 'SELECT '+ retorno_da_query + ' "TP_SEXO", "TP_COR_RACA", "NU_IDADE", "NU_NOTA_CN", "NU_NOTA_CH", "NU_NOTA_LC", "NU_NOTA_MT" FROM ' + BANCO
+    else:
+        estrutura = 'SELECT * FROM ' + BANCO
+        
     query = (estrutura + filtro)
 
     print(query)

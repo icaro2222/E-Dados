@@ -111,6 +111,11 @@ def filtro(
         filtro_sexo = ' AND "TP_SEXO" = '+"'"+str(filtro_sexo)+"' "
     else:
         filtro_sexo = ''
+    
+    if(conect_db.LIMIT != ' LIMIT 1000'):
+        amostragem = ' ORDER BY RANDOM() '
+    else:
+        amostragem =''
 
     filtro = (  filtro_deficiencia + 
                 filtro_sexo +
@@ -125,6 +130,7 @@ def filtro(
                 restricao +
                 filtro_ano_de_conclusao +
                 filtro_ltp_adm_escola +
+                amostragem +
                 conect_db.LIMIT)
     
     print('*************************************************************************')    
