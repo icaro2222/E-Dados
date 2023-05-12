@@ -24,6 +24,7 @@ def anotacao(Questao):
                             <br>F: Completou a Faculdade, mas não completou a Pós-graduação.
                             <br>G: Completou a Pós-graduação.
                             <br>H: Não sei."""
+        y = -0.8
     elif Questao == 'Q002':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
                             <br>A: Nunca estudou.
@@ -34,6 +35,7 @@ def anotacao(Questao):
                             <br>F: Completou a Faculdade, mas não completou a Pós-graduação.
                             <br>G: Completou a Pós-graduação.
                             <br>H: Não sei."""
+        y = -0.8
     elif Questao == 'Q003':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 3 no questionario socioeconômico:
                             <br>
@@ -49,6 +51,7 @@ def anotacao(Questao):
                             <br>Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel,
 <br professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
                             <br>Não sei.."""
+        y = -0.8
     elif Questao == 'Q004':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 4 no questionario socioeconômico:
                             <br>
@@ -64,6 +67,7 @@ def anotacao(Questao):
 <br>Grupo 5: Médica, engenheira, dentista, psicóloga, economista, advogada, juíza, promotora, defensora, delegada, tenente, capitã, coronel,
 <br professora universitária, diretora em empresas públicas ou privadas, política, proprietária de empresas com mais de 10 empregados.
 <br>Não sei."""
+        y = -0.8
     elif Questao == 'Q005':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 5 no questionario socioeconômico:
                             <br><br>1: Moro sozinho(a)
@@ -86,6 +90,7 @@ def anotacao(Questao):
 <br>18: 18 pessoas
 <br>19: 19 pessoas
 <br>20: 20 pessoas"""
+        y = -0.8
     elif Questao == 'Q006':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 6 no questionario socioeconômico:
                             <br>
@@ -106,12 +111,14 @@ def anotacao(Questao):
 <br>O: De R$ 11.976,01 até R$ 14.970,00
 <br>P: De R$ 14.970,01 até R$ 19.960,00
 <br>Q: Mais de R$ 19.960,00"""
+        y = -0.8
     elif Questao == 'Q007':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 7 no questionario socioeconômico:
                             <br><br>A: Não.
 <br>B: Sim, um ou dois dias por semana.
 <br>C: Sim, três ou quatro dias por semana.
 <br>D: Sim, pelo menos cinco dias por semana."""
+        y = -0.8
     elif Questao == 'Q008':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 8 no questionario socioeconômico:
                             <br>
@@ -120,6 +127,7 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q009':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 9 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -127,6 +135,7 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q010':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 10 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -134,6 +143,7 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q011':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 11 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -141,6 +151,7 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q012':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 12 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -148,6 +159,7 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q013':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 13 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -155,6 +167,7 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q014':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 14 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -162,6 +175,7 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q015':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 15 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -169,6 +183,7 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q016':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 16 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -176,6 +191,7 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q017':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 17 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -183,10 +199,12 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q018':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 18 no questionario socioeconômico:
                             <br><br>A: Sim.
 <br>B Não."""
+        y = -0.8
     elif Questao == 'Q019':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 19 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -194,14 +212,17 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q020':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 20 no questionario socioeconômico:
                             <br><br>A: Sim.
 <br>B Não."""
+        y = -0.8
     elif Questao == 'Q021':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 21 no questionario socioeconômico:
                             <br><br>A: Sim.
 <br>B Não."""
+        y = -0.8
     elif Questao == 'Q022':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 22 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -209,10 +230,12 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
     elif Questao == 'Q023':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 23 no questionario socioeconômico:
                             <br><br>A: Sim.
 <br>B Não."""
+        y = -0.8
     elif Questao == 'Q024':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 24 no questionario socioeconômico:
                             <br><br>A: Não.
@@ -220,16 +243,26 @@ def anotacao(Questao):
 <br>C: Sim, dois.
 <br>D: Sim, três.
 <br>E: Sim, quatro ou mais."""
+        y = -0.8
+
     elif Questao == 'Q025':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 25 no questionario socioeconômico:
                             <br><br>A: Sim.
                             <br>B Não."""
+        y = -0.8
     else:
-        texto = """BOMMMM DIIIIA AMIGÂOOO, essa opção ta em "desenvolvimento"!!!"""
+        texto = """
+                <br>- Na primeira seção da tela, há um quadro com dados sobre a média das notas dos alunos que você selecionou<br> usando os filtros do formulário logo acima.
+                <br>- Nesse mesmo quadro, você também encontrará a maior nota obtida na prova, a menor nota e os quartis. 
+                <br>- É importante salientar que os quartis são valores que dividem o conjunto de dados em quatro partes iguais, <br>sendo que 25% é o quartil 1, 50%(que é a mediana) é o quartil 2 e 75% é o quartil 3.
+                <br>- Na seção seguinte, há um gráfico que ilustra claramente a diferença entre a nota mínima, a média e a nota máxima."""
+        y = -0.5
+    
+    
     annotations = [
         {
             'x': 0,
-            'y': -0.8,
+            'y': y,
             'xref': "paper",
             'yref': "paper",
             'text': texto,
@@ -364,8 +397,7 @@ def formulario_2(request):
                     filtro_ano=filtro_ano)
             
         CONTAGEM = Microdado_Amostra[prova].count()
-        print(CONTAGEM)
-        print('++++++++++++++++++++++++++++++++++++++++++++++++++++')
+        
         if(CONTAGEM==0):
             menssagem = """Nenhum aluno com esse perfil:"""
             menssagem1 = """Nenhum aluno com esse perfil:"""
@@ -373,9 +405,7 @@ def formulario_2(request):
                 'form' : form,
                 'menssagem' : menssagem,
                 'menssagem1' : menssagem1,
-                'form_filtro' : form_filtro,
-                # 'figura_com_criador_de_tabela' : figura_com_criador_de_tabela,
-                # 'relatorio_em_tabela' : relatorio_em_tabela
+                'form_filtro' : form_filtro
             }
 
             return render(request, 'base/formulario_2/relatorio_formulario_2.html', context=context)
@@ -401,26 +431,7 @@ def formulario_2(request):
         
         figura_tabela_da_media = px.bar(Dataframe['mean'])
         figura_tabela_da_media = figura_tabela_da_media.to_html()
-       
-        # Crie um estilo CSS externo para estilizar a tabela
-        # CSS_STYLE = """
-        #     .table-header {
-        #         background-color: royalblue;
-        #         height: 30px;
-        #         line-color: darkslategray;
-        #         text-align: center;
-        #         font-color: white;
-        #         font-size: 12px;
-        #     }
-        #     .table-cell {
-        #         line-color: darkslategray;
-        #         text-align: center;
-        #         height: 30px;
-        #         font-color: darkslategray;
-        #         font-size: 11px;
-        #     }
-        # """
-        
+               
         rowEvenColor = 'lightgrey'
         rowOddColor = 'white'
 

@@ -338,34 +338,10 @@ def acertos_quantidade(Microdado_Amostra, prova, cor_da_prova):
         fig.update_layout(
             title_text = """Tabela de correlação entre o desempenho e a resposta da questão 
             socioeconômica.""",
-            height = 600,
-            # margin = {'t':75, 'l':50},
-            # yaxis = {'domain': [0, .45]},
-            # xaxis2 = {'anchor': 'y2'},
-            # xaxis_title="Respota do questionário socioeconômico",
-            # yaxis_title="Desempenho",
-            # yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
-            # legend_title="Legenda",
-            # font=dict(
-            #     family="Arial",
-            #     size=12,
-            #     color="black"
-            # )
+            height = 600
         )
-
-            
-        # fig.update_layout(
-        #     title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-        #     height = 500,
-        #     font=dict(
-        #         family="Arial",
-        #         size=12,
-        #         color="black"
-        #     )
-        # )
-
+        
         relatorio = fig.to_html()
-
 
         relatorio_em_tabela = relatorio
         figura_tabela_masculino = relatorio

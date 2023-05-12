@@ -99,8 +99,6 @@ def formulario_1(request):
             
 
         CONTAGEM  = Microdado_Amostra[questao].count()
-        print('---------------------------------------------')
-        print(CONTAGEM)
         menssagem = 'Análise de Dados Socioeconômicos do ENEM'
         relatorio_em_grafico = ''
 
@@ -406,8 +404,6 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
     fig = go.Figure()
     texttemplate = '%{text:.1f}%',
     textposition = 'auto'
-    print(CONTAGEM)
-    print('++++++++++++++++++++++++++++++++++++++')
 
     for index in lista_dos_index:
         if index == 'F':
@@ -613,9 +609,6 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
     DataFrame = DataFrame.groupby([demografico, questao])
     DataFrame = DataFrame[demografico].count()
 
-    # DataFrame = Microdado_Amostra.sort_values(by=questao)
-    # DataFrame = DataFrame.groupby([demografico, questao])[demografico].count()
-
     # rotacionar
     DataFrame = DataFrame.unstack()
 
@@ -721,11 +714,7 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
             family="Arial",
             size=12,
             color="black"
-        ),
-        # margin = {'t':75, 'l':50},
-        # yaxis = {'domain': [0, .45]},
-        # xaxis2 = {'anchor': 'y2'},
-        # yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'}
+        )
     )
 
     relatorio = fig.to_html()
