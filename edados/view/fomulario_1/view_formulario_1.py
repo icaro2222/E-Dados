@@ -853,7 +853,8 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
     for index in lista_dos_index:
 
         if filtro_ano == '2019':
-            print(2019)
+            print('----------------------')
+            print(index)
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):
@@ -882,7 +883,7 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
                 nome = '2007'
             else:
                 nome = 'Antes de 2007'
-        elif filtro_ano == '2018':
+        else:
             print(2018)
             if (index == '0' or index == 0):
                 nome = 'Não informou'

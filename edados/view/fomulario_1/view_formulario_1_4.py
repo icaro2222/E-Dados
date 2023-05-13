@@ -277,9 +277,6 @@ def formulario_4(request):
     # Medindo o tempo que a view demora para executar
     tempo_inicial = time.time()
 
-    # Imprimindo o tempo em segundos
-    # print(f"A view demorou {tempo_execucao:.2f} segundos para executar.")
-
     global CONTAGEM
     global CONTAGEMMicrodado_Amostra
 
@@ -470,11 +467,6 @@ def formulario_4(request):
                 title_text = """Quadro de contagem das respostas das questões socioeconômicas.""",
                 height = 700,
                 margin=dict(l=50, r=50, b=290, t=45),
-                # yaxis = {'domain': [0, .45]},
-                # xaxis2 = {'anchor': 'y2'},
-                # xaxis_title="Respota do questionário socioeconômico",
-                # yaxis_title="Porcentagem",
-                # yaxis2 = {'domain': [.1, 1], 'anchor': 'x2', 'title': 'Goals'},
                 legend_title="Legenda",
                 annotations=anotacao(filtro_questao),
                 font=dict(
