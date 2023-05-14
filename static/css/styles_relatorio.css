@@ -9,10 +9,10 @@
     width: 100%;
 }
 
-a:link {
+/* a:link {
     color: rgb(17, 0, 110);
     text-decoration: none;
-}
+} */
 
 @media print {
     body {
