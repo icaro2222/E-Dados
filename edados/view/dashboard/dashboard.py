@@ -1,14 +1,9 @@
-import os
 from django.contrib.auth.decorators import login_required
-from typing import Sized
 import plotly.graph_objects as go
 from django.shortcuts import render
 import pandas as pd
-import matplotlib.pyplot as plt
 import plotly.express as px
-import matplotlib as mpl
 from edados.formularios.dashboard.formulario_dashboard import DashboardFormulario
-import numpy as np
 from edados.database import bd_quest_socio_notas_deficiencia, conect_db
 from django.utils.html import format_html_join
 
