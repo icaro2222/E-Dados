@@ -21,7 +21,7 @@ class MeuFormulario(forms.Form):
                     ('m' ,'Filtrar Apenas Masculino'))
 
     nota = forms.ChoiceField(
-        label="""<div class="m-0" title="PROVAS / Áreas do conhecimento">Prova*<i class="fas fa-info-circle"></i></div>""", 
+        label="""<div class="m-0" title="PROVAS / Áreas do conhecimento">Prova: <i class="fas fa-info-circle"></i></div>""", 
         choices=choices_nota,
         required=False,
         widget=forms.Select(attrs={

@@ -11,7 +11,7 @@ def questionario_prova(Form):
     # prova = forms.ChoiceField(label='Prova:', choices=choices_prova)
     
     prova = forms.ChoiceField(
-        label="""<div class="m-0" title="PROVAS / Áreas do conhecimento">Prova*<i class="fas fa-info-circle"></i></div>""", 
+        label="""<div class="m-0" title="PROVAS / Áreas do conhecimento">Prova:<i class="fas fa-info-circle"></i></div>""", 
         choices=choices_prova,
         required=False,
         widget=forms.Select(attrs={

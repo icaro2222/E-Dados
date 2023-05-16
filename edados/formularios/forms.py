@@ -30,7 +30,7 @@ class MeuFormulario(forms.Form):
     sexo = forms.ChoiceField(choices=choices_sexo)
     tipo_de_grafico = forms.ChoiceField(choices=tipo_de_grafico)
     nota = forms.ChoiceField(
-        label="""<div class="m-0" title="PROVAS / Áreas do conhecimento">Prova*<i class="fas fa-info-circle"></i></div>""", 
+        label="""<div class="m-0" title="PROVAS / Áreas do conhecimento">Prova: <i class="fas fa-info-circle"></i></div>""", 
         choices=choices_nota,
         required=False,
         widget=forms.Select(attrs={

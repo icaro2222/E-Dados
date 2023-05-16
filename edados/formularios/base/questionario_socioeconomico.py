@@ -35,7 +35,7 @@ def questionario_socioeconomico(Form):
             
     
     questao = forms.ChoiceField(
-        label="""<div class="m-0" title="Essa opção permite que você escolha uma das questões socioeconômicas do Enem. Essa opção é então contrastada com a opção de dados demográficos, como sexo, etc. A partir dessa análise, um gráfico é gerado, proporcionando insights que podem ser utilizados na criação de trabalhos ou estudos.">Questão socioeconômica a ser analisada:* <i class="fas fa-info-circle"></i></div>""", 
+        label="""<div class="m-0" title="Essa opção permite que você escolha uma das questões socioeconômicas do Enem. Essa opção é então contrastada com a opção de dados demográficos, como sexo, etc. A partir dessa análise, um gráfico é gerado, proporcionando insights que podem ser utilizados na criação de trabalhos ou estudos.">Questão socioeconômica a ser analisada: <i class="fas fa-info-circle"></i></div>""", 
         choices=choices_questao,
         required=False,
         widget=forms.Select(attrs={

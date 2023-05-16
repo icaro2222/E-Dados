@@ -15,7 +15,7 @@ def questionario_demografico(Form):
                         )
             
     questao = forms.ChoiceField(
-        label="""<div class="m-0" title="Esta opção permite selecionar uma variável demográfica que será contrastada com a questão socioeconômica, a fim de criar um gráfico comparativo entre essas duas variáveis. Isso possibilita a análise da relação entre características demográficas dos participantes (como sexo, estado civil, cor/raça, nacionalidade, etc.) e as respostas socioeconômicas. O gráfico resultante oferece insights sobre possíveis padrões ou correlações entre essas variáveis, contribuindo para uma compreensão mais completa do perfil dos participantes.">Demográfico:* <i class="fas fa-info-circle"></i></div>""", 
+        label="""<div class="m-0" title="Esta opção permite selecionar uma variável demográfica que será contrastada com a questão socioeconômica, a fim de criar um gráfico comparativo entre essas duas variáveis. Isso possibilita a análise da relação entre características demográficas dos participantes (como sexo, estado civil, cor/raça, nacionalidade, etc.) e as respostas socioeconômicas. O gráfico resultante oferece insights sobre possíveis padrões ou correlações entre essas variáveis, contribuindo para uma compreensão mais completa do perfil dos participantes.">Demográfico: <i class="fas fa-info-circle"></i></div>""", 
         choices=choices_questao,
         required=False,
         widget=forms.Select(attrs={

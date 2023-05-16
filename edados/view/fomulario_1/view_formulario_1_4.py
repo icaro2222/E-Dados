@@ -435,7 +435,7 @@ def formulario_4(request):
 
 
             relatorio_em_grafico = go.Figure()
-            nome = "twt"
+            nome = "Porcentagem Parcial"
             relatorio_em_grafico.add_bar(
                 y=((Dataframe['count']/CONTAGEM)*100),
                 x=Dataframe.index,
@@ -444,33 +444,48 @@ def formulario_4(request):
                 textposition='auto',
                 name=nome
             )
-            relatorio_em_grafico = relatorio_em_grafico.to_html()
 
             
             figura_tabela.update_layout(
-                title_text="Quadro de correlação entre o desempenho e a resposta da questão socioeconômica.",
+                title_text="Quadro informativo sobre a proporção de alunos por resposta da questão socioeconômica: ",
                 height=300,
                 margin=dict(l=50, r=50, b=20, t=50),
                 yaxis={'domain': [0, .45]},
                 xaxis2={'anchor': 'y2'},
-                xaxis_title="Resposta do questionário socioeconômico",
+                xaxis_title=("Resposta da questão: "+questao+" do questionário socioeconômico"),
                 yaxis_title="Porcentagem Parcial",
                 yaxis2={'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
                 legend_title="Legenda",
-                # annotations=anotacao(filtro_questao),
                 font=dict(
                     family="Arial",
                     size=12,
                     color="black"
                 )
             )
+            relatorio_em_grafico.update_layout(
+                title_text = "Gráfico de dispersão de alunos por alternativa na questão socioeconômica: "+questao,
+                # margin=dict(l=50, r=50, b=20, t=0),
+                # yaxis = {'domain': [0, .1]},
+                xaxis2 = {'anchor': 'y2'},
+                xaxis_title=("Resposta da questão: "+questao+" do questionário socioeconômico"),
+                yaxis_title=("Porcentagem Parcial"),
+                yaxis2 = {'domain': [.1, 0], 'anchor': 'x2', 'title': 'Goals'},
+                legend_title="Legenda",
+                font=dict(
+                    family="Arial",
+                    size=12,
+                    color="black"
+                )
+            )
+            relatorio_em_grafico = relatorio_em_grafico.to_html()
+            
             anotacao_menssagem = anotacao(filtro_questao)
             
         if filtro_questao == 'nenhum':
             anotacao_menssagem=""
             relatorio_em_grafico=""
             figura_tabela.update_layout(
-                title_text = """Quadro de contagem das respostas das questões socioeconômicas.""",
+                title_text = """Quadro informativo sobre quantitativo de alunos de acordo com os filtros selecionados""",
                 height = 400,
                 margin = {'t':75, 'l':50},
                 yaxis = {'domain': [0, .45]},
@@ -505,8 +520,6 @@ def formulario_4(request):
                     color="black"
                 )
             )
-        else:
-            None
 
         relatorio_em_tabela = figura_tabela.to_html()
 
@@ -515,12 +528,12 @@ def formulario_4(request):
         if(anotacao_menssagem!=""):
             anotacao_menssagem = anotacao_menssagem.split('\n')
             anotacao_menssagem = format_html_join(
-                '\n', '<div class="col-md-11 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_menssagem))
+                '\n', '<div class="col-md-12 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_menssagem))
             # Cria a mensagem de anotação
-            informativo = '<h5>Informativo:</h5>'
+            informativo = '<h5 class="mb-0">Informativo:</h5>'
 
             # Formata a mensagem em HTML
-            anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div>{anotacao_menssagem}</div>'
+            anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_menssagem}</div>'
         else:
             anotacao_mensagem=""
             relatorio_em_grafico=""
