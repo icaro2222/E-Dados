@@ -54,50 +54,8 @@
     </form>
     <div class="col-md-12 ">
       <h6 class="text-dark d-flex ">{{ menssagem }}</h6>
-      <!-- <div><hr class="mt-0"></div> -->
     </div>
   </div>
-
-  <!-- <script>
-      // Verifica se já foi exibida a tela de instruções
-      if (!localStorage.getItem('exibiuInstrucoes')) {
-        // Exibe a tela de instruções
-        document.getElementById('instrucoes').style.display = 'block';
-        
-        // Define a ação do botão de fechar
-        document.getElementById('fechar-instrucoes').addEventListener('click', function() {
-          // Esconde a tela de instruções
-          document.getElementById('instrucoes').style.display = 'none';
-          // Marca que a tela de instruções já foi exibida
-          localStorage.setItem('exibiuInstrucoes', true);
-        });
-      }
-
-      const texto = "Bem-vindo à nossa plataforma web! Aqui você encontrará uma ferramenta poderosa para auxiliar na análise dos microdados do ENEM. Sabemos que interpretar e entender esses dados pode ser um desafio para muitos, por isso criamos essa plataforma com o intuito de tornar esse processo mais fácil e intuitivo. Com nossas funcionalidades, você pode selecionar e visualizar os dados de acordo com suas necessidades, filtrando por ano, região, escola e outras variáveis importantes. Além disso, oferecemos gráficos e tabelas interativas para ajudar a interpretar as informações e identificar tendências e padrões. Nosso objetivo é tornar a análise dos microdados do ENEM acessível e útil para todos, desde estudantes e professores até pesquisadores e analistas de dados. Acreditamos que ao entender melhor esses dados, podemos tomar decisões mais informadas e criar soluções mais eficazes para melhorar a educação no nosso país. Esperamos que você aproveite nossa plataforma e que ela seja útil na sua jornada de análise dos microdados do ENEM. Se tiver alguma dúvida ou sugestão, não hesite em entrar em contato conosco. Estamos sempre buscando maneiras de melhorar e atender às necessidades de nossos usuários."
-      let index = 0;
-
-      function escrever() {
-        if (index < texto.length) {
-          document.getElementById("texto").innerHTML += texto.charAt(index);
-          index++;
-          setTimeout(escrever, 50);
-        }
-      }
-      
-      escrever();
-
-      
-      function escrever() {
-        if (index < texto.length) {
-          document.getElementById("texto").insertAdjacentHTML('beforeend', texto.charAt(index));
-          index++;
-          setTimeout(escrever, 50);
-        }
-      }
-
-      escrever();
-
-    </script> -->
 </body>
 
 <script>
@@ -106,6 +64,5 @@
   }, 1600);
 </script>
 
-<!-- <hr class="mb-3" /> -->
 <!-- /.container-fluid -->
 {% endblock %}

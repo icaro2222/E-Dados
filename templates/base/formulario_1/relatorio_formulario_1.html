@@ -16,9 +16,10 @@ Gráfico Socioeconômico
   <form class="col mt-0" action="." method="post">
     <h5 class="m-0 d-flex align-items-center">
       <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 2C0 0.89543 0.895431 0 2 0H10C11.1046 0 12 0.895431 12 2V4H14C15.1046 4 16 4.89543 16 6V14C16 15.1046 15.1046 16 14 16H6C4.89543 16 4 15.1046 4 14V12H2C0.89543 12 0 11.1046 0 10V2ZM5 12V14C5 14.5523 5.44772 15 6 15H14C14.5523 15 15 14.5523 15 14V6C15 5.44772 14.5523 5 14 5H12V10C12 11.1046 11.1046 12 10 12H5ZM11 4V2C11 1.44772 10.5523 1 10 1H2C1.44772 1 1 1.44772 1 2V10C1 10.5523 1.44772 11 2 11H4V6C4 4.89543 4.89543 4 6 4H11Z"/>
-        </svg>
-        <span>Variáveis de contraste e correlação</span>
+        <path
+          d="M0 2C0 0.89543 0.895431 0 2 0H10C11.1046 0 12 0.895431 12 2V4H14C15.1046 4 16 4.89543 16 6V14C16 15.1046 15.1046 16 14 16H6C4.89543 16 4 15.1046 4 14V12H2C0.89543 12 0 11.1046 0 10V2ZM5 12V14C5 14.5523 5.44772 15 6 15H14C14.5523 15 15 14.5523 15 14V6C15 5.44772 14.5523 5 14 5H12V10C12 11.1046 11.1046 12 10 12H5ZM11 4V2C11 1.44772 10.5523 1 10 1H2C1.44772 1 1 1.44772 1 2V10C1 10.5523 1.44772 11 2 11H4V6C4 4.89543 4.89543 4 6 4H11Z" />
+      </svg>
+      <span>Variáveis de contraste e correlação</span>
     </h5>
     <hr class="mt-0 mb-2" />
     <div class="row d-flex">
@@ -37,12 +38,14 @@ Gráfico Socioeconômico
     </div>
 
     <h5 class="mt-0 mb-0 d-flex align-items-center">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-funnel me-2" viewBox="0 0 16 16">
-        <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z"/>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-funnel me-2"
+        viewBox="0 0 16 16">
+        <path
+          d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2h-11z" />
       </svg>
       <span>Filtros</span>
     </h5>
-    
+
     <hr class="mt-0 mb-2" />
     <div class="row d-flex">
       <div class="col-md-2">
@@ -127,7 +130,7 @@ Gráfico Socioeconômico
       </h6>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col md-12">
       <hr class="mt-0 mb-3 bg-dark" />
@@ -155,14 +158,13 @@ Gráfico Socioeconômico
 
 <script>
 
-  var selectElement = document.getElementById("id_amostra"); // substitua "id_amostra" pelo ID do seu campo de formulário
-
+  var selectElement = document.getElementById("id_amostra"); 
   // Adicione um ouvinte de eventos para o evento "change" no campo "select"
-  selectElement.addEventListener("change", function() {
+  selectElement.addEventListener("change", function () {
     var selectedOption = selectElement.options[selectElement.selectedIndex].value;
-    
+
     if (selectedOption == "todos_os_dados") {
-      document.getElementById("preloader2").addEventListener("click", function() {
+      document.getElementById("preloader2").addEventListener("click", function () {
         document.getElementById("preloader").style.display = "block";
       });
     }

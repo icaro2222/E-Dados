@@ -1,104 +1,36 @@
 {% extends 'layout/layout.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% block titulo %}E-Dados{% endblock %} 
-{% block css%} <link rel="stylesheet" href={% static "css/styles_relatorio.css" %}> {%endblock %} 
+{% block titulo %}E-Dados{% endblock %}
+{% block css%}
+<link rel="stylesheet" href={% static "css/styles_relatorio.css" %}> {%endblock %}
 {% block conteudo %}
 
 <body>
-  
+
   <!-- Conteúdo da página -->
   <div class="row border border-break">
     <div class="col-md-12 text-dark">
       {{ menssagem1 }}
-    <hr class="mt-0 bg-light" />
+      <hr class="mt-0 bg-light" />
     </div>
-    
-  <!-- Page Heading -->
-  <form class="col-md-12 mb-3" action="." method="post">
-    {% csrf_token %} 
-    <div class="d-flex">
-      <!-- {{ form|crispy }} -->
-    </div>
-    <!-- <div class="d-flex justify-content-end align-items-center">
-      <div class="col-sm-4 mb-4 d-flex justify-content-end">
-        <button type="submit" class="md-3 btn btn-outline-primary">
-          Gerar Nova Análise
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            fill="currentColor"
-            class="bi bi-clipboard-data"
-            viewBox="0 0 16 16"
-          >
-            <path
-              d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z"
-            />
-            <path
-              d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"
-            />
-            <path
-              d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"
-            />
-          </svg>
-        </button>
+
+    <!-- Page Heading -->
+    <form class="col-md-12 mb-3" action="." method="post">
+      {% csrf_token %}
+      <div class="d-flex">
+        <!-- {{ form|crispy }} -->
       </div>
-    </div>
-  <hr class="mt-0" /> -->
-  </form>
-  <div class="d-flex col-md-12">
+    </form>
+    <div class="d-flex col-md-12">
       <div class="col md-6">{{relatorio_em_quadro|safe}}</div>
       <div class="col md-6">{{relatorio|safe}}</div>
+    </div>
+    <div class="col-md-12 ">
+      <h6 class="text-dark">{{ menssagem }}</h6>
+    </div>
   </div>
-  <div class="col-md-12 ">
-    <h6 class="text-dark" >{{ menssagem }}</h6>
-  </div>
-</div>
+</body>
 
-    <!-- <script>
-      // Verifica se já foi exibida a tela de instruções
-      if (!localStorage.getItem('exibiuInstrucoes')) {
-        // Exibe a tela de instruções
-        document.getElementById('instrucoes').style.display = 'block';
-        
-        // Define a ação do botão de fechar
-        document.getElementById('fechar-instrucoes').addEventListener('click', function() {
-          // Esconde a tela de instruções
-          document.getElementById('instrucoes').style.display = 'none';
-          // Marca que a tela de instruções já foi exibida
-          localStorage.setItem('exibiuInstrucoes', true);
-        });
-      }
-
-      const texto = "Bem-vindo à nossa plataforma web! Aqui você encontrará uma ferramenta poderosa para auxiliar na análise dos microdados do ENEM. Sabemos que interpretar e entender esses dados pode ser um desafio para muitos, por isso criamos essa plataforma com o intuito de tornar esse processo mais fácil e intuitivo. Com nossas funcionalidades, você pode selecionar e visualizar os dados de acordo com suas necessidades, filtrando por ano, região, escola e outras variáveis importantes. Além disso, oferecemos gráficos e tabelas interativas para ajudar a interpretar as informações e identificar tendências e padrões. Nosso objetivo é tornar a análise dos microdados do ENEM acessível e útil para todos, desde estudantes e professores até pesquisadores e analistas de dados. Acreditamos que ao entender melhor esses dados, podemos tomar decisões mais informadas e criar soluções mais eficazes para melhorar a educação no nosso país. Esperamos que você aproveite nossa plataforma e que ela seja útil na sua jornada de análise dos microdados do ENEM. Se tiver alguma dúvida ou sugestão, não hesite em entrar em contato conosco. Estamos sempre buscando maneiras de melhorar e atender às necessidades de nossos usuários."
-      let index = 0;
-
-      function escrever() {
-        if (index < texto.length) {
-          document.getElementById("texto").innerHTML += texto.charAt(index);
-          index++;
-          setTimeout(escrever, 50);
-        }
-      }
-      
-      escrever();
-
-      
-      function escrever() {
-        if (index < texto.length) {
-          document.getElementById("texto").insertAdjacentHTML('beforeend', texto.charAt(index));
-          index++;
-          setTimeout(escrever, 50);
-        }
-      }
-
-      escrever();
-
-    </script> -->
-  </body>
-
-
-<!-- <hr class="mb-3" /> -->
 <!-- /.container-fluid -->
 {% endblock %}
