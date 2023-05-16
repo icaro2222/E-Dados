@@ -33,7 +33,19 @@ def questionario_socioeconomico(Form):
                         ('Q024', 'Q024 - Na sua residência tem computador?'),
                         ('Q025', 'Q025 - Na sua residência tem acesso à Internet?'))
             
-    questao = forms.ChoiceField(label='Questão socioeconômica a ser analisada:', choices=choices_questao)
+    
+    questao = forms.ChoiceField(
+        label="""<div class="m-0" title="Essa opção permite que você escolha uma das questões socioeconômicas do Enem. Essa opção é então contrastada com a opção de dados demográficos, como sexo, etc. A partir dessa análise, um gráfico é gerado, proporcionando insights que podem ser utilizados na criação de trabalhos ou estudos.">Questão socioeconômica a ser analisada:* <i class="fas fa-info-circle"></i></div>""", 
+        choices=choices_questao,
+        required=False,
+        widget=forms.Select(attrs={
+            'title': """Essas questões socioeconômicas têm como objetivo coletar informações sobre o contexto familiar e socioeconômico dos participantes. Elas abordam características como o nível de escolaridade dos pais ou responsáveis, ocupação dos pais, tamanho da família, renda familiar, presença de empregado doméstico, disponibilidade de recursos na residência (como banheiro, quartos, carro, eletrodomésticos, entre outros) e acesso à tecnologia (como telefone celular, computador e Internet).
+
+Essas questões fornecem dados relevantes para a análise e compreensão do perfil socioeconômico dos participantes, auxiliando na identificação de possíveis desigualdades e impactos socioeconômicos na educação. As respostas a essas perguntas podem ser utilizadas para a elaboração de estudos, pesquisas e formulação de políticas públicas na área da educação e inclusão social.
+
+É importante destacar que essas questões são parte integrante de um questionário mais amplo, que visa obter informações demográficas e socioeconômicas para análise estatística e compreensão do contexto dos participantes em relação ao desempenho no Exame Nacional do Ensino Médio (Enem)."""
+        }))
+    
     return questao
 
     

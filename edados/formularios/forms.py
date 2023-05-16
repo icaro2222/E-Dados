@@ -27,6 +27,12 @@ class MeuFormulario(forms.Form):
                     ('bar' ,'bar'))
 
     questao = questionario_socioeconomico.questionario_socioeconomico(Form=forms.Form)
-    nota = forms.ChoiceField(choices=choices_nota)
     sexo = forms.ChoiceField(choices=choices_sexo)
     tipo_de_grafico = forms.ChoiceField(choices=tipo_de_grafico)
+    nota = forms.ChoiceField(
+        label="""<div class="m-0" title="PROVAS / Áreas do conhecimento">Prova*<i class="fas fa-info-circle"></i></div>""", 
+        choices=choices_nota,
+        required=False,
+        widget=forms.Select(attrs={
+            'title': """Análise das provas/ Áreas do conhecimento."""
+        }))

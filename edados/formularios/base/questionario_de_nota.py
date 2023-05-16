@@ -16,5 +16,12 @@ def questionario_de_nota(Form):
                     ('NU_NOTA_REDACAO', 'NU_NOTA_REDACAO - Redação'))
                     
 
-    nota = forms.ChoiceField(label='Prova a ser analisada:', choices=choices_nota)
+    
+    nota = forms.ChoiceField(
+        label="""<div class="m-0" title="Essa opção permite selecionar a prova que você deseja analisar e, em seguida, gera gráficos e informações que mostram a correlação entre a nota na prova e as questões socioeconômicas. Isso possibilita identificar os principais fatores socioeconômicos que influenciam o desempenho dos candidatos nas provas. Além disso, é possível identificar em qual prova os candidatos têm um desempenho melhor ou pior, relacionado às questões socioeconômicas. Essa análise ajuda a compreender como os fatores socioeconômicos impactam os resultados das provas, permitindo direcionar esforços para melhorar a equidade e a qualidade da educação.">Prova*<i class="fas fa-info-circle"></i></div>""", 
+        choices=choices_nota,
+        required=False,
+        widget=forms.Select(attrs={
+            'title': """Análise das provas/ Áreas do conhecimento."""
+        }))
     return nota
