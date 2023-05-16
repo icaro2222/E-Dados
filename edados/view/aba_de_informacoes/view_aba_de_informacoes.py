@@ -123,8 +123,6 @@ def correcoes_bugs(request):
 def criadores(request):
 
     if request.method == 'GET':
-
-        form = fil()
         
         menssagem1 ="""Informações dos Criadores da plataforma E-DADOS:""" 
         instituicao ="""Instituição: IFBAIANO Campos Guanambi""" 
