@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from edados.formularios.aba_informacoes.correcoes import form_correcoes
 from django.utils.html import format_html_join
 from  correcoes.models import Correcao
+from edados.formularios.filtros.filtros_ano import Formulario_filtro_ano
 from django.contrib import messages
 
 def formatar(valor):
@@ -123,6 +124,8 @@ def criadores(request):
 
     if request.method == 'GET':
 
+        form = fil()
+        
         menssagem1 ="""Informações dos Criadores da plataforma E-DADOS:""" 
         instituicao ="""Instituição: IFBAIANO Campos Guanambi""" 
         
@@ -209,6 +212,141 @@ def criadores(request):
             'menssagem_coo_orientador': menssagem_coo_orientador,
         }
         return render(request, 'base/aba_de_informacoes/criadores.html', context=context)
+
+    else:
+
+
+
+        menssagem1 = "Dados Gerais do enem"
+        menssagem = """<br>
+        Esta é uma plataforma online que nos períodos de 2016, 2017, 2018 e 2019."""
+
+
+        context = {
+            'menssagem': menssagem,
+            'menssagem1': menssagem1
+        }
+
+    return render(request, 'base/aba_de_informacoes/criadores.html', context=context)
+
+def dicionario_microdados(request):
+
+        
+    if request.method == 'GET':
+        
+        form = Formulario_filtro_ano()
+
+        menssagem1 ="""Dicionário dos Microdados do Enem:""" 
+        instituicao ="""Instituição: IFBAIANO Campos Guanambi""" 
+        
+        aluno ="""Discente: Ícaro Dias dos Santos""" 
+        menssagem_aluno ="""ÁREA DE FORMAÇÃO: Graduando em Análise e Desenvolvimento de Sistema (IFBaiano)
+        TITULAÇÃO MÁXIMA: Graduando
+        icarodias2222@gmail.com""" 
+        
+        
+        orientador ="""Orientador: Woquiton Lima Fernandes""" 
+        menssagem_orientador ="""ÁREA DE FORMAÇÃO: Processamentos de Dados, 2003, FATEC SP/UNESC
+        MESTRADO: Tecnologia da Informação e Comunicação na Formação em EAD. 2007. UFC
+        DOUTORADO: Educação Especial.2016. UFSCAR
+        TITULAÇÃO MÁXIMA: Doutorado
+        ÁREA DE INGRESSO: INFORMÁTICA
+        woquiton.fernandes@ifbaiano.edu.br""" 
+        
+        
+        coo_orientador ="""Coo Orientadora: Daniele de Brito Trindade""" 
+        menssagem_coo_orientador ="""ÁREA DE FORMAÇÃO: Bacharelado em Estatística (Matemática / Estatística )
+        MESTRADO: Mestrado em Estatística (CCEN)
+        DOUTORADO: Doutorado em Estatística (CCEN)
+        TITULAÇÃO MÁXIMA: Doutorado
+        daniele.trindade@ifbaiano.edu.br""" 
+        
+        
+        menssagem = """   Instituto Federal de Educação, Ciência e Tecnologia Baiano – Campus Guanambi
+        
+        Zona Rural - Distrito de Ceraíma, Bahia - CEP: 46430-000
+
+        Tel.: (77) 3493-2100
+        Diretor: Carlito José de Barros Filho
+        E-mail: gabinete@guanambi.ifbaiano.edu.br
+        Instituto Federal de Educação, Ciência e Tecnologia Baiano
+        Reitoria: Rua do Rouxinol, nº 115, Imbuí, Salvador-BA. 
+        CEP: 41720-052. CNPJ: 10.724.903/0001-79 Telefone: (71) 3186-0001 | E-mail: gabinete@ifbaiano.edu.br"""
+
+        menssagem1 = menssagem1.split('\n')
+        menssagem1 = format_html_join(
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0 d-flex aligh-items-end justify-content-end">{}</h4>', ((line,) for line in menssagem1))
+
+        menssagem = menssagem.split('\n')
+        menssagem = format_html_join(
+            '\n', '<h6 class="font-weight-normal d-flex aligh-items-center justify-content-center">{}</h6>', ((line,) for line in menssagem))
+
+        instituicao = instituicao.split('\n')
+        instituicao = format_html_join(
+            '\n', '<h5 class="font-weight-normal mb-0">{}</h6>', ((line,) for line in instituicao))
+
+        aluno = aluno.split('\n')
+        aluno = format_html_join(
+            '\n', '<h5 class="font-weight-normal mb-0">{}</h6>', ((line,) for line in aluno))
+
+        menssagem_aluno = menssagem_aluno.split('\n')
+        menssagem_aluno = format_html_join(
+            '\n', '<h6 class="font-weight-normal mt-3 mb-3 d-flex aligh-items-center justify-content-center">{}</h6>', ((line,) for line in menssagem_aluno))
+
+        orientador = orientador.split('\n')
+        orientador = format_html_join(
+            '\n', '<h5 class="font-weight-normal mb-0">{}</h6>', ((line,) for line in orientador))
+
+        menssagem_orientador = menssagem_orientador.split('\n')
+        menssagem_orientador = format_html_join(
+            '\n', '<h6 class="font-weight-normal mb-3  d-flex aligh-items-center justify-content-center">{}</h6>', ((line,) for line in menssagem_orientador))
+
+        coo_orientador = coo_orientador.split('\n')
+        coo_orientador = format_html_join(
+            '\n', '<h5 class="font-weight-normal mb-0">{}</h6>', ((line,) for line in coo_orientador))
+
+        menssagem_coo_orientador = menssagem_coo_orientador.split('\n')
+        menssagem_coo_orientador = format_html_join(
+            '\n', '<h6 class="font-weight-normal mb-3  d-flex aligh-items-center justify-content-center">{}</h6>', ((line,) for line in menssagem_coo_orientador))
+        import pandas as pd
+        from pathlib import Path
+
+
+        BASE_DIR = Path(__file__).resolve().parent.parent
+                            
+        # Ler o arquivo Excel
+        df = pd.read_excel('/var/www/edados/edados/view/aba_de_informacoes/Dicionário_Microdados_Enem_2019.xlsx')
+        print(df)
+        # Converter o DataFrame em uma tabela HTML
+        table_html = df.to_html()
+
+        # Renderizar o template com a tabela HTML
+        from django.http import FileResponse
+        from django.conf import settings
+        import os
+        
+        filename = '/var/www/edados/edados/view/aba_de_informacoes/Dicionário_Microdados_Enem_2019.pdf' # substitua 'arquivo.pdf' pelo nome do seu arquivo
+        filepath = os.path.join(settings.MEDIA_ROOT, filename)
+        # with open(filepath, 'rb') as pdf:
+        #     response = FileResponse(pdf, content_type='application/pdf')
+        #     response['Content-Disposition'] = f'inline; filename="{filename}"'
+        #     return response
+
+        
+        context = {
+            'form': form,
+            'table_html': table_html,
+            'menssagem': menssagem,
+            'menssagem1': menssagem1,
+            'instituicao': instituicao,
+            'aluno': aluno,
+            'menssagem_aluno': menssagem_aluno,
+            'orientador': orientador,
+            'menssagem_orientador': menssagem_orientador,
+            'coo_orientador': coo_orientador,
+            'menssagem_coo_orientador': menssagem_coo_orientador,
+        }
+        return render(request, 'base/aba_de_informacoes/dicionario_microdados.html', context=context)
 
     else:
 

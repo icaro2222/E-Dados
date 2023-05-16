@@ -46,6 +46,7 @@ urlpatterns = [
     path('Infor/', view_aba_de_informacoes.aba_de_informacoes, name="aba_de_informacoes"),
     path('Criadores/', view_aba_de_informacoes.criadores, name="criadores"),
     path('Correcoes/', view_aba_de_informacoes.correcoes_bugs, name="correcoes"),
+    path('Dicionário Microdados/', view_aba_de_informacoes.dicionario_microdados, name="dicionario"),
     
     # path('teste/', views.teste, name='teste'),
     # path('manipulando/', views.index, name='page_dados'),

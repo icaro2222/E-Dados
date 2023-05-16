@@ -1,0 +1,72 @@
+{% extends 'layout/layout.html' %} {%load static %}
+{% load crispy_forms_tags %}
+{% block titulo %}Dados Brutos-infor{% endblock %}
+{% block css %}
+<link rel="stylesheet" href={% static "css/styles_relatorio.css" %}>
+{% endblock %}
+{% block conteudo %}
+
+<body>
+
+  <!-- Conteúdo da página -->
+  <div class="row border border-dark">
+    <div class="col-md-12 text-dark">
+      <div class="row mt-2 d-flex justify-content-center align-items-center">
+        <form class="col-md-12 d-flex" action="." method="post">
+          <div class="col-md-8 mb-0">
+            {{ menssagem1 }}
+          </div>
+          <div class="col-md-2 m-0">
+            {% csrf_token %}
+            {{ form.ano|as_crispy_field }}
+          </div>
+        </form>
+      </div>
+
+      <hr class="mt-0 bg-dark" />
+      <!-- PDF inicial -->
+      <iframe id="pdf-iframe" src="{% static 'img/Dicionário_Microdados_Enem_2019.pdf' %}" width="100%"
+        height="600"></iframe>
+
+
+    </div>
+  </div>
+</body>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function (event) {
+    const button = document.querySelector("#troca-pdf");
+
+    button.addEventListener("click", function () {
+      const iframe = document.querySelector("#pdf-iframe");
+      iframe.src = "{% static 'img/Dicionário_Microdados_Enem_2018.pdf' %}";
+    });
+  });
+
+
+  // substitua "id_amostra" pelo ID do seu campo de formulário
+
+  var selectElement = document.getElementById("id_ano");
+  // Adicione um ouvinte de eventos para o evento "change" no campo "select"
+  selectElement.addEventListener("change", function () {
+    var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+
+    if (selectedOption == "2019") {
+      const iframe = document.querySelector("#pdf-iframe");
+      iframe.src = "{% static 'img/Dicionário_Microdados_Enem_2019.pdf' %}";
+    }
+    if (selectedOption == "2018") {
+      const iframe = document.querySelector("#pdf-iframe");
+      iframe.src = "{% static 'img/Dicionário_Microdados_Enem_2018.pdf' %}";
+    }
+
+    if (selectedOption == "2017") {
+      const iframe = document.querySelector("#pdf-iframe");
+      iframe.src = "{% static 'img/Dicionário_Microdados_Enem_2017.pdf' %}";
+    }
+  });
+
+</script>
+<script src={% static "js/js_formulario.js" %}></script>
+<!-- /.container-fluid -->
+{% endblock %}
