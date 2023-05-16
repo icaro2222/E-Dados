@@ -311,31 +311,9 @@ def dicionario_microdados(request):
         import pandas as pd
         from pathlib import Path
 
-
-        BASE_DIR = Path(__file__).resolve().parent.parent
-                            
-        # Ler o arquivo Excel
-        df = pd.read_excel('/var/www/edados/edados/view/aba_de_informacoes/Dicionário_Microdados_Enem_2019.xlsx')
-        print(df)
-        # Converter o DataFrame em uma tabela HTML
-        table_html = df.to_html()
-
-        # Renderizar o template com a tabela HTML
-        from django.http import FileResponse
-        from django.conf import settings
-        import os
-        
-        filename = '/var/www/edados/edados/view/aba_de_informacoes/Dicionário_Microdados_Enem_2019.pdf' # substitua 'arquivo.pdf' pelo nome do seu arquivo
-        filepath = os.path.join(settings.MEDIA_ROOT, filename)
-        # with open(filepath, 'rb') as pdf:
-        #     response = FileResponse(pdf, content_type='application/pdf')
-        #     response['Content-Disposition'] = f'inline; filename="{filename}"'
-        #     return response
-
         
         context = {
             'form': form,
-            'table_html': table_html,
             'menssagem': menssagem,
             'menssagem1': menssagem1,
             'instituicao': instituicao,
