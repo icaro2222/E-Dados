@@ -1,5 +1,5 @@
 from django import forms
-from edados.formularios import questionario_demografico
+from edados.formularios.base import questionario_demografico
 
 
 
