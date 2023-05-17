@@ -4,6 +4,7 @@ from django import forms
 def questionario_amostra(Form):
 
     choices_amostra = (
+                    (' LIMIT 0' ,'Teste-Bugs - 0 registros'),
                     (' LIMIT 1000' ,'Teste - 1.000 registros'),
                     (' LIMIT 20000' ,'Semi-Amostra - 20.000 registros'),
                     (' LIMIT 30000' ,'Amostra - 30.000 registros'),

@@ -34,6 +34,6 @@ def questionario_estado(Form):
         ('TO', 'Tocantins'),
     )
     
-    estado = forms.ChoiceField(choices=choices_estados, label='Estado em que estudou:', required=False)
+    estado = forms.ChoiceField(choices=choices_estados, label='Local da Residência do Aluno:', required=False)
 
     return estado

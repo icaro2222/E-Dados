@@ -1,5 +1,3 @@
-from ast import If
-import pandas as pd
 from edados.database import conect_db
 
 def filtro(                       
@@ -20,6 +18,13 @@ def filtro(
             filtro_cor_da_prova = ""
             ):
     
+    filtro_deficiencia = conect_db.filtro_de_ficiencia(filtro_deficiencia)
+    
+    if(filtro_amostra!="todos_os_dados"):   
+        conect_db.LIMIT = filtro_amostra
+    else:
+        conect_db.LIMIT = ""
+    
     if(filtro_ano_de_conclusao=="vazio"):   
         filtro_ano_de_conclusao = ''
     else:
@@ -30,29 +35,13 @@ def filtro(
     else:
         filtro_ltp_adm_escola = ' AND "TP_DEPENDENCIA_ADM_ESC" = ' +"'" + filtro_ltp_adm_escola+"'"
     
-    if(filtro_amostra!="todos_os_dados"):   
-        conect_db.LIMIT = filtro_amostra
-    else:
-        conect_db.LIMIT = ""
-    
-    filtro_deficiencia = conect_db.filtro_de_ficiencia(filtro_deficiencia)
-    
     if(filtro_cor == 'todos'):
         filtro_cor = ''
     else:
         filtro_cor =  ' AND "TP_COR_RACA" =' +"'" +filtro_cor+"'"
         
-    if(filtro_recurso == 'nenhum'):
-        filtro_recurso = """ AND
-            ("IN_BRAILLE" = 0 OR
-            "IN_AMPLIADA_24" = 0 OR
-            "IN_AMPLIADA_18" = 0 OR
-            "IN_LEDOR" = 0 OR
-            "IN_ACESSO" = 0 OR
-            "IN_TRANSCRICAO"= 0 OR
-            "IN_LIBRAS" = 0 OR
-            "IN_TEMPO_ADICIONAL" = 0)
-            """
+    if(filtro_recurso == 'vazio'):
+        filtro_recurso = ""
     elif(filtro_recurso == 'todos'):
         filtro_recurso = """ AND
             ("IN_BRAILLE" = 1 OR
@@ -62,7 +51,9 @@ def filtro(
             "IN_ACESSO" = 1 OR
             "IN_TRANSCRICAO"= 1 OR
             "IN_LIBRAS" = 1 OR
-            "IN_TEMPO_ADICIONAL" = 1)
+            "IN_TEMPO_ADICIONAL" = 1 OR
+            "IN_LEITURA_LABIAL" = 1 OR
+            "IN_MESA_CADEIRA_RODAS" = 1)
             """
     else:
         filtro_recurso =  ' AND "'+ filtro_recurso +'" =1'
@@ -98,14 +89,10 @@ def filtro(
                 '"Q014","Q015","Q016","Q017",'
                 '"Q018","Q019","Q020","Q021",'
                 '"Q022","Q023","Q024","Q025", ')
-    
-    elif(filtro_questao == 'nenhum'):
+    elif(filtro_questao == 'nenhum' or filtro_questao == 'vazio'):
         filtro_questao = ''
     else:
         filtro_questao = ' "' + filtro_questao + '", '
-
-  
-
 
     if(filtro_sexo != 'vazio' and filtro_sexo != 'todos'):
         filtro_sexo = ' AND "TP_SEXO" = '+"'"+str(filtro_sexo)+"' "

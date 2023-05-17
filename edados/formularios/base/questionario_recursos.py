@@ -25,9 +25,9 @@ from django import forms
 def questionario_recursos_especializados(Form):
 
     recursos_especializados = (
-        ('nenhum', 'Nenhum recurso'),
-        ('todos', 'Todos os recursos'),
-        ('IN_SEM_RECURSO', 'IN_SEM_RECURSO'),
+        ('vazio', 'Todos inscritos do enem'),
+        ('todos', 'Algum dos recursos'),
+        ('IN_SEM_RECURSO', 'Nenhum recurso - IN_SEM_RECURSO'),
         ('IN_BRAILLE', 'IN_BRAILLE'),
         ('IN_AMPLIADA_24', 'IN_AMPLIADA_24'),
         ('IN_AMPLIADA_18', 'IN_AMPLIADA_18'),
@@ -36,7 +36,17 @@ def questionario_recursos_especializados(Form):
         ('IN_TRANSCRICAO', 'IN_TRANSCRICAO'),
         ('IN_LIBRAS', 'IN_LIBRAS'),
         ('IN_TEMPO_ADICIONAL', 'IN_TEMPO_ADICIONAL'),
+        ('IN_LEITURA_LABIAL', 'IN_LEITURA_LABIAL'),
+        ('IN_MESA_CADEIRA_RODAS', 'IN_MESA_CADEIRA_RODAS'),
     )
+
+
+
+
+
+
+
+
 
     recursos_especializados = forms.ChoiceField(choices=recursos_especializados, label='Recurso utilizado:', required=False)
 

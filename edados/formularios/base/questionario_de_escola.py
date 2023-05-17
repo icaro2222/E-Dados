@@ -5,10 +5,10 @@ from django import forms
 def questionario_de_escola(Form):
 
     choices_escola = (('todos', 'TODOS'),
-        ('0', 'Não Respondeu'),
-        ('1', 'Pública'),
-        ('2', 'Privada'),
-        ('3', 'Exterior'))
+        ('1', 'Não Respondeu'),
+        ('2', 'Pública'),
+        ('3', 'Privada'),
+        ('4', 'Exterior'))
 
     escola = forms.ChoiceField(label='Tipo de escola do Ensino Médio:' , choices=choices_escola, required=False)
     
