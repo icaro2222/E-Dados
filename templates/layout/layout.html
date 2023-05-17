@@ -68,7 +68,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#perfil" aria-expanded="true"
-                    aria-controls="collapseTwo">
+                    aria-controls="collapseTwo" title="Análise Socioeconômica">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-clipboard-data" viewBox="0 0 16 16">
                         <path
@@ -85,26 +85,26 @@
                     aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1_4' %} active{% endif %}"
-                            href="{% url 'formulario_1_4' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            href="{% url 'formulario_1_4' %}" title="Dados brutos informativo"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                 height="16" fill="currentColor" class="bi bi-database-exclamation" viewBox="0 0 16 16">
                                 <path
                                     d="M12.096 6.223A4.92 4.92 0 0 0 13 5.698V7c0 .289-.213.654-.753 1.007a4.493 4.493 0 0 1 1.753.25V4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16c.536 0 1.058-.034 1.555-.097a4.525 4.525 0 0 1-.813-.927C8.5 14.992 8.252 15 8 15c-1.464 0-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13h.027a4.552 4.552 0 0 1 0-1H8c-1.464 0-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10c.262 0 .52-.008.774-.024a4.525 4.525 0 0 1 1.102-1.132C9.298 8.944 8.666 9 8 9c-1.464 0-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777ZM3 4c0-.374.356-.875 1.318-1.313C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4Z" />
                                 <path
                                     d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1.5a.5.5 0 0 0 1 0V11a.5.5 0 0 0-.5-.5Zm0 4a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1Z" />
-                            </svg> Dados brutos informativo</a>
+                            </svg> Dados brutos infor...</a>
                         <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_1' %} active{% endif %}"
-                            href="{% url 'formulario_1' %}"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            href="{% url 'formulario_1' %}" title="Gráfico Socioeconômica"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                 height="16" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
                                 <path
                                     d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z" />
-                            </svg> Gráfico Socioeconômica</a>
+                            </svg> Gráfico Socioecon...</a>
                     </div>
                 </div>
 
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                    aria-expanded="true" aria-controls="collapseTwo" title="Análise do Desempenho nas provas">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-clipboard-data" viewBox="0 0 16 16">
                         <path
@@ -114,19 +114,20 @@
                         <path
                             d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
                     </svg>
-                    <span>Análise de Desempenho</span>
+                    <span>Análise do Desempenho</span>
                 </a>
                 <div id="collapseTwo"
                     class="collapse {% if request.resolver_match.url_name == 'formulario_1_3' or request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia'%}show{% endif %}"
                     aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item {% if request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia' %} active{% endif %}"
-                            href="{% url 'Quest_Soc_Notas_Deficiencia' %}"><svg xmlns="http://www.w3.org/2000/svg"
+                            href="{% url 'Quest_Soc_Notas_Deficiencia' %}" title="Desempenho no exame">
+                            <svg xmlns="http://www.w3.org/2000/svg"
                                 width="16" height="16" fill="currentColor" class="bi bi-reception-3"
                                 viewBox="0 0 16 16">
                                 <path
                                     d="M0 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-5zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-8zm4 8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
-                            </svg> Desempenho no exame</a>
+                            </svg> Desempenho no ex...</a>
                     </div>
                 </div>
             </li>
@@ -149,12 +150,12 @@
                     aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_3' %} active{% endif %}"
-                            href="{% url 'formulario_3' %}">
+                            href="{% url 'formulario_3' %}" title=" Acertos / Erros nas Provas">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-plus-slash-minus" viewBox="0 0 16 16">
                                 <path
                                     d="m1.854 14.854 13-13a.5.5 0 0 0-.708-.708l-13 13a.5.5 0 0 0 .708.708ZM4 1a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 4 1Zm5 11a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5A.5.5 0 0 1 9 12Z" />
-                            </svg> Acertos / Erros nas Provas</a>
+                            </svg>Acertos/Erros nas Pr...</a>
                     </div>
                 </div>
             </li>
@@ -178,12 +179,12 @@
                     aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item {% if request.resolver_match.url_name == 'formulario_4' %} active{% endif %}"
-                            href="{% url 'formulario_4' %}">
+                            href="{% url 'formulario_4' %}" title="Densidade demográfica" >
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-globe-americas text-suc" viewBox="0 0 16 16">
                                 <path
                                     d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0ZM2.04 4.326c.325 1.329 2.532 2.54 3.717 3.19.48.263.793.434.743.484-.08.08-.162.158-.242.234-.416.396-.787.749-.758 1.266.035.634.618.824 1.214 1.017.577.188 1.168.38 1.286.983.082.417-.075.988-.22 1.52-.215.782-.406 1.48.22 1.48 1.5-.5 3.798-3.186 4-5 .138-1.243-2-2-3.5-2.5-.478-.16-.755.081-.99.284-.172.15-.322.279-.51.216-.445-.148-2.5-2-1.5-2.5.78-.39.952-.171 1.227.182.078.099.163.208.273.318.609.304.662-.132.723-.633.039-.322.081-.671.277-.867.434-.434 1.265-.791 2.028-1.12.712-.306 1.365-.587 1.579-.88A7 7 0 1 1 2.04 4.327Z" />
-                            </svg> Densidade demográfica</a>
+                            </svg> Densidade demogr...</a>
                     </div>
                 </div>
             </li>
