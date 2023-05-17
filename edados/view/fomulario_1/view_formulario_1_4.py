@@ -431,7 +431,7 @@ def formulario_4(request):
 
             
             figura_tabela.update_layout(
-                title_text="Quadro informativo sobre a proporção de alunos por resposta da questão socioeconômica: ",
+                title_text="Quadro informativo sobre a proporção de alunos por resposta da questão socioeconômica: "+questao,
                 height=300,
                 margin=dict(l=50, r=50, b=20, t=50),
                 yaxis={'domain': [0, .45]},
