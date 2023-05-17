@@ -10,5 +10,5 @@ def questionario_estado_civil(Form):
                     ('3' ,'Divorciado(a)/Desquitado(a)/Separado(a)'),
                     ('4' ,'Viúvo(a)'))
 
-    estado_civil = forms.ChoiceField(label='Estado Civil:', choices=choices_estado_civil)
+    estado_civil = forms.ChoiceField(label='Estado Civil:', choices=choices_estado_civil, required=False)
     return estado_civil

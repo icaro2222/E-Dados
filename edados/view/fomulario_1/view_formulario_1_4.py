@@ -251,7 +251,7 @@ E: Sim, quatro ou mais."""
         texto= ""
     
 
-    texto = """Nesta tela, é possível realizar tanto o somatório dos dados, com a visualização dos percentuais parcial e absoluto, 
+    texto_quadro = """Nesta tela, é possível realizar tanto o somatório dos dados, com a visualização dos percentuais parcial e absoluto, 
             quanto a análise comparativa entre a filtragem de dados e as respostas do questionário socioeconômico; 
             O percentual parcial: se refere à porcentagem de inscritos que se enquadram nas diferentes respostas do questionário socioeconômico. 
             Essa análise é feita após a realização da filtragem e o somatório desses percentuais resulta em 100%, 
@@ -259,26 +259,9 @@ E: Sim, quatro ou mais."""
             Percentual absoluto: é o percentual de inscritos no Enem que foram filtrados em comparação com o total de todos os alunos inscritos, sem qualquer filtro aplicado; 
             Somatório dos inscritos que responderam: Corresponde ao somatório de todos inscritos após a filtragem nos filtros acima; 
             
-            """ + texto
+            """
 
-
-    # annotations = [
-    #     {
-    #         'x': 0,
-    #         # 'ay': 200,
-    #         'y': y,
-    #         'xref': "paper",
-    #         'yref': "paper",
-    #         'text': texto,
-    #         'showarrow': False,
-    #         'align': 'left',
-    #         'font': {'family': "Arial", 'size': 13, 'color': "black"}
-    #     }
-    # ]
-
-    annotations = texto
-
-    return annotations
+    return [texto_quadro, texto]
 
     
 def formulario_4(request):
@@ -406,6 +389,7 @@ def formulario_4(request):
                         ))
                     ])
         else:
+            anotacao_mensagem = anotacao(questao)
             CONTAGEM = Dataframe['count'].sum()
 
             figura_tabela = go.Figure(data=[
@@ -478,11 +462,9 @@ def formulario_4(request):
                 )
             )
             relatorio_em_grafico = relatorio_em_grafico.to_html()
-            
-            anotacao_menssagem = anotacao(filtro_questao)
-            
+                        
         if filtro_questao == 'nenhum':
-            anotacao_menssagem=""
+            anotacao_mensagem=""
             relatorio_em_grafico=""
             figura_tabela.update_layout(
                 title_text = """Quadro informativo sobre quantitativo de alunos de acordo com os filtros selecionados""",
@@ -525,18 +507,21 @@ def formulario_4(request):
 
         menssagem = 'Análise de Dados Socioeconômicos do ENEM'
         CONTAGEM = '{:.0f}'.format(CONTAGEM)
-        if(anotacao_menssagem!=""):
-            anotacao_menssagem = anotacao_menssagem.split('\n')
-            anotacao_menssagem = format_html_join(
-                '\n', '<div class="col-md-12 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_menssagem))
+        if(anotacao_mensagem!=""):
+            anotacao_quadro = anotacao_mensagem[0]
+            anotacao_mensagem = anotacao_mensagem[1]
+            anotacao_mensagem = anotacao_mensagem.split('\n')
+            anotacao_mensagem = format_html_join(
+                '\n', '<div class="col-md-12 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_mensagem))
             # Cria a mensagem de anotação
             informativo = '<h5 class="mb-0">Informativo:</h5>'
 
+            anotacao_quadro = anotacao_quadro.split('\n')
+            anotacao_quadro = format_html_join(
+                '\n', '<div class="col-md-11 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_quadro))
+            
             # Formata a mensagem em HTML
-            anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_menssagem}</div>'
-        else:
-            anotacao_mensagem=""
-            relatorio_em_grafico=""
+            anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_quadro}<hr class="mt-0">{anotacao_mensagem}</div>'
             
         context = {
             'form' : form,         

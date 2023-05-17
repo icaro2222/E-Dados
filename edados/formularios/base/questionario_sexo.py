@@ -7,5 +7,5 @@ def questionario_sexo(Form):
                     ('F', 'Feminino'),
                     ('M' ,'Masculino'))
 
-    sexo = forms.ChoiceField(label='Sexo:', choices=choices_sexo)
+    sexo = forms.ChoiceField(label='Sexo:', choices=choices_sexo, required=False)
     return sexo

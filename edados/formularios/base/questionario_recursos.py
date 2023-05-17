@@ -38,6 +38,6 @@ def questionario_recursos_especializados(Form):
         ('IN_TEMPO_ADICIONAL', 'IN_TEMPO_ADICIONAL'),
     )
 
-    recursos_especializados = forms.ChoiceField(choices=recursos_especializados, label='Recurso utilizado:')
+    recursos_especializados = forms.ChoiceField(choices=recursos_especializados, label='Recurso utilizado:', required=False)
 
     return recursos_especializados

@@ -10,6 +10,6 @@ def questionario_de_escola(Form):
         ('2', 'Privada'),
         ('3', 'Exterior'))
 
-    escola = forms.ChoiceField(label='Tipo de escola do Ensino Médio:' , choices=choices_escola)
+    escola = forms.ChoiceField(label='Tipo de escola do Ensino Médio:' , choices=choices_escola, required=False)
     
     return escola

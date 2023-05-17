@@ -19,4 +19,4 @@ class MeuFormulario(forms.Form):
                     
     deficiencia = questionario_de_deficiencia.questionario_de_deficiencia(Form=forms.Form)
     questao = questionario_socioeconomico.questionario_socioeconomico(Form=forms.Form)
-    nota = forms.ChoiceField(choices=choices_nota)
+    nota = forms.ChoiceField(choices=choices_nota, required=False)

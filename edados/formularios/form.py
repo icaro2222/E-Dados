@@ -28,4 +28,4 @@ class MeuFormulario(forms.Form):
             'title': """Análise das provas/ Áreas do conhecimento."""
         }))
     questao = questionario_socioeconomico.questionario_socioeconomico(Form=forms.Form)
-    sexo = forms.ChoiceField(choices=choices_sexo)
+    sexo = forms.ChoiceField(choices=choices_sexo, required=False)

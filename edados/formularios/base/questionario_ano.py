@@ -9,5 +9,5 @@ def questionario_ano(Form):
                     # ('2016' ,'2016')
                     )
 
-    ano = forms.ChoiceField(label='Ano:', choices=choices_ano)
+    ano = forms.ChoiceField(label='Ano:', choices=choices_ano, required=False)
     return ano

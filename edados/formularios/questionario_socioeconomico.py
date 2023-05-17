@@ -31,5 +31,5 @@ def questionario_socioeconomico(Form):
                         ('Q024', 'Q024 - Na sua residência tem computador?'),
                         ('Q025', 'Q025 - Na sua residência tem acesso à Internet?'))
             
-    questao = forms.ChoiceField(choices=choices_questao)
+    questao = forms.ChoiceField(choices=choices_questao, required=False)
     return questao

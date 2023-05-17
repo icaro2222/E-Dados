@@ -148,23 +148,29 @@ def formulario_1(request):
 
 
         if(questao=="nenhum"):        
-            anotacao_menssagem=""
+            anotacao_mensagem=""
             relatorio_em_grafico.update_layout(
                 annotations=anotacao(questao),
             )
         else:      
-            anotacao_menssagem = anotacao(questao)
+            anotacao_mensagem = anotacao(questao)
         
-        if(anotacao_menssagem!=""):
-            anotacao_menssagem = anotacao_menssagem.split('\n')
-            anotacao_menssagem = format_html_join(
-                '\n', '<div class="col-md-12 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_menssagem))
+        if(anotacao_mensagem!=""):
+            anotacao_quadro = anotacao_mensagem[0]
+            anotacao_mensagem = anotacao_mensagem[1]
+            anotacao_mensagem = anotacao_mensagem.split('\n')
+            anotacao_mensagem = format_html_join(
+                '\n', '<div class="col-md-12 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_mensagem))
             # Cria a mensagem de anotação
             informativo = '<h5 class="mb-0">Informativo:</h5>'
 
+            anotacao_quadro = anotacao_quadro.split('\n')
+            anotacao_quadro = format_html_join(
+                '\n', '<div class="col-md-11 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_quadro))
+            
             # Formata a mensagem em HTML
-            anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_menssagem}</div>'
-        
+            anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_quadro}<hr class="mt-0">{anotacao_mensagem}</div>'
+            
         context = {
             'form': form,
             'anotacao_mensagem' : anotacao_mensagem,
@@ -392,8 +398,11 @@ E: Sim, quatro ou mais."""
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 25 no questionario socioeconômico:
                             A: Sim.
 B Não."""
+    
+    texto_quadro = """O quadro informativo apresenta o quantitativo de alunos de acordo com os filtros selecionados. Ele fornece uma visão detalhada da distribuição dos alunos com base nos critérios de filtro aplicados, permitindo uma análise específica e segmentada dos dados. Esse quadro ajuda a compreender a quantidade de alunos que atendem aos diferentes critérios e fornece insights importantes para a tomada de decisões e análise estatística.
+    """
 
-    return texto
+    return [texto_quadro, texto]
 
 def demografico_sexo(Microdado_Amostra, demografico, questao):
 
@@ -470,7 +479,7 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
     figura_tabela = go.Figure(data=[
         go.Table(
             header=dict(
-                values=['Respostas', 'F', 'M', 'Total'],
+                values=['Respostas', 'Feminino', 'Masculino', 'Total'],
                 # values=['Respostas'],
                 fill_color='royalblue',
                 height=40,

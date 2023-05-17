@@ -18,4 +18,4 @@ class MeuFormulario(forms.Form):
                     
 
     questao = questionario_demografico.questionario_demografico(Form=forms.Form)
-    nota = forms.ChoiceField(choices=choices_nota)
+    nota = forms.ChoiceField(choices=choices_nota, required=False)

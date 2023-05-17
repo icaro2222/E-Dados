@@ -8,4 +8,4 @@ class Formulario_filtro(forms.Form):
                     ('F', 'Filtrar Apenas Feminino'),
                     ('M' ,'Filtrar Apenas Masculino'))
 
-    sexo = forms.ChoiceField(choices=choices_sexo)
+    sexo = forms.ChoiceField(choices=choices_sexo, required=False)

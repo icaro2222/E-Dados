@@ -19,7 +19,7 @@ def questionario_ano_de_conclusao(Form):
                 ('12', '2007'),
                 ('13', 'Antes de 2007'))
 
-    ano_de_conclusao = forms.ChoiceField(label='Ano de Conclusão do Ensino Médio:', choices=choices_ano)
+    ano_de_conclusao = forms.ChoiceField(label='Ano de Conclusão do Ensino Médio:', choices=choices_ano, required=False)
     return ano_de_conclusao
 
 

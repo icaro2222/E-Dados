@@ -11,6 +11,6 @@ def questionario_de_nacionalidade(Form):
         ('3', 'Estrangeiro(a)'),
         ('4', 'Brasileiro(a) Nato(a), nascido(a) no exterior'))
 
-    nacionalidade = forms.ChoiceField(label='Nacionalidade:' , choices=choices_nacionalidade)
+    nacionalidade = forms.ChoiceField(label='Nacionalidade:' , choices=choices_nacionalidade, required=False)
     
     return nacionalidade

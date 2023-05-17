@@ -39,6 +39,6 @@ def questionario_de_deficiencia(Form):
                     ('IN_MOBILIARIO_ESPECIFICO', 'IN_MOBILIARIO_ESPECIFICO'),
                     ('IN_MATERIAL_ESPECIFICO', 'IN_MATERIAL_ESPECIFICO'))
     
-    deficiencia = forms.ChoiceField(choices=choices_deficiencia)
+    deficiencia = forms.ChoiceField(choices=choices_deficiencia, required=False)
     
     return deficiencia

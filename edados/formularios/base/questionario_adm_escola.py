@@ -9,6 +9,6 @@ def questionario_tipo_de_escola(Form):
                     ('3', 'Municipal'),
                     ('4', 'Privada'))
 
-    adm_escola = forms.ChoiceField(label='Dependência administrativa (Escola):', choices=choices_escola)
+    adm_escola = forms.ChoiceField(label='Dependência administrativa (Escola):', choices=choices_escola, required=False)
     return adm_escola
 

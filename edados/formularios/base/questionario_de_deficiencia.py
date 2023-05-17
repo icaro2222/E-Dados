@@ -23,6 +23,6 @@ def questionario_de_deficiencia(Form):
         ('IN_OUTRA_DEF', 'outra deficiência ou condição especial'))
 
 
-    deficiencia = forms.ChoiceField(label='Tipo de deficiência:' , choices=choices_deficiencia)
+    deficiencia = forms.ChoiceField(label='Tipo de deficiência:' , choices=choices_deficiencia, required=False)
     
     return deficiencia

@@ -27,8 +27,8 @@ class MeuFormulario(forms.Form):
                     ('bar' ,'bar'))
 
     questao = questionario_socioeconomico.questionario_socioeconomico(Form=forms.Form)
-    sexo = forms.ChoiceField(choices=choices_sexo)
-    tipo_de_grafico = forms.ChoiceField(choices=tipo_de_grafico)
+    sexo = forms.ChoiceField(choices=choices_sexo, required=False)
+    tipo_de_grafico = forms.ChoiceField(choices=tipo_de_grafico, required=False)
     nota = forms.ChoiceField(
         label="""<div class="m-0" title="PROVAS / Áreas do conhecimento">Prova: <i class="fas fa-info-circle"></i></div>""", 
         choices=choices_nota,

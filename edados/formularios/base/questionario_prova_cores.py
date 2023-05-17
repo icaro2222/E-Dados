@@ -61,5 +61,5 @@ def questionario_prova(Form):
         )
 
     prova_cores=forms.ChoiceField(
-        label="Cor/Tipo da prova:", choices=choices_prova)
+        label="Cor/Tipo da prova:", choices=choices_prova, required=False)
     return prova_cores

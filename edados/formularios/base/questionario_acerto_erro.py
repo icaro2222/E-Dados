@@ -6,7 +6,7 @@ def questionario_acerto_erro(Form):
     choices_acerto_erro= (('acertos', 'Acertos'),
                     ('erros' ,'Erros'))
 
-    acerto_erro = forms.ChoiceField(label='Analisar:', choices=choices_acerto_erro)
+    acerto_erro = forms.ChoiceField(label='Analisar:', choices=choices_acerto_erro, required=False)
     return acerto_erro
 
 

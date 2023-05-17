@@ -11,5 +11,5 @@ def questionario_cor(Form):
                     ('4' ,'Amarela'),
                     ('5' ,'Indígena'))
 
-    cor = forms.ChoiceField(label='Cor / Raça:', choices=choices_cor)
+    cor = forms.ChoiceField(label='Cor / Raça:', choices=choices_cor, required=False)
     return cor

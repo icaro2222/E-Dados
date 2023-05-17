@@ -7,5 +7,5 @@ def questionario_localizacao(Form):
                            ('1', 'Urbana'),
                            ('2', 'Rural'))
 
-    localizacao = forms.ChoiceField(label='Localização (Escola):', choices=choices_localizacao)
+    localizacao = forms.ChoiceField(label='Localização (Escola):', choices=choices_localizacao, required=False)
     return localizacao
