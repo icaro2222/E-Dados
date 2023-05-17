@@ -12,7 +12,7 @@ from django.utils.html import format_html_join
 from edados.database import bd_formulario_3
 
 CONTAGEM = 0
-CONTAGEMMicrodado_Amostra = 5096019
+CONTAGEMMicrodado_Amostra = 3702008
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
