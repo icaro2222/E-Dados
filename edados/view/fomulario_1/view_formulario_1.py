@@ -390,7 +390,6 @@ def formulario_1(request):
             # Formata a mensagem em HTML
             anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_quadro}<hr class="mt-0">{anotacao_mensagem}</div>'
             # anotacao_mensagem="teste"
-            print(anotacao_mensagem)
         else:
             anotacao_quadro = anotacao_mensagem[0]
             anotacao_mensagem = anotacao_mensagem[1]
@@ -780,7 +779,7 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
 
         for index in lista_dos_index:
             print(filtro_ano)
-            if filtro_ano == '2019':
+            if filtro_ano == '2019' or filtro_ano == '2018' or filtro_ano == '2017':
                 if (index == '0' or index == 0):
                     nome = 'Não informou'
                 elif (index == '1' or index == 1):
@@ -846,54 +845,58 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
 
         relatorio = fig.to_html()
     else:
-        # if(0.0 in Microdado_Amostra.index and Microdado_Amostra.empty):
-        #     labels=["Masculino"]
-        #     Microdado_Amostra["1"] =0
-        #     print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
-        #     print(Microdado_Amostra["1"])
-        # if("1" in Microdado_Amostra.index and Microdado_Amostra.empty):
-        #     labels=["Feminino"]
-        #     Microdado_Amostra["1"] =0
-        relatorio_em_grafico = ""
-        figura_tabela = ""
-        relatorio = ""
-        print('----------------------------------------------')
-        print(Microdado_Amostra)
-        Microdado_Amostra = Microdado_Amostra.groupby([demografico])
-        Microdado_Amostra = Microdado_Amostra[demografico].count()
-        
-        rowEvenColor = 'lightgrey'
-        rowOddColor = 'white'
-        figura_tabela = go.Figure(data=[
-            go.Table(
-                header=dict(
-                    values=['Respostas', 'Feminino', 'Masculino', 'Total'],
-                    # values=['Respostas'],
-                    fill_color='royalblue',
-                    height=40,
-                    line_color='darkslategray',
-                    align=['left', 'center'],
-                    font=dict(color='white', size=12)
-                ),
-                cells=dict(
-                    values=["TP_ESTADO_CIVIL", Microdado_Amostra],
-                    line_color='darkslategray',
-                    fill_color=[[rowOddColor, rowEvenColor, rowOddColor, rowEvenColor, rowOddColor]*5],
-                    align=['left', 'center'],
-                    font=dict(color='darkslategray', size=11)
+        DataFrame = Microdado_Amostra.sort_values(by=[demografico])
+        DataFrame = DataFrame.groupby([demografico])
+        DataFrame = DataFrame[demografico].count()
+
+        DataFrame_para_criar_a_grafico = DataFrame
+
+        lista_dos_index = DataFrame.index.to_list()
+
+
+        fig = go.Figure()
+
+        for index in lista_dos_index:
+            print(filtro_ano)
+            if filtro_ano == '2019' or filtro_ano == '2018' or filtro_ano == '2017':
+                if (index == '0' or index == 0):
+                    nome = 'Não informou'
+                elif (index == '1' or index == 1):
+                    nome = 'Solteiro(a)'
+                elif (index == '2' or index == 2):
+                    nome = 'Casado(a)'
+                elif (index == '3' or index == 3):
+                    nome = 'Divorciado(a)'
+                else:
+                    nome = 'Viúvo(a)'
+            else:
+                if (index == '0' or index == 0):
+                    nome = 'Solteiro(a)'
+                elif (index == '1' or index == 1):
+                    nome = 'Casado(a)'
+                elif (index == '2' or index == 2):
+                    nome = 'Divorciado(a)'
+                elif (index == '3' or index == 3):
+                    nome = 'Viúvo(a)'
+                else:
+                    nome = 'Não informou'
+
+            fig.add_bar(
+                y=([(DataFrame[index]/CONTAGEM)*100]),
+                x=DataFrame.index,
+                text=((DataFrame[index]/CONTAGEM)*100),
+                    texttemplate='%{text:.2f}%',
+                    textposition='auto',
+                    name=nome
                 )
-            )
-        ])
-                
-        figura_tabela.update_layout(
-            title_text="Quadro informativo sobre a proporção de alunos por 'Gênero'",
-            height=150,
+
+
+        fig.update_layout(
+            title_text='Gráfico de correlação entre a resposta da questão socioeconômica: '+questao+' e a questão demográfica: '+demografico,
+            height=400,
             margin=dict(l=50, r=50, b=20, t=50),
-            yaxis={'domain': [0, .45]},
-            xaxis2={'anchor': 'y2'},
-            xaxis_title=("Resposta da questão: "+questao+" do questionário socioeconômico"),
-            yaxis_title="Porcentagem Parcial",
-            yaxis2={'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
+            xaxis_title="Resposta da questão: "+questao+" do questionário socioeconômico",
+            yaxis_title="Porcentagem",
             legend_title="Legenda",
             font=dict(
                 family="Arial",
@@ -901,36 +904,45 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
                 color="black"
             )
         )
-        # Dados do gráfico
-        labels = ['não informou', 'solteiro', 'casado', 'viúvo', 'divorciado']
 
+        # Criar um novo gráfico de pizza com base nos dados do gráfico de barras
+        labels = [trace.name for trace in fig.data]
+        values = [trace.y[0] for trace in fig.data]
 
-        # Verifica se o índice existe antes de acessá-lo
-        values = [Microdado_Amostra[i] for i in range(len(Microdado_Amostra)) if i in [0, 1, 2, 3, 4]]
-
-        # Criando o gráfico de pizza
-        relatorio_em_grafico = go.Figure(data=[go.Pie(labels=labels, values=values)])
-
-        # Personalizando o layout do gráfico
-        relatorio_em_grafico.update_layout(title='Distribuição de alunos por estado civil',
-                        title_font_size=16,
-                        legend=dict(
-                            orientation='h',
-                            yanchor='bottom',
-                            y=1.02,
-                            xanchor='center',
-                            x=0.5
-                        ))
-
-
+        fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
+        print(fig.data[0].name)
         
-        figura_tabela = figura_tabela.to_html()
-        relatorio_em_grafico = relatorio_em_grafico.to_html()
-        relatorio = relatorio_em_grafico
-        print('----------------------------------------------')
-        print(Microdado_Amostra)
-        # print(Microdado_Amostra['index'])
+        # Estilizar o gráfico de pizza
+        fig.update_layout(
+            title_text='Gráfico de Pizza',
+            height=400,
+            margin=dict(l=50, r=50, b=20, t=50),
+            legend_title="Legenda",
+            font=dict(
+                family="Arial",
+                size=12,
+                color="black"
+            )
+        )
+        relatorio_em_grafico = px.bar(
+            DataFrame_para_criar_a_grafico, barmode='group')
 
+        relatorio_em_grafico.update_layout(
+            title_text='Gráfico de correlação entre a resposta da questão socioeconômica: '+questao+' e a questão demográfica: '+demografico,
+            height=400,
+            margin=dict(l=50, r=50, b=20, t=50),
+            xaxis_title="Resposta da questão: "+questao+" do questionário socioeconômico",
+            yaxis_title="Porcentagem",
+            legend_title="Legenda",
+            font=dict(
+                family="Arial",
+                size=12,
+                color="black"
+            )
+        )
+        relatorio_em_grafico = relatorio_em_grafico.to_html()
+
+        relatorio = fig.to_html()
 
     return [relatorio, relatorio_em_grafico]
 
@@ -1033,10 +1045,10 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
                 )
 
         fig.update_layout(
-            title_text='Gráfico de correlação entre a resposta da questão socioeconômica: '+questao+' e a questão demográfica: '+demografico,
+            title_text='Gráfico sobre informação demográfica: '+demografico+' de forma geral',
             height=400,
             margin=dict(l=50, r=50, b=20, t=50),
-            xaxis_title="Resposta da questão: "+questao+" do questionário socioeconômico",
+            xaxis_title=demografico,
             yaxis_title="Porcentagem",
             legend_title="Legenda",
             font=dict(
@@ -1045,7 +1057,6 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
                 color="black"
             )
         )
-
         relatorio = fig.to_html()
 
     return [relatorio]
@@ -1138,10 +1149,10 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
                 )
 
         fig.update_layout(
-            title_text='Gráfico de correlação entre a resposta da questão socioeconômica: '+questao+' e a questão demográfica: '+demografico,
+            title_text='Gráfico sobre informação demográfica: '+demografico+' de forma geral',
             height=400,
             margin=dict(l=50, r=50, b=20, t=50),
-            xaxis_title="Resposta da questão: "+questao+" do questionário socioeconômico",
+            xaxis_title=demografico,
             yaxis_title="Porcentagem",
             legend_title="Legenda",
             font=dict(
@@ -1239,10 +1250,10 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
                 )
 
         fig.update_layout(
-            title_text='Gráfico de correlação entre a resposta da questão socioeconômica: '+questao+' e a questão demográfica: '+demografico,
+            title_text='Gráfico sobre informação demográfica: '+demografico+' de forma geral',
             height=400,
             margin=dict(l=50, r=50, b=20, t=50),
-            xaxis_title="Resposta da questão: "+questao+" do questionário socioeconômico",
+            xaxis_title=demografico,
             yaxis_title="Porcentagem",
             legend_title="Legenda",
             font=dict(
@@ -1340,10 +1351,10 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
                 )
 
         fig.update_layout(
-            title_text='Gráfico de correlação entre a resposta da questão socioeconômica: '+questao+' e a questão demográfica: '+demografico,
+            title_text='Gráfico sobre informação demográfica: '+demografico+' de forma geral',
             height=400,
             margin=dict(l=50, r=50, b=20, t=50),
-            xaxis_title="Resposta da questão: "+questao+" do questionário socioeconômico",
+            xaxis_title=demografico,
             yaxis_title="Porcentagem",
             legend_title="Legenda",
             font=dict(
@@ -1352,7 +1363,6 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
                 color="black"
             )
         )
-
         relatorio = fig.to_html()
 
 
@@ -1410,7 +1420,7 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
                 else:
                     nome = 'Antes de 2007'
             else:
-                print(2018)
+                print(index)
                 if (index == '0' or index == 0):
                     nome = 'Não informou'
                 elif (index == '1' or index == 1):
@@ -1544,10 +1554,10 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
                 )
 
         fig.update_layout(
-            title_text='Gráfico de correlação entre a resposta da questão socioeconômica: '+questao+' e a questão demográfica: '+demografico,
+            title_text='Gráfico sobre informação demográfica: '+demografico+' de forma geral',
             height=400,
             margin=dict(l=50, r=50, b=20, t=50),
-            xaxis_title="Resposta da questão: "+questao+" do questionário socioeconômico",
+            xaxis_title=demografico,
             yaxis_title="Porcentagem",
             legend_title="Legenda",
             font=dict(
@@ -1584,11 +1594,13 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):
-                nome = 'Pública'
+                nome = 'Ensino Regular'
             elif (index == '2' or index == 2):
-                nome = 'Privada'
+                nome = 'Educação Especial'
+            elif (index == '3' or index == 3):
+                nome = 'Educação de Jovens e Adultos'
             else:
-                nome = 'Exterior'
+                nome = 'Não informou'
 
             fig.add_bar(
                 y=((DataFrame[index]/CONTAGEM)*100),
@@ -1630,11 +1642,13 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):
-                nome = 'Pública'
+                nome = 'Ensino Regular'
             elif (index == '2' or index == 2):
-                nome = 'Privada'
+                nome = 'Educação Especial'
+            elif (index == '3' or index == 3):
+                nome = 'Educação de Jovens e Adultos'
             else:
-                nome = 'Exterior'
+                nome = 'Não informou'
 
             fig.add_bar(
                 y=([(DataFrame[index]/CONTAGEM)*100]),
@@ -1646,11 +1660,11 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
                 )
 
         fig.update_layout(
-            title_text='Gráfico de correlação entre a resposta da questão socioeconômica: '+questao+' e a questão demográfica: '+demografico,
+            title_text='Gráfico sobre informação demográfica: '+demografico+' de forma geral',
             height=400,
             margin=dict(l=50, r=50, b=20, t=50),
-            xaxis_title="Resposta da questão: "+questao+" do questionário socioeconômico",
-            yaxis_title="Desempenho",
+            xaxis_title=demografico,
+            yaxis_title="Porcentagem",
             legend_title="Legenda",
             font=dict(
                 family="Arial",
