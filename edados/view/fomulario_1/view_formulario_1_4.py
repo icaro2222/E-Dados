@@ -562,6 +562,7 @@ def formulario_4(request):
         
             return response
         
+        # Esta Opeção de baixar com EXCEL esta desativada!
         if request.POST.get('button') == 'baixar_excel':
             # Obtém os nomes das colunas
             colunas = Microdado_Amostra.columns.tolist()
