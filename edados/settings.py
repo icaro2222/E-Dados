@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'usuarios',
+    'correcoes',
     'crispy_forms',
 ]
 
@@ -83,12 +84,37 @@ WSGI_APPLICATION = 'edados.wsgi.application'
 
 # Comentei o código referente a conecxão com o banco mysql, para começar a fazer uso do banco Postgress
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+# }
+
+# Conexão POSTGRESQL
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        }
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'e-dados',
+        'USER': 'postgres',
+        'PASSWORD': 'tatakae22',
+        'HOST': 'localhost',
+        'PORT': '5432'
+    }
 }
+
+#  Realizando a conecxão do Django, com o banco postgress, usando o banco do sisfis no ceteia
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'e_dados',
+#         'USER': 'sisfis',
+#         'PASSWORD': 'sisfis2022',
+#         'HOST': '200.128.100.19',
+#         'PORT': '15432'
+#     }
+# }
 
 
 # Password validation
@@ -123,6 +149,77 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+# Login no Sistema
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#         },
+#     },
+#     'root': {
+#         'handlers': ['console'],
+#         'level': 'DEBUG',
+#     },
+# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'acesso_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': str(BASE_DIR)+'/Registros_Acesso.log',
+        },
+        'dados_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': str(BASE_DIR)+'/Dados_Diversos.log',
+        },
+    },
+    'loggers': {
+        'acesso': {
+            'handlers': ['acesso_file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'dados': {
+            'handlers': ['dados_file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    },
+    'root': {
+        'handlers': ['acesso_file', 'dados_file'],  # Lista de manipuladores de log
+        'level': 'INFO',
+    },
+}
+
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'file': {
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': '/var/www/edados/Registros_Log_Django.log',
+#         },
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['file'],
+#             'level': 'INFO',
+#             'propagate': True,
+#         },
+#     },
+#     'root': {
+#         'handlers': ['file'],  # Lista de manipuladores de log
+#         'level': 'INFO',
+#     },
+# }
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
