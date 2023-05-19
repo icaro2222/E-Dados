@@ -5,16 +5,27 @@ import pandas as pd
 import plotly.express as px
 from edados.formularios.dashboard.formulario_dashboard import DashboardFormulario
 from edados.database import bd_quest_socio_notas_deficiencia, conect_db
-from django.utils.html import format_html_join
+from django.utils.html import format_html_join 
+import logging
+import datetime
+import pytz
 
+logger = logging.getLogger(__name__)
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
-
 @login_required
-def Dashboard(request):
+def dashboard(request):
+    username = request.user.username
+    brasilia_tz = pytz.timezone('America/Sao_Paulo')
+    hora_atual = datetime.datetime.now(brasilia_tz)
+    hora_formatada = hora_atual.strftime('%H:%M:%S')
+    logger.info('Acesso à página "Dashboard" por "%s" às %s', username, hora_formatada)
 
+
+    print('Acesso à página por:', username)
+    
     if request.method == 'GET':
 
         menssagem1 = "Dados Gerais do Enem"

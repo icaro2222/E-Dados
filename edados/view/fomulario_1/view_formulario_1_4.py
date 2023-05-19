@@ -5,6 +5,7 @@ from django.utils.html import format_html_join
 from openpyxl.utils import get_column_letter
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
@@ -264,6 +265,7 @@ E: Sim, quatro ou mais."""
 
     return [texto_quadro, texto]
   
+@login_required
 def formulario_4(request):
 
     # Medindo o tempo que a view demora para executar

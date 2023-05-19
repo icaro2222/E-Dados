@@ -23,7 +23,7 @@ from .view.fomulario_3 import view_formulario_3
 from .view.fomulario_4 import view_formulario_4
 
 urlpatterns = [
-    path('', dashboard.Dashboard, name="dashboard"),
+    path('', dashboard.dashboard, name="dashboard"),
     path('admin/', admin.site.urls),
 
     # URLs do usuario da plataforma

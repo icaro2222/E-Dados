@@ -7,6 +7,7 @@ from edados.formularios.formulario_1.formulario_1 import Formulario_1
 from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 import numpy as np
 from edados.database import bd_formulario_1
+from django.contrib.auth.decorators import login_required
 
 CONTAGEM = 0
 CONTAGEMMicrodado_Amostra = 0
@@ -249,6 +250,8 @@ B Não."""
 
     return [texto_quadro, texto]
 
+
+@login_required
 def formulario_1(request):
 
     global CONTAGEM

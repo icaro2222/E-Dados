@@ -57,6 +57,7 @@ Para acessar a plataforma, é necessário fazer login utilizando um usuário e s
 
     return render(request, 'aba_de_informacoes/aba_de_informacoes.html', context=context)
 
+@login_required
 def correcoes_bugs(request):
 
     if request.method == 'GET':
@@ -120,6 +121,7 @@ def correcoes_bugs(request):
         }
         return render(request, 'base/aba_de_informacoes/correcoes_bugs.html', context=context)
 
+@login_required
 def criadores(request):
 
     if request.method == 'GET':
@@ -227,6 +229,7 @@ def criadores(request):
 
     return render(request, 'base/aba_de_informacoes/criadores.html', context=context)
 
+@login_required
 def dicionario_microdados(request):
 
         

@@ -10,6 +10,7 @@ from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 import numpy as np
 from django.utils.html import format_html_join
 from edados.database import bd_formulario_3
+from django.contrib.auth.decorators import login_required
 
 CONTAGEM = 0
 CONTAGEMMicrodado_Amostra = 0
@@ -17,6 +18,8 @@ CONTAGEMMicrodado_Amostra = 0
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
+
+@login_required
 def formulario_3(request):
 
     if request.method == 'GET':

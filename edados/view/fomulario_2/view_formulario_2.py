@@ -5,6 +5,7 @@ from edados.formularios.formulario_2.formulario_2 import Formulario_2
 from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 from django.utils.html import format_html_join
 from edados.database import bd_quest_socio_notas_deficiencia
+from django.contrib.auth.decorators import login_required
 
 CONTAGEM = 0
 CONTAGEMMicrodado_Amostra = 0
@@ -263,6 +264,8 @@ E: Sim, quatro ou mais."""
     return [texto_quadro, texto]
 
 
+
+@login_required
 def formulario_2(request):
 
     Q = 'TP_SEXO'

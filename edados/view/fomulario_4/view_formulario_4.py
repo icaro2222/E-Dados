@@ -5,6 +5,7 @@ from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 from edados.formularios.filtros.filtros_ano import Formulario_filtro_ano
 from django.utils.html import format_html_join
 from pathlib import Path
+from django.contrib.auth.decorators import login_required
 
 CONTAGEM = 0
 CONTAGEMMicrodado_Amostra = 0
@@ -13,6 +14,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
+
+@login_required
 def formulario_4(request):
 
     if request.method == 'GET':        
