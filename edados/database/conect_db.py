@@ -39,7 +39,6 @@ def filtro_de_ficiencia(filtro_valor):
     
     if(filtro_valor=='todas'):
         variavel_filtro_deficiencia = (""" WHERE "TP_PRESENCA_CN"='1'
-                AND "TP_PRESENCA_CN"='1'
                 AND "TP_PRESENCA_CH"='1'
                 AND "TP_PRESENCA_LC"='1'
                 AND "TP_PRESENCA_MT"='1'  
@@ -58,7 +57,6 @@ def filtro_de_ficiencia(filtro_valor):
                 OR "IN_OUTRA_DEF" ='1' )""")
     elif(filtro_valor=='nenhuma' or filtro_valor=='vazio'):
         variavel_filtro_deficiencia = (""" WHERE "TP_PRESENCA_CN"='1'
-                AND "TP_PRESENCA_CN"='1'
                 AND "TP_PRESENCA_CH"='1'
                 AND "TP_PRESENCA_LC"='1'
                 AND "TP_PRESENCA_MT"='1'  
@@ -77,13 +75,11 @@ def filtro_de_ficiencia(filtro_valor):
                 AND "IN_OUTRA_DEF" ='0')""")
     elif(filtro_valor=='todos'):
         variavel_filtro_deficiencia =  """WHERE "TP_PRESENCA_CN"='1'
-                AND "TP_PRESENCA_CN"='1'
                 AND "TP_PRESENCA_CH"='1'
                 AND "TP_PRESENCA_LC"='1'
                 AND "TP_PRESENCA_MT"='1'  """
     else:
         variavel_filtro_deficiencia =  """WHERE "TP_PRESENCA_CN"='1'
-                AND "TP_PRESENCA_CN"='1'
                 AND "TP_PRESENCA_CH"='1'
                 AND "TP_PRESENCA_LC"='1'
                 AND "TP_PRESENCA_MT"='1'  AND """+' "' + str(filtro_valor) + '" = 1 '

@@ -99,10 +99,10 @@ def filtro(
     else:
         filtro_sexo = ''
     
-    if(conect_db.LIMIT != ' LIMIT 1000'):
-        amostragem = ' ORDER BY RANDOM() '
-    else:
+    if(conect_db.LIMIT == ' LIMIT 1000' or conect_db.LIMIT == ' LIMIT 0' or conect_db.LIMIT == ""):
         amostragem =''
+    else:
+        amostragem = ' ORDER BY RANDOM() '
 
     filtro = (  filtro_deficiencia + 
                 filtro_sexo +
@@ -120,7 +120,4 @@ def filtro(
                 amostragem +
                 conect_db.LIMIT)
     
-    print('*************************************************************************')    
-    print(filtro)    
-    print('*************************************************************************')
     return filtro

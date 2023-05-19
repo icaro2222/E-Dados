@@ -9,7 +9,7 @@ import numpy as np
 from edados.database import bd_formulario_1
 
 CONTAGEM = 0
-CONTAGEMMicrodado_Amostra = 3702008
+CONTAGEMMicrodado_Amostra = 0
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
@@ -317,6 +317,13 @@ def formulario_1(request):
             filtro_nacionalidade=filtro_nacionalidade,
             filtro_ano=filtro_ano)
             
+        if(filtro_ano=="2019"):
+            CONTAGEMMicrodado_Amostra = 3702008
+        elif(filtro_ano=="2018"):
+            # CONTAGEMMicrodado_Amostra = 3893743
+            CONTAGEMMicrodado_Amostra = 3893671
+        elif(filtro_ano=="2017"):
+            CONTAGEMMicrodado_Amostra = 4426755
 
         CONTAGEM  = Microdado_Amostra[demografico].count()
         menssagem = 'Análise de Dados Socioeconômicos do ENEM'

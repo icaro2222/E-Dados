@@ -7,7 +7,7 @@ from django.utils.html import format_html_join
 from pathlib import Path
 
 CONTAGEM = 0
-CONTAGEMMicrodado_Amostra = 3702008
+CONTAGEMMicrodado_Amostra = 0
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 def formatar(valor):

@@ -7,7 +7,7 @@ from django.utils.html import format_html_join
 from edados.database import bd_quest_socio_notas_deficiencia
 
 CONTAGEM = 0
-CONTAGEMMicrodado_Amostra = 3702008
+CONTAGEMMicrodado_Amostra = 0
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
@@ -383,6 +383,14 @@ def formulario_2(request):
                     filtro_escola=filtro_escola, 
                     filtro_nacionalidade=filtro_nacionalidade,
                     filtro_ano=filtro_ano)
+            
+        if(filtro_ano=="2019"):
+            CONTAGEMMicrodado_Amostra = 3702008
+        elif(filtro_ano=="2018"):
+            # CONTAGEMMicrodado_Amostra = 3893743
+            CONTAGEMMicrodado_Amostra = 3893671
+        elif(filtro_ano=="2017"):
+            CONTAGEMMicrodado_Amostra = 4426755
             
         CONTAGEM = Microdado_Amostra[prova].count()
         

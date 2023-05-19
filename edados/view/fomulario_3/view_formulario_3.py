@@ -12,7 +12,7 @@ from django.utils.html import format_html_join
 from edados.database import bd_formulario_3
 
 CONTAGEM = 0
-CONTAGEMMicrodado_Amostra = 3702008
+CONTAGEMMicrodado_Amostra = 0
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
@@ -165,10 +165,15 @@ def formulario_3(request):
                 filtro_nacionalidade=filtro_nacionalidade,
                 filtro_ano=filtro_ano)
         
+        if(filtro_ano=="2019"):
+            CONTAGEMMicrodado_Amostra = 3702008
+        elif(filtro_ano=="2018"):
+            # CONTAGEMMicrodado_Amostra = 3893743
+            CONTAGEMMicrodado_Amostra = 3893671
+        elif(filtro_ano=="2017"):
+            CONTAGEMMicrodado_Amostra = 4426755
         CONTAGEM = Microdado_Amostra[prova].count()
-        print('------------------------------------')
-        print(CONTAGEM)
-        print('---===================================-')
+        
         menssagem = 'Análise do Desempenho Acadêmico: Quantidade de Acertos e Erros por Prova e Filtros Socioeconômicos'
 
         Microdado_Amostra.reset_index(inplace=True)
@@ -212,9 +217,6 @@ def formulario_3(request):
         acertos_pd.columns = ['porcentagem_de_acertos']
         texto = acertos_pd.porcentagem_de_acertos
         
-        print(texto)
-
-
         fig = px.bar(acertos_pd,
         x= acertos_pd.index,
         y= acertos_pd['porcentagem_de_acertos'],

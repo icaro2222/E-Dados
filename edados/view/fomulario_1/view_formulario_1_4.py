@@ -15,7 +15,7 @@ import time
 import csv
 
 CONTAGEM = 0
-CONTAGEMMicrodado_Amostra = 3702008
+CONTAGEMMicrodado_Amostra = 0
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
@@ -36,9 +36,9 @@ def formatarFrequenciaAbsoluta(valor):
     valor =  (valor/CONTAGEMMicrodado_Amostra)*100
     return "{:,.6f}%".format(valor)
 
-def anotacao(Questao):
+def anotacao(filtro_questao):
 
-    if Questao == 'Q001':
+    if filtro_questao == 'Q001':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 1 no questionario socioeconômico:
 A: Nunca estudou.
 B: Não completou a 4ª série/5º ano do Ensino Fundamental.
@@ -48,7 +48,7 @@ E: Completou o Ensino Médio, mas não completou a Faculdade.
 F: Completou a Faculdade, mas não completou a Pós-graduação.
 G: Completou a Pós-graduação.
 H: Não sei."""
-    elif Questao == 'Q002':
+    elif filtro_questao == 'Q002':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 2 no questionario socioeconômico:
                             A: Nunca estudou.
                             B: Não completou a 4ª série/5º ano do Ensino Fundamental.
@@ -58,7 +58,7 @@ H: Não sei."""
                             F: Completou a Faculdade, mas não completou a Pós-graduação.
                             G: Completou a Pós-graduação.
                             H: Não sei."""
-    elif Questao == 'Q003':
+    elif filtro_questao == 'Q003':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 3 no questionario socioeconômico:
                             
                             Grupo 1: Lavrador, agricultor sem empregados, bóia fria, criador de animais (gado, porcos, galinhas, ovelhas, cavalos etc.), apicultor,
@@ -73,7 +73,7 @@ policial, militar de baixa patente (soldado, cabo, sargento), corretor de imóve
                             Grupo 5: Médico, engenheiro, dentista, psicólogo, economista, advogado, juiz, promotor, defensor, delegado, tenente, capitão, coronel,
  professor universitário, diretor em empresas públicas ou privadas, político, proprietário de empresas com mais de 10 empregados.
                             Não sei.."""
-    elif Questao == 'Q004':
+    elif filtro_questao == 'Q004':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 4 no questionario socioeconômico:
                             
                             Grupo 1: Lavradora, agricultora sem empregados, bóia fria, criadora de animais (gado, porcos, galinhas, ovelhas,
@@ -88,7 +88,7 @@ policial, militar de baixa patente (soldado, cabo, sargento), corretora de imóv
 Grupo 5: Médica, engenheira, dentista, psicóloga, economista, advogada, juíza, promotora, defensora, delegada, tenente, capitã, coronel,
  professora universitária, diretora em empresas públicas ou privadas, política, proprietária de empresas com mais de 10 empregados.
 Não sei."""
-    elif Questao == 'Q005':
+    elif filtro_questao == 'Q005':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 5 no questionario socioeconômico:
                             1: Moro sozinho(a)
 2: 2 pessoas
@@ -110,7 +110,7 @@ Não sei."""
 18: 18 pessoas
 19: 19 pessoas
 20: 20 pessoas"""
-    elif Questao == 'Q006':
+    elif filtro_questao == 'Q006':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 6 no questionario socioeconômico:
                             
                             A: Nenhuma renda
@@ -130,13 +130,13 @@ N: De R$ 9.980,01 até R$ 11.976,00
 O: De R$ 11.976,01 até R$ 14.970,00
 P: De R$ 14.970,01 até R$ 19.960,00
 Q: Mais de R$ 19.960,00"""
-    elif Questao == 'Q007':
+    elif filtro_questao == 'Q007':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 7 no questionario socioeconômico:
                             A: Não.
 B: Sim, um ou dois dias por semana.
 C: Sim, três ou quatro dias por semana.
 D: Sim, pelo menos cinco dias por semana."""
-    elif Questao == 'Q008':
+    elif filtro_questao == 'Q008':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 8 no questionario socioeconômico:
                             
                             A: Não.
@@ -144,109 +144,110 @@ B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q009':
+    elif filtro_questao == 'Q009':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 9 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q010':
+    elif filtro_questao == 'Q010':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 10 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q011':
+    elif filtro_questao == 'Q011':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 11 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q012':
+    elif filtro_questao == 'Q012':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 12 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q013':
+    elif filtro_questao == 'Q013':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 13 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q014':
+    elif filtro_questao == 'Q014':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 14 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q015':
+    elif filtro_questao == 'Q015':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 15 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q016':
+    elif filtro_questao == 'Q016':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 16 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q017':
+    elif filtro_questao == 'Q017':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 17 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q018':
+    elif filtro_questao == 'Q018':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 18 no questionario socioeconômico:
                             A: Sim.
 B Não."""
-    elif Questao == 'Q019':
+    elif filtro_questao == 'Q019':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 19 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q020':
+    elif filtro_questao == 'Q020':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 20 no questionario socioeconômico:
                             A: Sim.
 B Não."""
-    elif Questao == 'Q021':
+    elif filtro_questao == 'Q021':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 21 no questionario socioeconômico:
                             A: Sim.
 B Não."""
-    elif Questao == 'Q022':
+    elif filtro_questao == 'Q022':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 22 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q023':
+    elif filtro_questao == 'Q023':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 23 no questionario socioeconômico:
                             A: Sim.
 B Não."""
-    elif Questao == 'Q024':
+    elif filtro_questao == 'Q024':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 24 no questionario socioeconômico:
                             A: Não.
 B: Sim, um.
 C: Sim, dois.
 D: Sim, três.
 E: Sim, quatro ou mais."""
-    elif Questao == 'Q025':
+    elif filtro_questao == 'Q025':
         texto = """A legenda: "A, B, C, D, ..." se referem às opções de resposta da Questão 25 no questionario socioeconômico:
-                            A: Sim.B Não."""
+                            A: Sim.
+                            B Não."""
     else:
         texto= ""
     
@@ -262,8 +263,7 @@ E: Sim, quatro ou mais."""
             """
 
     return [texto_quadro, texto]
-
-    
+  
 def formulario_4(request):
 
     # Medindo o tempo que a view demora para executar
@@ -272,7 +272,7 @@ def formulario_4(request):
     global CONTAGEM
     global CONTAGEMMicrodado_Amostra
 
-    questao= 'Q001'
+    filtro_questao= 'Q001'
     demografico = 'TP_SEXO'
 
     if request.method == 'GET':        
@@ -314,7 +314,15 @@ def formulario_4(request):
         filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
         filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
         
-        Amostra = [demografico, questao]
+        if(filtro_ano=="2019"):
+            CONTAGEMMicrodado_Amostra = 3702008
+        elif(filtro_ano=="2018"):
+            # CONTAGEMMicrodado_Amostra = 3893743
+            CONTAGEMMicrodado_Amostra = 3893671
+        elif(filtro_ano=="2017"):
+            CONTAGEMMicrodado_Amostra = 4426755
+        
+        Amostra = [demografico, filtro_questao]
         Microdado_Amostra = bd_formulario_1_4.buscar_dataframe_no_banco(
             Amostra, 
             filtro_sexo=filtro_sexo, 
@@ -363,11 +371,17 @@ def formulario_4(request):
         rowEvenColor = 'lightgrey'
         rowOddColor = 'white'
 
-        print("contage = " + str(CONTAGEM))
-        print("contage = " + str(CONTAGEMMicrodado_Amostra))
+        # print("contage = " + str(CONTAGEM))
+        # print("contage = " + str(CONTAGEMMicrodado_Amostra))
         
 
         if filtro_questao == 'nenhum':
+            
+            print("^111111111111111111^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+            print(Microdado_Amostra["TP_SEXO"])
+            print(Dataframe)
+            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+        
             CONTAGEM  = Dataframe['count']['NU_IDADE']
             figura_tabela = go.Figure(data=[go.Table(
                     header=dict(
@@ -389,7 +403,13 @@ def formulario_4(request):
                         ))
                     ])
         else:
-            anotacao_mensagem = anotacao(questao)
+            anotacao_mensagem = anotacao(filtro_questao)
+            
+            print("^22222222222222222222^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+            print(Microdado_Amostra["TP_SEXO"])
+            print(Dataframe)
+            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
+            
             CONTAGEM = Dataframe['count'].sum()
 
             figura_tabela = go.Figure(data=[
@@ -431,12 +451,12 @@ def formulario_4(request):
 
             
             figura_tabela.update_layout(
-                title_text="Quadro informativo sobre a proporção de alunos por resposta da questão socioeconômica: "+questao,
+                title_text="Quadro informativo sobre a proporção de alunos por resposta da questão socioeconômica: "+filtro_questao,
                 height=300,
                 margin=dict(l=50, r=50, b=20, t=50),
                 yaxis={'domain': [0, .45]},
                 xaxis2={'anchor': 'y2'},
-                xaxis_title=("Resposta da questão: "+questao+" do questionário socioeconômico"),
+                xaxis_title=("Resposta da questão: "+filtro_questao+" do questionário socioeconômico"),
                 yaxis_title="Porcentagem Parcial",
                 yaxis2={'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
                 legend_title="Legenda",
@@ -447,11 +467,11 @@ def formulario_4(request):
                 )
             )
             relatorio_em_grafico.update_layout(
-                title_text = "Gráfico de dispersão de alunos por alternativa na questão socioeconômica: "+questao,
+                title_text = "Gráfico de dispersão de alunos por alternativa na questão socioeconômica: "+filtro_questao,
                 # margin=dict(l=50, r=50, b=20, t=0),
                 # yaxis = {'domain': [0, .1]},
                 xaxis2 = {'anchor': 'y2'},
-                xaxis_title=("Resposta da questão: "+questao+" do questionário socioeconômico"),
+                xaxis_title=("Resposta da questão: "+filtro_questao+" do questionário socioeconômico"),
                 yaxis_title=("Porcentagem Parcial"),
                 yaxis2 = {'domain': [.1, 0], 'anchor': 'x2', 'title': 'Goals'},
                 legend_title="Legenda",
@@ -522,7 +542,7 @@ def formulario_4(request):
             
             # Formata a mensagem em HTML
             anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_quadro}<hr class="mt-0">{anotacao_mensagem}</div>'
-            
+        
         context = {
             'form' : form,         
             'anotacao_mensagem' : anotacao_mensagem,
