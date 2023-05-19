@@ -1,0 +1,10 @@
+Comandos que eu precisei utilizar:
+
+UPDATE enem_2017
+SET "TP_ESTADO_CIVIL" = CASE "TP_ESTADO_CIVIL"
+                        WHEN '0' THEN '1'
+                        WHEN '1' THEN '2'
+                        WHEN '2' THEN '3'
+                        WHEN '3' THEN '4'
+                        ELSE "TP_ESTADO_CIVIL"
+                     END;
