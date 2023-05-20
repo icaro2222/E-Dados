@@ -5,7 +5,6 @@ import pandas as pd
 import plotly.express as px
 from edados.formularios.formulario_1.formulario_1 import Formulario_1
 from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
-import numpy as np
 from edados.database import bd_formulario_1
 from django.contrib.auth.decorators import login_required
 
@@ -340,7 +339,7 @@ def formulario_1(request):
                 vetor = demografico_sexo(
                     Microdado_Amostra, demografico, questao)
                 relatorio=""
-                relatorio_em_grafico  = vetor[0]
+                relatorio_em_grafico  = vetor[2]
                 relatorio_em_quadro  = vetor[1]
             else:
                 vetor = demografico_sexo_unilateral(
@@ -446,6 +445,11 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         # desrotacionar
         DataFrame = DataFrame.stack()
 
+        if("M" not in Microdado_Amostra.index):
+            Microdado_Amostra.M =0
+        if("F" not in Microdado_Amostra.index):
+            Microdado_Amostra.F =0
+            
         QUNATIDADE_TOTAL = 1000
         fig = go.Figure()
         texttemplate = '%{text:.1f}%',
@@ -635,10 +639,68 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
 def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_sexo):
 
     if questao!="nenhum":
+        relatorio_em_grafico = ""
+        figura_tabela = ""
+        relatorio = ""
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
         DataFrame = DataFrame.groupby([demografico, questao])
         DataFrame = DataFrame[demografico].count()
 
+        Microdado_Amostra = Microdado_Amostra.groupby([demografico])
+        Microdado_Amostra = Microdado_Amostra[demografico].count()
+        print('----------------------------------------------')
+        print(Microdado_Amostra)
+        
+        # Dados do gráfico
+        labels = Microdado_Amostra.index
+
+        if("M" == filtro_sexo and Microdado_Amostra.empty):
+            labels=["Masculino"]
+            Microdado_Amostra["M"] =0
+        if("F" == filtro_sexo and Microdado_Amostra.empty):
+            labels=["Feminino"]
+            Microdado_Amostra["F"] =0
+            
+        rowEvenColor = 'lightgrey'
+        rowOddColor = 'white'
+        figura_tabela = go.Figure(data=[
+            go.Table(
+                header=dict(
+                    values=['Respostas',labels],
+                    # values=['Respostas'],
+                    fill_color='royalblue',
+                    height=40,
+                    line_color='darkslategray',
+                    align=['left', 'center'],
+                    font=dict(color='white', size=12)
+                ),
+                cells=dict(
+                    values=["TP_SEXO", Microdado_Amostra],
+                    line_color='darkslategray',
+                    fill_color=[[rowOddColor, rowEvenColor, rowOddColor, rowEvenColor, rowOddColor]*5],
+                    align=['left', 'center'],
+                    font=dict(color='darkslategray', size=11)
+                )
+            )
+        ])
+                
+        figura_tabela.update_layout(
+            title_text="Quadro informativo sobre a proporção de alunos por 'Gênero'",
+            height=150,
+            margin=dict(l=50, r=50, b=20, t=50),
+            yaxis={'domain': [0, .45]},
+            xaxis2={'anchor': 'y2'},
+            xaxis_title=("Resposta da questão: "+questao+" do questionário socioeconômico"),
+            yaxis_title="Porcentagem Parcial",
+            yaxis2={'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
+            legend_title="Legenda",
+            font=dict(
+                family="Arial",
+                size=12,
+                color="black"
+            )
+        )
+        
         # rotacionar
         DataFrame = DataFrame.unstack()
 
@@ -685,6 +747,7 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
             )
         )
         relatorio = fig.to_html()
+        figura_tabela = figura_tabela.to_html()
     else:
         relatorio_em_grafico = ""
         figura_tabela = ""

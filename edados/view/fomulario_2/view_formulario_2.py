@@ -436,7 +436,7 @@ def formulario_2(request):
 
         figura_tabela = go.Figure(data=[go.Table(
                 header=dict(
-                    values=['Respostas', 'média', 'máximo', 'quant alunos', '25%', '50%', '75%'],
+                    values=['Respostas', 'mínimo', 'média', 'máximo', 'quant alunos', '25%', '50%', '75%'],
                     fill_color='royalblue',
                     height=40,
                     line_color='darkslategray',
@@ -445,6 +445,7 @@ def formulario_2(request):
                 ),
                 cells=dict(
                     values=[Dataframe.index,
+                    Dataframe['min'].apply(formatar),
                     Dataframe['mean'].apply(formatar), Dataframe['max'], 
                     Dataframe['count'], Dataframe['25%'].apply(formatar), 
                     Dataframe['50%'].apply(formatar), Dataframe['75%'].apply(formatar)],
@@ -484,7 +485,7 @@ def formulario_2(request):
                 margin=dict(l=50, r=50, b=300, t=50),
                 yaxis = {'domain': [0, .45]},
                 xaxis2 = {'anchor': 'y2'},
-                xaxis_title="Resposta do questionário socioeconômico",
+                xaxis_title="Prova",
                 yaxis_title="Desempenho",
                 yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
                 legend_title="Legenda",
