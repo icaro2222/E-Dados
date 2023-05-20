@@ -1,23 +1,162 @@
+
+from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
+from edados.formularios.formulario_3.formulario_3 import Formulario_3
+from django.contrib.auth.decorators import login_required
+from django.utils.html import format_html_join
+from edados.database import bd_formulario_3
 from django.shortcuts import render
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
+import plotly.express as px
+from pathlib import Path
 from io import BytesIO
 import pandas as pd
-import plotly.express as px
-import base64
-from edados.formularios.formulario_3.formulario_3 import Formulario_3
-from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 import numpy as np
-from django.utils.html import format_html_join
-from edados.database import bd_formulario_3
-from django.contrib.auth.decorators import login_required
+import base64
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 CONTAGEM = 0
 CONTAGEMMicrodado_Amostra = 0
+prova_pdf = ""
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
+def prova_nome_pdf(filtro_cor_da_prova):
+    if('503'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_01_DIA_1_AZUL.pdf"
+    if('504'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_02_DIA_1_AMARELO.pdf"
+    if('505'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_02_DIA_1_AMARELO_AMPLIADA.pdf"
+    if('506'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_02_DIA_1_AMARELO_SUPERAMPLIADA.pdf"
+    if('507'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_03_DIA_1_BRANCO.pdf"
+    if('508'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_04_DIA_1_ROSA.pdf"
+    if('509'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_09_DIA_1_LARANJA_LEDOR.pdf"
+    if('510'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_10_DIA_1_VERDE_LIBRAS.pdf"
+    if('511'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_05_DIA_2_AMARELO.pdf"
+    if('512'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_06_DIA_2_CINZA.pdf"
+    if('513'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_06_DIA_2_CINZA_AMPLIADA.pdf"
+    if('514'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_06_DIA_2_CINZA_SUPERAMPLIADA.pdf"
+    if('515'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_07_DIA_2_AZUL.pdf"
+    if('516'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_08_DIA_2_ROSA.pdf"
+    if('517'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_11_DIA_2_LARANJA_LEDOR.pdf"
+    if('518'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_12_DIA_2_VERDE_LIBRAS.pdf"
+    if('519'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_05_DIA_2_AMARELO.pdf"
+    if('520'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_06_DIA_2_CINZA.pdf"
+    if('521'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_06_DIA_2_CINZA_AMPLIADA.pdf"
+    if('522'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_06_DIA_2_CINZA_SUPERAMPLIADA.pdf"
+    if('523'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_07_DIA_2_AZUL.pdf"
+    if('524'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_08_DIA_2_ROSA.pdf"
+    if('525'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_11_DIA_2_LARANJA_LEDOR.pdf"
+    if('526'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_CAD_12_DIA_2_VERDE_LIBRAS.pdf"
+    if('527'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_01_DIA_1_AZUL.pdf"
+    if('528'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_02_DIA_1_AMARELO.pdf"
+    if('529'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_02_DIA_1_AMARELO_AMPLIADA.pdf"
+    if('530'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_02_DIA_1_AMARELO_SUPERAMPLIADA.pdf"
+    if('531'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_03_DIA_1_BRANCO.pdf"
+    if('532'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_04_DIA_1_ROSA.pdf"
+    if('533'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_09_DIA_1_LARANJA_LEDOR.pdf"
+    if('534'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_10_DIA_1_VERDE_LIBRAS.pdf"
+    if('535'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_05_DIA_2_AMARELO.pdf"
+    if('536'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_06_DIA_2_CINZA.pdf"
+    if('537'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_06_DIA_2_CINZA_AMPLIADA.pdf"
+    if('538'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_06_DIA_2_CINZA_SUPERAMPLIADA.pdf"
+    if('539'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_07_DIA_2_AZUL.pdf"
+    if('540'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_08_DIA_2_ROSA.pdf"
+    if('541'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_11_DIA_2_LARANJA_LEDOR.pdf"
+    if('542'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P1_GAB_12_DIA_2_VERDE_LIBRAS.pdf"
+    if('543'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_01_DIA_1_AZUL.pdf"
+    if('544'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_01_DIA_1_AZUL_AMPLIADA.pdf"
+    if('545'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_01_DIA_1_AZUL_SUPERAMPLIADA.pdf"
+    if('546'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_02_DIA_1_AMARELO.pdf"
+    if('547'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_03_DIA_1_BRANCO.pdf"
+    if('548'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_04_DIA_1_ROSA.pdf"
+    if('549'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_09_DIA_1_LARANJA_LEDOR.pdf"
+    if('550'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_05_DIA_2_AMARELO.pdf"
+    if('551'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_05_DIA_2_AMARELO_AMPLIADA.pdf"
+    if('552'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_05_DIA_2_AMARELO_SUPERAMPLIADA.pdf"
+    if('553'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_06_DIA_2_CINZA.pdf"
+    if('554'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_07_DIA_2_AZUL.pdf"
+    if('555'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_08_DIA_2_ROSA.pdf"
+    if('556'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_CAD_11_DIA_2_LARANJA_LEDOR.pdf"
+    if('557'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_GAB_01_DIA_1_AZUL.pdf"
+    if('558'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_GAB_01_DIA_1_AZUL_AMPLIADA.pdf"
+    if('559'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_GAB_01_DIA_1_AZUL_SUPERAMPLIADA.pdf"
+    if('560'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_GAB_02_DIA_1_AMARELO.pdf"
+    if('561'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_GAB_03_DIA_1_BRANCO.pdf"
+    if('562'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_GAB_04_DIA_1_ROSA.pdf"
+    if('563'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_GAB_09_DIA_1_LARANJA_LEDOR.pdf"
+    if('564'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_GAB_05_DIA_2_AMARELO.pdf"
+    if('565'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_GAB_05_DIA_2_AMARELO_AMPLIADA.pdf"
+    if('566'==filtro_cor_da_prova):
+        prova_pdf="ENEM_2019_P2_GAB_05_DIA"
+    
+    print('################################################################################')
+    print(filtro_cor_da_prova)
+    
+    return prova_pdf
 
 @login_required
 def formulario_3(request):
@@ -74,6 +213,9 @@ def formulario_3(request):
         filtro_recurso = form_filtro.data['recurso']
         filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
 
+        prova_pdf = prova_nome_pdf(filtro_cor_da_prova=filtro_cor_da_prova)
+        prova_pdf = '/pdf/PROVAS_E_GABARITOS/'+prova_pdf
+
         if(filtro_cor_da_prova == '503' or 
             filtro_cor_da_prova == '504' or
             filtro_cor_da_prova == '505' or
@@ -120,7 +262,8 @@ def formulario_3(request):
             filtro_cor_da_prova == '557' or
             filtro_cor_da_prova == '558'):
             prova = 'CO_PROVA_MT'
-
+        
+        print(prova_pdf)
         # Formulario de Filtro
         if prova == 'CO_PROVA_LC':
             respostas = "TX_RESPOSTAS_LC"
@@ -265,11 +408,12 @@ def formulario_3(request):
 
         context = {
             'form' : form,
+            'menssagem':menssagem,
+            'relatorio'  :relatorio,
+            'prova_pdf'  :  prova_pdf,
             'form_filtro' : form_filtro,
-            'menssagem' : menssagem,
             'quantidadeParcial' : CONTAGEM,
             'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
-            'relatorio' : relatorio
         }
 
     return render(request, 'base/formulario_3/relatorio_formulario_3.html', context=context)

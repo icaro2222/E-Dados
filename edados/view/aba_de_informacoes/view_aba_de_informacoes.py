@@ -237,108 +237,31 @@ def dicionario_microdados(request):
         
         form = Formulario_filtro_ano()
 
-        menssagem1 ="""Dicionário dos Microdados do Enem:""" 
-        instituicao ="""Instituição: IFBAIANO Campos Guanambi""" 
-        
-        aluno ="""Discente: Ícaro Dias dos Santos""" 
-        menssagem_aluno ="""ÁREA DE FORMAÇÃO: Graduando em Análise e Desenvolvimento de Sistema (IFBaiano)
-        TITULAÇÃO MÁXIMA: Graduando
-        icarodias2222@gmail.com""" 
-        
-        
-        orientador ="""Orientador: Woquiton Lima Fernandes""" 
-        menssagem_orientador ="""ÁREA DE FORMAÇÃO: Processamentos de Dados, 2003, FATEC SP/UNESC
-        MESTRADO: Tecnologia da Informação e Comunicação na Formação em EAD. 2007. UFC
-        DOUTORADO: Educação Especial.2016. UFSCAR
-        TITULAÇÃO MÁXIMA: Doutorado
-        ÁREA DE INGRESSO: INFORMÁTICA
-        woquiton.fernandes@ifbaiano.edu.br""" 
-        
-        
-        coo_orientador ="""Coo Orientadora: Daniele de Brito Trindade""" 
-        menssagem_coo_orientador ="""ÁREA DE FORMAÇÃO: Bacharelado em Estatística (Matemática / Estatística )
-        MESTRADO: Mestrado em Estatística (CCEN)
-        DOUTORADO: Doutorado em Estatística (CCEN)
-        TITULAÇÃO MÁXIMA: Doutorado
-        daniele.trindade@ifbaiano.edu.br""" 
-        
-        
-        menssagem = """   Instituto Federal de Educação, Ciência e Tecnologia Baiano – Campus Guanambi
-        
-        Zona Rural - Distrito de Ceraíma, Bahia - CEP: 46430-000
-
-        Tel.: (77) 3493-2100
-        Diretor: Carlito José de Barros Filho
-        E-mail: gabinete@guanambi.ifbaiano.edu.br
-        Instituto Federal de Educação, Ciência e Tecnologia Baiano
-        Reitoria: Rua do Rouxinol, nº 115, Imbuí, Salvador-BA. 
-        CEP: 41720-052. CNPJ: 10.724.903/0001-79 Telefone: (71) 3186-0001 | E-mail: gabinete@ifbaiano.edu.br"""
-
+        menssagem1 ="""Dicionário dos Microdados do Enem:"""       
+ 
         menssagem1 = menssagem1.split('\n')
         menssagem1 = format_html_join(
             '\n', '<h4 class="font-weight-normal mt-3 mb-0 d-flex aligh-items-end justify-content-end">{}</h4>', ((line,) for line in menssagem1))
-
-        menssagem = menssagem.split('\n')
-        menssagem = format_html_join(
-            '\n', '<h6 class="font-weight-normal d-flex aligh-items-center justify-content-center">{}</h6>', ((line,) for line in menssagem))
-
-        instituicao = instituicao.split('\n')
-        instituicao = format_html_join(
-            '\n', '<h5 class="font-weight-normal mb-0">{}</h6>', ((line,) for line in instituicao))
-
-        aluno = aluno.split('\n')
-        aluno = format_html_join(
-            '\n', '<h5 class="font-weight-normal mb-0">{}</h6>', ((line,) for line in aluno))
-
-        menssagem_aluno = menssagem_aluno.split('\n')
-        menssagem_aluno = format_html_join(
-            '\n', '<h6 class="font-weight-normal mt-3 mb-3 d-flex aligh-items-center justify-content-center">{}</h6>', ((line,) for line in menssagem_aluno))
-
-        orientador = orientador.split('\n')
-        orientador = format_html_join(
-            '\n', '<h5 class="font-weight-normal mb-0">{}</h6>', ((line,) for line in orientador))
-
-        menssagem_orientador = menssagem_orientador.split('\n')
-        menssagem_orientador = format_html_join(
-            '\n', '<h6 class="font-weight-normal mb-3  d-flex aligh-items-center justify-content-center">{}</h6>', ((line,) for line in menssagem_orientador))
-
-        coo_orientador = coo_orientador.split('\n')
-        coo_orientador = format_html_join(
-            '\n', '<h5 class="font-weight-normal mb-0">{}</h6>', ((line,) for line in coo_orientador))
-
-        menssagem_coo_orientador = menssagem_coo_orientador.split('\n')
-        menssagem_coo_orientador = format_html_join(
-            '\n', '<h6 class="font-weight-normal mb-3  d-flex aligh-items-center justify-content-center">{}</h6>', ((line,) for line in menssagem_coo_orientador))
-        import pandas as pd
-        from pathlib import Path
-
         
         context = {
             'form': form,
-            'menssagem': menssagem,
             'menssagem1': menssagem1,
-            'instituicao': instituicao,
-            'aluno': aluno,
-            'menssagem_aluno': menssagem_aluno,
-            'orientador': orientador,
-            'menssagem_orientador': menssagem_orientador,
-            'coo_orientador': coo_orientador,
-            'menssagem_coo_orientador': menssagem_coo_orientador,
         }
         return render(request, 'base/aba_de_informacoes/dicionario_microdados.html', context=context)
 
     else:
+        
+        form = Formulario_filtro_ano()
 
-
-
-        menssagem1 = "Dados Gerais do enem"
-        menssagem = """<br>
-        Esta é uma plataforma online que nos períodos de 2016, 2017, 2018 e 2019."""
-
-
+        menssagem1 ="""Dicionário dos Microdados do Enem:"""       
+ 
+        menssagem1 = menssagem1.split('\n')
+        menssagem1 = format_html_join(
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0 d-flex aligh-items-end justify-content-end">{}</h4>', ((line,) for line in menssagem1))
+        
         context = {
-            'menssagem': menssagem,
-            'menssagem1': menssagem1
+            'form': form,
+            'menssagem1': menssagem1,
         }
-
-    return render(request, 'base/aba_de_informacoes/criadores.html', context=context)
+    
+    return render(request, 'base/aba_de_informacoes/dicionario_microdados.html', context=context)

@@ -2,18 +2,10 @@ from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
 from edados.formularios.formulario_1.formulario_1_4 import Formulario
 from edados.database import bd_formulario_1_4
 from django.utils.html import format_html_join
-from openpyxl.utils import get_column_letter
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 import plotly.graph_objects as go
-import plotly.express as px
-import pandas as pd
-import numpy as np 
-import tempfile
-import openpyxl
 import time
-import csv
 
 CONTAGEM = 0
 CONTAGEMMicrodado_Amostra = 0
@@ -355,7 +347,6 @@ def formulario_4(request):
             Dataframe = Microdado_Amostra.groupby(filtro_questao)['NU_IDADE']       
             Dataframe = Dataframe.describe()    
 
-        # print(Dataframe.count().count)
 
         if Dataframe.empty:
 
@@ -373,17 +364,8 @@ def formulario_4(request):
         rowEvenColor = 'lightgrey'
         rowOddColor = 'white'
 
-        # print("contage = " + str(CONTAGEM))
-        # print("contage = " + str(CONTAGEMMicrodado_Amostra))
-        
-
         if filtro_questao == 'nenhum':
-            
-            print("^111111111111111111^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-            print(Microdado_Amostra["TP_SEXO"])
-            print(Dataframe)
-            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-        
+                    
             CONTAGEM  = Dataframe['count']['NU_IDADE']
             figura_tabela = go.Figure(data=[go.Table(
                     header=dict(
@@ -406,11 +388,6 @@ def formulario_4(request):
                     ])
         else:
             anotacao_mensagem = anotacao(filtro_questao)
-            
-            print("^22222222222222222222^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
-            print(Microdado_Amostra["TP_SEXO"])
-            print(Dataframe)
-            print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^")
             
             CONTAGEM = Dataframe['count'].sum()
 
@@ -569,6 +546,8 @@ def formulario_4(request):
             return render(request, 'base/formulario_1/relatorio_formulario_4.html', context=context)
         
         if request.POST.get('button')=='baixar_csv':
+            import csv
+            from django.http import HttpResponse
             # Cria o objeto response com o cabeçalho CSV
             response = HttpResponse(content_type='text/csv')
             filtro_questao = (filtro_questao+"_") if filtro_questao != "nenhum" else ""
@@ -586,13 +565,14 @@ def formulario_4(request):
         
         # Esta Opeção de baixar com EXCEL esta desativada!
         if request.POST.get('button') == 'baixar_excel':
+            
+            from django.http import HttpResponse                                                            
+            import tempfile
+            import openpyxl
+            from openpyxl.utils import get_column_letter
             # Obtém os nomes das colunas
             colunas = Microdado_Amostra.columns.tolist()
-            
-            # Exibe informações de depuração
-            print(f"Colunas: {colunas}")
-            print(f"Microdados: {Microdado_Amostra.head()}")
-            
+                        
             # Cria um novo arquivo Excel
             workbook = openpyxl.Workbook()
             sheet = workbook.active
@@ -623,6 +603,7 @@ def formulario_4(request):
                     
                     return response
     else:
+        from django.http import HttpResponse
         # Recebendo fomulario da tela
         form = Formulario(request.POST)
         form_filtro = Formulario_filtros(request.POST)
@@ -630,7 +611,6 @@ def formulario_4(request):
         # Variáveis vindas do Formulario
         filtro_questao = form.data['questao']
 
-        print('-------------------------------------------------------------')
         # Formulario de Filtro
         filtro_deficiencia = form_filtro.data['deficiencia']
         filtro_estado_civil = form_filtro.data['estado_civil']

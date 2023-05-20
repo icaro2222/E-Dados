@@ -142,8 +142,20 @@ Acertos/Erros nas Questões
 
 
       </div>
-      <hr class="mt-0 mb-3 bg-dark" />
+      <hr class="mb-0 mb-3 bg-dark" />
       <div class="col md-11">{{relatorio|safe}}</div>
+
+      <hr class="mt-0" />
+      <h5 class="mt-2 mb-0">Prova de ...</h5>
+      <hr class="mt-0 bg-dark" />
+      
+      <!-- PDF inicial -->
+      <iframe id="pdf-iframe" src="{% static prova_pdf %}" width="100%" height="600"></iframe>
+
+
+      <!-- <iframe id="pdf-iframe" src= "{% static '/pdf/PROVAS_E_GABARITOS/ENEM_2019_P1_CAD_02_DIA_1_AMARELO_AMPLIADA.pdf' %}" width="100%"
+      height="600"></iframe> -->
+
     </div>
   </div>
   <hr class="mb-3" />
@@ -164,7 +176,7 @@ Acertos/Erros nas Questões
 
 <script>
 
-  var selectElement = document.getElementById("id_amostra"); 
+  var selectElement = document.getElementById("id_amostra");
   // Adicione um ouvinte de eventos para o evento "change" no campo "select"
   selectElement.addEventListener("change", function () {
     var selectedOption = selectElement.options[selectElement.selectedIndex].value;
