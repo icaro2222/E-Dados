@@ -152,12 +152,24 @@ Acertos/Erros nas Questões
 
       </div>
       <hr class="mb-0 mb-3 bg-dark" />
-      <div class="col md-11">{{relatorio|safe}}</div>
 
-      <hr class="mt-0" />
-      <h5 class="mt-2 mb-0">Prova de ...</h5>
-      <hr class="mt-0 bg-dark" />
-      
+      <!-- Relatório em formato de tabelaa percentual -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col md-11">{{relatorio|safe}}</div>
+          <div class="col-md-12 d-flex aligh-items-center justify-content-center">
+            <div class="col-md-12 d-flex justify-content-center">
+              {{anotacao_mensagem|safe}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <h5 class="mt-5 mb-0">{{ menssagem1 }}</h5>
+        <hr class="mt-0 mb-3 bg-dark" />
+      </div>
+
       <!-- PDF inicial -->
       <iframe id="pdf-iframe" src="{% static prova_pdf %}" width="100%" height="600"></iframe>
 

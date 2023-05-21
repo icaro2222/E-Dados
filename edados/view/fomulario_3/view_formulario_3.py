@@ -162,7 +162,7 @@ def prova_nome_pdf(filtro_cor_da_prova):
 def formulario_3(request):
 
     if request.method == 'GET':
-        menssagem = 'Análise do Desempenho Acadêmico: Quantidade de Acertos e Erros por Prova e Filtros Socioeconômicos'
+        menssagem = 'Análise do Desempenho Acadêmico: Quantidade de Acertos e Erros por Prova e Aplicação de Filtros'
         menssagem_informativa = """A análise de dados é uma das habilidades mais importantes na era digital em que vivemos, e é especialmente útil quando se trata de quantificar o desempenho em testes como o Exame Nacional do Ensino Médio (ENEM). Uma plataforma online com filtros pode ser uma ferramenta poderosa para analisar dados do ENEM e determinar o nível de sucesso de um determinado grupo de estudantes.
 
         Usando uma plataforma online com filtros, é possível analisar vários dados do ENEM, como a nota geral, a pontuação em cada área de conhecimento e a nota de redação. Além disso, é possível filtrar esses dados por região, tipo de escola, renda familiar, entre outros fatores.
@@ -373,7 +373,6 @@ def formulario_3(request):
         
         # Colocando nome no DataFrame
         acertos_pd.columns = ['porcentagem_de_acertos']
-        # acertos_pd = acertos_pd.drop(acertos_pd.index[0])
         texto = acertos_pd.porcentagem_de_acertos
         print(acertos_pd)
         
@@ -387,37 +386,15 @@ def formulario_3(request):
             textposition='auto',
             name=nome
         )
-
-        # fig = px.bar(acertos_pd,
-        #             x= acertos_pd.index,
-        #             y= acertos_pd['porcentagem_de_acertos'],
-        #             # text= acertos_pd.porcentagem_de_acertos,
-        #             text_auto=True,
-        #             # error_y= (acertos_pd.porcentagem_de_acertos / quantidade_de_respostas),
-        #             # text_auto='.2s',
-        #             title="s",
-        #             labels={'index':'Questão de número', 'porcentagem_de_acertos':'Porcentagem de acerto/erros'}
-        #             )
-
-        relatorio_em_grafico.update_traces(
-            # texttemplate='%{'+acertos_pd.porcentagem_de_acertos.to_list()+':.2s}', 
-            # textposition='outside', 
-            textfont_size=12, 
-            # extangle=0, 
-            # cliponaxis=False
-            )
-            
         relatorio_em_grafico.update_layout(
             xaxis=dict(
-                # tickvals=acertos_pd.index,
                 tickvals =acertos_pd.index,
                 tickmode="array",
                 titlefont=dict(size=10),
             ),
             title="Percentual de " + acerto_erro + " nas questões na prova de " + prova + " no ano de " + filtro_ano + " dos inscritos que possuem " + filtro_deficiencia + " deficiência.",
-            # title_text = """Tabela de percentual Conforme os critérios estabelecidos""",
             height = 500,
-            margin = {'t':75, 'l':50},
+            margin = {'t':50, 'l':50},
             yaxis = {'domain': [0, 1]},
             xaxis2 = {'anchor': 'y2'},
             xaxis_title=("Número da da questão na prova: "+prova),
@@ -431,11 +408,27 @@ def formulario_3(request):
             )
         )
         relatorio = relatorio_em_grafico.to_html()
+        
+        menssagem1 = 'PDF da prova de '+prova
+        anotacao_mensagem = 'Q1, Q2, Q3, Q4, ..., Corresponde ao numero da questão na prova '+ prova
+        anotacao = """Através deste gráfico, é possível visualizar a proporção em 
+        porcentagem de quantos alunos acertaram ou erraram a questão especificada pelo 
+        "Q". Dessa forma, é possível identificar em qual questão da prova deve-se 
+        fazer uma análise para entender o motivo de a questão ter uma maior porcentagem 
+        de alunos que erraram."""
+        
+        # Cria a mensagem de anotação
+        informativo = '<h5 class="mb-0">Informativo:</h5>'
 
+        # Formata a mensagem em HTML
+        anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao}<hr class="mt-0">{anotacao_mensagem}</div>'
+        
         context = {
             'form' : form,
             'menssagem':menssagem,
             'relatorio'  :relatorio,
+            'anotacao_mensagem' : anotacao_mensagem,
+            'menssagem1' : menssagem1,
             'prova_pdf'  :  prova_pdf,
             'form_filtro' : form_filtro,
             'quantidadeParcial' : CONTAGEM,
@@ -443,132 +436,3 @@ def formulario_3(request):
         }
 
     return render(request, 'base/formulario_3/relatorio_formulario_3.html', context=context)
-    
-
-# def acertos_quantidade(Microdado_Amostra, prova, cor_da_prova):
-
-#         width = 0.25         # A largura das barras
-
-#         DataFrame = Microdado_Amostra.sort_values(by=[cor_da_prova])
-#         DataFrame = DataFrame.groupby([prova, cor_da_prova])
-#         DataFrame = DataFrame[prova].count()
-#         Dataset_F = DataFrame['F']
-#         Dataset_M = DataFrame['M']
-            
-#         figura = plt.figure(figsize=(12, 8))
-#         figura.suptitle('Relatório de Compreensão em formato de gráfico, \n'+
-#         'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=16)
-#         figura.add_subplot(1,1,1)
-
-#         br1 = np.arange(len(Dataset_F.index))
-#         br2 = [x + width for x in br1]
-
-#         bar_label_feminino = plt.bar(br1, Dataset_F, color='y', width=width, label="feminino")
-#         bar_label_masculino = plt.bar(br2, Dataset_M, color='b', width=width, label="masculino")
-        
-#         plt.bar_label(bar_label_feminino, fmt='%.2f', padding=2)
-#         plt.bar_label(bar_label_masculino, fmt='%.2f', padding=2)
-
-#         labels = np.arange(len(Dataset_F.index.tolist()))
-#         print(labels)
-#         plt.xticks(labels, Dataset_F.index.tolist())
-
-#         plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
-#         plt.title(cor_da_prova)
-#         plt.ylabel('Quantidade de Inscritos por Questão Demográfica')
-#         plt.xlabel('Respostas da Questão Socioeconômica')
-
-#         buffer = BytesIO()
-#         plt.savefig(buffer, format='png', facecolor='#e8eeff')
-#         buffer.seek(0)
-#         image_png = buffer.getvalue()
-#         image = base64.b64encode(image_png)
-#         imagem_relatorio = image.decode('utf-8')
-#         buffer.close()
-
-#         # rotacionar 
-#         DataFrame = DataFrame.unstack()
-
-#         lista_dos_index = DataFrame.index.to_list()
-#         print(lista_dos_index)
-
-#         # desrotacionar 
-#         DataFrame = DataFrame.stack()
-
-#         fig = go.Figure()
-
-#         for index in lista_dos_index:
-#             print(index)
-#             if index=='M':
-#                 nome = 'masculino'
-#             else:
-#                 nome = 'feminino'
-#             fig.add_bar(
-#                 y=DataFrame[index],
-#                 x=DataFrame[index].index,
-#                 name = nome,
-
-#             )
-
-#         fig.update_layout(
-#             title_text = """Tabela de correlação entre o desempenho e a resposta da questão 
-#             socioeconômica.""",
-#             height = 600
-#         )
-        
-#         relatorio = fig.to_html()
-
-#         relatorio_em_tabela = relatorio
-#         figura_tabela_masculino = relatorio
-
-#         return [imagem_relatorio, relatorio, relatorio_em_tabela, figura_tabela_masculino]
-
-# def prova_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, prova, cor_da_prova):
-
-#         width = 0.25         # A largura das barras
-
-#         DataFrame = Microdado_Amostra.sort_values(by=[cor_da_prova])
-#         DataFrame = DataFrame.groupby([prova, cor_da_prova])
-#         DataFrame = DataFrame[prova].count()
-
-#         # rotacionar 
-#         DataFrame = DataFrame.unstack()
-
-#         lista_dos_index = DataFrame.index.to_list()
-#         print(lista_dos_index)
-
-#         # desrotacionar 
-#         DataFrame = DataFrame.stack()
-
-#         fig = go.Figure()
-
-#         for index in lista_dos_index:
-#             print(index)
-#             if index=='0':
-#                 nome = 'Não informou'
-#             elif index=='1':
-#                 nome = 'Pública'
-#             elif index=='2':
-#                 nome = 'Privada'
-#             else:
-#                 nome = 'Exterior'
-#             fig.add_bar(
-#                 y=DataFrame[index],
-#                 x=DataFrame[index].index,
-#                 name = nome,
-
-#             )
-            
-#         fig.update_layout(
-#             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-#             height = 500,
-#             font=dict(
-#                 family="Arial",
-#                 size=12,
-#                 color="black"
-#             )
-#         )
-
-#         relatorio = fig.to_html()
-
-#         return [relatorio]
