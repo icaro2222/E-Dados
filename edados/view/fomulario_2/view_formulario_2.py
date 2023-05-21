@@ -317,6 +317,10 @@ def formulario_2(request):
         filtro_recurso = form_filtro.data['recurso']
         filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
         
+        #em desenvolvimento
+        filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
+        filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
+        
         
         # Formulario de Filtro
         filtro_sexo = form_filtro.data['sexo']
@@ -335,6 +339,8 @@ def formulario_2(request):
                     filtro_deficiencia=filtro_deficiencia,
                     filtro_cor=filtro_cor, 
                     filtro_estado=filtro_estado, 
+                    filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
+                    filtro_ano_de_conclusao=filtro_ano_de_conclusao,  
                     filtro_recurso=filtro_recurso, 
                     filtro_questao=Q, 
                     filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
@@ -350,6 +356,8 @@ def formulario_2(request):
                     filtro_cor=filtro_cor, 
                     filtro_estado=filtro_estado, 
                     filtro_recurso=filtro_recurso, 
+                    filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
+                    filtro_ano_de_conclusao=filtro_ano_de_conclusao,  
                     filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
                     filtro_estado_civil=filtro_estado_civil, 
                     filtro_escola=filtro_escola, 
@@ -366,6 +374,8 @@ def formulario_2(request):
                     filtro_amostra=filtro_amostra, 
                     filtro_deficiencia=filtro_deficiencia,
                     filtro_cor=filtro_cor, 
+                    filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
+                    filtro_ano_de_conclusao=filtro_ano_de_conclusao,  
                     filtro_estado=filtro_estado, 
                     filtro_recurso=filtro_recurso, 
                     filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
@@ -380,6 +390,8 @@ def formulario_2(request):
                     filtro_cor=filtro_cor, 
                     filtro_estado=filtro_estado, 
                     filtro_recurso=filtro_recurso, 
+                    filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
+                    filtro_ano_de_conclusao=filtro_ano_de_conclusao,  
                     filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
                     filtro_estado_civil=filtro_estado_civil, 
                     filtro_escola=filtro_escola, 
