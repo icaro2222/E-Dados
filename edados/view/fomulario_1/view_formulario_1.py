@@ -297,6 +297,10 @@ def formulario_1(request):
         filtro_recurso = form_filtro.data['recurso']
         filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
         
+        # filtros sendo desenvolvidos
+        filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
+        filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
+        
         if(questao!="nenhum"):
             Amostra = [demografico, questao]
         else:
@@ -306,17 +310,19 @@ def formulario_1(request):
             
         Microdado_Amostra = bd_formulario_1.buscar_dataframe_no_banco(
             Amostra, 
-            filtro_sexo=filtro_sexo, 
-            filtro_amostra=filtro_amostra, 
-            filtro_deficiencia=filtro_deficiencia,
             filtro_cor=filtro_cor, 
-            filtro_estado=filtro_estado, 
-            filtro_recurso=filtro_recurso, 
             filtro_questao=questao, 
-            filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
-            filtro_estado_civil=filtro_estado_civil, 
+            filtro_sexo=filtro_sexo, 
             filtro_escola=filtro_escola, 
+            filtro_estado= filtro_estado, 
+            filtro_amostra= filtro_amostra, 
+            filtro_recurso = filtro_recurso, 
+            filtro_deficiencia=filtro_deficiencia,
+            filtro_estado_civil=filtro_estado_civil, 
             filtro_nacionalidade=filtro_nacionalidade,
+            filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
+            filtro_ano_de_conclusao=filtro_ano_de_conclusao,    
+            filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
             filtro_ano=filtro_ano)
             
         if(filtro_ano=="2019"):
@@ -628,23 +634,6 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         # Criando o gráfico de pizza
         relatorio_em_grafico = go.Figure(data=[go.Pie(labels=labels, values=values, marker=dict(colors=colors))])
 
-
-
-        # Atualizando as configurações do layout para exibir o gráfico em 3D
-        # relatorio_em_grafico.update_layout(scene=dict(aspectmode='data'))
-
-        
-        # Personalizando o layout do gráfico
-        # relatorio_em_grafico.update_layout(title='Distribuição de alunos por Gênero',
-        #                 title_font_size=16,
-        #                 legend=dict(
-        #                     orientation='h',
-        #                     yanchor='bottom',
-        #                     y=1.02,
-        #                     xanchor='center',
-        #                     x=0.5
-        #                 ))
-                
         figura_tabela = figura_tabela.to_html()
         relatorio_em_grafico = relatorio_em_grafico.to_html()
         relatorio = relatorio_em_grafico

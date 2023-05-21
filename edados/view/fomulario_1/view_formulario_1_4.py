@@ -303,8 +303,6 @@ def formulario_4(request):
         filtro_amostra = form_filtro.data['amostra']
         filtro_recurso = form_filtro.data['recurso']
         filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
-        
-        # filtros sendo desenvolvidos
         filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
         filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
         
