@@ -403,6 +403,8 @@ def formulario_2(request):
                 'form' : form,
                 'menssagem' : menssagem,
                 'menssagem1' : menssagem1,
+                'quantidadeParcial' : CONTAGEM,
+                'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
                 'form_filtro' : form_filtro
             }
 
