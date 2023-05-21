@@ -25,9 +25,9 @@ def formatar(valor):
 
 def prova_nome_pdf(filtro_cor_da_prova):
     if('503'==filtro_cor_da_prova):
-        prova_pdf="ENEM_2019_P1_CAD_01_DIA_1_AZUL.pdf"
+        prova_pdf="ENEM_2019_P1_CAD_07_DIA_2_AZUL.pdf"
     elif('504'==filtro_cor_da_prova):
-        prova_pdf="ENEM_2019_P1_CAD_02_DIA_1_AMARELO.pdf"
+        prova_pdf="ENEM_2019_P1_CAD_05_DIA_2_AMARELO.pdf"
     elif('505'==filtro_cor_da_prova):
         prova_pdf="ENEM_2019_P1_CAD_06_DIA_2_CINZA.pdf"
     elif('506'==filtro_cor_da_prova):
