@@ -436,6 +436,12 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         DataFrame = DataFrame.groupby([demografico, questao])
         DataFrame = DataFrame[demografico].count()
 
+        if(Microdado_Amostra.empty):
+            relatorio=""
+            figura_tabela=""
+            relatorio_em_grafico=""
+            return [relatorio_em_grafico, figura_tabela, relatorio]
+            
         # rotacionar
         DataFrame = DataFrame.unstack()
         DataFrame_para_criar_a_grafico = DataFrame
@@ -445,11 +451,6 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         # desrotacionar
         DataFrame = DataFrame.stack()
 
-        if("M" not in Microdado_Amostra.index):
-            Microdado_Amostra.M =0
-        if("F" not in Microdado_Amostra.index):
-            Microdado_Amostra.F =0
-            
         QUNATIDADE_TOTAL = 1000
         fig = go.Figure()
         texttemplate = '%{text:.1f}%',
@@ -614,19 +615,36 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         # Criando o gráfico de pizza
         relatorio_em_grafico = go.Figure(data=[go.Pie(labels=labels, values=[ Microdado_Amostra.M, Microdado_Amostra.F])])
 
-        # Personalizando o layout do gráfico
-        relatorio_em_grafico.update_layout(title='Distribuição de alunos por Gênero',
-                        title_font_size=16,
-                        legend=dict(
-                            orientation='h',
-                            yanchor='bottom',
-                            y=1.02,
-                            xanchor='center',
-                            x=0.5
-                        ))
+        relatorio_em_grafico.update_layout(scene=dict(aspectmode='data'))
+        # 
+        
+        # Definindo os rótulos e valores para o gráfico
+        labels = ['Feminino', 'Masculino']
+        values = [Microdado_Amostra.F, Microdado_Amostra.M]
 
+        # Definindo as cores das fatias
+        colors = ['#FFA0CA', '#6995ED']
+
+        # Criando o gráfico de pizza
+        relatorio_em_grafico = go.Figure(data=[go.Pie(labels=labels, values=values, marker=dict(colors=colors))])
+
+
+
+        # Atualizando as configurações do layout para exibir o gráfico em 3D
+        # relatorio_em_grafico.update_layout(scene=dict(aspectmode='data'))
 
         
+        # Personalizando o layout do gráfico
+        # relatorio_em_grafico.update_layout(title='Distribuição de alunos por Gênero',
+        #                 title_font_size=16,
+        #                 legend=dict(
+        #                     orientation='h',
+        #                     yanchor='bottom',
+        #                     y=1.02,
+        #                     xanchor='center',
+        #                     x=0.5
+        #                 ))
+                
         figura_tabela = figura_tabela.to_html()
         relatorio_em_grafico = relatorio_em_grafico.to_html()
         relatorio = relatorio_em_grafico
@@ -759,13 +777,18 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
         
         # Dados do gráfico
         labels = Microdado_Amostra.index
-
+        
         if("M" == filtro_sexo and Microdado_Amostra.empty):
             labels=["Masculino"]
             Microdado_Amostra["M"] =0
         if("F" == filtro_sexo and Microdado_Amostra.empty):
             labels=["Feminino"]
             Microdado_Amostra["F"] =0
+            
+        if("M" == filtro_sexo):
+            colors = ['#6995ED']
+        if("F" == filtro_sexo):
+            colors = ['#FFA0CA']
             
         rowEvenColor = 'lightgrey'
         rowOddColor = 'white'
@@ -812,6 +835,10 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
         
         # Criando o gráfico de pizza
         relatorio_em_grafico = go.Figure(data=[go.Pie(labels=labels, values=Microdado_Amostra)])
+
+        # Criando o gráfico de pizza
+        relatorio_em_grafico = go.Figure(data=[go.Pie(labels=labels, values=Microdado_Amostra, marker=dict(colors=colors))])
+
 
         # Personalizando o layout do gráfico
         relatorio_em_grafico.update_layout(title='Distribuição de alunos por Gênero',
