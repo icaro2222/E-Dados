@@ -264,7 +264,6 @@ E: Sim, quatro ou mais."""
     return [texto_quadro, texto]
 
 
-
 @login_required
 def formulario_2(request):
 
@@ -417,6 +416,7 @@ def formulario_2(request):
             Dataframe = Microdado_Amostra
             print('--------------------------------------------------------------------')
             print(Dataframe) 
+            Dataframe_boxplot = Dataframe[prova]
             print('--------------------------------------------------------------------')
             Dataframe = Dataframe.describe().T
         else:
@@ -455,39 +455,63 @@ def formulario_2(request):
                     font = dict(color = 'darkslategray', size = 11)
                     ))
                 ])
-
         
         if(Q=="nenhum"):
             
             relatorio_em_grafico=""
             anotacao_mensagem=""
+                        
+            figura_tabela.update_layout(
+                title_text = "Quadro de desempenho do aluno da prova: "+prova,
+                height=150,
+                margin=dict(l=50, r=50, b=5, t=50),
+                yaxis = {'domain': [0, .45]},
+                xaxis2 = {'anchor': 'y2'},
+                xaxis_title="Resposta do questionário socioeconômico",
+                yaxis_title=("Desempenho na prova:"+prova),
+                yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
+                legend_title="Legenda",
+                font=dict(
+                    family="Arial",
+                    size=12,
+                    color="black"
+                )
+            )
             
-            figura_tabela.add_trace(go.Bar(
+            figura_tabela_boxplot= go.Figure()
+            
+            figura_tabela_boxplot.add_trace(go.Bar(
                 text=Dataframe['min'].apply(formatar),
                 x=Dataframe.index, 
                 y=Dataframe['min'],
                 name='mínimo'))
-            figura_tabela.add_trace(go.Bar(
+            figura_tabela_boxplot.add_trace(go.Bar(
                 text=Dataframe['mean'].apply(formatar),
                 x=Dataframe.index, 
                 y=Dataframe['mean'],
                 name='média'))
-            figura_tabela.add_trace(go.Bar(
+            figura_tabela_boxplot.add_trace(go.Bar(
                 text=Dataframe['max'].apply(formatar),
                 x=Dataframe.index, 
                 y=Dataframe['max'],
                 name='máximo'),
                 )
+            
+            figura_tabela_boxplot.add_trace(go.Box(
+                y=Dataframe_boxplot,
+                # x=Dataframe.index,
+                name='Boxplot'
+                ))
 
-            figura_tabela.update_layout(
-                title_text = """Quadro de correlação entre o desempenho e a resposta da questão socioeconômica.""",
-                height=700,
-                margin=dict(l=50, r=50, b=300, t=50),
-                yaxis = {'domain': [0, .45]},
-                xaxis2 = {'anchor': 'y2'},
-                xaxis_title="Prova",
+            # Configurações de layout
+            figura_tabela_boxplot.update_layout(
+                title_text = """Q uadro do desempenho na prova""",
+                height=600,
+                margin=dict(l=50, r=50, b=210, t=50),
+                # yaxis = {'domain': [0, .45]},
+                # xaxis2 = {'anchor': 'y2'},
+                xaxis_title="Gráficos",
                 yaxis_title="Desempenho",
-                yaxis2 = {'domain': [.6, 1], 'anchor': 'x2', 'title': 'Goals'},
                 legend_title="Legenda",
                 annotations = [
                     {
@@ -511,6 +535,7 @@ def formulario_2(request):
                     color="black"
                 )
             )
+            relatorio_em_tabela = figura_tabela.to_html() + figura_tabela_boxplot.to_html()
         else:
             anotacao_mensagem = anotacao(Q)
             relatorio_em_grafico = go.Figure()
@@ -573,10 +598,8 @@ def formulario_2(request):
                     color="black"
                 )
             )
-            
+            relatorio_em_tabela = figura_tabela.to_html() 
             relatorio_em_grafico = relatorio_em_grafico.to_html()
-
-        relatorio_em_tabela = figura_tabela.to_html()
 
         if form.is_valid():
             print(form.changed_data)
