@@ -320,7 +320,7 @@ def formulario_3(request):
             CONTAGEMMicrodado_Amostra = 4426755
         CONTAGEM = Microdado_Amostra[prova].count()
         
-        menssagem = 'Análise do Desempenho Acadêmico: Quantidade de Acertos e Erros por Prova e Filtros Socioeconômicos'
+        menssagem = 'Análise do Desempenho Acadêmico: Quantidade de Acertos e Erros por Prova e Aplicação de Filtros'
 
         Microdado_Amostra.reset_index(inplace=True)
         resposta = Microdado_Amostra[respostas]
@@ -357,22 +357,28 @@ def formulario_3(request):
             acertos_porcentagem[j+1] = (acertos[j] / quantidade_de_respostas)*100
         
         # print(acertos_porcentagem)
+        print(acertos_porcentagem)
+        acertos_porcentagem = acertos_porcentagem[1:]
+        print(acertos_porcentagem)
         acertos_pd = pd.DataFrame(acertos_porcentagem)
         
         # Colocando nome no DataFrame
         acertos_pd.columns = ['porcentagem_de_acertos']
+        # acertos_pd = acertos_pd.drop(acertos_pd.index[0])
         texto = acertos_pd.porcentagem_de_acertos
+        print(acertos_pd)
         
         relatorio_em_grafico = go.Figure()
         nome = "Percentual Conforme os critérios estabelecidos"
         relatorio_em_grafico.add_bar(
             y=(acertos_pd['porcentagem_de_acertos']),
-            x=acertos_pd.index,
+            x=(acertos_pd.index).map(lambda x: f"Q{x+1}"),
             text=(acertos_pd['porcentagem_de_acertos']),
             texttemplate='%{text:.2f}%',
             textposition='auto',
             name=nome
         )
+
         # fig = px.bar(acertos_pd,
         #             x= acertos_pd.index,
         #             y= acertos_pd['porcentagem_de_acertos'],
@@ -430,130 +436,130 @@ def formulario_3(request):
     return render(request, 'base/formulario_3/relatorio_formulario_3.html', context=context)
     
 
-def acertos_quantidade(Microdado_Amostra, prova, cor_da_prova):
+# def acertos_quantidade(Microdado_Amostra, prova, cor_da_prova):
 
-        width = 0.25         # A largura das barras
+#         width = 0.25         # A largura das barras
 
-        DataFrame = Microdado_Amostra.sort_values(by=[cor_da_prova])
-        DataFrame = DataFrame.groupby([prova, cor_da_prova])
-        DataFrame = DataFrame[prova].count()
-        Dataset_F = DataFrame['F']
-        Dataset_M = DataFrame['M']
+#         DataFrame = Microdado_Amostra.sort_values(by=[cor_da_prova])
+#         DataFrame = DataFrame.groupby([prova, cor_da_prova])
+#         DataFrame = DataFrame[prova].count()
+#         Dataset_F = DataFrame['F']
+#         Dataset_M = DataFrame['M']
             
-        figura = plt.figure(figsize=(12, 8))
-        figura.suptitle('Relatório de Compreensão em formato de gráfico, \n'+
-        'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=16)
-        figura.add_subplot(1,1,1)
+#         figura = plt.figure(figsize=(12, 8))
+#         figura.suptitle('Relatório de Compreensão em formato de gráfico, \n'+
+#         'realizando o comparativo entre: Questão Socioeconômica e Desempenho no ENEM', size=16)
+#         figura.add_subplot(1,1,1)
 
-        br1 = np.arange(len(Dataset_F.index))
-        br2 = [x + width for x in br1]
+#         br1 = np.arange(len(Dataset_F.index))
+#         br2 = [x + width for x in br1]
 
-        bar_label_feminino = plt.bar(br1, Dataset_F, color='y', width=width, label="feminino")
-        bar_label_masculino = plt.bar(br2, Dataset_M, color='b', width=width, label="masculino")
+#         bar_label_feminino = plt.bar(br1, Dataset_F, color='y', width=width, label="feminino")
+#         bar_label_masculino = plt.bar(br2, Dataset_M, color='b', width=width, label="masculino")
         
-        plt.bar_label(bar_label_feminino, fmt='%.2f', padding=2)
-        plt.bar_label(bar_label_masculino, fmt='%.2f', padding=2)
+#         plt.bar_label(bar_label_feminino, fmt='%.2f', padding=2)
+#         plt.bar_label(bar_label_masculino, fmt='%.2f', padding=2)
 
-        labels = np.arange(len(Dataset_F.index.tolist()))
-        print(labels)
-        plt.xticks(labels, Dataset_F.index.tolist())
+#         labels = np.arange(len(Dataset_F.index.tolist()))
+#         print(labels)
+#         plt.xticks(labels, Dataset_F.index.tolist())
 
-        plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
-        plt.title(cor_da_prova)
-        plt.ylabel('Quantidade de Inscritos por Questão Demográfica')
-        plt.xlabel('Respostas da Questão Socioeconômica')
+#         plt.legend(loc='center', bbox_to_anchor=(0.9, 1))
+#         plt.title(cor_da_prova)
+#         plt.ylabel('Quantidade de Inscritos por Questão Demográfica')
+#         plt.xlabel('Respostas da Questão Socioeconômica')
 
-        buffer = BytesIO()
-        plt.savefig(buffer, format='png', facecolor='#e8eeff')
-        buffer.seek(0)
-        image_png = buffer.getvalue()
-        image = base64.b64encode(image_png)
-        imagem_relatorio = image.decode('utf-8')
-        buffer.close()
+#         buffer = BytesIO()
+#         plt.savefig(buffer, format='png', facecolor='#e8eeff')
+#         buffer.seek(0)
+#         image_png = buffer.getvalue()
+#         image = base64.b64encode(image_png)
+#         imagem_relatorio = image.decode('utf-8')
+#         buffer.close()
 
-        # rotacionar 
-        DataFrame = DataFrame.unstack()
+#         # rotacionar 
+#         DataFrame = DataFrame.unstack()
 
-        lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
+#         lista_dos_index = DataFrame.index.to_list()
+#         print(lista_dos_index)
 
-        # desrotacionar 
-        DataFrame = DataFrame.stack()
+#         # desrotacionar 
+#         DataFrame = DataFrame.stack()
 
-        fig = go.Figure()
+#         fig = go.Figure()
 
-        for index in lista_dos_index:
-            print(index)
-            if index=='M':
-                nome = 'masculino'
-            else:
-                nome = 'feminino'
-            fig.add_bar(
-                y=DataFrame[index],
-                x=DataFrame[index].index,
-                name = nome,
+#         for index in lista_dos_index:
+#             print(index)
+#             if index=='M':
+#                 nome = 'masculino'
+#             else:
+#                 nome = 'feminino'
+#             fig.add_bar(
+#                 y=DataFrame[index],
+#                 x=DataFrame[index].index,
+#                 name = nome,
 
-            )
+#             )
 
-        fig.update_layout(
-            title_text = """Tabela de correlação entre o desempenho e a resposta da questão 
-            socioeconômica.""",
-            height = 600
-        )
+#         fig.update_layout(
+#             title_text = """Tabela de correlação entre o desempenho e a resposta da questão 
+#             socioeconômica.""",
+#             height = 600
+#         )
         
-        relatorio = fig.to_html()
+#         relatorio = fig.to_html()
 
-        relatorio_em_tabela = relatorio
-        figura_tabela_masculino = relatorio
+#         relatorio_em_tabela = relatorio
+#         figura_tabela_masculino = relatorio
 
-        return [imagem_relatorio, relatorio, relatorio_em_tabela, figura_tabela_masculino]
+#         return [imagem_relatorio, relatorio, relatorio_em_tabela, figura_tabela_masculino]
 
-def prova_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, prova, cor_da_prova):
+# def prova_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, prova, cor_da_prova):
 
-        width = 0.25         # A largura das barras
+#         width = 0.25         # A largura das barras
 
-        DataFrame = Microdado_Amostra.sort_values(by=[cor_da_prova])
-        DataFrame = DataFrame.groupby([prova, cor_da_prova])
-        DataFrame = DataFrame[prova].count()
+#         DataFrame = Microdado_Amostra.sort_values(by=[cor_da_prova])
+#         DataFrame = DataFrame.groupby([prova, cor_da_prova])
+#         DataFrame = DataFrame[prova].count()
 
-        # rotacionar 
-        DataFrame = DataFrame.unstack()
+#         # rotacionar 
+#         DataFrame = DataFrame.unstack()
 
-        lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
+#         lista_dos_index = DataFrame.index.to_list()
+#         print(lista_dos_index)
 
-        # desrotacionar 
-        DataFrame = DataFrame.stack()
+#         # desrotacionar 
+#         DataFrame = DataFrame.stack()
 
-        fig = go.Figure()
+#         fig = go.Figure()
 
-        for index in lista_dos_index:
-            print(index)
-            if index=='0':
-                nome = 'Não informou'
-            elif index=='1':
-                nome = 'Pública'
-            elif index=='2':
-                nome = 'Privada'
-            else:
-                nome = 'Exterior'
-            fig.add_bar(
-                y=DataFrame[index],
-                x=DataFrame[index].index,
-                name = nome,
+#         for index in lista_dos_index:
+#             print(index)
+#             if index=='0':
+#                 nome = 'Não informou'
+#             elif index=='1':
+#                 nome = 'Pública'
+#             elif index=='2':
+#                 nome = 'Privada'
+#             else:
+#                 nome = 'Exterior'
+#             fig.add_bar(
+#                 y=DataFrame[index],
+#                 x=DataFrame[index].index,
+#                 name = nome,
 
-            )
+#             )
             
-        fig.update_layout(
-            title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
-            height = 500,
-            font=dict(
-                family="Arial",
-                size=12,
-                color="black"
-            )
-        )
+#         fig.update_layout(
+#             title_text = 'Tabela de correlação entre a resposta da questão socioeconômica e a questão demográfica.',
+#             height = 500,
+#             font=dict(
+#                 family="Arial",
+#                 size=12,
+#                 color="black"
+#             )
+#         )
 
-        relatorio = fig.to_html()
+#         relatorio = fig.to_html()
 
-        return [relatorio]
+#         return [relatorio]
