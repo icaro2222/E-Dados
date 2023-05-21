@@ -363,17 +363,28 @@ def formulario_3(request):
         acertos_pd.columns = ['porcentagem_de_acertos']
         texto = acertos_pd.porcentagem_de_acertos
         
-        fig = px.bar(acertos_pd,
-        x= acertos_pd.index,
-        y= acertos_pd['porcentagem_de_acertos'],
-        # text= acertos_pd.porcentagem_de_acertos,
-        text_auto=True,
-        error_y= (acertos_pd.porcentagem_de_acertos / quantidade_de_respostas),
-        # text_auto='.2s',
-        title="Percentual Conforme os critérios estabelecidos",
-        labels={'index':'Questão de número', 'porcentagem_de_acertos':'Porcentagem de acerto/erros'})
+        relatorio_em_grafico = go.Figure()
+        nome = "Percentual Conforme os critérios estabelecidos"
+        relatorio_em_grafico.add_bar(
+            y=(acertos_pd['porcentagem_de_acertos']),
+            x=acertos_pd.index,
+            text=(acertos_pd['porcentagem_de_acertos']),
+            texttemplate='%{text:.2f}%',
+            textposition='auto',
+            name=nome
+        )
+        # fig = px.bar(acertos_pd,
+        #             x= acertos_pd.index,
+        #             y= acertos_pd['porcentagem_de_acertos'],
+        #             # text= acertos_pd.porcentagem_de_acertos,
+        #             text_auto=True,
+        #             # error_y= (acertos_pd.porcentagem_de_acertos / quantidade_de_respostas),
+        #             # text_auto='.2s',
+        #             title="s",
+        #             labels={'index':'Questão de número', 'porcentagem_de_acertos':'Porcentagem de acerto/erros'}
+        #             )
 
-        fig.update_traces(
+        relatorio_em_grafico.update_traces(
             # texttemplate='%{'+acertos_pd.porcentagem_de_acertos.to_list()+':.2s}', 
             # textposition='outside', 
             textfont_size=12, 
@@ -381,7 +392,7 @@ def formulario_3(request):
             # cliponaxis=False
             )
             
-        fig.update_layout(
+        relatorio_em_grafico.update_layout(
             xaxis=dict(
                 # tickvals=acertos_pd.index,
                 tickvals =acertos_pd.index,
@@ -404,7 +415,7 @@ def formulario_3(request):
                 color="black"
             )
         )
-        relatorio = fig.to_html()
+        relatorio = relatorio_em_grafico.to_html()
 
         context = {
             'form' : form,
