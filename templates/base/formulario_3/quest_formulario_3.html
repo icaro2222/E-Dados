@@ -60,25 +60,34 @@ Acertos/Erros nas Questões
         {% csrf_token %}
         {{ form_filtro.deficiencia|as_crispy_field }}
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         {% csrf_token %}
         {{ form_filtro.nacionalidade|as_crispy_field }}
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         {% csrf_token %}
         {{ form_filtro.estado|as_crispy_field }}
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         {% csrf_token %}
         {{ form_filtro.localizacao_da_escola|as_crispy_field }}
       </div>
-      <div class="col-md-4">
+      <div id="teste" class="col-md-3">
+        {% csrf_token %}
+        {{ form_filtro.tp_adm_escola|as_crispy_field }}
+      </div>
+      <div id="teste" class="col-md-3">
+        {% csrf_token %}
+        {{ form_filtro.ano_de_conclusao|as_crispy_field }}
+      </div>
+      <div class="col-md-3">
         {% csrf_token %}
         {{ form_filtro.recurso|as_crispy_field }}
       </div>
-      <div class="col-md-4">
+      <div class="col-md-3">
         {% csrf_token %}
-        {{ form_filtro.amostra|as_crispy_field }}
+        <div>
+          {{ form_filtro.amostra|as_crispy_field }} </div>
       </div>
       <div class="row col">
         <div class="col d-flex align-items-center justify-content-center">

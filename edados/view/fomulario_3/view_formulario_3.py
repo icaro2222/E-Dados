@@ -212,6 +212,11 @@ def formulario_3(request):
         filtro_amostra = form_filtro.data['amostra']
         filtro_recurso = form_filtro.data['recurso']
         filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
+        filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
+        filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
+        
+        # em desenvolvimento
+        
 
         prova_pdf = prova_nome_pdf(filtro_cor_da_prova=filtro_cor_da_prova)
         prova_pdf = '/pdf/PROVAS_E_GABARITOS/'+prova_pdf
@@ -287,6 +292,8 @@ def formulario_3(request):
                 filtro_deficiencia=filtro_deficiencia,
                 filtro_amostra=filtro_amostra, 
                 filtro_cor=filtro_cor, 
+                filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
+                filtro_ano_de_conclusao=filtro_ano_de_conclusao,     
                 filtro_estado=filtro_estado, 
                 filtro_recurso=filtro_recurso,
                 filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
@@ -302,6 +309,8 @@ def formulario_3(request):
                 filtro_cor_da_prova=filtro_cor_da_prova, 
                 filtro_deficiencia=filtro_deficiencia,
                 filtro_amostra=filtro_amostra, 
+                filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
+                filtro_ano_de_conclusao=filtro_ano_de_conclusao,     
                 filtro_cor=filtro_cor, 
                 filtro_estado=filtro_estado, 
                 filtro_recurso=filtro_recurso,
