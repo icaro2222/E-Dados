@@ -562,7 +562,7 @@ def formulario_4(request):
             return response
         
         # Esta Opeção de baixar com EXCEL esta desativada!
-        if request.POST.get('button') == 'baixar_excel':
+        # if request.POST.get('button') == 'baixar_excel':
             
             from django.http import HttpResponse                                                            
             import tempfile
@@ -601,6 +601,7 @@ def formulario_4(request):
                     
                     return response
     else:
+        import csv
         from django.http import HttpResponse
         # Recebendo fomulario da tela
         form = Formulario(request.POST)
