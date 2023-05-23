@@ -11,7 +11,6 @@ import datetime
 import pytz
 
 logger = logging.getLogger(__name__)
-
 def formatar(valor):
     return "{:,.2f}".format(valor)
 
@@ -21,7 +20,8 @@ def dashboard(request):
     brasilia_tz = pytz.timezone('America/Sao_Paulo')
     hora_atual = datetime.datetime.now(brasilia_tz)
     hora_formatada = hora_atual.strftime('%H:%M:%S')
-    logger.info('Acesso à página "Dashboard" por "%s" às %s', username, hora_formatada)
+    dia_e_mes_formatado = hora_atual.strftime('%d/%m/%Y  em uma %A')
+    logger.info('Acesso à página "Dashboard" por "%s" às %s na data (%s)', username, hora_formatada, dia_e_mes_formatado)
 
 
     print('Acesso à página por:', username)
