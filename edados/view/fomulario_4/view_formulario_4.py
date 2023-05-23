@@ -56,35 +56,35 @@ def formulario_4(request):
         dos inscritos no ENEM utilizando os microdados."""
 
         df = pd.read_csv(BASE_DIR/'fomulario_4/municipios_brasileiros.csv')
-
         trace = go.Scattergeo(
             locationmode = 'ISO-3',
             lon = df['longitude'],
             lat = df['latitude'],
             text = df['nome_municipio'] + '- População: ' + df['codigo_ibge'].astype(str),
             marker = dict(
-                size = df['codigo_ibge']/20000,
-                color = '#e74c3c',
-                line = {'width': 0.5, 
-                        'color': '#2c3e50'},
+                size = df['codigo_ibge']/300000,
+                color = '#2980b9',  # Alteração para uma tonalidade de azul mais elegante
+                line = {'width': 1, 'color': '#2c3e50'},
                 sizemode = 'area')
         )
         data = [trace]
         layout = go.Layout(
             height=700,
             margin=dict(l=0, r=0, b=10, t=50),
-            title = '<b>Inscritos do Enem de 2019</b>',
-            titlefont = {'family': 'Arial', 'size': 24},
-            geo =  {'scope': 'south america',
-                    'projection': {'type': 'mercator'},
-                    'showland': True,
-                    'landcolor': '#2ecc71',
-                    'showlakes': True,
-                    'lakecolor': '#3498db',
-                    'subunitwidth': 1,
-                    'subunitcolor': "rgb(255, 255, 255)"
-                }
+            title='<b>Inscritos do Enem de 2019</b>',
+            titlefont={'family': 'Arial', 'size': 24},
+            geo=dict(
+                scope='south america',
+                projection={'type': 'mercator'},
+                showland=True,
+                landcolor='#ecf0f1',  # Alteração para uma tonalidade de ciano mais suave
+                showlakes=True,
+                lakecolor='#eaeef0',  # Alteração para uma tonalidade de azul mais suave
+                subunitwidth=1,
+                subunitcolor="rgb(255, 255, 255)"
+            )
         )
+        
         fig = go.Figure(data=data, layout=layout)
 
         relatorio = fig.to_html()
