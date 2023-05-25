@@ -30,6 +30,7 @@
             font-family: "IBM Plex Sans", sans-serif;
         }
     </style>
+
 </head>
 
 <body id="page-top">
@@ -222,8 +223,8 @@
                                     d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z" />
                             </svg> Os criadores</a>
                         <a class="collapse-item {% if request.resolver_match.url_name == 'dicionario' %} active{% endif %}"
-                            href="{% url 'dicionario' %}"  title="Dicionário Microdados"><svg width="16" height="16" viewBox="0 0 16 16"
-                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            href="{% url 'dicionario' %}" title="Dicionário Microdados"><svg width="16" height="16"
+                                viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M1 2.82757C1.88498 2.4578 3.1539 2.05944 4.38768 1.935C5.71799 1.80082 6.8464 1.99809 7.5 2.68671V12.4326C6.56511 11.9025 5.38065 11.8298 4.28732 11.9401C3.10693 12.0591 1.91771 12.4011 1 12.751V2.82757ZM8.5 2.68671C9.1536 1.99809 10.282 1.80082 11.6123 1.935C12.8461 2.05944 14.115 2.4578 15 2.82757V12.751C14.0823 12.4011 12.8931 12.0591 11.7127 11.9401C10.6194 11.8298 9.43489 11.9025 8.5 12.4326V2.68671ZM8 1.78306C7.01509 0.936466 5.58683 0.808974 4.28732 0.940049C2.77322 1.09277 1.24459 1.61235 0.293099 2.04484C0.114601 2.12598 0 2.30395 0 2.50002V13.5C0 13.67 0.0863761 13.8284 0.229307 13.9204C0.372238 14.0125 0.55214 14.0256 0.706901 13.9552C1.58875 13.5544 3.01012 13.074 4.38768 12.935C5.79565 12.793 6.97747 13.0223 7.60957 13.8124C7.70445 13.931 7.84811 14 8 14C8.15189 14 8.29555 13.931 8.39043 13.8124C9.02253 13.0223 10.2043 12.793 11.6123 12.935C12.9899 13.074 14.4113 13.5544 15.2931 13.9552C15.4479 14.0256 15.6278 14.0125 15.7707 13.9204C15.9136 13.8284 16 13.67 16 13.5V2.50002C16 2.30395 15.8854 2.12598 15.7069 2.04484C14.7554 1.61235 13.2268 1.09277 11.7127 0.940049C10.4132 0.808974 8.98491 0.936466 8 1.78306Z" />
                             </svg> Dicionário Microd...</a>
@@ -265,6 +266,59 @@
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <div class="d-flex">
+
+
+                            <div class="row d-flex align-items-center">
+                                <li class="nav-item dropdown no-arrow ml-2 mr-3 text-center">
+                                    <div class="col">
+                                        <div id="svg-container">
+                                            {{menssagem_segundo_planos}}
+                                            <a class="av-link collapse-item btn d-flex justify-content-center align-items-center"
+                                            href={% static "csv/microdados_enem.csv" %}>
+                                                <svg id="svg-hourglass1" style="display: none;"
+                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-hourglass-bottom"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5zm2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702s.18.149.5.149.5-.15.5-.15v-.7c0-.701.478-1.236 1.011-1.492A3.5 3.5 0 0 0 11.5 3V2h-7z" />
+                                                </svg>
+                                                <svg id="svg-hourglass2" style="display: none;"
+                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-hourglass" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2 1.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1-.5-.5zm2.5.5v1a3.5 3.5 0 0 0 1.989 3.158c.533.256 1.011.791 1.011 1.491v.702c0 .7-.478 1.235-1.011 1.491A3.5 3.5 0 0 0 4.5 13v1h7v-1a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351v-.702c0-.7.478-1.235 1.011-1.491A3.5 3.5 0 0 0 11.5 3V2h-7z" />
+                                                </svg>
+                                                <svg id="svg-hourglass3" style="display: none;"
+                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-hourglass-top" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2 14.5a.5.5 0 0 0 .5.5h11a.5.5 0 1 0 0-1h-1v-1a4.5 4.5 0 0 0-2.557-4.06c-.29-.139-.443-.377-.443-.59v-.7c0-.213.154-.451.443-.59A4.5 4.5 0 0 0 12.5 3V2h1a.5.5 0 0 0 0-1h-11a.5.5 0 0 0 0 1h1v1a4.5 4.5 0 0 0 2.557 4.06c.29.139.443.377.443.59v.7c0 .213-.154.451-.443.59A4.5 4.5 0 0 0 3.5 13v1h-1a.5.5 0 0 0-.5.5zm2.5-.5v-1a3.5 3.5 0 0 1 1.989-3.158c.533-.256 1.011-.79 1.011-1.491v-.702s.18.101.5.101.5-.1.5-.1v.7c0 .701.478 1.236 1.011 1.492A3.5 3.5 0 0 1 11.5 13v1h-7z" />
+                                                </svg>
+                                                <svg id="svg-hourglass4" style="display: none;"
+                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-hourglass-split"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1h-11zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2h-7zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48V8.35zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z" />
+                                                </svg>
+
+
+                                                <svg id="svg-hourglass5" style="display: none;"
+                                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+                                                    <path
+                                                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+                                                </svg>
+                                                <span
+                                                    class="m-0 ml-2 d-none d-lg-inline text-dark small"> CSV</span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            </div>
                             <!-- <div class="row d-flex mr-2 align-items-center">
                                 <li class="nav-item dropdown no-arrow ml-2 mr-3 text-center">
 
@@ -326,6 +380,13 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid text-dark small">
+
+                    {% for menssagem_segundo_plano in menssagem_segundo_planos %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ menssagem_segundo_plano }}
+                    </div>
+                    {% endfor %}
+
                     {% block conteudo %}
                     {% endblock %}
                 </div>
@@ -379,6 +440,69 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
+
+
+        function verificarStatus() {
+
+            var svgHourglass1 = document.getElementById('svg-hourglass1');
+            var svgHourglass2 = document.getElementById('svg-hourglass2');
+            var svgHourglass3 = document.getElementById('svg-hourglass3');
+            var svgHourglass4 = document.getElementById('svg-hourglass4');
+            var svgHourglass5 = document.getElementById('svg-hourglass5');
+
+            $.ajax({
+                url: "{% url 'verificar_status_csv' %}",  // Substitua pelo caminho correto para o seu backend
+                type: 'GET',
+                success: function (response) {
+                    if (response.hasOwnProperty('status')) {
+                        if (response.status === 'andamento') {
+                            svgHourglass1.style.display = 'block';
+                            svgHourglass5.style.display = 'none';
+                        } else if (response.status === 'finalizado') {
+                            svgHourglass1.style.display = 'none';
+                            svgHourglass2.style.display = 'none';
+                            svgHourglass3.style.display = 'none';
+                            svgHourglass4.style.display = 'none';
+                            svgHourglass5.style.display = 'block';
+                        }
+                        <!-- alert('Status: ' + response.status); -->
+                    } else {
+                        <!-- alert('Erro: Não foi possível obter o status.'); -->
+                    }
+                },
+                error: function () {
+                    <!-- alert('Erro: Não foi possível obter o status.'); -->
+                }
+            });
+
+            setInterval(function () {
+                if (svgHourglass1.style.display === 'block') {
+                    svgHourglass1.style.display = 'none';
+                    svgHourglass2.style.display = 'block';
+                    svgHourglass3.style.display = 'none';
+                    svgHourglass4.style.display = 'none';
+                } else if (svgHourglass2.style.display === 'block') {
+                    svgHourglass1.style.display = 'none';
+                    svgHourglass2.style.display = 'none';
+                    svgHourglass3.style.display = 'block';
+                    svgHourglass4.style.display = 'none';
+                } else if (svgHourglass3.style.display === 'block') {
+                    svgHourglass1.style.display = 'none';
+                    svgHourglass2.style.display = 'none';
+                    svgHourglass3.style.display = 'none';
+                    svgHourglass4.style.display = 'block';
+                } else if (svgHourglass4.style.display === 'block') {
+                    svgHourglass1.style.display = 'block';
+                    svgHourglass2.style.display = 'none';
+                    svgHourglass3.style.display = 'none';
+                    svgHourglass4.style.display = 'none';
+                }
+            }, 500);
+        }
+
+        verificarStatus();
+
+
         //funciona, mas ta com uns bugs
         {% comment %} function toggleSidebar() {
             document.body.classList.toggle("sidebar-toggled");
@@ -410,8 +534,8 @@
                 $(this).find(".collapse").addClass("show");
             }
         });
-    </script>
 
+    </script>
 
     <!-- Bootstrap core JavaScript-->
     <!-- <script src={% static "vendor/jquery/jquery.min.js" %}></script> -->
