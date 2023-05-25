@@ -15,12 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 from .view.dashboard import dashboard
 from .view.aba_de_informacoes import view_aba_de_informacoes
 from .view.fomulario_1 import view_formulario_1, view_formulario_1_4
 from .view.fomulario_2 import view_formulario_2
 from .view.fomulario_3 import view_formulario_3
 from .view.fomulario_4 import view_formulario_4
+from .view.tasks import criar_csv, verificar_csv
 
 urlpatterns = [
     path('', dashboard.dashboard, name="dashboard"),
@@ -38,9 +41,17 @@ urlpatterns = [
     
     path('regiao_demografica/', view_formulario_4.formulario_4, name="formulario_4"),
     
+    path('criar_csv/',criar_csv , name="criar_csv"),
+    path('verificar_csv/',verificar_csv , name="verificar_status_csv"),
+    
     path('Infor/', view_aba_de_informacoes.aba_de_informacoes, name="aba_de_informacoes"),
     path('Criadores/', view_aba_de_informacoes.criadores, name="criadores"),
     path('Correcoes/', view_aba_de_informacoes.correcoes_bugs, name="correcoes"),
     path('Dicionário Microdados/', view_aba_de_informacoes.dicionario_microdados, name="dicionario"),
     
 ]
+# urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# if (settings.DEBUG):
+#     import debug_toolbar
+#     urlpatterns += [path('__debug__/', include(debug_toolbar.urls)),]

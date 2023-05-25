@@ -1,9 +1,34 @@
-import csv
-import os
-from django.http import HttpResponse
+
+from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
+from edados.formularios.formulario_1.formulario_1_4 import Formulario
+from sqlalchemy.orm import sessionmaker
+from django.http import JsonResponse
 from edados.database import bd_formulario_1_4
 from celery import shared_task
-from django.contrib import messages
+from edados.database import conect_db
+import csv
+import os
+
+def verificar_csv(request):
+    # Aqui você pode executar a consulta SQL para obter o status atual do CSV
+    
+    engine = conect_db.connect()
+    # Conectando com o Banco de Dados
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    comando_sql = """
+        SELECT "status" FROM "csv" WHERE  "id"=1;
+    """
+
+    result = session.execute(comando_sql)
+    status = result.scalar()  # Extrai o valor do resultado da consulta
+
+    session.commit()
+        
+    # Retorna o status como uma resposta JSON
+    response_data = {'status': status}
+    return JsonResponse(response_data)
+
 
 @shared_task
 def criar_csv(
@@ -25,6 +50,18 @@ def criar_csv(
     print('---------------------------------------------------------------------------')
     print("FUNÇÃO DE IMPRIMIR CSV")
     
+    
+    engine = conect_db.connect()
+    # Conectando com o Banco de Dados
+    Session = sessionmaker(bind=engine)
+    session = Session()
+    comando_sql = """
+        UPDATE "csv" SET "status"='andamento' WHERE  "id"=1;
+            """
+
+    session.execute(comando_sql)
+    session.commit()
+        
     Amostra = '*'
     Microdado_Amostra = bd_formulario_1_4.buscar_dataframe_no_banco(
         Amostra,
@@ -58,6 +95,12 @@ def criar_csv(
         writer = csv.writer(arquivo)
         writer.writerows(Microdado_Amostra.values.tolist())
 
+    comando_sql = """
+        UPDATE "csv" SET "status"='finalizado' WHERE  "id"=1;
+            """
+
+    session.execute(comando_sql)
+    session.commit()
     print('---------------------------------------------------------------------------')
     print("FINALIZOU")
     # Modifique esta linha
@@ -76,12 +119,28 @@ def criar_csv(
     # # Escreve as linhas do CSV
     # for row in csv.reader(Microdado_Amostra.splitlines()):
     #     writer.writerow(row)
+    
+    from django.shortcuts import render
+    import json
+    from django.shortcuts import redirect, reverse
+
+    # Obtém a URL correspondente à view 'dashboard' com os argumentos corretos
+    url = reverse('dashboard')
+    
+    # Redireciona o usuário para a URL obtida
+    return redirect(url)
+
 
     # Sua lógica em segundo plano aqui
-    
-    # Após a conclusão da função em segundo plano
-    menssagem_segundo_plano = "Deu certo, meu chapa!"
-    messages.success( menssagem_segundo_plano)
-    
-    # Retorna uma resposta vazia
-    return HttpResponse()
+    menssagem_segundo_planos="CSV pronto para baixa!"
+    form = Formulario()
+    form_filtro = Formulario_filtros()
+    menssagem = ("Análise de Dados Socioeconômicos do ENEM")
+    menssagem1 = """Esta é uma tela web que permite realizar o somatório dos alunos que responderam ao ENEM. Esta tela também possui filtros que permitem reduzir o somatório para fins de análise dos microdados. O resultado desse somatório é obtido após a aplicação desses filtros."""
+    context = {
+        'form' : form,
+        'menssagem' : menssagem,
+        'menssagem1' : menssagem1,
+        'form_filtro' : form_filtro
+    }
+    return redirect('dashboard', context=context)

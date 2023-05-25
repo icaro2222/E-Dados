@@ -30,13 +30,36 @@ ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+# Configuração do Celery
+# settings.py
+
+# Broker de mensagens (por exemplo, RabbitMQ)
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672/'
+
+# Local para armazenar resultados das tarefas (opcional)
+CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite3'
+
+# Configurações adicionais do Celery (opcional)
+# CELERY_TASK_TRACK_STARTED = True
+# CELERY_TASK_TIME_LIMIT = 30  # Limite de tempo para execução de tarefas
+
+# Configurações de autenticação do broker de mensagens (opcional)
+# CELERY_BROKER_USER = 'guest'
+# CELERY_BROKER_PASSWORD = 'guest'
+
+
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
+    "django.contrib.messages",
     'django.contrib.staticfiles',
     'debug_toolbar',
     'usuarios',

@@ -58,7 +58,24 @@ def buscar_dataframe_no_banco(amostra,
     query = (estrutura + filtro)
 
     print(query)
+    print('--------------------EXECUTANDO O CODIGO SQL-------------------')
+    import datetime
+    import pytz
+    brasilia_tz = pytz.timezone('America/Sao_Paulo')
+    hora_atual = datetime.datetime.now(brasilia_tz)
+    hora_formatada = hora_atual.strftime('%H:%M:%S')
+    print(hora_formatada)
     df = pd.read_sql(query, engine)
+    print('--------------------BUSCA CONCLUIDA---------------------------')
+    hora_atual = datetime.datetime.now(brasilia_tz)
+    hora_formatada = hora_atual.strftime('%H:%M:%S')
+    print(hora_formatada)
+    print('------------------CONVERTENDO PARA DATAFRAME-------------------------')
     df = pd.DataFrame(df)
+    print('------------------FINALIZANDO CONVERSÃO------------------------')
+    hora_atual = datetime.datetime.now(brasilia_tz)
+    hora_formatada = hora_atual.strftime('%H:%M:%S')
+    print(hora_formatada)
+    print('-----------------------------------------------------------------------')
     
     return df

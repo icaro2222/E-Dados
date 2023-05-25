@@ -5,7 +5,7 @@ import time
 import sys
 
 # Abrir o arquivo de log em modo de escrita
-log_file = open('/var/www/edados/arquivo_de_teste.txt', 'a')
+log_file = open('/var/www/edados/test/teste_no_banco_de_performace.txt', 'a')
 
 # Redirecionar a saída padrão para o arquivo de log
 sys.stdout = log_file
@@ -104,10 +104,11 @@ def filtro_de_ficiencia(filtro_valor):
 init()
 
 
-print('-------------------- TESTE DOS DADOS NO BANCO DE DADOS -----------------')
+print('-------------------- TESTE DOS DADOS EM TABELA DO BANCO PARA ANALISAR A MELHORA  -----------------')
+print('------------------------------ DA PERFORMACE AO SE REMOVER REGISTROS ------------------------------')
 print('INICIANDO....')
 
-Banco = banco("2018")
+Banco = banco("2019")
 print(Banco)
 print('- DEFINININDO O BANCO')
 print(Fore.GREEN + '- BANCO DEFINIDO - OK')
@@ -123,6 +124,7 @@ print('-----------------------------------------------------------------------')
 
 print('- PREPARANDO Filtros....')
 Filtro=""
+LIMIT = ""
 # FILTROS= "TP_COR_RACA", "NU_IDADE", "NU_NOTA_CN", "NU_NOTA_CH", "NU_NOTA_LC", "NU_NOTA_MT
 # Filtro = " AND " + '"TP_SEXO" = \'M\'' + """ AND "IN_SEM_RECURSO" ='1' """
 # Filtro = " AND " + """ "TP_ESCOLA"='2' """
@@ -132,12 +134,14 @@ Filtro=""
 print(Fore.GREEN + '- Filtros PREPARADA - OK')
 print(Style.RESET_ALL)
 
-print('- PREPARANDO QUERY DE CONSULTA....')
-query = """SELECT count("TP_SEXO") FROM """ + Banco + """
+print("""---- Sem OS REGISTROS: 
                 WHERE "TP_PRESENCA_CN"='1'
                 AND "TP_PRESENCA_CH"='1'
                 AND "TP_PRESENCA_LC"='1'
-                AND "TP_PRESENCA_MT"='1' """+ Filtro + LIMIT
+                AND "TP_PRESENCA_MT"='1' ------""")
+
+print('- PREPARANDO QUERY DE CONSULTA....')
+query = """SELECT count(*) FROM """ + Banco + """ """+ Filtro + LIMIT
 
 # Adicionar AQUI querys vindas da plataforma:
 # query = """SELECT  "TP_SEXO", "TP_COR_RACA", "NU_IDADE", "NU_NOTA_CN", "NU_NOTA_CH",

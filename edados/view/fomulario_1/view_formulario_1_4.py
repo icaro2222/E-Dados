@@ -5,6 +5,7 @@ from django.utils.html import format_html_join
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 import plotly.graph_objects as go
+from celery import shared_task
 import time
 
 CONTAGEM = 0
@@ -261,6 +262,15 @@ E: Sim, quatro ou mais."""
 def formulario_4(request):
 
     # Medindo o tempo que a view demora para executar
+    
+    print('-----------------------------------------------------------------------')
+    import datetime
+    import pytz
+    brasilia_tz = pytz.timezone('America/Sao_Paulo')
+    hora_atual = datetime.datetime.now(brasilia_tz)
+    hora_formatada = hora_atual.strftime('%H:%M:%S')
+    print(hora_formatada)
+    print('-----------------------------------------------------------------------')
     tempo_inicial = time.time()
 
     global CONTAGEM
@@ -314,7 +324,7 @@ def formulario_4(request):
         elif(filtro_ano=="2017"):
             CONTAGEMMicrodado_Amostra = 4426755
         
-        Amostra = [demografico, filtro_questao]
+        Amostra = [demografico, filtro_questao]        
         Microdado_Amostra = bd_formulario_1_4.buscar_dataframe_no_banco(
             Amostra, 
             filtro_sexo=filtro_sexo, 
@@ -603,6 +613,13 @@ def formulario_4(request):
     else:
         import csv
         from django.http import HttpResponse
+        import json
+        from edados.view.tasks import criar_csv
+
+        # Recebendo fomulario da tela
+        form = Formulario(request.POST)
+        form_filtro = Formulario_filtros(request.POST)
+        
         # Recebendo fomulario da tela
         form = Formulario(request.POST)
         form_filtro = Formulario_filtros(request.POST)
@@ -622,39 +639,45 @@ def formulario_4(request):
         filtro_amostra = form_filtro.data['amostra']
         filtro_recurso = form_filtro.data['recurso']
         filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
-        
-        # filtros sendo desenvolvidos
         filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
         filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
         
-        Amostra = '*'
-        Microdado_Amostra = bd_formulario_1_4.buscar_dataframe_no_banco(
-            Amostra, 
-            filtro_sexo=filtro_sexo, 
-            filtro_recurso=filtro_recurso,             
-            filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
-            filtro_ano_de_conclusao=filtro_ano_de_conclusao,             
-            filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
-            filtro_amostra=filtro_amostra, 
-            filtro_estado=filtro_estado, 
-            filtro_questao=filtro_questao, 
-            filtro_deficiencia=filtro_deficiencia, 
-            filtro_ano=filtro_ano, 
-            filtro_cor=filtro_cor, 
-            filtro_estado_civil=filtro_estado_civil, 
-            filtro_escola=filtro_escola, 
-            filtro_nacionalidade=filtro_nacionalidade)
+
+        print("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")
+
+        criar_csv.delay(
+                    filtro_sexo=filtro_sexo,
+                    filtro_recurso=filtro_recurso,
+                    filtro_ltp_adm_escola=filtro_ltp_adm_escola,
+                    filtro_ano_de_conclusao=filtro_ano_de_conclusao,
+                    filtro_localizacao_da_escola=filtro_localizacao_da_escola,
+                    filtro_amostra=filtro_amostra,
+                    filtro_estado=filtro_estado,
+                    filtro_questao=filtro_questao,
+                    filtro_deficiencia=filtro_deficiencia,
+                    filtro_ano=filtro_ano,
+                    filtro_cor=filtro_cor,
+                    filtro_estado_civil=filtro_estado_civil,
+                    filtro_escola=filtro_escola,
+                    filtro_nacionalidade=filtro_nacionalidade)
+
+        # Retornar mensagem informando que o processo foi agendado
         
+        form = Formulario()
+        form_filtro = Formulario_filtros()
+        menssagem = ("Análise de Dados Socioeconômicos do ENEM")
+        menssagem1 = """Esta é uma tela web que permite realizar o somatório dos alunos que responderam ao ENEM. Esta tela também possui filtros que permitem reduzir o somatório para fins de análise dos microdados. O resultado desse somatório é obtido após a aplicação desses filtros."""
+        context = {
+            'form' : form,
+            'menssagem' : menssagem,
+            'menssagem1' : menssagem1,
+            'form_filtro' : form_filtro
+        }
+        return render(request, 'base/formulario_1/quest_formulario_4.html', context=context)
 
-        # Cria o objeto response com o cabeçalho CSV
-        response = HttpResponse(content_type='text/csv')
-        response['Content-Disposition'] = 'attachment; filename="microdados_enem.csv"'
-        
-        # Cria o escritor CSV e escreve as linhas no objeto response
-        writer = csv.writer(response)
-        Microdado_Amostra = Microdado_Amostra.to_csv(index=False)
+        # Após salvar o arquivo CSV com sucesso
+        mensagem_sucesso = "O arquivo CSV foi gerado e salvo com sucesso."
 
-        for row in csv.reader(Microdado_Amostra.splitlines()):
-            writer.writerow(row)
+        # Retorne o HttpResponse com a mensagem de sucesso
+        return HttpResponse(mensagem_sucesso)
 
-        return response
