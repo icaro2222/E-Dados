@@ -80,15 +80,23 @@ def criar_csv(
         filtro_escola=filtro_escola,
         filtro_nacionalidade=filtro_nacionalidade)
 
+    from pathlib import Path
+
+    # Caminho para o diretório do seu projeto
+    BASE_DIR = Path(__file__).resolve().parents[2]
 
     # Caminho para a pasta onde deseja salvar o arquivo CSV
-    pasta_destino = '/var/www/edados/static/csv/'
+    pasta_destino = str(BASE_DIR) + '/static/csv/'
+
 
     # Nome do arquivo CSV
     nome_arquivo = 'microdados_enem.csv'
 
     # Caminho completo do arquivo CSV
     caminho_arquivo = os.path.join(pasta_destino, nome_arquivo)
+    print('---------------------------------------------------------------------------')
+    print(caminho_arquivo)
+    print('---------------------------------------------------------------------------')
 
     # Modifique esta linha
     with open(caminho_arquivo, 'w', newline='') as arquivo:
