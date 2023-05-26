@@ -61,7 +61,6 @@ Para acessar a plataforma, é necessário fazer login utilizando um usuário e s
 
     return render(request, 'aba_de_informacoes/aba_de_informacoes.html', context=context)
 
-
 @login_required
 @user_passes_test(lambda user: user.is_superuser)
 def correcoes_bugs(request):
@@ -137,6 +136,166 @@ def correcoes_bugs(request):
             'correcoes': correcoes,
         }
         return render(request, 'base/aba_de_informacoes/correcoes_bugs.html', context=context)
+
+@login_required
+@user_passes_test(lambda user: user.is_superuser)
+def log_de_acesso(request):
+
+    if request.method == 'GET':
+
+        correcoes ="""Log de Acesso:""" 
+        # menssagem = """"""
+        menssagem = """O Log ajuda a entender e compreender como estão as requisições no Back-end."""
+
+        menssagem = menssagem.split('\n')
+        menssagem = format_html_join(
+            '\n', '<h6 class="font-weight-normal">{}</h6>', ((line,) for line in menssagem))
+
+        correcoes = correcoes.split('\n')
+        correcoes = format_html_join(
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
+        
+        with open('/var/www/edados/Registros_Acesso.log', 'r') as file:
+            log_de_acesso = file.read()
+
+        form = forms()
+
+        context = {
+            'form': form,
+            'menssagem': menssagem,
+            'log_de_acesso': log_de_acesso,            
+            'correcoes': correcoes,
+        }
+        return render(request, 'base/aba_de_informacoes/log_de_acesso.html', context=context)
+    else:
+        
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        # Crie uma instância do usuário
+        user = User(username=nome, email=email)
+        user.set_password(password)
+        user.save()
+        
+        
+        nome = request.POST.get('nome')
+        descricao = request.POST.get('descricao')
+        email = request.POST.get('email')
+        
+        correcao = Usuario(nome=nome, descricao=descricao, email=email)
+        correcao.save()
+
+        messages.success(request, 'Usuário Cadastrado com Sucesso!')
+        form = forms(request.POST)
+        if form.is_valid():
+            # Lida com os dados do formulário aqui
+            nome = form.cleaned_data['nome']
+            descricao = form.cleaned_data['descricao']
+            email = form.cleaned_data['email']
+            # Limpa o formulário
+
+        form = forms()
+
+        correcoes ="""Cadastrar Usuários na Plataforma:""" 
+        # menssagem = """"""
+        menssagem = """O Log ajuda a entender e compreender como estão as requisições no Back-end."""
+
+        menssagem = menssagem.split('\n')
+        menssagem = format_html_join(
+            '\n', '<h6 class="font-weight-normal">{}</h6>', ((line,) for line in menssagem))
+
+        correcoes = correcoes.split('\n')
+        correcoes = format_html_join(
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
+        
+
+        context = {
+            'form': form,
+            'menssagem': menssagem,
+            'correcoes': correcoes,
+        }
+        return render(request, 'base/aba_de_informacoes/log_de_acesso.html', context=context)
+
+@login_required
+@user_passes_test(lambda user: user.is_superuser)
+def listar_usuarios(request):
+
+    if request.method == 'GET':
+
+        correcoes ="""Lista de Usuários:""" 
+        # menssagem = """"""
+        menssagem = """Antes de deletar o login de um usuário, verifique se é realmente necessário.
+        Não esqueça que há a opção de apenas bloqueá-lo."""
+
+        menssagem = menssagem.split('\n')
+        menssagem = format_html_join(
+            '\n', '<h6 class="font-weight-normal">{}</h6>', ((line,) for line in menssagem))
+
+        correcoes = correcoes.split('\n')
+        correcoes = format_html_join(
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
+        
+        users = User.objects.all()
+
+        form = forms()
+        
+        context = {
+            'form': form,
+            'users': users,
+            'menssagem': menssagem,
+            'correcoes': correcoes,
+        }
+        return render(request, 'base/aba_de_informacoes/listar_usuarios.html', context=context)
+    else:
+        
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        # Crie uma instância do usuário
+        user = User(username=nome, email=email)
+        user.set_password(password)
+        user.save()
+        
+        
+        nome = request.POST.get('nome')
+        descricao = request.POST.get('descricao')
+        email = request.POST.get('email')
+        
+        correcao = Usuario(nome=nome, descricao=descricao, email=email)
+        correcao.save()
+
+        messages.success(request, 'Usuário Cadastrado com Sucesso!')
+        form = forms(request.POST)
+        if form.is_valid():
+            # Lida com os dados do formulário aqui
+            nome = form.cleaned_data['nome']
+            descricao = form.cleaned_data['descricao']
+            email = form.cleaned_data['email']
+            # Limpa o formulário
+
+        form = forms()
+
+        correcoes ="""Cadastrar Usuários na Plataforma:""" 
+        # menssagem = """"""
+        menssagem = """Antes de criar um login para um usuário verifique se ele está comprometido com os termos da plataforma."""
+
+        menssagem = menssagem.split('\n')
+        menssagem = format_html_join(
+            '\n', '<h6 class="font-weight-normal">{}</h6>', ((line,) for line in menssagem))
+
+        correcoes = correcoes.split('\n')
+        correcoes = format_html_join(
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
+        
+
+        context = {
+            'form': form,
+            'menssagem': menssagem,
+            'correcoes': correcoes,
+        }
+        return render(request, 'base/aba_de_informacoes/listar_usuarios.html', context=context)
 
 @login_required
 def criadores(request):

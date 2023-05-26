@@ -45,8 +45,9 @@ urlpatterns = [
     path('verificar_csv/',verificar_csv , name="verificar_status_csv"),
     
     path('Infor/', view_aba_de_informacoes.aba_de_informacoes, name="aba_de_informacoes"),
-    path('Criadores/', view_aba_de_informacoes.criadores, name="criadores"),
-    path('Correcoes/', view_aba_de_informacoes.correcoes_bugs, name="correcoes"),
+    path('listar_usuarios/', view_aba_de_informacoes.listar_usuarios, name="listar_usuarios"),
+    path('log_de_acesso/', view_aba_de_informacoes.log_de_acesso, name="log_de_acesso"),
+    path('cadastrar_usuario/', view_aba_de_informacoes.correcoes_bugs, name="cadastrar_usuario"),
     path('Dicionário Microdados/', view_aba_de_informacoes.dicionario_microdados, name="dicionario"),
     
 ]
