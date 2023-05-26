@@ -142,6 +142,7 @@ def correcoes_bugs(request):
 def log_de_acesso(request):
 
     if request.method == 'GET':
+        from pathlib import Path
 
         correcoes ="""Log de Acesso:""" 
         # menssagem = """"""
@@ -154,8 +155,11 @@ def log_de_acesso(request):
         correcoes = correcoes.split('\n')
         correcoes = format_html_join(
             '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
+                    
+        BASE_DIR = Path(__file__).resolve().parents[3]
+        caminho = str(BASE_DIR) + '/Registros_Acesso.log'
         
-        with open('/var/www/edados/Registros_Acesso.log', 'r') as file:
+        with open(caminho, 'r') as file:
             log_de_acesso = file.read()
 
         form = forms()
