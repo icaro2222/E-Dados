@@ -8,6 +8,7 @@ class Usuario(models.Model):
     password = models.CharField(max_length=30)
     cpf = models.CharField(max_length=15)
     cep = models.CharField(max_length=10)
+    descricao = models.CharField(max_length=200)
     numero = models.CharField(max_length=5)
     cidade = models.CharField(max_length=20)
     estado = models.CharField(max_length=20)

@@ -1,10 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from edados.formularios.aba_informacoes.correcoes import form_correcoes
+from usuarios.forms import LoginForm as forms
 from django.utils.html import format_html_join
 from  correcoes.models import Correcao
+from usuarios.models import Usuario
 from edados.formularios.filtros.filtros_ano import Formulario_filtro_ano
 from django.contrib import messages
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
@@ -57,14 +61,16 @@ Para acessar a plataforma, é necessário fazer login utilizando um usuário e s
 
     return render(request, 'aba_de_informacoes/aba_de_informacoes.html', context=context)
 
+
 @login_required
+@user_passes_test(lambda user: user.is_superuser)
 def correcoes_bugs(request):
 
     if request.method == 'GET':
 
-        correcoes =""" Informe-nos os erros ou bugs que você encontrou na plataforma:""" 
+        correcoes ="""Cadastrar Usuários na Plataforma:""" 
         # menssagem = """"""
-        menssagem = """Nossa equipe está empenhada em fornecer as melhores ferramentas para aprimorar ainda mais nossa plataforma."""
+        menssagem = """Antes de criar um login para um usuário verifique se ele está comprometido com os termos da plataforma."""
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(
@@ -74,7 +80,7 @@ def correcoes_bugs(request):
         correcoes = format_html_join(
             '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
         
-        form = form_correcoes()
+        form = forms()
 
         context = {
             'form': form,
@@ -85,13 +91,24 @@ def correcoes_bugs(request):
     else:
         
         nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        # Crie uma instância do usuário
+        user = User(username=nome, email=email)
+        user.set_password(password)
+        user.save()
+        
+        
+        nome = request.POST.get('nome')
         descricao = request.POST.get('descricao')
         email = request.POST.get('email')
         
-        correcao = Correcao(nome=nome, descricao=descricao, email=email)
+        correcao = Usuario(nome=nome, descricao=descricao, email=email)
         correcao.save()
-        messages.success(request, 'Relatório enviada com sucesso!')
-        form = form_correcoes(request.POST)
+
+        messages.success(request, 'Usuário Cadastrado com Sucesso!')
+        form = forms(request.POST)
         if form.is_valid():
             # Lida com os dados do formulário aqui
             nome = form.cleaned_data['nome']
@@ -99,11 +116,11 @@ def correcoes_bugs(request):
             email = form.cleaned_data['email']
             # Limpa o formulário
 
-        form = form_correcoes()
+        form = forms()
 
-        correcoes =""" Informe-nos os erros ou bugs que você encontrou na plataforma:""" 
+        correcoes ="""Cadastrar Usuários na Plataforma:""" 
         # menssagem = """"""
-        menssagem = """Nossa equipe está empenhada em fornecer as melhores ferramentas para aprimorar ainda mais nossa plataforma."""
+        menssagem = """Antes de criar um login para um usuário verifique se ele está comprometido com os termos da plataforma."""
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(
