@@ -21,7 +21,7 @@ def dashboard(request):
     hora_atual = datetime.datetime.now(brasilia_tz)
     hora_formatada = hora_atual.strftime('%H:%M:%S')
     dia_e_mes_formatado = hora_atual.strftime('%d/%m/%Y  em uma %A')
-    logger.info('Acesso à página "Dashboard" por "%s" às %s na data (%s)', username, hora_formatada, dia_e_mes_formatado)
+    logger.warning('Acesso à página "Dashboard" por "%s" às %s na data (%s)', username, hora_formatada, dia_e_mes_formatado)
 
 
     print('Acesso à página por:', username)

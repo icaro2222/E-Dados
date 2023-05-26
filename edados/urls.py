@@ -46,6 +46,7 @@ urlpatterns = [
     
     path('Infor/', view_aba_de_informacoes.aba_de_informacoes, name="aba_de_informacoes"),
     path('listar_usuarios/', view_aba_de_informacoes.listar_usuarios, name="listar_usuarios"),
+    path('excluir/', view_aba_de_informacoes.listar_usuarios, name="excluir"),
     path('log_de_acesso/', view_aba_de_informacoes.log_de_acesso, name="log_de_acesso"),
     path('cadastrar_usuario/', view_aba_de_informacoes.correcoes_bugs, name="cadastrar_usuario"),
     path('Dicionário Microdados/', view_aba_de_informacoes.dicionario_microdados, name="dicionario"),

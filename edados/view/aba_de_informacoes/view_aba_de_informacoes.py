@@ -226,6 +226,7 @@ def log_de_acesso(request):
 def listar_usuarios(request):
 
     if request.method == 'GET':
+        from django.contrib.auth.models import User
 
         correcoes ="""Lista de Usuários:""" 
         # menssagem = """"""
@@ -253,37 +254,38 @@ def listar_usuarios(request):
         return render(request, 'base/aba_de_informacoes/listar_usuarios.html', context=context)
     else:
         
-        nome = request.POST.get('nome')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
+        from django.contrib.auth.models import User
+        from django.http import HttpResponse
+            
+        # Obtenha o nome de usuário a ser excluído dos dados da solicitação
+        username = request.POST.get('username')
         
-        # Crie uma instância do usuário
-        user = User(username=nome, email=email)
-        user.set_password(password)
-        user.save()
-        
-        
-        nome = request.POST.get('nome')
-        descricao = request.POST.get('descricao')
-        email = request.POST.get('email')
-        
-        correcao = Usuario(nome=nome, descricao=descricao, email=email)
-        correcao.save()
+        print('_____________________________________________________________')
+        print(username)
+        print('_____________________________________________________________')
 
-        messages.success(request, 'Usuário Cadastrado com Sucesso!')
-        form = forms(request.POST)
-        if form.is_valid():
-            # Lida com os dados do formulário aqui
-            nome = form.cleaned_data['nome']
-            descricao = form.cleaned_data['descricao']
-            email = form.cleaned_data['email']
-            # Limpa o formulário
+        
+        try:
+            # Busque o usuário pelo nome de usuário
+            user = User.objects.get(username=username)
+            # Exclua o usuário
+            user.delete()
+            # Realize qualquer outra ação necessária após a exclusão
 
+                # Retorne uma resposta de sucesso, se necessário
+            messages.success(request, 'Usuário excluído com sucesso!')
+        
+        except User.DoesNotExist:
+            # Trate o caso em que o usuário não existe
+                # Retorne uma resposta de sucesso, se necessário
+            messages.success(request, 'Usuário não encontrado!')    
+    
         form = forms()
-
-        correcoes ="""Cadastrar Usuários na Plataforma:""" 
+        
+        correcoes ="""Lista de Usuários:""" 
         # menssagem = """"""
-        menssagem = """Antes de criar um login para um usuário verifique se ele está comprometido com os termos da plataforma."""
+        menssagem = """Antes de deletar o login de um usuário, verifique se é realmente necessário.
+        Não esqueça que há a opção de apenas bloqueá-lo."""
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(
@@ -293,9 +295,11 @@ def listar_usuarios(request):
         correcoes = format_html_join(
             '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
         
-
+        users = User.objects.all()
+        
         context = {
             'form': form,
+            'users': users,
             'menssagem': menssagem,
             'correcoes': correcoes,
         }
