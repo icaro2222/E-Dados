@@ -193,8 +193,7 @@
             <li class="nav-item">
                 <div class="collapse-inner rounded">
                     <a class="nav-link {% if request.resolver_match.url_name == 'aba_de_informacoes' %}font-weight-bold{% endif %}"
-                        href="{% url 'aba_de_informacoes' %}"
-                        aria-controls="collapseTwo">
+                        href="{% url 'aba_de_informacoes' %}" aria-controls="collapseTwo">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-info-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
@@ -205,7 +204,7 @@
                     </a>
                 </div>
             </li>
-            
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -241,7 +240,7 @@
                                     <div class="col">
                                         <div id="svg-container">
                                             {{menssagem_segundo_planos}}
-                                            <a class="av-link collapse-item btn btn-outline-light  d-flex justify-content-center align-items-center"
+                                            <a class="av-link collapse-item btn btn-outline-light  text-dark d-flex justify-content-center align-items-center"
                                                 href={% static "csv/microdados_enem.csv" %}>
                                                 <svg id="svg-hourglass1" style="display: none;"
                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -273,8 +272,7 @@
 
                                                 <svg id="svg-hourglass5" style="display: none;"
                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    class="bi bi-download mr-1 d-none d-lg-inline text-dark"
-                                                    fill="currentColor" viewBox="0 0 16 16">
+                                                    class="bi bi-download mr-1" fill="currentColor" viewBox="0 0 16 16">
                                                     <path
                                                         d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                                                     <path
@@ -408,8 +406,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-
-
         function verificarStatus() {
 
             var svgHourglass1 = document.getElementById('svg-hourglass1');
@@ -425,7 +421,6 @@
                     if (response.hasOwnProperty('status')) {
                         if (response.status === 'andamento') {
                             svgHourglass1.style.display = 'block';
-                            svgHourglass5.style.display = 'none';
                         } else if (response.status === 'finalizado') {
                             svgHourglass1.style.display = 'none';
                             svgHourglass2.style.display = 'none';
@@ -435,11 +430,11 @@
                         }
                         <!-- alert('Status: ' + response.status); -->
                     } else {
-                        < !--alert('Erro: Não foi possível obter o status.'); -->
+                        alert('Erro: Não foi possível obter o status.');
                     }
                 },
                 error: function () {
-                    < !--alert('Erro: Não foi possível obter o status.'); -->
+                    alert('Erro: Não foi possível obter o status.');
                 }
             });
 
@@ -468,7 +463,7 @@
             }, 500);
         }
 
-        verificarStatus();
+        setInterval(verificarStatus(),500);
 
 
         //funciona, mas ta com uns bugs
