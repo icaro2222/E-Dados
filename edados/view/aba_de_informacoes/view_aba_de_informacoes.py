@@ -19,7 +19,7 @@ def aba_de_informacoes(request):
 
     if request.method == 'GET':
 
-        menssagem1 ="""Informações da plataforma E-DADOS V1.25.4""" 
+        menssagem1 ="""Informações da plataforma E-DADOS V1.25.5""" 
         # menssagem = """"""
         menssagem = """
 A E-DADOS é uma plataforma online cujo objetivo é estudar os dados do Enem em busca de informações relevantes sobre as pessoas com deficiência. Ela oferece uma solução para a análise de microdados socioeconômicos do ENEM referentes aos anos de 2016, 2017, 2018 e 2019 de maneira eficiente e ágil.
