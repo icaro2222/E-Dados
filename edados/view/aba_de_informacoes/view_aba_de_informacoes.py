@@ -95,7 +95,17 @@ def correcoes_bugs(request):
         
         import os
         from pathlib import Path
+        from edados.database import conect_db
+        from sqlalchemy.orm import sessionmaker
 
+        engine = conect_db.connect()
+        # Conectando com o Banco de Dados
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        comando_sql = """ INSERT INTO "csv" ("nome") VALUES""" + "('"+nome+"');"
+        session.execute(comando_sql)
+        session.commit()
+    
         # Crie uma instância do usuário
         user = User(username=nome, email=email)
         user.set_password(password)

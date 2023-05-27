@@ -16,9 +16,9 @@ def verificar_csv(request):
     # Conectando com o Banco de Dados
     Session = sessionmaker(bind=engine)
     session = Session()
-    comando_sql = """
-        SELECT "status" FROM "csv" WHERE  "id"=1;
-    """
+    comando_sql = """SELECT "status" FROM "csv" WHERE "nome"= '"""+ request.user.username+"';"
+    print(comando_sql)
+    
 
     result = session.execute(comando_sql)
     status = result.scalar()  # Extrai o valor do resultado da consulta
@@ -55,9 +55,8 @@ def criar_csv(nome_usuario,
     # Conectando com o Banco de Dados
     Session = sessionmaker(bind=engine)
     session = Session()
-    comando_sql = """
-        UPDATE "csv" SET "status"='andamento' WHERE  "id"=1;
-            """
+    comando_sql = """UPDATE "csv" SET "status"='andamento' WHERE  "nome"= '"""+ nome_usuario +"';"
+    print(comando_sql)
 
     session.execute(comando_sql)
     session.commit()
@@ -104,8 +103,8 @@ def criar_csv(nome_usuario,
         writer.writerows(Microdado_Amostra.values.tolist())
 
     comando_sql = """
-        UPDATE "csv" SET "status"='finalizado' WHERE  "id"=1;
-            """
+        UPDATE "csv" SET "status"='finalizado' WHERE   "nome"= '"""+ nome_usuario +"';"
+    print(comando_sql)
 
     session.execute(comando_sql)
     session.commit()
