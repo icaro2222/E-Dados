@@ -31,6 +31,33 @@
         }
     </style>
 
+    <style>
+          
+        @keyframes highlight {
+            0% {
+                opacity: 0.2;
+            }
+            25% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.2;
+            }
+            75% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.2;
+            }
+            
+        }
+          
+          .highlight-animation {
+            animation: highlight 4s;
+          }
+          
+        </style>
+        
 </head>
 
 <body id="page-top">
@@ -241,7 +268,7 @@
                                     <div class="col">
                                         <div id="svg-container">
                                             {{menssagem_segundo_planos}}
-                                            <a class="av-link collapse-item btn btn-outline-light  text-dark d-flex justify-content-center align-items-center"
+                                            <a id="button_csv" class="av-link collapse-item btn btn-outline-light  text-dark d-flex justify-content-center align-items-center"
                                                 href={% static "csv/microdados_enem.csv" %}>
                                                 <svg id="svg-hourglass1" style="display: none;"
                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -462,12 +489,13 @@
                                     type: 'GET',
                                     success: function (response) {
                                         if (response.hasOwnProperty('status')) {
-                                            if (response.status != 'andamento') {
+                                            if (response.status != 'andamento' && svgHourglass5.style.display == 'none' ) {
                                                 svgHourglass1.style.display = 'none';
                                                 svgHourglass2.style.display = 'none';
                                                 svgHourglass3.style.display = 'none';
                                                 svgHourglass4.style.display = 'none';
                                                 svgHourglass5.style.display = 'block';
+                                                svgHourglass5.classList.add('highlight-animation');
                                             }
                                             <!-- alert('Status: ' + response.status); -->
                                         }
