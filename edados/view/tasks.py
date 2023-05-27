@@ -31,7 +31,7 @@ def verificar_csv(request):
 
 
 @shared_task
-def criar_csv(
+def criar_csv(nome_usuario,
         filtro_sexo="filtro_sexo",
         filtro_recurso="filtro_recurso",
         filtro_ltp_adm_escola="filtro_ltp_adm_escola",
@@ -86,7 +86,7 @@ def criar_csv(
     BASE_DIR = Path(__file__).resolve().parents[2]
 
     # Caminho para a pasta onde deseja salvar o arquivo CSV
-    pasta_destino = str(BASE_DIR) + '/static/csv/'
+    pasta_destino = str(BASE_DIR) + '/static/csv/' + str(nome_usuario)+'/'
 
 
     # Nome do arquivo CSV

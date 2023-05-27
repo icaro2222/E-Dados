@@ -93,12 +93,25 @@ def correcoes_bugs(request):
         email = request.POST.get('email')
         password = request.POST.get('password')
         
+        import os
+        from pathlib import Path
+
         # Crie uma instância do usuário
         user = User(username=nome, email=email)
         user.set_password(password)
         user.save()
         
+        BASE_DIR = Path(__file__).resolve().parents[3]
+        caminho = str(BASE_DIR) + '/static/csv/'
         
+        pasta_usuario = os.path.join(caminho, nome)
+        os.makedirs(pasta_usuario, exist_ok=True)
+        
+        arquivo_usuario = os.path.join(pasta_usuario, 'microdados_enem.csv')
+        with open(arquivo_usuario, 'w') as arquivo:
+            # Faça qualquer operação de escrita necessária no arquivo
+            arquivo.write('')
+                
         nome = request.POST.get('nome')
         descricao = request.POST.get('descricao')
         email = request.POST.get('email')
@@ -106,6 +119,7 @@ def correcoes_bugs(request):
         correcao = Usuario(nome=nome, descricao=descricao, email=email)
         correcao.save()
 
+        
         messages.success(request, 'Usuário Cadastrado com Sucesso!')
         form = forms(request.POST)
         if form.is_valid():
@@ -260,16 +274,27 @@ def listar_usuarios(request):
         # Obtenha o nome de usuário a ser excluído dos dados da solicitação
         username = request.POST.get('username')
         
-        print('_____________________________________________________________')
-        print(username)
-        print('_____________________________________________________________')
-
-        
         try:
             # Busque o usuário pelo nome de usuário
             user = User.objects.get(username=username)
             # Exclua o usuário
             user.delete()
+            from pathlib import Path
+            import shutil
+            import os
+            
+            BASE_DIR = Path(__file__).resolve().parents[3]
+            caminho = str(BASE_DIR) + '/static/csv/'
+            
+            pasta_usuario = os.path.join(caminho, username)
+            os.makedirs(pasta_usuario, exist_ok=True)
+            
+            print('_____________________________________________________________')
+            print(pasta_usuario)
+            print('_____________________________________________________________')
+
+            
+            shutil.rmtree(pasta_usuario)
             # Realize qualquer outra ação necessária após a exclusão
 
                 # Retorne uma resposta de sucesso, se necessário

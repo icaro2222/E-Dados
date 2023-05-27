@@ -642,10 +642,10 @@ def formulario_4(request):
         filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
         filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
         
-
+        nome_usuario =  request.user.username
         print("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")
 
-        criar_csv.delay(
+        criar_csv.delay(nome_usuario,
                     filtro_sexo=filtro_sexo,
                     filtro_recurso=filtro_recurso,
                     filtro_ltp_adm_escola=filtro_ltp_adm_escola,
