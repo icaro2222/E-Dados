@@ -201,7 +201,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'acesso_file': {
-            'level': 'INFO',
+            'level': 'WARNING',
             'class': 'logging.FileHandler',
             'filename': str(BASE_DIR)+'/Registros_Acesso.log',
         },
@@ -214,7 +214,7 @@ LOGGING = {
     'loggers': {
         'acesso': {
             'handlers': ['acesso_file'],
-            'level': 'INFO',
+            'level': 'WARNING',
             'propagate': True,
         },
         'dados': {
