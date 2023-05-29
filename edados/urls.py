@@ -33,13 +33,13 @@ urlpatterns = [
     path('', include('usuarios.urls')),
 
     # Formulários
-    path('Quest Soc Notas Deficiencia/', view_formulario_2.formulario_2, name="Quest_Soc_Notas_Deficiencia"),
-    path('Perfil_4_do_Inscrito/', view_formulario_1_4.formulario_4, name="formulario_1_4"),
+    path('Desempenho_no_exame/', view_formulario_2.formulario_2, name="Quest_Soc_Notas_Deficiencia"),
+    path('Dados_brutos_Infor/', view_formulario_1_4.formulario_4, name="formulario_1_4"),
     path('Perfil_do_Inscrito/', view_formulario_1.formulario_1, name="formulario_1"),
     
-    path('Acerto_por_Prova/', view_formulario_3.formulario_3, name="formulario_3"),
+    path('Acertos_por_Prova/', view_formulario_3.formulario_3, name="formulario_3"),
     
-    path('regiao_demografica/', view_formulario_4.formulario_4, name="formulario_4"),
+    path('Mapa_de_Distribuição_de_alunos/', view_formulario_4.formulario_4, name="formulario_4"),
     
     path('criar_csv/',criar_csv , name="criar_csv"),
     path('verificar_csv/',verificar_csv , name="verificar_status_csv"),
@@ -48,8 +48,8 @@ urlpatterns = [
     path('listar_usuarios/', view_aba_de_informacoes.listar_usuarios, name="listar_usuarios"),
     path('excluir/', view_aba_de_informacoes.listar_usuarios, name="excluir"),
     path('log_de_acesso/', view_aba_de_informacoes.log_de_acesso, name="log_de_acesso"),
-    path('cadastrar_usuario/', view_aba_de_informacoes.correcoes_bugs, name="cadastrar_usuario"),
-    path('Dicionário Microdados/', view_aba_de_informacoes.dicionario_microdados, name="dicionario"),
+    path('Cadastrar_Usuário/', view_aba_de_informacoes.correcoes_bugs, name="cadastrar_usuario"),
+    path('Dicionário_Microdados/', view_aba_de_informacoes.dicionario_microdados, name="dicionario"),
     
 ]
 # urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
