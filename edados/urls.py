@@ -48,7 +48,8 @@ urlpatterns = [
     path('listar_usuarios/', view_aba_de_informacoes.listar_usuarios, name="listar_usuarios"),
     path('excluir/', view_aba_de_informacoes.listar_usuarios, name="excluir"),
     path('log_de_acesso/', view_aba_de_informacoes.log_de_acesso, name="log_de_acesso"),
-    path('Cadastrar_Usuário/', view_aba_de_informacoes.correcoes_bugs, name="cadastrar_usuario"),
+    path('Cadastrar_Usuário/', view_aba_de_informacoes.cadastrar_usuarios, name="cadastrar_usuario"),
+    path('Editar_Usuário/', view_aba_de_informacoes.editar_usuario, name="editar_usuario"),
     path('Dicionário_Microdados/', view_aba_de_informacoes.dicionario_microdados, name="dicionario"),
     
 ]

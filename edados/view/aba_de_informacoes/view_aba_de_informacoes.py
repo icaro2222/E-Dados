@@ -63,7 +63,7 @@ Para acessar a plataforma, é necessário fazer login utilizando um usuário e s
 
 @login_required
 @user_passes_test(lambda user: user.is_superuser)
-def correcoes_bugs(request):
+def cadastrar_usuarios(request):
 
     if request.method == 'GET':
 
@@ -86,7 +86,7 @@ def correcoes_bugs(request):
             'menssagem': menssagem,
             'correcoes': correcoes,
         }
-        return render(request, 'base/aba_de_informacoes/correcoes_bugs.html', context=context)
+        return render(request, 'base/aba_de_informacoes/cadastrar_usuarios.html', context=context)
     else:
         
         nome = request.POST.get('nome')
@@ -159,7 +159,114 @@ def correcoes_bugs(request):
             'menssagem': menssagem,
             'correcoes': correcoes,
         }
+        return render(request, 'base/aba_de_informacoes/cadastrar_usuarios.html', context=context)
+
+@login_required
+@user_passes_test(lambda user: user.is_superuser)
+def editar_usuario(request):
+
+    if request.method == 'GET':
+
+        correcoes ="""Cadastrar Usuários na Plataforma:""" 
+        
+        
+        menssagem = """Antes de criar um login para um usuário verifique se ele está comprometido com os termos da plataforma."""
+
+        menssagem = menssagem.split('\n')
+        menssagem = format_html_join(
+            '\n', '<h6 class="font-weight-normal">{}</h6>', ((line,) for line in menssagem))
+
+        correcoes = correcoes.split('\n')
+        correcoes = format_html_join(
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
+        
+        form = forms()
+
+        id_usuario  = request.GET.get('id_usuario')
+        nome_usuario  = request.GET.get('nome')
+        email_usuario  = request.GET.get('email')
+        verificador  = request.GET.get('verificador')
+        if(verificador=='true'):
+            print("ID Usuário:")
+            print(id_usuario)
+            print(nome_usuario)
+            print(email_usuario)
+            print("-----------------------------------------------------------------------")
+        
+                
+        context = {
+            'form': form,
+            'id_usuario': id_usuario,
+            'nome_usuario': nome_usuario,
+            'email_usuario': email_usuario,
+            'menssagem': menssagem,
+            'correcoes': correcoes,
+        }
         return render(request, 'base/aba_de_informacoes/correcoes_bugs.html', context=context)
+    else:
+        
+        
+        form = forms(request.POST)
+        nome_usuario = form.data['nome']
+        id_usuario  = request.POST.get('id_usuario')
+        email_usuario  = request.POST.get('email')
+        verificador  = request.POST.get('verificador')
+        descricao  = request.POST.get('descricao')
+        
+        correcoes ="""Editar Usuário:""" 
+        # menssagem = """"""
+        menssagem = """Antes de editar o login de um usuário verifique se realmente é necessario."""
+
+        menssagem = menssagem.split('\n')
+        menssagem = format_html_join(
+            '\n', '<h6 class="font-weight-normal">{}</h6>', ((line,) for line in menssagem))
+
+        correcoes = correcoes.split('\n')
+        correcoes = format_html_join(
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
+    
+        print("ID Usuário:")
+        print(id_usuario)
+        print(nome_usuario)
+        print(email_usuario)
+        print("-----------------------------------------------------------------------")
+        if(verificador=='true'):
+            
+            form = forms(initial={'nome': nome_usuario, 'email': email_usuario, 'descricao': descricao})
+            
+            context = {
+                'form': form,
+                'id_usuario': id_usuario,
+                'nome_usuario': nome_usuario,
+                'email_usuario': email_usuario,
+                'menssagem': menssagem,
+                'correcoes': correcoes,
+            }
+            return render(request, 'base/aba_de_informacoes/editar_usuario.html', context=context)
+        else:
+            password_usuario = form.data['password']
+            
+        # Buscar o usuário existente no banco de dados
+        usuario = User.objects.get(id=int(id_usuario))
+        usuario.set_password(password_usuario)
+        
+        # Atualizar os valores do usuário
+        usuario.username = nome_usuario
+        usuario.descricao = descricao
+        usuario.email = email_usuario
+
+        # Salvar as alterações
+        usuario.save()
+        messages.success(request, 'Usuário Atualizado com Sucesso!')
+        
+        form = forms()
+        
+        context = {
+            'form': form,
+            'menssagem': menssagem,
+            'correcoes': correcoes,
+        }
+        return redirect('listar_usuarios')
 
 @login_required
 @user_passes_test(lambda user: user.is_superuser)
