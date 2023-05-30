@@ -6,6 +6,7 @@ class form_correcoes(forms.Form):
     senha = forms.CharField(label='Senha:', max_length=100)
     descricao = forms.CharField(
     label='Descrição sobre o usuário:', 
-    widget=forms.Textarea(attrs={'rows': 4}))
+    widget=forms.Textarea(attrs={'rows': 4}),
+    required=False)
     email = forms.CharField(label='E-mail:', max_length=100)
 

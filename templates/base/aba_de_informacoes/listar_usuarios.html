@@ -96,7 +96,7 @@
 
             <td class="col-md-5 mr-4">
               <div class="d-flex ">
-                <form id="id_usuario" method="post" action="{% url 'editar_usuario' %}">
+                <form id="usuario" method="post" action="{% url 'editar_usuario' %}">
                   {% csrf_token %}
                   <input type="hidden" name="id_usuario" id="id_usuario" value="{{user.id}}">
                   <input type="hidden" name="nome" id="nome" value="{{user.username}}">

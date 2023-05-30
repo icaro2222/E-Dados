@@ -13,7 +13,7 @@
       <div id="col-md-12 svg-container">
         <div class="col-md-12 d-flex justify-content-between">
           <a class="col-md-4 av-link collapse-item {%if request.resolver_match.url_name == 'editar_usuario' %}text-dark{% endif %} btn d-flex justify-content-center align-items-center"
-            href={% url "editar_usuario" %}>
+            href={% url "cadastrar_usuario" %}>
             <span class="m-0 ml-2 d-none d-lg-inline"> Editar Usuário
               <hr class="m-0  {%if request.resolver_match.url_name == 'editar_usuario' %}bg-dark{% endif %}">
             </span>
@@ -39,17 +39,19 @@
 <body>
   <!-- Conteúdo da página -->
   <div class="row border border-dark">
-    <div class="col-md-12 text-dark">{{ correcoes }}
+    <div class="col-md-12 text-dark">
+      {{ correcoes }}
       <hr class="mt-0 bg-dark" />
+      
       {% if messages %}
-      {% for message in messages %}
-      <div class="alert alert-success">
-        {{ message }}
-      </div>
-      {% endfor %}
+        {% for message in messages %}
+          <div class="alert alert-danger">
+            {{ message }}
+          </div>
+        {% endfor %}
       {% endif %}
-
     </div>
+    
 
     <!-- Page Heading -->
     <form class="col-md-12 mb-3" action="." method="post">

@@ -1,9 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from edados.formularios.aba_informacoes.correcoes import form_correcoes
 from usuarios.forms import LoginForm as forms
 from django.utils.html import format_html_join
-from  correcoes.models import Correcao
 from usuarios.models import Usuario
 from edados.formularios.filtros.filtros_ano import Formulario_filtro_ano
 from django.contrib import messages
@@ -89,15 +87,49 @@ def cadastrar_usuarios(request):
         return render(request, 'base/aba_de_informacoes/cadastrar_usuarios.html', context=context)
     else:
         
-        nome = request.POST.get('nome')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        
         import os
         from pathlib import Path
         from edados.database import conect_db
         from sqlalchemy.orm import sessionmaker
 
+        correcoes ="""Cadastrar Usuários na Plataforma:""" 
+        # menssagem = """"""
+        menssagem = """Antes de criar um login para um usuário verifique se ele está comprometido com os termos da plataforma."""
+
+        menssagem = menssagem.split('\n')
+        menssagem = format_html_join(
+            '\n', '<h6 class="font-weight-normal">{}</h6>', ((line,) for line in menssagem))
+
+        correcoes = correcoes.split('\n')
+        correcoes = format_html_join(
+            '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
+        
+
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        
+        try:
+            # Verificar se o nome de usuário já existe com um ID diferente
+            usuario_existente = User.objects.get(username=nome)
+            
+        
+            messages.info(request, 'O nome de usuário já está em uso!')
+            form = forms(initial={'nome': nome, 'email': email})
+            
+            context = {
+                'form': form,
+                'nome_usuario': nome,
+                'email_usuario': email,
+                'menssagem': menssagem,
+                'correcoes': correcoes,
+            }
+            return render(request, 'base/aba_de_informacoes/editar_usuario.html', context=context)
+            
+        except User.DoesNotExist:
+            # Se o nome de usuário não estiver em uso, continue com o restante do código
+            pass
+            
         engine = conect_db.connect()
         # Conectando com o Banco de Dados
         Session = sessionmaker(bind=engine)
@@ -140,19 +172,6 @@ def cadastrar_usuarios(request):
             # Limpa o formulário
 
         form = forms()
-
-        correcoes ="""Cadastrar Usuários na Plataforma:""" 
-        # menssagem = """"""
-        menssagem = """Antes de criar um login para um usuário verifique se ele está comprometido com os termos da plataforma."""
-
-        menssagem = menssagem.split('\n')
-        menssagem = format_html_join(
-            '\n', '<h6 class="font-weight-normal">{}</h6>', ((line,) for line in menssagem))
-
-        correcoes = correcoes.split('\n')
-        correcoes = format_html_join(
-            '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
-        
 
         context = {
             'form': form,
@@ -205,6 +224,9 @@ def editar_usuario(request):
         return render(request, 'base/aba_de_informacoes/correcoes_bugs.html', context=context)
     else:
         
+        from django.core.exceptions import ValidationError
+        from django.db.models import Q
+        from django.http import HttpResponse
         
         form = forms(request.POST)
         nome_usuario = form.data['nome']
@@ -213,6 +235,12 @@ def editar_usuario(request):
         verificador  = request.POST.get('verificador')
         descricao  = request.POST.get('descricao')
         
+        if form.is_valid():
+            # Dados do formulário são válidos, pode prosseguir com a atualização
+            nome_usuario = form.cleaned_data['nome']
+            email_usuario = form.cleaned_data['email']
+            descricao = form.cleaned_data['descricao']
+
         correcoes ="""Editar Usuário:""" 
         # menssagem = """"""
         menssagem = """Antes de editar o login de um usuário verifique se realmente é necessario."""
@@ -230,8 +258,12 @@ def editar_usuario(request):
         print(nome_usuario)
         print(email_usuario)
         print("-----------------------------------------------------------------------")
-        if(verificador=='true'):
+        try:
+            # Verificar se o nome de usuário já existe com um ID diferente
+            usuario_existente = User.objects.exclude(id=id_usuario).get(username=nome_usuario)
             
+        
+            messages.info(request, 'O nome de usuário já está em uso!')
             form = forms(initial={'nome': nome_usuario, 'email': email_usuario, 'descricao': descricao})
             
             context = {
@@ -243,30 +275,50 @@ def editar_usuario(request):
                 'correcoes': correcoes,
             }
             return render(request, 'base/aba_de_informacoes/editar_usuario.html', context=context)
-        else:
-            password_usuario = form.data['password']
             
-        # Buscar o usuário existente no banco de dados
-        usuario = User.objects.get(id=int(id_usuario))
-        usuario.set_password(password_usuario)
-        
-        # Atualizar os valores do usuário
-        usuario.username = nome_usuario
-        usuario.descricao = descricao
-        usuario.email = email_usuario
+        except User.DoesNotExist:
+            # Se o nome de usuário não estiver em uso, continue com o restante do código
+            pass
+            
+            if(verificador=='true'):
+                
+                form = forms(initial={'nome': nome_usuario, 'email': email_usuario, 'descricao': descricao})
+                
+                context = {
+                    'form': form,
+                    'id_usuario': id_usuario,
+                    'nome_usuario': nome_usuario,
+                    'email_usuario': email_usuario,
+                    'menssagem': menssagem,
+                    'correcoes': correcoes,
+                }
+                return render(request, 'base/aba_de_informacoes/editar_usuario.html', context=context)
+            else:
+                password_usuario = form.data['password']
+                
+            # Buscar o usuário existente no banco de dados
+            usuario = User.objects.get(id=int(id_usuario))
+            usuario.set_password(password_usuario)
+            
+            # Atualizar os valores do usuário
+            usuario.username = nome_usuario
+            usuario.descricao = descricao
+            usuario.email = email_usuario
 
-        # Salvar as alterações
-        usuario.save()
-        messages.success(request, 'Usuário Atualizado com Sucesso!')
-        
-        form = forms()
-        
-        context = {
-            'form': form,
-            'menssagem': menssagem,
-            'correcoes': correcoes,
-        }
-        return redirect('listar_usuarios')
+            # Salvar as alterações
+            
+            if form.is_valid():
+                usuario.save()
+            messages.success(request, 'Usuário Atualizado com Sucesso!')
+            
+            form = forms()
+            
+            context = {
+                'form': form,
+                'menssagem': menssagem,
+                'correcoes': correcoes,
+            }
+            return redirect('listar_usuarios')
 
 @login_required
 @user_passes_test(lambda user: user.is_superuser)
