@@ -209,6 +209,7 @@ def formulario_3(request):
         filtro_escola = form_filtro.data['escola']
         filtro_nacionalidade = form_filtro.data['nacionalidade']
         filtro_estado = form_filtro.data['estado']
+        filtro_cidade = form_filtro.data['cidade']
         filtro_amostra = form_filtro.data['amostra']
         filtro_recurso = form_filtro.data['recurso']
         filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
@@ -288,6 +289,7 @@ def formulario_3(request):
             Microdado_Amostra = bd_formulario_3.buscar_dataframe_no_banco(
                 Amostra, 
                 filtro_sexo=filtro_sexo, 
+            filtro_cidade=filtro_cidade, 
                 filtro_cor_da_prova=filtro_cor_da_prova, 
                 filtro_deficiencia=filtro_deficiencia,
                 filtro_amostra=filtro_amostra, 
@@ -306,6 +308,7 @@ def formulario_3(request):
             Microdado_Amostra = bd_formulario_3.buscar_dataframe_no_banco(
                 Amostra, 
                 filtro_sexo=filtro_sexo, 
+            filtro_cidade=filtro_cidade, 
                 filtro_cor_da_prova=filtro_cor_da_prova, 
                 filtro_deficiencia=filtro_deficiencia,
                 filtro_amostra=filtro_amostra, 

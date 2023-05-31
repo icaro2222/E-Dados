@@ -60,21 +60,25 @@ Desempenho no Exame
         {% csrf_token %}
         {{ form_filtro.deficiencia|as_crispy_field }}
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         {% csrf_token %}
         {{ form_filtro.nacionalidade|as_crispy_field }}
-      </div>
-      <div class="col-md-3">
-        {% csrf_token %}
-        {{ form_filtro.estado|as_crispy_field }}
-      </div>
-      <div class="col-md-3">
-        {% csrf_token %}
-        {{ form_filtro.localizacao_da_escola|as_crispy_field }}
       </div>
       <div id="teste" class="col-md-3">
         {% csrf_token %}
         {{ form_filtro.tp_adm_escola|as_crispy_field }}
+      </div>
+      <div class="col-md-2">
+        {% csrf_token %}
+        {{ form_filtro.estado|as_crispy_field }}
+      </div>
+      <div class="col-md-2">
+        {% csrf_token %}
+        {{ form_filtro.cidade|as_crispy_field }}
+      </div>
+      <div class="col-md-3">
+        {% csrf_token %}
+        {{ form_filtro.localizacao_da_escola|as_crispy_field }}
       </div>
       <div id="teste" class="col-md-3">
         {% csrf_token %}
