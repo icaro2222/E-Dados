@@ -6,7 +6,7 @@ def questionario_cidade(Form):
 
     choices_cidade = (
         ('TODOS', (
-            ('TODOS', 'TODOS'),
+            ('todos', 'TODOS'),
         )),
         ('Acre', (
             ('Acrelândia', 'Acrelândia'),
