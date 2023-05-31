@@ -3,6 +3,7 @@ from edados.database import conect_db
 from edados.database import bd_filtro
 
 def buscar_dataframe_no_banco(amostra, 
+                              filtro_cidade ="vazio",
                                     filtro_questao = "vazio", 
                                     filtro_recurso = "vazio", 
                                     filtro_localizacao_da_escola = "vazio", 
@@ -21,6 +22,7 @@ def buscar_dataframe_no_banco(amostra,
 
     filtro = bd_filtro.filtro(
         filtro_ano=filtro_ano,
+        filtro_cidade=filtro_cidade,
             filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
             filtro_ano_de_conclusao=filtro_ano_de_conclusao, 
             filtro_questao=filtro_questao, 

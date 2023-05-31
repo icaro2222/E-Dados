@@ -1,6 +1,7 @@
 from edados.database import conect_db
 
 def filtro(                       
+           filtro_cidade='vazio',  
            filtro_ano='vazio',
             filtro_ltp_adm_escola="vazio",              
             filtro_ano_de_conclusao="vazio",   
@@ -35,6 +36,11 @@ def filtro(
         filtro_cor = ''
     else:
         filtro_cor =  ' AND "TP_COR_RACA" =' +"'" +filtro_cor+"'"
+        
+    if(filtro_cidade == 'todos'):
+        filtro_cidade = ''
+    else:
+        filtro_cidade =  ' AND "NO_MUNICIPIO_RESIDENCIA" =' +"'" +filtro_cidade+"'"
         
     if(filtro_recurso == 'vazio'):
         filtro_recurso = ""
@@ -95,6 +101,7 @@ def filtro(
     else:
         filtro_sexo = ''
         
+    amostragem = ''
     if(filtro_amostra!="todos_os_dados"):  
         conect_db.LIMIT = filtro_amostra    
         valor=0 
@@ -121,6 +128,7 @@ def filtro(
                 valor = 16579
         if(valor!=0):
             conect_db.LIMIT = (" LIMIT "+str(valor))
+            amostragem = ' ORDER BY RANDOM() '
     else:
         conect_db.LIMIT = ""
     
@@ -128,10 +136,10 @@ def filtro(
     #     amostragem =''
     # else:
     #     pass
-    amostragem = ' ORDER BY RANDOM() '
 
     filtro = (  filtro_deficiencia + 
                 filtro_sexo +
+                filtro_cidade +
                 filtro_cor  + 
                 filtro_estado_civil +  
                 filtro_escola  + 
