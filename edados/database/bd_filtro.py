@@ -1,6 +1,7 @@
 from edados.database import conect_db
 
 def filtro(                       
+           filtro_ano='vazio',
             filtro_ltp_adm_escola="vazio",              
             filtro_ano_de_conclusao="vazio",   
             filtro_questao = "nenhum", 
@@ -19,11 +20,6 @@ def filtro(
             ):
     
     filtro_deficiencia = conect_db.filtro_de_ficiencia(filtro_deficiencia)
-    
-    if(filtro_amostra!="todos_os_dados"):   
-        conect_db.LIMIT = filtro_amostra
-    else:
-        conect_db.LIMIT = ""
     
     if(filtro_ano_de_conclusao=="vazio"):   
         filtro_ano_de_conclusao = ''
@@ -98,11 +94,41 @@ def filtro(
         filtro_sexo = ' AND "TP_SEXO" = '+"'"+str(filtro_sexo)+"' "
     else:
         filtro_sexo = ''
-    
-    if(conect_db.LIMIT == ' LIMIT 1000' or conect_db.LIMIT == ' LIMIT 0' or conect_db.LIMIT == ""):
-        amostragem =''
+        
+    if(filtro_amostra!="todos_os_dados"):  
+        conect_db.LIMIT = filtro_amostra    
+        valor=0 
+        if(conect_db.LIMIT == 'a_5_90'):
+            if(filtro_ano=='2019'):
+                valor = 273
+            elif(filtro_ano=='2018'):
+                valor = 273
+            elif(filtro_ano=='2017'):
+                valor = 273
+        elif(conect_db.LIMIT == 'a_3_95'):
+            if(filtro_ano=='2019'):
+                valor = 1067
+            elif(filtro_ano=='2018'):
+                valor = 1067
+            elif(filtro_ano=='2017'):
+                valor = 1067
+        elif(conect_db.LIMIT == 'a_1_99'):
+            if(filtro_ano=='2019'):
+                valor = 16567
+            elif(filtro_ano=='2018'):
+                valor = 16571
+            elif(filtro_ano=='2017'):
+                valor = 16579
+        if(valor!=0):
+            conect_db.LIMIT = (" LIMIT "+str(valor))
     else:
-        amostragem = ' ORDER BY RANDOM() '
+        conect_db.LIMIT = ""
+    
+    # if(conect_db.LIMIT == ' LIMIT 1000' or conect_db.LIMIT == ' LIMIT 0' or conect_db.LIMIT == ""):
+    #     amostragem =''
+    # else:
+    #     pass
+    amostragem = ' ORDER BY RANDOM() '
 
     filtro = (  filtro_deficiencia + 
                 filtro_sexo +

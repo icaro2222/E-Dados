@@ -28,6 +28,7 @@ def buscar_dataframe_no_banco(amostra,
     RESTRICAO = ' AND "' + amostra[0] + '" > 0 '
     
     filtro = bd_filtro.filtro(
+        filtro_ano=filtro_ano,
             filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
             filtro_ano_de_conclusao=filtro_ano_de_conclusao, 
             filtro_questao=filtro_questao, 

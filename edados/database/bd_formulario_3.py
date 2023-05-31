@@ -27,6 +27,7 @@ def buscar_dataframe_no_banco(    amostra,
     filtro_cor_da_prova = ' AND "' + amostra[0]+'"='+"'"+filtro_cor_da_prova+"'"
     
     filtro = bd_filtro.filtro(
+        filtro_ano=filtro_ano,
             filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
             filtro_ano_de_conclusao=filtro_ano_de_conclusao, 
             filtro_questao=filtro_questao, 
