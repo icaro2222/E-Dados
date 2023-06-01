@@ -20,7 +20,8 @@ def buscar_dataframe_no_banco(amostra="vazio",
                             filtro_nacionalidade = "vazio"):
     engine = conect_db.connect()
 
-    filtro = bd_filtro.filtro(
+    filtro = bd_filtro.filtro_para_o_mapa(
+            filtro_variavel_de_analise=filtro_questao,
             filtro_ano=filtro_ano,
             filtro_cidade=filtro_cidade,
             filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
