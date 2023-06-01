@@ -5,8 +5,8 @@ def questionario_questao(Form):
 
     choices_questao = (('vazio' ,'NENHUM'),    
                     ("NU_IDADE","NU_IDADE"),
-                    ("TP_COR_RACA","TP_COR_RACA"),
-                    ("TP_ESTADO_CIVIL","TP_ESTADO_CIVIL"),
+                    # ("TP_COR_RACA","TP_COR_RACA"),
+                    # ("TP_ESTADO_CIVIL","TP_ESTADO_CIVIL"),
                     ('NU_NOTA_MT' ,'NU_NOTA_MT - Matemática'),    
                     ('NU_NOTA_CH', 'NU_NOTA_CH - Ciências da Natureza'),
                     ('NU_NOTA_CN' ,'NU_NOTA_CN - Ciências Humanas'),
