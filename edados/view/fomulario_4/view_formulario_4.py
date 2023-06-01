@@ -145,11 +145,12 @@ def formulario_4(request):
         dos inscritos no ENEM utilizando os microdados."""
         
         
-        if filtro_questao=='nenhum':
-            filtro_questao="SG_UF_RESIDENCIA"
+        if filtro_questao=='vazio':
+            variavel_para_analise = 'count'
+        else:
+            variavel_para_analise = 'mean'
         brazil_states = json.load(open(BASE_DIR/"fomulario_4/brazil_geo.json", "r"))
-        
-        
+                    
         fig = px.choropleth_mapbox(
             Dataframe,             
             height=700,
@@ -157,22 +158,32 @@ def formulario_4(request):
             geojson=brazil_states, 
             center={"lat": -16.95, "lon": -47.78},
             zoom=3, 
-            color='count', 
+            color=variavel_para_analise, 
             color_continuous_scale="blues", 
             opacity=0.4,
-            custom_data=['count']  # Especifica a coluna de dados personalizados
+            custom_data=[variavel_para_analise]  # Especifica a coluna de dados personalizados
         )
         
-        # Calcular o percentual
-        percentuais = Dataframe['count'] / Dataframe['count'].sum()
+        if filtro_questao=='vazio':
+            filtro_questao="SG_UF_RESIDENCIA"
+            # Calcular o percentual
+            percentuais = Dataframe['count'] / Dataframe['count'].sum()
 
-        # Converter os percentuais em formato de porcentagem com duas casas decimais
-        percentuais_formatados = (percentuais * 100).round(2)
+            # Converter os percentuais em formato de porcentagem com duas casas decimais
+            percentuais_formatados = (percentuais * 100).round(2)
 
-        # Atualizar o hovertemplate com os percentuais formatados
-        fig.update_traces(
-            hovertemplate='<b>Estado</b>: %{location}<br><b>Contagem</b>: %{customdata[0]}<br><b>Percentual</b>: ' + percentuais_formatados.astype(str) + '%',
-        )
+            # Atualizar o hovertemplate com os percentuais formatados
+            fig.update_traces(
+                hovertemplate='<b>Estado</b>: %{location}<br><b>Contagem</b>: %{customdata[0]}<br><b>Percentual</b>: ' + percentuais_formatados.astype(str) + '%',
+            )
+        else:
+            # Atualizar o hovertemplate com os percentuais formatados
+            # fig.update_traces(
+            #     hovertemplate='<b>Estado</b>: %{location}<br><b>'+filtro_questao+'</b>: %{customdata[0]}<br>',
+            # )
+            fig.update_traces(
+                hovertemplate='<b>Estado</b>: %{location}<br><b>Média</b>: %{customdata[0]:.2f}',
+            )
 
         fig.update_layout(
             mapbox_style="carto-positron",
