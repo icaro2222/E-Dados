@@ -180,7 +180,7 @@ def filtro_para_o_mapa(
     
     filtro_deficiencia = conect_db.filtro_de_ficiencia(filtro_deficiencia)
     
-    if(filtro_variavel_de_analise=="vazio"):   
+    if(filtro_variavel_de_analise=="vazio" or filtro_variavel_de_analise=="TP_COR_RACA" or filtro_variavel_de_analise=="TP_ESTADO_CIVIL"):   
         filtro_variavel_de_analise = ''
     else:
         filtro_variavel_de_analise = ' AND "'+ filtro_variavel_de_analise+'" > 0 '
