@@ -166,17 +166,22 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item {% if request.resolver_match.url_name == 'Quest_Soc_Notas_Deficiencia' %} active{% endif %}"
                             href="{% url 'Quest_Soc_Notas_Deficiencia' %}" title="Desempenho no exame">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-reception-3" viewBox="0 0 16 16">
                                 <path
                                     d="M0 11.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-5zm4-3a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-8zm4 8a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
-                            </svg> Desempenho no ex...</a>
+                            </svg> -->
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M15.817 0.113333C15.9328 0.208303 16 0.350208 16 0.500004V14.5C16 14.7383 15.8318 14.9436 15.5981 14.9903L10.5981 15.9903C10.5333 16.0032 10.4667 16.0032 10.4019 15.9903L5.5 15.0099L0.598058 15.9903C0.45117 16.0197 0.29885 15.9816 0.183006 15.8867C0.0671615 15.7917 0 15.6498 0 15.5V1.5C0 1.26166 0.16823 1.05646 0.401942 1.00971L5.40194 0.00971396C5.46667 -0.00323223 5.53333 -0.00323223 5.59806 0.00971396L10.5 0.990102L15.4019 0.00971396C15.5488 -0.0196636 15.7012 0.0183639 15.817 0.113333ZM10 1.90991L6 1.10991V14.0901L10 14.8901V1.90991ZM11 14.8901L15 14.0901V1.10991L11 1.90991V14.8901ZM5 14.0901V1.10991L1 1.90991V14.8901L5 14.0901Z" fill="black"/>
+                                </svg>
+                                 Desempenho no ex...</a>
                     </div>
                 </div>
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#acertos_por_prova"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                    aria-expanded="true" aria-controls="collapseTwo"
+                    title="Análise de Acertos/Erros">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-clipboard-data" viewBox="0 0 16 16">
                         <path
@@ -205,7 +210,8 @@
 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#densidade_demografica"
-                    aria-expanded="true" aria-controls="collapseTwo">
+                    aria-expanded="true" aria-controls="collapseTwo" 
+                    title="Análise com Mapa Temático">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-clipboard-data" viewBox="0 0 16 16">
                         <path
@@ -215,7 +221,7 @@
                         <path
                             d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
                     </svg>
-                    <span>Densidade demográfica</span>
+                    <span>Análise com Mapa Tem...</span>
                 </a>
                 <div id="densidade_demografica"
                     class="collapse {% if request.resolver_match.url_name == 'formulario_4' %} show{% endif %}"
