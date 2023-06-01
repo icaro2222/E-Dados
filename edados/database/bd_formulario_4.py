@@ -45,7 +45,7 @@ def buscar_dataframe_no_banco(amostra="vazio",
                     '"Q018","Q019","Q020","Q021",'
                     '"Q022","Q023","Q024","Q025", ')
     
-    elif(filtro_questao == 'nenhum'):
+    elif(filtro_questao == 'vazio'):
         filtro_questao = ''
     else:
         filtro_questao = ' "' + filtro_questao + '", '
@@ -53,11 +53,10 @@ def buscar_dataframe_no_banco(amostra="vazio",
 
     BANCO = conect_db.banco(filtro_ano=filtro_ano)
     
-    retorno_da_query = filtro_questao
-    if amostra != '*':
-        estrutura = 'SELECT '+ retorno_da_query + ' "SG_UF_RESIDENCIA" FROM ' + BANCO
+    if filtro_questao != "vazio":
+        estrutura = 'SELECT '+ filtro_questao + ' "SG_UF_RESIDENCIA" FROM ' + BANCO
     else:
-        estrutura = 'SELECT * FROM ' + BANCO
+        estrutura = 'SELECT "SG_UF_RESIDENCIA" FROM ' + BANCO
         
     query = (estrutura + filtro)
 

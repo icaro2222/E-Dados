@@ -80,6 +80,13 @@ def formulario_4(request):
         filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
         filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
            
+        if(filtro_ano=="2019"):
+            CONTAGEMMicrodado_Amostra = 3702008
+        elif(filtro_ano=="2018"):
+            CONTAGEMMicrodado_Amostra = 3893671
+        elif(filtro_ano=="2017"):
+            CONTAGEMMicrodado_Amostra = 4426755
+            
         Amostra = '"SG_UF_RESIDENCIA"' 
         Microdado_Amostra = bd_formulario_4.buscar_dataframe_no_banco(
             Amostra, 
@@ -99,10 +106,28 @@ def formulario_4(request):
             filtro_escola=filtro_escola, 
             filtro_nacionalidade=filtro_nacionalidade)
         
-        
-        if filtro_questao == 'nenhum':
-            Dataframe = Microdado_Amostra
-            Dataframe = Dataframe.describe().T
+        if Microdado_Amostra.empty:            
+            context = {
+                'form' : form,
+                'menssagem' : menssagem,
+                'relatorio_mapa' : "",
+                'form_filtro' : form_filtro,
+                'quantidadeParcial' : CONTAGEM,
+                'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
+                'menssagem_informativa' : menssagem_informativa,
+                'relatorio' : ""
+            }
+            return render(request, 'base/formulario_4/relatorio_formulario_4.html', context=context)
+    
+        if filtro_questao == 'vazio':
+            Dataframe = Microdado_Amostra.groupby('SG_UF_RESIDENCIA')
+
+            # Realizar a contagem de elementos em cada grupo
+            Dataframe = Dataframe.size().reset_index(name='count')
+
+            # Dataframe = Dataframe.rename_axis('SG_UF_RESIDENCIA')
+            # Dataframe = Dataframe.reset_index() 
+            
         else:
             Dataframe = Microdado_Amostra.groupby('SG_UF_RESIDENCIA')[filtro_questao]   
             Dataframe = Dataframe.describe() 
@@ -110,17 +135,8 @@ def formulario_4(request):
             Dataframe = Dataframe.reset_index() 
 
         print(Dataframe)
-        print(Dataframe['SG_UF_RESIDENCIA'])
-        # print(Dataframe['SG_UF_RESIDENCIA'])
-        # print(Dataframe['mean'])
+        # print(contagem['SG_UF_RESIDENCIA'])
         
-        if(filtro_ano=="2019"):
-            CONTAGEMMicrodado_Amostra = 3702008
-        elif(filtro_ano=="2018"):
-            CONTAGEMMicrodado_Amostra = 3893671
-        elif(filtro_ano=="2017"):
-            CONTAGEMMicrodado_Amostra = 4426755
-            
         CONTAGEM  = Microdado_Amostra['SG_UF_RESIDENCIA'].count()
             
         # Formulario de Filtro
@@ -133,26 +149,43 @@ def formulario_4(request):
             filtro_questao="SG_UF_RESIDENCIA"
         brazil_states = json.load(open(BASE_DIR/"fomulario_4/brazil_geo.json", "r"))
         
+        
         fig = px.choropleth_mapbox(
             Dataframe,             
             height=700,
             locations="SG_UF_RESIDENCIA",
             geojson=brazil_states, 
             center={"lat": -16.95, "lon": -47.78},
-            zoom=3, color='mean', 
+            zoom=3, 
+            color='count', 
             color_continuous_scale="blues", 
-            opacity=0.4)
+            opacity=0.4,
+            custom_data=['count']  # Especifica a coluna de dados personalizados
+        )
         
+        # Calcular o percentual
+        percentuais = Dataframe['count'] / Dataframe['count'].sum()
+
+        # Converter os percentuais em formato de porcentagem com duas casas decimais
+        percentuais_formatados = (percentuais * 100).round(2)
+
+        # Atualizar o hovertemplate com os percentuais formatados
+        fig.update_traces(
+            hovertemplate='<b>Estado</b>: %{location}<br><b>Contagem</b>: %{customdata[0]}<br><b>Percentual</b>: ' + percentuais_formatados.astype(str) + '%',
+        )
+
         fig.update_layout(
-            mapbox_style="carto-positron",  # Estilo do mapa
-            mapbox_zoom=3,  # Nível de zoom inicial
-            mapbox_center={"lat": -14.235, "lon": -51.925},  # Coordenadas de latitude e longitude iniciais
+            mapbox_style="carto-positron",
+            mapbox_zoom=3,
+            mapbox_center={"lat": -14.235, "lon": -51.925},
             margin=dict(l=0, r=0, b=10, t=50),
-            title=('<b>'+filtro_questao+'</b>'),
+            title=('<b>'+filtro_questao+'</b>'),            
             titlefont={'family': 'Arial', 'size': 24},
         )
 
         relatorio_mapa = fig.to_html()
+
+
         relatorio = ''
         
         context = {

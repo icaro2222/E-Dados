@@ -3,7 +3,7 @@ from django import forms
 
 def questionario_questao(Form):
 
-    choices_questao = (('nenhum' ,'NENHUM'),    
+    choices_questao = (('vazio' ,'NENHUM'),    
                     ("NU_IDADE","NU_IDADE"),
                     ("TP_COR_RACA","TP_COR_RACA"),
                     ("TP_ESTADO_CIVIL","TP_ESTADO_CIVIL"),
