@@ -1,12 +1,14 @@
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from usuarios.forms import LoginForm as forms
-from django.utils.html import format_html_join
-from usuarios.models import Usuario
-from edados.formularios.filtros.filtros_ano import Formulario_filtro_ano
-from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
+from edados.formularios.filtros.filtros_ano import Formulario_filtro_ano
+from django.contrib.auth.decorators import login_required
+from django.utils.html  import  format_html_join
+from usuarios.forms  import LoginForm as forms
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from usuarios.models import  Usuario
+from django.contrib import messages
+from collections import deque
+import os
 
 def formatar(valor):
     return "{:,.2f}".format(valor)
@@ -338,12 +340,32 @@ def log_de_acesso(request):
         correcoes = correcoes.split('\n')
         correcoes = format_html_join(
             '\n', '<h4 class="font-weight-normal mt-3 mb-0">{}</h4>', ((line,) for line in correcoes))
-                    
+        
         BASE_DIR = Path(__file__).resolve().parents[3]
         caminho = str(BASE_DIR) + '/Registros_Acesso.log'
+
+        # Verificar se o arquivo existe
+        if os.path.exists(caminho):
+            # Criar uma deque com tamanho máximo de 100 elementos
+            ultimas_linhas = deque(maxlen=1000)
+
+            with open(caminho, 'r') as file:
+                # Ler as linhas do arquivo
+                for linha in file:
+                    # Adicionar a linha atual à deque
+                    ultimas_linhas.append(linha)
+
+            # Converter a deque em uma string única com as últimas 100 linhas
+            log_de_acesso = ''.join(ultimas_linhas)
+        else:
+            log_de_acesso = 'Arquivo de log não encontrado.'
+
+
+        # BASE_DIR = Path(__file__).resolve().parents[3]
+        # caminho = str(BASE_DIR) + '/Registros_Acesso.log'
         
-        with open(caminho, 'r') as file:
-            log_de_acesso = file.read()
+        # with open(caminho, 'r') as file:
+        #     log_de_acesso = file.read()
 
         form = forms()
 
