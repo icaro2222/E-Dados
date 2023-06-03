@@ -160,8 +160,8 @@ def cadastrar_usuarios(request):
         descricao = request.POST.get('descricao')
         email = request.POST.get('email')
         
-        correcao = Usuario(nome=nome, descricao=descricao, email=email)
-        correcao.save()
+        # correcao = Usuario(nome=nome, descricao=descricao, email=email)
+        # correcao.save()
 
         
         messages.success(request, 'Usuário Cadastrado com Sucesso!')
@@ -378,36 +378,6 @@ def log_de_acesso(request):
         return render(request, 'base/aba_de_informacoes/log_de_acesso.html', context=context)
     else:
         
-        nome = request.POST.get('nome')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        
-        # Crie uma instância do usuário
-        user = User(username=nome, email=email)
-        user.set_password(password)
-        user.save()
-        
-        
-        nome = request.POST.get('nome')
-        descricao = request.POST.get('descricao')
-        email = request.POST.get('email')
-        
-        correcao = Usuario(nome=nome, descricao=descricao, email=email)
-        correcao.save()
-
-        messages.success(request, 'Usuário Cadastrado com Sucesso!')
-        form = forms(request.POST)
-        if form.is_valid():
-            # Lida com os dados do formulário aqui
-            nome = form.cleaned_data['nome']
-            descricao = form.cleaned_data['descricao']
-            email = form.cleaned_data['email']
-            # Limpa o formulário
-
-        form = forms()
-
-        correcoes ="""Cadastrar Usuários na Plataforma:""" 
-        # menssagem = """"""
         menssagem = """O Log ajuda a entender e compreender como estão as requisições no Back-end."""
 
         menssagem = menssagem.split('\n')
