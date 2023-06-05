@@ -6,7 +6,6 @@ from django.http import JsonResponse
 from edados.database import bd_formulario_1_4
 from celery import shared_task
 from edados.database import conect_db
-import csv
 import os
 
 def verificar_csv(request):
@@ -83,54 +82,31 @@ def criar_csv(nome_usuario,
 
     from pathlib import Path
 
-    # Caminho para o diretório do seu projeto
+    # Caminho para o diretório do projeto
     BASE_DIR = Path(__file__).resolve().parents[2]
 
     # Caminho para a pasta onde deseja salvar o arquivo CSV
     pasta_destino = str(BASE_DIR) + '/static/csv/' + str(nome_usuario)+'/'
 
-
     # Nome do arquivo CSV
     nome_arquivo = 'microdados_enem.csv'
-
+        
     # Caminho completo do arquivo CSV
     caminho_arquivo = os.path.join(pasta_destino, nome_arquivo)
     print('---------------------------------------------------------------------------')
     print(caminho_arquivo)
-    print('---------------------------------------------------------------------------')
-
-    # Modifique esta linha
-    with open(caminho_arquivo, 'w', newline='') as arquivo:
-        writer = csv.writer(arquivo)
-        writer.writerows(Microdado_Amostra.values.tolist())
+    Microdado_Amostra.to_csv(caminho_arquivo, index=False)
 
     comando_sql = """
         UPDATE "csv" SET "status"='finalizado' WHERE   "nome"= '"""+ nome_usuario +"';"
     print(comando_sql)
-
     session.execute(comando_sql)
     session.commit()
     print('---------------------------------------------------------------------------')
     print("FINALIZOU")
-    # Modifique esta linha
-    # Microdado_Amostra = Microdado_Amostra.to_csv(index=False)
-
-
-    # O arquivo CSV foi salvo com sucesso na pasta especificada
-
-    # # Cria o objeto response com o cabeçalho CSV
-    # response = HttpResponse(content_type='text/csv')
-    # response['Content-Disposition'] = 'attachment; filename="microdados_enem.csv"'
-
-    # # Cria o escritor CSV e escreve as linhas no objeto response
-    # writer = csv.writer(response)
-
-    # # Escreve as linhas do CSV
-    # for row in csv.reader(Microdado_Amostra.splitlines()):
-    #     writer.writerow(row)
     
-    from django.shortcuts import render
-    import json
+    # O arquivo CSV foi salvo com sucesso na pasta especificada
+    
     from django.shortcuts import redirect, reverse
 
     # Obtém a URL correspondente à view 'dashboard' com os argumentos corretos
@@ -138,18 +114,3 @@ def criar_csv(nome_usuario,
     
     # Redireciona o usuário para a URL obtida
     return redirect(url)
-
-
-    # Sua lógica em segundo plano aqui
-    menssagem_segundo_planos="CSV pronto para baixa!"
-    form = Formulario()
-    form_filtro = Formulario_filtros()
-    menssagem = ("Análise de Dados Socioeconômicos do ENEM")
-    menssagem1 = """Esta é uma tela web que permite realizar o somatório dos alunos que responderam ao ENEM. Esta tela também possui filtros que permitem reduzir o somatório para fins de análise dos microdados. O resultado desse somatório é obtido após a aplicação desses filtros."""
-    context = {
-        'form' : form,
-        'menssagem' : menssagem,
-        'menssagem1' : menssagem1,
-        'form_filtro' : form_filtro
-    }
-    return redirect('dashboard', context=context)
