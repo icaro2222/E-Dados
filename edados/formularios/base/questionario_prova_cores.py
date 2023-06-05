@@ -5,19 +5,7 @@ from django import forms
 def questionario_prova(Form):
 
     choices_prova = (
-        ('Prova de Ciências da Natureza',(
-                ('503', '503 - Azul'),
-                ('504', '504 - Amarela'),
-                ('505', '505 - Cinza'),
-                ('506', '506 - Rosa'),
-                ('519', '519 - Laranja - Adaptada Ledor'),
-                ('523', '523 - Verde - Videoprova - Libras'),
-                ('543', '543 - Amarela (Reaplicação)'),
-                ('544', '544 - Cinza (Reaplicação)'),
-                ('545', '545 - Azul (Reaplicação)'),
-                ('546', '546 - Rosa (Reaplicação)'),)
-            ),
-        ('Prova de Ciências Humanas', (
+        ('1-Dia, Prova de Ciências Humanas', (
                 ('507', '507 - Azul'),
                 ('508', '508 - Amarela'),
                 ('509', '509 - Branca'),
@@ -31,7 +19,7 @@ def questionario_prova(Form):
                 ('564', '564 - Laranja - Adaptada Ledor (Reaplicação)'),
                 )
             ),
-        ('Prova de Linguagens e Códigos', (
+        ('1-Dia, Prova de Linguagens e Códigos', (
                 ('511', '511 - Azul'),
                 ('512', '512 - Amarela'),
                 ('513', '513 - Rosa'),
@@ -45,7 +33,19 @@ def questionario_prova(Form):
                 ('565', '565 - Laranja - Adaptada Ledor (Reaplicação)'),
                 )
             ),
-        ('Prova de Matemática', (
+        ('2-Dia, Prova de Ciências da Natureza',(
+                ('503', '503 - Azul'),
+                ('504', '504 - Amarela'),
+                ('505', '505 - Cinza'),
+                ('506', '506 - Rosa'),
+                ('519', '519 - Laranja - Adaptada Ledor'),
+                ('523', '523 - Verde - Videoprova - Libras'),
+                ('543', '543 - Amarela (Reaplicação)'),
+                ('544', '544 - Cinza (Reaplicação)'),
+                ('545', '545 - Azul (Reaplicação)'),
+                ('546', '546 - Rosa (Reaplicação)'),)
+            ),
+        ('2-Dia, Prova de Matemática', (
                 ('515', '515 - Azul'),
                 ('516', '516 - Amarela'),
                 ('517', '517 - Rosa'),
