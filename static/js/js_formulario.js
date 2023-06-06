@@ -23,7 +23,31 @@
   
 
   document.getElementById("progressbar").style.animation = "none";
-    
+   
+  
+
+  var selectElement = document.getElementById("id_amostra");
+  var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+  
+  if (selectedOption == "todos_os_dados") {
+    document.getElementById("preloader2").addEventListener("click", function() {
+      document.getElementById("preloader").style.display = "block";
+    });
+  }
+  
+  selectElement.addEventListener("change", function() {
+    selectedOption = selectElement.options[selectElement.selectedIndex].value;
+  
+    if (selectedOption == "todos_os_dados") {
+      document.getElementById("preloader2").addEventListener("click", function() {
+        document.getElementById("preloader").style.display = "block";
+      });
+    }else{
+      document.getElementById("preloader2").addEventListener("click", function() {
+        document.getElementById("preloader").style.display = "none";
+      });
+    }    
+  });  
   // var selectElement = document.getElementById("id_amostra");
 
   // selectElement.onchange = function() {
