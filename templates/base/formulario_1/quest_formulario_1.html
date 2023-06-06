@@ -1,4 +1,5 @@
-{% extends 'layout/layout.html' %} {% load static %}
+{% extends 'layout/layout.html' %}
+{%load static %}
 {% load crispy_forms_tags %}
 {% block titulo %}
 Gráfico Socioeconômico
@@ -10,6 +11,7 @@ Gráfico Socioeconômico
 
 <!-- Begin Page Content -->
 <div class="row text-dark">
+
   <!-- Page Heading -->
   <form class="col mt-0" action="." method="post">
     <h5 class="m-0 d-flex align-items-center">
@@ -116,7 +118,12 @@ Gráfico Socioeconômico
         </div>
       </div>
     </div>
-    <hr>
+    <div class="loading" id="preloader">
+      <h4 class="loading_preloader justify-content-center align-items-center">
+        Processar todos os dados pode tornar o processo mais pesado e, por isso, pode levar um tempo para ser concluído.
+      </h4>
+    </div>
+    <hr id="progressbar">
   </form>
 </div>
 
@@ -131,5 +138,7 @@ Gráfico Socioeconômico
     </div>
   </div>
 </div>
+
+<script src={% static "js/js_formulario.js" %}></script>
 <!-- /.container-fluid -->
 {% endblock %}

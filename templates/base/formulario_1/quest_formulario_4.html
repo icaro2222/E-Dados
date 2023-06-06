@@ -112,7 +112,12 @@
         </div>
       </div>
     </div>
-    <hr>
+    <div class="loading" id="preloader">
+      <h4 class="loading_preloader justify-content-center align-items-center">
+        Processar todos os dados pode tornar o processo mais pesado e, por isso, pode levar um tempo para ser concluído.
+      </h4>
+    </div>
+    <hr id="progressbar">
   </form>
 
   <div class="col-md-12">
@@ -126,5 +131,6 @@
   </div>
 </div>
 
+<script src={% static "js/js_formulario.js" %}></script>
 <!-- /.container-fluid -->
 {% endblock %}

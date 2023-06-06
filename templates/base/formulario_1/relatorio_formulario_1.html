@@ -175,21 +175,6 @@ Gráfico Socioeconômico
   </div>
 </div>
 
-<script>
-
-  var selectElement = document.getElementById("id_amostra"); 
-  // Adicione um ouvinte de eventos para o evento "change" no campo "select"
-  selectElement.addEventListener("change", function () {
-    var selectedOption = selectElement.options[selectElement.selectedIndex].value;
-
-    if (selectedOption == "todos_os_dados") {
-      document.getElementById("preloader2").addEventListener("click", function () {
-        document.getElementById("preloader").style.display = "block";
-      });
-    }
-  });
-
-</script>
 <script src={% static "js/js_formulario.js" %}></script>
 <!-- /.container-fluid -->
 {% endblock %}

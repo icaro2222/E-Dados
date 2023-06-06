@@ -5,6 +5,9 @@ Densidade Demográfica
 {% endblock %}
 {% block conteudo %}
 
+{% block css %}
+<link rel="stylesheet" href={% static "css/styles_relatorio.css" %}>
+{% endblock %}
 <!-- Begin Page Content -->
 <div class="row text-dark">
   <!-- Page Heading -->
@@ -110,7 +113,12 @@ Densidade Demográfica
         </div>
       </div>
     </div>
-    <hr class="" />
+    <div class="loading" id="preloader">
+      <h4 class="loading_preloader justify-content-center align-items-center">
+        Processar todos os dados pode tornar o processo mais pesado e, por isso, pode levar um tempo para ser concluído.
+      </h4>
+    </div>
+    <hr id="progressbar">
   </form>
 </div>
 
@@ -121,5 +129,7 @@ Densidade Demográfica
     <h6>{{ menssagem_informativa }}</h6>
   </div>
 </div>
+
+<script src={% static "js/js_formulario.js" %}></script>
 <!-- /.container-fluid -->
 {% endblock %}
