@@ -520,8 +520,10 @@
                             svgHourglass3.style.display = 'none';
                             svgHourglass4.style.display = 'none';
                             svgHourglass5.style.display = 'block';
-                        }
-                    }}
+                        }}},
+                error: function () {
+                    <!-- alert('Erro: Não foi possível obter o status.'); -->
+                }
             });
 
         }
@@ -529,20 +531,20 @@
 
 
         //funciona, mas ta com uns bugs
-      
-        <!--   function toggleSidebar() {
+        {% comment %} function toggleSidebar() {
             document.body.classList.toggle("sidebar-toggled");
             document.querySelector(".sidebar").classList.toggle("toggled");
             const isCollapsed = document.querySelector(".sidebar").classList.contains("toggled");
             localStorage.setItem("sidebar-collapsed", isCollapsed);
         }
- document.addEventListener("DOMContentLoaded", function () {
+
+        document.addEventListener("DOMContentLoaded", function () {
             const isCollapsed = localStorage.getItem("sidebar-collapsed") === "true";
             if (isCollapsed) {
                 document.body.classList.add("sidebar-toggled");
                 document.querySelector(".sidebar").classList.add("toggled");
             }
-        }); -->
+        }); {% endcomment %}
 
 
         // Adiciona um ouvinte de eventos ao botão para alternar a barra lateral
