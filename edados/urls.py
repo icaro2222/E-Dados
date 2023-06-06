@@ -38,6 +38,7 @@ urlpatterns = [
     path('Perfil_do_Inscrito/', view_formulario_1.formulario_1, name="formulario_1"),
     
     path('Acertos_por_Prova/', view_formulario_3.formulario_3, name="formulario_3"),
+    path('Acertos_por_Questao/', view_formulario_3.formulario_2, name="formulario_3_2"),
     
     path('Mapa_de_Distribuição_de_alunos/', view_formulario_4.formulario_4, name="formulario_4"),
     
