@@ -332,23 +332,6 @@
                                     </div>
                                 </li>
                             </div>
-                            <!-- <div class="row d-flex mr-2 align-items-center">
-                                <li class="nav-item dropdown no-arrow ml-2 mr-3 text-center">
-
-                                    <div class="zo " data-tooltip="Suporte">
-                                        <a class="gb_pe gb_ne gb_1d t6"
-                                            role="button" id="lZwQje" title="Suporte" tabindex="0" aria-label="Suporte"
-                                            aria-expanded="true" aria-haspopup="true" aria-controls="M842Cd"><svg
-                                                class="t7" xmlns="http://www.w3.org/2000/svg" width="24px" 
-                                                height="24px"
-                                                viewBox="0 0 24 24" fill="CurrentColor" focusable="false">
-                                                <path fill="#0000" d="M0 0h24v24H0z"></path>
-                                                <path
-                                                    d="M11 18h2v-2h-2v2zm1-16C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-2.21 0-4 1.79-4 4h2c0-1.1.9-2 2-2s2 .9 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.21-1.79-4-4-4z">
-                                                </path>
-                                            </svg></a></div>
-                                </li>
-                            </div> -->
                             <div class="row d-flex align-items-center">
                                 <li class="nav-item dropdown no-arrow ml-2 mr-3 text-center">
                                     <a class="av-link collapse-item btn btn-custom d-flex justify-content-center align-items-center"
@@ -538,14 +521,7 @@
                             svgHourglass4.style.display = 'none';
                             svgHourglass5.style.display = 'block';
                         }
-                        <!-- alert('Status: ' + response.status); -->
-                    } else {
-                        <!-- alert('Erro: Não foi possível obter o status.'); -->
-                    }
-                },
-                error: function () {
-                    <!-- alert('Erro: Não foi possível obter o status.'); -->
-                }
+                    }}
             });
 
         }
@@ -553,20 +529,20 @@
 
 
         //funciona, mas ta com uns bugs
-        {% comment %} function toggleSidebar() {
+      
+        <!--   function toggleSidebar() {
             document.body.classList.toggle("sidebar-toggled");
             document.querySelector(".sidebar").classList.toggle("toggled");
             const isCollapsed = document.querySelector(".sidebar").classList.contains("toggled");
             localStorage.setItem("sidebar-collapsed", isCollapsed);
         }
-
-        document.addEventListener("DOMContentLoaded", function () {
+ document.addEventListener("DOMContentLoaded", function () {
             const isCollapsed = localStorage.getItem("sidebar-collapsed") === "true";
             if (isCollapsed) {
                 document.body.classList.add("sidebar-toggled");
                 document.querySelector(".sidebar").classList.add("toggled");
             }
-        }); {% endcomment %}
+        }); -->
 
 
         // Adiciona um ouvinte de eventos ao botão para alternar a barra lateral

@@ -30,9 +30,17 @@ Acertos/Erros nas Questões
     </h5>
     <hr class="mt-0 mb-2" />
     <div class="row d-flex">
-      <div class="col-md-5">
+      <div id="cor_da_prova_2017" class="col-md-5" style="display: none;">
         {% csrf_token %}
-        {{ form.cor_da_prova|as_crispy_field }}
+        {{ form.cor_da_prova_2017|as_crispy_field }}
+      </div>
+      <div id="cor_da_prova_2018" class="col-md-5" style="display: none;">
+        {% csrf_token %}
+        {{ form.cor_da_prova_2018|as_crispy_field }}
+      </div>
+      <div id="cor_da_prova_2019" class="col-md-5">
+        {% csrf_token %}
+        {{ form.cor_da_prova_2019|as_crispy_field }}
       </div>
       <div class="col-md-4">
         {% csrf_token %}
@@ -197,7 +205,48 @@ Acertos/Erros nas Questões
   </div>
 </div>
 
+
 <script>
+  var cor_da_prova_2017 = document.getElementById("cor_da_prova_2017");
+  var cor_da_prova_2018 = document.getElementById("cor_da_prova_2018");
+  var cor_da_prova_2019 = document.getElementById("cor_da_prova_2019");
+    
+  var selectAno = document.getElementById("id_ano");
+  var ano = selectAno.value;
+  if (ano == "2019") {
+    cor_da_prova_2019.style.display = 'block';
+    cor_da_prova_2018.style.display = 'none';
+    cor_da_prova_2017.style.display = 'none';
+  } else if (ano == "2018") {
+    cor_da_prova_2019.style.display = 'none';
+    cor_da_prova_2018.style.display = 'block';
+    cor_da_prova_2017.style.display = 'none';
+  } else if (ano == "2017") {
+    cor_da_prova_2019.style.display = 'none';
+    cor_da_prova_2018.style.display = 'none';
+    cor_da_prova_2017.style.display = 'block';
+  }
+
+  selectAno.addEventListener("change", function () {
+    var ano = selectAno.value;
+    console.log(ano)
+    if (ano == "2019") {
+      cor_da_prova_2019.style.display = 'block';
+      cor_da_prova_2018.style.display = 'none';
+      cor_da_prova_2017.style.display = 'none';
+    } else if (ano == "2018") {
+      cor_da_prova_2019.style.display = 'none';
+      cor_da_prova_2018.style.display = 'block';
+      cor_da_prova_2017.style.display = 'none';
+    } else if (ano == "2017") {
+      cor_da_prova_2019.style.display = 'none';
+      cor_da_prova_2018.style.display = 'none';
+      cor_da_prova_2017.style.display = 'block';
+    }
+  });  
+</script>
+
+<!-- <script>
 
   var selectElement = document.getElementById("id_amostra");
   // Adicione um ouvinte de eventos para o evento "change" no campo "select"
@@ -211,7 +260,7 @@ Acertos/Erros nas Questões
     }
   });
 
-</script>
+</script> -->
 <script src={% static "js/js_formulario.js" %}></script>
 
 <!-- /.container-fluid -->

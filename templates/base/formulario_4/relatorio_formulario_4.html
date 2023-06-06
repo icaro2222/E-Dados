@@ -125,7 +125,7 @@ Densidade Demográfica
     </div>
     <div class="loading" id="preloader">
       <h4 class="loading_preloader justify-content-center align-items-center">
-        Processar todos os dados pode tornar o processo mais pesado e, por isso, pode levar um tempo para ser concluído.
+        O processamento dos dados e a criação de um mapa, é um processo custoso e, por isso, pode levar um tempo para ser concluído.
       </h4>
     </div>
     <hr id="progressbar">
@@ -176,6 +176,35 @@ Densidade Demográfica
   </div>
 </div>
 
-<script src={% static "js/js_formulario.js" %}></script>
+<script>
+
+  // Toggle the side navigation
+  function imprimirComDelay() {
+    setTimeout(function () {
+      window.print();
+    }, 100);
+  }
+
+  window.onload = function geraranalise() {
+    var progressbar = document.getElementById("progressbar");
+    var width = 0;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+      } else {
+        width++;
+        progressbar.style.width = width + '%';
+      }
+    }
+  };  
+
+  document.getElementById("progressbar").style.animation = "none";
+   
+  
+  document.getElementById("preloader2").addEventListener("click", function() {
+    document.getElementById("preloader").style.display = "block";
+  });
+</script>
 <!-- /.container-fluid -->
 {% endblock %}
