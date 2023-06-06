@@ -25,7 +25,7 @@
 
       <hr class="mt-0 bg-dark" />
       <!-- PDF inicial -->
-      <iframe id="pdf-iframe" src="{% static 'img/Dicionário_Microdados_Enem_2019.pdf' %}" width="100%"
+      <iframe id="pdf-iframe" src="{% static 'pdf/dicionario_microdados/Dicionário_Microdados_Enem_2019.pdf' %}" width="100%"
         height="600"></iframe>
 
 
@@ -50,16 +50,16 @@
 
     if (selectedOption == "2019") {
       const iframe = document.querySelector("#pdf-iframe");
-      iframe.src = "{% static 'img/Dicionário_Microdados_Enem_2019.pdf' %}";
+      iframe.src = "{% static 'pdf/dicionario_microdados/Dicionário_Microdados_Enem_2019.pdf' %}";
     }
     if (selectedOption == "2018") {
       const iframe = document.querySelector("#pdf-iframe");
-      iframe.src = "{% static 'img/Dicionário_Microdados_Enem_2018.pdf' %}";
+      iframe.src = "{% static 'pdf/dicionario_microdados/Dicionário_Microdados_Enem_2018.pdf' %}";
     }
 
     if (selectedOption == "2017") {
       const iframe = document.querySelector("#pdf-iframe");
-      iframe.src = "{% static 'img/Dicionário_Microdados_Enem_2017.pdf' %}";
+      iframe.src = "{% static 'pdf/dicionario_microdados/Dicionário_Microdados_Enem_2017.pdf' %}";
     }
   });
 
