@@ -2,7 +2,7 @@
 {%load static %}
 {% load crispy_forms_tags %}
 {% block titulo %}
-Acertos/Erros nas Questões
+Acertos/Erros por Questões
 {% endblock %}
 {% block css %}
 <link rel="stylesheet" href={% static "css/styles_relatorio.css" %}>
@@ -16,12 +16,11 @@ Acertos/Erros nas Questões
     }
   }
 </style>
-
 <!-- Begin Page Content -->
 <div class="row text-dark">
   <!-- Page Heading -->
   <form class="col mt-0" action="." method="post">
-    <h5 class="m-0 d-flex align-items-center">
+    <h5 class="m-0 align-items-center">
       <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M0 2C0 0.89543 0.895431 0 2 0H10C11.1046 0 12 0.895431 12 2V4H14C15.1046 4 16 4.89543 16 6V14C16 15.1046 15.1046 16 14 16H6C4.89543 16 4 15.1046 4 14V12H2C0.89543 12 0 11.1046 0 10V2ZM5 12V14C5 14.5523 5.44772 15 6 15H14C14.5523 15 15 14.5523 15 14V6C15 5.44772 14.5523 5 14 5H12V10C12 11.1046 11.1046 12 10 12H5ZM11 4V2C11 1.44772 10.5523 1 10 1H2C1.44772 1 1 1.44772 1 2V10C1 10.5523 1.44772 11 2 11H4V6C4 4.89543 4.89543 4 6 4H11Z" />
@@ -30,49 +29,146 @@ Acertos/Erros nas Questões
     </h5>
     <hr class="mt-0 mb-2" />
     <div class="row mb-3">
-      <div class="col-md-3 border ml-3 p-2">
-        <h5 class="mb-0">Grupos A</h5>
-        <hr class="mt-0 mb-3" />
-        <div class="col-md-12">
-          {% csrf_token %}
-          {{ form.prova1|as_crispy_field }}
-        </div>
-        <div class="col-md-12">
-          {% csrf_token %}
-          {{ form.questao1|as_crispy_field }}
+      <div id="cor_da_prova_2019" class="col-md-9">
+        <div class="col-md-12 d-flex">
+          <div class="col-md-4 border ml-2 p-2">
+            <h5 class="mb-0">Grupos A</h5>
+            <hr class="mt-0 mb-3" />
+            <div class="col-md-12">
+              {% csrf_token %}
+              {{ form.prova1|as_crispy_field }}
+            </div>
+            <div class="col-md-12">
+              {% csrf_token %}
+              {{ form.questao1|as_crispy_field }}
+            </div>
+          </div>
+          <div class="col-md-8 border ml-4 p-2">
+            <h5 class="mb-0">Grupos B</h5>
+            <hr class="mt-0 mb-3" />
+            <div class="row">
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.prova2|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.prova3|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.prova4|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.questao2|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.questao3|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.questao4|as_crispy_field }}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-md-6 border ml-4 p-2">
-        <h5 class="mb-0">Grupos B</h5>
-        <hr class="mt-0 mb-3" />
-        <div class="row">
-          <div class="col-md-4">
-            {% csrf_token %}
-            {{ form.prova2|as_crispy_field }}
+
+      <div id="cor_da_prova_2018" class="col-md-9" style="display: none;">
+        <div class="col-md-12 d-flex">
+          <div class="col-md-4 border ml-2 p-2">
+            <h5 class="mb-0">Grupos A</h5>
+            <hr class="mt-0 mb-3" />
+            <div class="col-md-12">
+              {% csrf_token %}
+              {{ form.prova1_2018|as_crispy_field }}
+            </div>
+            <div class="col-md-12">
+              {% csrf_token %}
+              {{ form.questao1_2018|as_crispy_field }}
+            </div>
           </div>
-          <div class="col-md-4">
-            {% csrf_token %}
-            {{ form.prova3|as_crispy_field }}
-          </div>
-          <div class="col-md-4">
-            {% csrf_token %}
-            {{ form.prova4|as_crispy_field }}
-          </div>
-          <div class="col-md-4">
-            {% csrf_token %}
-            {{ form.questao2|as_crispy_field }}
-          </div>
-          <div class="col-md-4">
-            {% csrf_token %}
-            {{ form.questao3|as_crispy_field }}
-          </div>
-          <div class="col-md-4">
-            {% csrf_token %}
-            {{ form.questao4|as_crispy_field }}
+          <div class="col-md-8 border ml-4 p-2">
+            <h5 class="mb-0">Grupos B</h5>
+            <hr class="mt-0 mb-3" />
+            <div class="row">
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.prova2_2018|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.prova3_2018|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.prova4_2018|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.questao2_2018|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.questao3_2018|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.questao4_2018|as_crispy_field }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-2 border ml-4 p-2">
+      <div id="cor_da_prova_2017" class="col-md-9" style="display: none;">
+        <div class="col-md-12 d-flex">
+          <div class="col-md-4 border ml-2 p-2">
+            <h5 class="mb-0">Grupos A</h5>
+            <hr class="mt-0 mb-3" />
+            <div class="col-md-12">
+              {% csrf_token %}
+              {{ form.prova1_2017|as_crispy_field }}
+            </div>
+            <div class="col-md-12">
+              {% csrf_token %}
+              {{ form.questao1_2017|as_crispy_field }}
+            </div>
+          </div>
+          <div class="col-md-8 border ml-4 p-2">
+            <h5 class="mb-0">Grupos B</h5>
+            <hr class="mt-0 mb-3" />
+            <div class="row">
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.prova2_2017|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.prova3_2017|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.prova4_2017|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.questao2_2017|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.questao3_2017|as_crispy_field }}
+              </div>
+              <div class="col-md-4">
+                {% csrf_token %}
+                {{ form.questao4_2017|as_crispy_field }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 border ml-5 p-2">
         <h5 class="mb-0">Fatores</h5>
         <hr class="mt-0 mb-3" />
         <div class="col-md-12">
@@ -86,7 +182,7 @@ Acertos/Erros nas Questões
       </div>
     </div>
 
-    <h5 class="m-0 d-flex align-items-center">
+    <h5 class="m-0 align-items-center">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-funnel me-2"
         viewBox="0 0 16 16">
         <path
@@ -185,6 +281,7 @@ Acertos/Erros nas Questões
         </div>
       </div>
     </div>
+
     <div class="row col-md-12 d-flex align-items-center justify-content-end">
       <button id="preloader2" type="submit" class="btn btn-outline-primary">
         Gerar Análise
@@ -202,8 +299,7 @@ Acertos/Erros nas Questões
 
     <div class="loading" id="preloader">
       <h4 class="loading_preloader justify-content-center align-items-center">
-        Processar todos os dados pode tornar o processo mais pesado e, por isso, pode levar um tempo para ser
-        concluído.
+        Aguarde um momento...
       </h4>
     </div>
     <hr id="progressbar">
@@ -213,8 +309,8 @@ Acertos/Erros nas Questões
 <div class="text-dark rounded border border-dark">
   <div class="row">
     <div class="col-md-12">
-        <h5 class="mt-2 mb-0 ml-2">{{ menssagem }}</h5>
-        <hr class="mt-0 mb-3 bg-dark" />
+      <h5 class="mt-2 mb-0 ml-2">{{ menssagem }}</h5>
+      <hr class="mt-0 mb-3 bg-dark" />
       <div class="row d-flex col">
         <div class="col-md-12">
           <h6>O número total de alunos que se inscreveram no Enem: {{ quantidadeTotal }}</h6>
@@ -270,7 +366,60 @@ Acertos/Erros nas Questões
   </div>
 </div>
 
-<script src={% static "js/js_formulario.js" %}></script>
+
+<script>
+  var cor_da_prova_2017 = document.getElementById("cor_da_prova_2017");
+  var cor_da_prova_2018 = document.getElementById("cor_da_prova_2018");
+  var cor_da_prova_2019 = document.getElementById("cor_da_prova_2019");
+
+  var selectAno = document.getElementById("id_ano");
+  selectAno.addEventListener("change", function () {
+    var ano = selectAno.value;
+    console.log(ano)
+    if (ano == 2019) {
+      cor_da_prova_2019.style.display = 'block';
+      cor_da_prova_2018.style.display = 'none';
+      cor_da_prova_2017.style.display = 'none';
+    } else if (ano == "2018") {
+      cor_da_prova_2019.style.display = 'none';
+      cor_da_prova_2018.style.display = 'block';
+      cor_da_prova_2017.style.display = 'none';
+    } else if (ano == "2017") {
+      cor_da_prova_2019.style.display = 'none';
+      cor_da_prova_2018.style.display = 'none';
+      cor_da_prova_2017.style.display = 'block';
+    }
+  });
+
+
+  // Toggle the side navigation
+  function imprimirComDelay() {
+    setTimeout(function () {
+      window.print();
+    }, 100);
+  }
+
+  window.onload = function geraranalise() {
+    var progressbar = document.getElementById("progressbar");
+    var width = 0;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+      } else {
+        width++;
+        progressbar.style.width = width + '%';
+      }
+    }
+  };   
+
+  document.getElementById("progressbar").style.animation = "none";
+
+  document.getElementById("preloader2").addEventListener("click", function() {
+    document.getElementById("preloader").style.display = "block";
+  });
+
+</script>
 
 <!-- /.container-fluid -->
 {% endblock %}

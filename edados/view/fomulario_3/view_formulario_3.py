@@ -149,10 +149,162 @@ def prova_nome_pdf(filtro_cor_da_prova):
     else:
         prova_pdf = "desenvolvimento.pdf"
             
-    print('@------------------------------------------------------------@')
-    print(filtro_cor_da_prova)
-    
     return prova_pdf
+
+def nome_prova(codigo, filtro_ano): 
+    print(codigo)
+    print("=============================================")   
+    print(filtro_ano)
+    if (filtro_ano=="2019"):
+        if( codigo == '503' or 
+            codigo == '504' or
+            codigo == '505' or
+            codigo == '506' or
+            codigo == '519' or
+            codigo == '523' or
+            codigo == '543' or
+            codigo == '544' or
+            codigo == '545' or
+            codigo == '546'):
+            nome_prova = 'CO_PROVA_CN'
+        elif(
+            codigo == '507' or 
+            codigo == '508' or
+            codigo == '509' or
+            codigo == '510' or
+            codigo == '520' or
+            codigo == '524' or
+            codigo == '547' or
+            codigo == '548' or
+            codigo == '549' or
+            codigo == '550' or
+            codigo == '564'):
+            nome_prova = 'CO_PROVA_CH'
+        elif(
+            codigo == '511' or 
+            codigo == '512' or
+            codigo == '513' or
+            codigo == '514' or
+            codigo == '521' or
+            codigo == '525' or
+            codigo == '551' or
+            codigo == '552' or
+            codigo == '553' or
+            codigo == '554' or
+            codigo == '565'):
+            nome_prova = 'CO_PROVA_LC'
+        elif(
+            codigo == '515' or
+            codigo == '516' or
+            codigo == '517' or
+            codigo == '518' or
+            codigo == '522' or
+            codigo == '526' or
+            codigo == '555' or
+            codigo == '556' or
+            codigo == '557' or
+            codigo == '558'):
+            nome_prova = 'CO_PROVA_MT'
+    elif (filtro_ano=="2018"):
+        if( codigo == '447' or 
+            codigo == '448' or
+            codigo == '449' or
+            codigo == '450' or
+            codigo == '463' or
+            codigo == '467' or
+            codigo == '487' or
+            codigo == '488' or
+            codigo == '489' or
+            codigo == '490'):
+            nome_prova = 'CO_PROVA_CN'
+        elif(
+            codigo == '451' or 
+            codigo == '452' or
+            codigo == '453' or
+            codigo == '454' or
+            codigo == '464' or
+            codigo == '468' or
+            codigo == '491' or
+            codigo == '492' or
+            codigo == '493' or
+            codigo == '494'):
+            nome_prova = 'CO_PROVA_CH'
+        elif(
+            codigo == '455' or 
+            codigo == '456' or
+            codigo == '457' or
+            codigo == '458' or
+            codigo == '465' or
+            codigo == '469' or
+            codigo == '495' or
+            codigo == '496' or
+            codigo == '497' or
+            codigo == '498' ):
+            nome_prova = 'CO_PROVA_LC'
+        elif(
+            codigo == '459' or
+            codigo == '460' or
+            codigo == '461' or
+            codigo == '462' or
+            codigo == '466' or
+            codigo == '470' or
+            codigo == '499' or
+            codigo == '500' or
+            codigo == '501' or
+            codigo == '502'):
+            nome_prova = 'CO_PROVA_MT'
+    elif (filtro_ano=="2017"):
+        if( codigo == '391' or 
+            codigo == '392' or
+            codigo == '393' or
+            codigo == '394' or
+            codigo == '407' or
+            codigo == '411' or
+            codigo == '431' or
+            codigo == '432' or
+            codigo == '433' or
+            codigo == '434'):
+            nome_prova = 'CO_PROVA_CN'
+        elif(
+            codigo == '395' or 
+            codigo == '396' or
+            codigo == '397' or
+            codigo == '398' or
+            codigo == '408' or
+            codigo == '412' or
+            codigo == '435' or
+            codigo == '436' or
+            codigo == '437' or
+            codigo == '438'):
+            nome_prova = 'CO_PROVA_CH'
+        elif(
+            codigo == '399' or 
+            codigo == '400' or
+            codigo == '401' or
+            codigo == '402' or
+            codigo == '409' or
+            codigo == '413' or
+            codigo == '439' or
+            codigo == '440' or
+            codigo == '441' or
+            codigo == '442'):
+            nome_prova = 'CO_PROVA_LC'
+        elif(
+            codigo == '403' or
+            codigo == '404' or
+            codigo == '405' or
+            codigo == '406' or
+            codigo == '410' or
+            codigo == '414' or
+            codigo == '443' or
+            codigo == '444' or
+            codigo == '445' or
+            codigo == '446'):
+            nome_prova = 'CO_PROVA_MT'
+    else:
+        nome_prova = 'DEU_RUIM'
+           
+    return nome_prova
 
 @login_required
 def formulario_2(request):
@@ -223,192 +375,44 @@ def formulario_2(request):
             filtro_recurso_grupo_B = form_filtro_grupo_B.cleaned_data['recurso']
             filtro_localizacao_da_escola_grupo_B = form_filtro_grupo_B.cleaned_data['localizacao_da_escola']
         
-        print("-----------------------------------------------------------------------------")
-        print(filtro_amostra_grupo_B)
-        print("filtro_amostra_grupo_B")
-        print("-----------------------------------------------------------------------------")
-        # Variáveis vindas do Formulario
-        if (filtro_ano=="2019"):
-            filtro_cor_da_prova = request.POST.get('cor_da_prova_2019')
-            print(filtro_cor_da_prova)
-        elif (filtro_ano=="2018"):
-            filtro_cor_da_prova = request.POST.get('cor_da_prova_2018')
-            print(filtro_cor_da_prova)
-        elif (filtro_ano=="2017"):
-            filtro_cor_da_prova = request.POST.get('cor_da_prova_2017')
-            print(filtro_cor_da_prova)
-
-        filtro_cor_da_prova1 = request.POST.get('prova1')
-        filtro_cor_da_prova2 = request.POST.get('prova2')
-        filtro_cor_da_prova3 = request.POST.get('prova3')
-        filtro_cor_da_prova4 = request.POST.get('prova4')
-        
-        questao1 = request.POST.get('questao1')
-        questao2 = request.POST.get('questao2')
-        questao3 = request.POST.get('questao3')
-        questao4 = request.POST.get('questao4')
+        if(filtro_ano=="2019"):
+            filtro_cor_da_prova1 = request.POST.get('prova1')
+            filtro_cor_da_prova2 = request.POST.get('prova2')
+            filtro_cor_da_prova3 = request.POST.get('prova3')
+            filtro_cor_da_prova4 = request.POST.get('prova4')            
+            questao1 = request.POST.get('questao1')
+            questao2 = request.POST.get('questao2')
+            questao3 = request.POST.get('questao3')
+            questao4 = request.POST.get('questao4')
+        elif(filtro_ano=="2018"):
+            filtro_cor_da_prova1 = request.POST.get('prova1_2018')
+            filtro_cor_da_prova2 = request.POST.get('prova2_2018')
+            filtro_cor_da_prova3 = request.POST.get('prova3_2018')
+            filtro_cor_da_prova4 = request.POST.get('prova4_2018')            
+            questao1 = request.POST.get('questao1_2018')
+            questao2 = request.POST.get('questao2_2018')
+            questao3 = request.POST.get('questao3_2018')
+            questao4 = request.POST.get('questao4_2018')
+        elif(filtro_ano=="2017"):
+            filtro_cor_da_prova1 = request.POST.get('prova1_2017')
+            filtro_cor_da_prova2 = request.POST.get('prova2_2017')
+            filtro_cor_da_prova3 = request.POST.get('prova3_2017')
+            filtro_cor_da_prova4 = request.POST.get('prova4_2017')            
+            questao1 = request.POST.get('questao1_2017')
+            questao2 = request.POST.get('questao2_2017')
+            questao3 = request.POST.get('questao3_2017')
+            questao4 = request.POST.get('questao4_2017')
         
         if (questao3=="Nenhuma"):
             filtro_cor_da_prova3 = "Nenhuma"
         if (questao4=="Nenhuma"):
             filtro_cor_da_prova4 = "Nenhuma"
-        
 
         prova_pdf = prova_nome_pdf(filtro_cor_da_prova=filtro_cor_da_prova1)
         prova_pdf = '/pdf/PROVAS_E_GABARITOS/'+prova_pdf
-
-        if (filtro_ano=="2019"):
-            if( filtro_cor_da_prova1 == '503' or 
-                filtro_cor_da_prova1 == '504' or
-                filtro_cor_da_prova1 == '505' or
-                filtro_cor_da_prova1 == '506' or
-                filtro_cor_da_prova1 == '519' or
-                filtro_cor_da_prova1 == '523' or
-                filtro_cor_da_prova1 == '543' or
-                filtro_cor_da_prova1 == '544' or
-                filtro_cor_da_prova1 == '545' or
-                filtro_cor_da_prova1 == '546'):
-                prova = 'CO_PROVA_CN'
-            elif(
-                filtro_cor_da_prova1 == '507' or 
-                filtro_cor_da_prova1 == '508' or
-                filtro_cor_da_prova1 == '509' or
-                filtro_cor_da_prova1 == '510' or
-                filtro_cor_da_prova1 == '520' or
-                filtro_cor_da_prova1 == '524' or
-                filtro_cor_da_prova1 == '547' or
-                filtro_cor_da_prova1 == '548' or
-                filtro_cor_da_prova1 == '549' or
-                filtro_cor_da_prova1 == '550' or
-                filtro_cor_da_prova1 == '564'):
-                prova = 'CO_PROVA_CH'
-            elif(
-                filtro_cor_da_prova1 == '511' or 
-                filtro_cor_da_prova1 == '512' or
-                filtro_cor_da_prova1 == '513' or
-                filtro_cor_da_prova1 == '514' or
-                filtro_cor_da_prova1 == '521' or
-                filtro_cor_da_prova1 == '525' or
-                filtro_cor_da_prova1 == '551' or
-                filtro_cor_da_prova1 == '552' or
-                filtro_cor_da_prova1 == '553' or
-                filtro_cor_da_prova1 == '554' or
-                filtro_cor_da_prova1 == '565'):
-                prova = 'CO_PROVA_LC'
-            elif(
-                filtro_cor_da_prova1 == '515' or
-                filtro_cor_da_prova1 == '516' or
-                filtro_cor_da_prova1 == '517' or
-                filtro_cor_da_prova1 == '518' or
-                filtro_cor_da_prova1 == '522' or
-                filtro_cor_da_prova1 == '526' or
-                filtro_cor_da_prova1 == '555' or
-                filtro_cor_da_prova1 == '556' or
-                filtro_cor_da_prova1 == '557' or
-                filtro_cor_da_prova1 == '558'):
-                prova = 'CO_PROVA_MT'
-            else:
-                prova = 'CO_PROVA_MT'
-        elif (filtro_ano=="2018"):
-            if( filtro_cor_da_prova1 == '447' or 
-                filtro_cor_da_prova1 == '448' or
-                filtro_cor_da_prova1 == '449' or
-                filtro_cor_da_prova1 == '450' or
-                filtro_cor_da_prova1 == '463' or
-                filtro_cor_da_prova1 == '467' or
-                filtro_cor_da_prova1 == '487' or
-                filtro_cor_da_prova1 == '488' or
-                filtro_cor_da_prova1 == '489' or
-                filtro_cor_da_prova1 == '490'):
-                prova = 'CO_PROVA_CN'
-            elif(
-                filtro_cor_da_prova1 == '451' or 
-                filtro_cor_da_prova1 == '452' or
-                filtro_cor_da_prova1 == '453' or
-                filtro_cor_da_prova1 == '454' or
-                filtro_cor_da_prova1 == '464' or
-                filtro_cor_da_prova1 == '468' or
-                filtro_cor_da_prova1 == '491' or
-                filtro_cor_da_prova1 == '492' or
-                filtro_cor_da_prova1 == '493' or
-                filtro_cor_da_prova1 == '494'):
-                prova = 'CO_PROVA_CH'
-            elif(
-                filtro_cor_da_prova1 == '455' or 
-                filtro_cor_da_prova1 == '456' or
-                filtro_cor_da_prova1 == '457' or
-                filtro_cor_da_prova1 == '458' or
-                filtro_cor_da_prova1 == '465' or
-                filtro_cor_da_prova1 == '469' or
-                filtro_cor_da_prova1 == '495' or
-                filtro_cor_da_prova1 == '496' or
-                filtro_cor_da_prova1 == '497' or
-                filtro_cor_da_prova1 == '498' ):
-                prova = 'CO_PROVA_LC'
-            elif(
-                filtro_cor_da_prova1 == '459' or
-                filtro_cor_da_prova1 == '460' or
-                filtro_cor_da_prova1 == '461' or
-                filtro_cor_da_prova1 == '462' or
-                filtro_cor_da_prova1 == '466' or
-                filtro_cor_da_prova1 == '470' or
-                filtro_cor_da_prova1 == '499' or
-                filtro_cor_da_prova1 == '500' or
-                filtro_cor_da_prova1 == '501' or
-                filtro_cor_da_prova1 == '502'):
-                prova = 'CO_PROVA_MT'
-            else:
-                prova = 'CO_PROVA_MT'
-        elif (filtro_ano=="2017"):
-            if( filtro_cor_da_prova1 == '391' or 
-                filtro_cor_da_prova1 == '392' or
-                filtro_cor_da_prova1 == '393' or
-                filtro_cor_da_prova1 == '394' or
-                filtro_cor_da_prova1 == '407' or
-                filtro_cor_da_prova1 == '411' or
-                filtro_cor_da_prova1 == '431' or
-                filtro_cor_da_prova1 == '432' or
-                filtro_cor_da_prova1 == '433' or
-                filtro_cor_da_prova1 == '434'):
-                prova = 'CO_PROVA_CN'
-            elif(
-                filtro_cor_da_prova1 == '395' or 
-                filtro_cor_da_prova1 == '396' or
-                filtro_cor_da_prova1 == '397' or
-                filtro_cor_da_prova1 == '398' or
-                filtro_cor_da_prova1 == '408' or
-                filtro_cor_da_prova1 == '412' or
-                filtro_cor_da_prova1 == '435' or
-                filtro_cor_da_prova1 == '436' or
-                filtro_cor_da_prova1 == '437' or
-                filtro_cor_da_prova1 == '438'):
-                prova = 'CO_PROVA_CH'
-            elif(
-                filtro_cor_da_prova1 == '399' or 
-                filtro_cor_da_prova1 == '400' or
-                filtro_cor_da_prova1 == '401' or
-                filtro_cor_da_prova1 == '402' or
-                filtro_cor_da_prova1 == '409' or
-                filtro_cor_da_prova1 == '413' or
-                filtro_cor_da_prova1 == '439' or
-                filtro_cor_da_prova1 == '440' or
-                filtro_cor_da_prova1 == '441' or
-                filtro_cor_da_prova1 == '442'):
-                prova = 'CO_PROVA_LC'
-            elif(
-                filtro_cor_da_prova1 == '403' or
-                filtro_cor_da_prova1 == '404' or
-                filtro_cor_da_prova1 == '405' or
-                filtro_cor_da_prova1 == '406' or
-                filtro_cor_da_prova1 == '410' or
-                filtro_cor_da_prova1 == '414' or
-                filtro_cor_da_prova1 == '443' or
-                filtro_cor_da_prova1 == '444' or
-                filtro_cor_da_prova1 == '445' or
-                filtro_cor_da_prova1 == '446'):
-                prova = 'CO_PROVA_MT'
-            else:
-                prova = 'CO_PROVA_MT'
+        
+        prova = nome_prova(filtro_cor_da_prova1, filtro_ano=filtro_ano)
+        
         
         # Formulario de Filtro
         if prova == 'CO_PROVA_LC':
@@ -565,7 +569,6 @@ def formulario_2(request):
         if quantidade_de_respostas >= 0:
             linha_do_gabarito = gabarito_prova1.iloc[quantidade_de_respostas]
         
-        print(linha_do_gabarito)
 
         j = 1
         questao1 = int(questao1)-1
@@ -633,10 +636,6 @@ def formulario_2(request):
         acertos_pd_prova2 = pd.DataFrame(acertos_porcentagem)
         acertos_pd_prova2 = acertos_pd_prova2.reset_index(drop=True)
         acertos_pd_prova2.index = acertos_pd_prova2.index + int(questao2)
-        print("==========================================================")
-        print("acertos_pd_prova2.index")
-        print(acertos_pd_prova2.index[0])
-        print("==========================================================")
         
         # PROVA 3
         
@@ -745,13 +744,6 @@ def formulario_2(request):
             acertos_pd_prova4.columns = ['porcentagem_de_acertos']
             texto = acertos_pd_prova4.porcentagem_de_acertos
 
-        print("----------------------------------------------------------------------------------")
-        print(acertos_pd_prova1)
-        print(acertos_pd_prova2)
-        print(acertos_pd_prova3)
-        print(acertos_pd_prova4)
-        print("----------------------------------------------------------------------------------")
-
         relatorio_em_grafico = go.Figure()
 
         relatorio_em_grafico.add_bar(
@@ -802,14 +794,7 @@ def formulario_2(request):
             indexes = [int(questao1)+1, int(questao2)+1, int(questao4)+1]
         elif(filtro_cor_da_prova3!='Nenhuma' and filtro_cor_da_prova4!='Nenhuma'):
             indexes = [int(questao1)+1, int(questao2)+1, int(questao3)+1, int(questao4)+1]
-        
-        print(filtro_cor_da_prova1)
-        print(filtro_cor_da_prova2)
-        print(filtro_cor_da_prova3)
-        print(filtro_cor_da_prova4)
-        
-        print(indexes)
-            
+                    
         relatorio_em_grafico.update_layout(
             xaxis=dict(
                 tickvals=indexes,
@@ -926,174 +911,19 @@ def formulario_3(request):
         # Variáveis vindas do Formulario
         if (filtro_ano=="2019"):
             filtro_cor_da_prova = request.POST.get('cor_da_prova_2019')
-            print(filtro_cor_da_prova)
         elif (filtro_ano=="2018"):
             filtro_cor_da_prova = request.POST.get('cor_da_prova_2018')
-            print(filtro_cor_da_prova)
         elif (filtro_ano=="2017"):
             filtro_cor_da_prova = request.POST.get('cor_da_prova_2017')
-            print(filtro_cor_da_prova)
 
         # em desenvolvimento
         
 
         prova_pdf = prova_nome_pdf(filtro_cor_da_prova=filtro_cor_da_prova)
         prova_pdf = '/pdf/PROVAS_E_GABARITOS/'+prova_pdf
-
-        if (filtro_ano=="2019"):
-            if( filtro_cor_da_prova == '503' or 
-                filtro_cor_da_prova == '504' or
-                filtro_cor_da_prova == '505' or
-                filtro_cor_da_prova == '506' or
-                filtro_cor_da_prova == '519' or
-                filtro_cor_da_prova == '523' or
-                filtro_cor_da_prova == '543' or
-                filtro_cor_da_prova == '544' or
-                filtro_cor_da_prova == '545' or
-                filtro_cor_da_prova == '546'):
-                prova = 'CO_PROVA_CN'
-            elif(
-                filtro_cor_da_prova == '507' or 
-                filtro_cor_da_prova == '508' or
-                filtro_cor_da_prova == '509' or
-                filtro_cor_da_prova == '510' or
-                filtro_cor_da_prova == '520' or
-                filtro_cor_da_prova == '524' or
-                filtro_cor_da_prova == '547' or
-                filtro_cor_da_prova == '548' or
-                filtro_cor_da_prova == '549' or
-                filtro_cor_da_prova == '550' or
-                filtro_cor_da_prova == '564'):
-                prova = 'CO_PROVA_CH'
-            elif(
-                filtro_cor_da_prova == '511' or 
-                filtro_cor_da_prova == '512' or
-                filtro_cor_da_prova == '513' or
-                filtro_cor_da_prova == '514' or
-                filtro_cor_da_prova == '521' or
-                filtro_cor_da_prova == '525' or
-                filtro_cor_da_prova == '551' or
-                filtro_cor_da_prova == '552' or
-                filtro_cor_da_prova == '553' or
-                filtro_cor_da_prova == '554' or
-                filtro_cor_da_prova == '565'):
-                prova = 'CO_PROVA_LC'
-            elif(
-                filtro_cor_da_prova == '515' or
-                filtro_cor_da_prova == '516' or
-                filtro_cor_da_prova == '517' or
-                filtro_cor_da_prova == '518' or
-                filtro_cor_da_prova == '522' or
-                filtro_cor_da_prova == '526' or
-                filtro_cor_da_prova == '555' or
-                filtro_cor_da_prova == '556' or
-                filtro_cor_da_prova == '557' or
-                filtro_cor_da_prova == '558'):
-                prova = 'CO_PROVA_MT'
-            else:
-                prova = 'CO_PROVA_MT'
-        elif (filtro_ano=="2018"):
-            if( filtro_cor_da_prova == '447' or 
-                filtro_cor_da_prova == '448' or
-                filtro_cor_da_prova == '449' or
-                filtro_cor_da_prova == '450' or
-                filtro_cor_da_prova == '463' or
-                filtro_cor_da_prova == '467' or
-                filtro_cor_da_prova == '487' or
-                filtro_cor_da_prova == '488' or
-                filtro_cor_da_prova == '489' or
-                filtro_cor_da_prova == '490'):
-                prova = 'CO_PROVA_CN'
-            elif(
-                filtro_cor_da_prova == '451' or 
-                filtro_cor_da_prova == '452' or
-                filtro_cor_da_prova == '453' or
-                filtro_cor_da_prova == '454' or
-                filtro_cor_da_prova == '464' or
-                filtro_cor_da_prova == '468' or
-                filtro_cor_da_prova == '491' or
-                filtro_cor_da_prova == '492' or
-                filtro_cor_da_prova == '493' or
-                filtro_cor_da_prova == '494'):
-                prova = 'CO_PROVA_CH'
-            elif(
-                filtro_cor_da_prova == '455' or 
-                filtro_cor_da_prova == '456' or
-                filtro_cor_da_prova == '457' or
-                filtro_cor_da_prova == '458' or
-                filtro_cor_da_prova == '465' or
-                filtro_cor_da_prova == '469' or
-                filtro_cor_da_prova == '495' or
-                filtro_cor_da_prova == '496' or
-                filtro_cor_da_prova == '497' or
-                filtro_cor_da_prova == '498' ):
-                prova = 'CO_PROVA_LC'
-            elif(
-                filtro_cor_da_prova == '459' or
-                filtro_cor_da_prova == '460' or
-                filtro_cor_da_prova == '461' or
-                filtro_cor_da_prova == '462' or
-                filtro_cor_da_prova == '466' or
-                filtro_cor_da_prova == '470' or
-                filtro_cor_da_prova == '499' or
-                filtro_cor_da_prova == '500' or
-                filtro_cor_da_prova == '501' or
-                filtro_cor_da_prova == '502'):
-                prova = 'CO_PROVA_MT'
-            else:
-                prova = 'CO_PROVA_MT'
-        elif (filtro_ano=="2017"):
-            if( filtro_cor_da_prova == '391' or 
-                filtro_cor_da_prova == '392' or
-                filtro_cor_da_prova == '393' or
-                filtro_cor_da_prova == '394' or
-                filtro_cor_da_prova == '407' or
-                filtro_cor_da_prova == '411' or
-                filtro_cor_da_prova == '431' or
-                filtro_cor_da_prova == '432' or
-                filtro_cor_da_prova == '433' or
-                filtro_cor_da_prova == '434'):
-                prova = 'CO_PROVA_CN'
-            elif(
-                filtro_cor_da_prova == '395' or 
-                filtro_cor_da_prova == '396' or
-                filtro_cor_da_prova == '397' or
-                filtro_cor_da_prova == '398' or
-                filtro_cor_da_prova == '408' or
-                filtro_cor_da_prova == '412' or
-                filtro_cor_da_prova == '435' or
-                filtro_cor_da_prova == '436' or
-                filtro_cor_da_prova == '437' or
-                filtro_cor_da_prova == '438'):
-                prova = 'CO_PROVA_CH'
-            elif(
-                filtro_cor_da_prova == '399' or 
-                filtro_cor_da_prova == '400' or
-                filtro_cor_da_prova == '401' or
-                filtro_cor_da_prova == '402' or
-                filtro_cor_da_prova == '409' or
-                filtro_cor_da_prova == '413' or
-                filtro_cor_da_prova == '439' or
-                filtro_cor_da_prova == '440' or
-                filtro_cor_da_prova == '441' or
-                filtro_cor_da_prova == '442'):
-                prova = 'CO_PROVA_LC'
-            elif(
-                filtro_cor_da_prova == '403' or
-                filtro_cor_da_prova == '404' or
-                filtro_cor_da_prova == '405' or
-                filtro_cor_da_prova == '406' or
-                filtro_cor_da_prova == '410' or
-                filtro_cor_da_prova == '414' or
-                filtro_cor_da_prova == '443' or
-                filtro_cor_da_prova == '444' or
-                filtro_cor_da_prova == '445' or
-                filtro_cor_da_prova == '446'):
-                prova = 'CO_PROVA_MT'
-            else:
-                prova = 'CO_PROVA_MT'
         
-        print(prova_pdf)
+        prova = nome_prova(filtro_cor_da_prova, filtro_ano=filtro_ano)
+        
         # Formulario de Filtro
         if prova == 'CO_PROVA_LC':
             respostas = "TX_RESPOSTAS_LC"
@@ -1170,10 +1000,6 @@ def formulario_3(request):
 
         for j in range(0, 45):
             for i in range(0, quantidade_de_respostas):
-                # print(i)
-                # print(quantidade_de_respostas)
-                # print('resposta[i]:'+resposta[i])
-                # print("linha_da_resposta[j] :" +linha_da_resposta[j] )
                 if(resposta[i] == ''):
                     resposta[i] = "............................................."
                 linha_da_resposta = resposta[i]
@@ -1192,16 +1018,12 @@ def formulario_3(request):
 
             acertos_porcentagem[j+1] = (acertos[j] / quantidade_de_respostas)*100
         
-        # print(acertos_porcentagem)
-        print(acertos_porcentagem)
         acertos_porcentagem = acertos_porcentagem[1:]
-        print(acertos_porcentagem)
         acertos_pd = pd.DataFrame(acertos_porcentagem)
         
         # Colocando nome no DataFrame
         acertos_pd.columns = ['porcentagem_de_acertos']
         texto = acertos_pd.porcentagem_de_acertos
-        print(acertos_pd)
         
         relatorio_em_grafico = go.Figure()
         nome = "Percentual Conforme os critérios estabelecidos"
