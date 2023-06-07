@@ -457,7 +457,7 @@ def formulario_2(request):
                     Amostra, 
                     filtro_sexo=filtro_sexo_grupo_B, 
                     filtro_cidade=filtro_cidade_grupo_B, 
-                    filtro_cor_da_prova=filtro_cor_da_prova2, 
+                    filtro_cor_da_prova=filtro_cor_da_prova3, 
                     filtro_deficiencia=filtro_deficiencia_grupo_B,
                     filtro_amostra=filtro_amostra_grupo_B, 
                     filtro_cor=filtro_cor_grupo_B,   
@@ -471,7 +471,7 @@ def formulario_2(request):
                     Amostra, 
                     filtro_sexo=filtro_sexo_grupo_B, 
                     filtro_cidade=filtro_cidade_grupo_B, 
-                    filtro_cor_da_prova=filtro_cor_da_prova2, 
+                    filtro_cor_da_prova=filtro_cor_da_prova4, 
                     filtro_deficiencia=filtro_deficiencia_grupo_B,
                     filtro_amostra=filtro_amostra_grupo_B, 
                     filtro_cor=filtro_cor_grupo_B,   
@@ -515,7 +515,7 @@ def formulario_2(request):
                     Amostra, 
                     filtro_sexo=filtro_sexo_grupo_B, 
                     filtro_cidade=filtro_cidade_grupo_B, 
-                    filtro_cor_da_prova=filtro_cor_da_prova2, 
+                    filtro_cor_da_prova=filtro_cor_da_prova3, 
                     filtro_deficiencia=filtro_deficiencia_grupo_B,
                     filtro_amostra=filtro_amostra_grupo_B, 
                     filtro_cor=filtro_cor_grupo_B,   
@@ -529,7 +529,7 @@ def formulario_2(request):
                     Amostra, 
                     filtro_sexo=filtro_sexo_grupo_B, 
                     filtro_cidade=filtro_cidade_grupo_B, 
-                    filtro_cor_da_prova=filtro_cor_da_prova2, 
+                    filtro_cor_da_prova=filtro_cor_da_prova4, 
                     filtro_deficiencia=filtro_deficiencia_grupo_B,
                     filtro_amostra=filtro_amostra_grupo_B, 
                     filtro_cor=filtro_cor_grupo_B,   
@@ -555,8 +555,8 @@ def formulario_2(request):
 
         # Extrair as respostas da prova 1
         resposta = Microdado_Prova1[respostas]
-        quantidade_de_respostas = Microdado_Prova1[respostas].count() - 1
-        quantidadeParcial_grupo_A = Microdado_Prova1[respostas].count()
+        quantidade_de_respostas =  (Microdado_Prova1[respostas].count()-1)
+        quantidadeParcial_grupo_A = Microdado_Prova1[respostas].count() 
         gabarito_prova1 = Microdado_Prova1[gabarito]
 
         acertos = [0] * 2
@@ -564,9 +564,11 @@ def formulario_2(request):
 
         if quantidade_de_respostas >= 0:
             linha_do_gabarito = gabarito_prova1.iloc[quantidade_de_respostas]
+        
+        print(linha_do_gabarito)
 
-        j = 0
-        questao1 = int(questao1)
+        j = 1
+        questao1 = int(questao1)-1
 
         for i in range(quantidade_de_respostas):
             if resposta[i] == '':
@@ -606,8 +608,8 @@ def formulario_2(request):
         if quantidade_de_respostas >= 0:
             linha_do_gabarito = gabarito_prova2.iloc[quantidade_de_respostas]
 
-        j = 0
-        questao2 = int(questao2)
+        j = 1
+        questao2 = int(questao2)-1
 
         for i in range(quantidade_de_respostas):
             if resposta[i] == '':
@@ -631,6 +633,10 @@ def formulario_2(request):
         acertos_pd_prova2 = pd.DataFrame(acertos_porcentagem)
         acertos_pd_prova2 = acertos_pd_prova2.reset_index(drop=True)
         acertos_pd_prova2.index = acertos_pd_prova2.index + int(questao2)
+        print("==========================================================")
+        print("acertos_pd_prova2.index")
+        print(acertos_pd_prova2.index[0])
+        print("==========================================================")
         
         # PROVA 3
         
@@ -641,7 +647,6 @@ def formulario_2(request):
             # Extrair as respostas da prova 3
             resposta = Microdado_Prova3[respostas]
             quantidade_de_respostas = Microdado_Prova3[respostas].count() - 1
-            quantidadeParcial_grupo_B = Microdado_Prova3[respostas].count()
             gabarito_prova3 = Microdado_Prova3[gabarito]
 
             acertos = [0] * 2
@@ -651,7 +656,7 @@ def formulario_2(request):
                 linha_do_gabarito = gabarito_prova3.iloc[quantidade_de_respostas]
 
             j = 0
-            questao3 = int(questao3)
+            questao3 = int(questao3)-1
 
             for i in range(quantidade_de_respostas):
                 if resposta[i] == '':
@@ -695,7 +700,7 @@ def formulario_2(request):
                 linha_do_gabarito = gabarito_prova4.iloc[quantidade_de_respostas]
 
             j = 0
-            questao4 = int(questao4)
+            questao4 = int(questao4)-1
 
             for i in range(quantidade_de_respostas):
                 if resposta[i] == '':
@@ -743,12 +748,15 @@ def formulario_2(request):
         print("----------------------------------------------------------------------------------")
         print(acertos_pd_prova1)
         print(acertos_pd_prova2)
+        print(acertos_pd_prova3)
+        print(acertos_pd_prova4)
+        print("----------------------------------------------------------------------------------")
 
         relatorio_em_grafico = go.Figure()
 
         relatorio_em_grafico.add_bar(
             y=acertos_pd_prova1['porcentagem_de_acertos'],
-            x=acertos_pd_prova1.index,
+            x=(acertos_pd_prova1.index+1),
             text=acertos_pd_prova1['porcentagem_de_acertos'],
             texttemplate='%{text:.2f}%',
             textposition='auto',
@@ -757,7 +765,7 @@ def formulario_2(request):
 
         relatorio_em_grafico.add_bar(
             y=acertos_pd_prova2['porcentagem_de_acertos'],
-            x=acertos_pd_prova2.index,
+            x=(acertos_pd_prova2.index+1),
             text=acertos_pd_prova2['porcentagem_de_acertos'],
             texttemplate='%{text:.2f}%',
             textposition='auto',
@@ -768,7 +776,7 @@ def formulario_2(request):
         if(filtro_cor_da_prova3!='Nenhuma'):  
             relatorio_em_grafico.add_bar(
                 y=acertos_pd_prova3['porcentagem_de_acertos'],
-                x=acertos_pd_prova3.index,
+                x=(acertos_pd_prova3.index+1),
                 text=acertos_pd_prova3['porcentagem_de_acertos'],
                 texttemplate='%{text:.2f}%',
                 textposition='auto',
@@ -779,21 +787,28 @@ def formulario_2(request):
         if(filtro_cor_da_prova4!='Nenhuma'):  
             relatorio_em_grafico.add_bar(
                 y=acertos_pd_prova4['porcentagem_de_acertos'],
-                x=acertos_pd_prova4.index,
+                x=(acertos_pd_prova4.index+1),
                 text=acertos_pd_prova4['porcentagem_de_acertos'],
                 texttemplate='%{text:.2f}%',
                 textposition='auto',
                 name=filtro_cor_da_prova4
             )
             
-        if(filtro_cor_da_prova3=='Nenhum' and filtro_cor_da_prova4=='Nenhum'):
-            indexes = [questao1, questao2, ]
-        elif(filtro_cor_da_prova3!='Nenhum' and filtro_cor_da_prova4=='Nenhum'):
-            indexes = [questao1, questao2, questao3]
-        elif(filtro_cor_da_prova3=='Nenhum' and filtro_cor_da_prova4!='Nenhum'):
-            indexes = [questao1, questao2, questao4]
-        elif(filtro_cor_da_prova3!='Nenhum' and filtro_cor_da_prova4!='Nenhum'):
-            indexes = [questao1, questao2, questao3, questao4]
+        if(filtro_cor_da_prova3=='Nenhuma' and filtro_cor_da_prova4=='Nenhuma'):
+            indexes = [int(questao1)+1, int(questao2)+1 ]
+        elif(filtro_cor_da_prova3!='Nenhuma' and filtro_cor_da_prova4=='Nenhuma'):
+            indexes = [int(questao1)+1, int(questao2)+1, int(questao3)+1]
+        elif(filtro_cor_da_prova3=='Nenhuma' and filtro_cor_da_prova4!='Nenhuma'):
+            indexes = [int(questao1)+1, int(questao2)+1, int(questao4)+1]
+        elif(filtro_cor_da_prova3!='Nenhuma' and filtro_cor_da_prova4!='Nenhuma'):
+            indexes = [int(questao1)+1, int(questao2)+1, int(questao3)+1, int(questao4)+1]
+        
+        print(filtro_cor_da_prova1)
+        print(filtro_cor_da_prova2)
+        print(filtro_cor_da_prova3)
+        print(filtro_cor_da_prova4)
+        
+        print(indexes)
             
         relatorio_em_grafico.update_layout(
             xaxis=dict(
