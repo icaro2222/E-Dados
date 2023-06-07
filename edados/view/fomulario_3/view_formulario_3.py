@@ -175,13 +175,15 @@ def formulario_2(request):
         
 
         form = Formulario_3_2()
-        form_filtro = Formulario_filtros()
+        form_filtro_grupo_A = Formulario_filtros(prefix='grupo_A')
+        form_filtro_grupo_B = Formulario_filtros(prefix='grupo_B')
 
         context = {
             'form' : form,
             'menssagem' : menssagem,
-            'menssagem_informativa' : menssagem_informativa,
-            'form_filtro' : form_filtro
+            'menssagem_informativa' : menssagem_informativa,            
+            'form_filtro_grupo_A' : form_filtro_grupo_A,
+            'form_filtro_grupo_B' : form_filtro_grupo_B,
         }
         return render(request, 'base/formulario_3/quest_formulario_3_2.html', context=context)
     else:
@@ -189,27 +191,42 @@ def formulario_2(request):
 
         # Recebendo fomulario da tela
         form = Formulario_3_2(request.POST)
-        form_filtro = Formulario_filtros(request.POST)
-
-        filtro_deficiencia = form.data['deficiencia']
-        acerto_erro = form.data['acerto_erro']
-
-        # Formulario de Filtro
-        filtro_deficiencia = form_filtro.data['deficiencia']
-        filtro_estado_civil = form_filtro.data['estado_civil']
-        filtro_cor = form_filtro.data['cor']
-        filtro_sexo = form_filtro.data['sexo']
-        filtro_ano = form_filtro.data['ano']
-        filtro_escola = form_filtro.data['escola']
-        filtro_nacionalidade = form_filtro.data['nacionalidade']
-        filtro_estado = form_filtro.data['estado']
-        filtro_cidade = form_filtro.data['cidade']
-        filtro_amostra = form_filtro.data['amostra']
-        filtro_recurso = form_filtro.data['recurso']
-        filtro_localizacao_da_escola = form_filtro.data['localizacao_da_escola']
-        filtro_ltp_adm_escola = form_filtro.data['tp_adm_escola']
-        filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
+        # form_filtro = Formulario_filtros(request.POST)
         
+        form_filtro_grupo_A = Formulario_filtros(request.POST, prefix='grupo_A')
+        form_filtro_grupo_B = Formulario_filtros(request.POST, prefix='grupo_B')
+
+        acerto_erro = form.data['acerto_erro']
+        filtro_ano = form.data['ano']
+
+        if form_filtro_grupo_A.is_valid() and form_filtro_grupo_B.is_valid():
+            
+            # Formulario de Filtro do GRUPO A
+            filtro_deficiencia = form_filtro_grupo_A.cleaned_data['deficiencia']
+            filtro_estado_civil = form_filtro_grupo_A.cleaned_data['estado_civil']
+            filtro_cor = form_filtro_grupo_A.cleaned_data['cor']
+            filtro_sexo = form_filtro_grupo_A.cleaned_data['sexo']
+            filtro_estado = form_filtro_grupo_A.cleaned_data['estado']
+            filtro_cidade = form_filtro_grupo_A.cleaned_data['cidade']
+            filtro_amostra = form_filtro_grupo_A.cleaned_data['amostra']
+            filtro_recurso = form_filtro_grupo_A.cleaned_data['recurso']
+            filtro_localizacao_da_escola = form_filtro_grupo_A.cleaned_data['localizacao_da_escola']
+        
+            # Formulario de Filtro do GRUPO B
+            filtro_deficiencia_grupo_B = form_filtro_grupo_B.cleaned_data['deficiencia']
+            filtro_estado_civil_grupo_B = form_filtro_grupo_B.cleaned_data['estado_civil']
+            filtro_cor_grupo_B = form_filtro_grupo_B.cleaned_data['cor']
+            filtro_sexo_grupo_B = form_filtro_grupo_B.cleaned_data['sexo']
+            filtro_estado_grupo_B = form_filtro_grupo_B.cleaned_data['estado']
+            filtro_cidade_grupo_B = form_filtro_grupo_B.cleaned_data['cidade']
+            filtro_amostra_grupo_B = form_filtro_grupo_B.cleaned_data['amostra']
+            filtro_recurso_grupo_B = form_filtro_grupo_B.cleaned_data['recurso']
+            filtro_localizacao_da_escola_grupo_B = form_filtro_grupo_B.cleaned_data['localizacao_da_escola']
+        
+        print("-----------------------------------------------------------------------------")
+        print(filtro_amostra_grupo_B)
+        print("filtro_amostra_grupo_B")
+        print("-----------------------------------------------------------------------------")
         # Variáveis vindas do Formulario
         if (filtro_ano=="2019"):
             filtro_cor_da_prova = request.POST.get('cor_da_prova_2019')
@@ -230,7 +247,11 @@ def formulario_2(request):
         questao2 = request.POST.get('questao2')
         questao3 = request.POST.get('questao3')
         questao4 = request.POST.get('questao4')
-        # em desenvolvimento
+        
+        if (questao3=="Nenhuma"):
+            filtro_cor_da_prova3 = "Nenhuma"
+        if (questao4=="Nenhuma"):
+            filtro_cor_da_prova4 = "Nenhuma"
         
 
         prova_pdf = prova_nome_pdf(filtro_cor_da_prova=filtro_cor_da_prova1)
@@ -389,7 +410,6 @@ def formulario_2(request):
             else:
                 prova = 'CO_PROVA_MT'
         
-        print(prova_pdf)
         # Formulario de Filtro
         if prova == 'CO_PROVA_LC':
             respostas = "TX_RESPOSTAS_LC"
@@ -409,37 +429,57 @@ def formulario_2(request):
             Microdado_Prova1 = bd_formulario_3.buscar_dataframe_no_banco(
                 Amostra, 
                 filtro_sexo=filtro_sexo, 
-            filtro_cidade=filtro_cidade, 
+                filtro_cidade=filtro_cidade, 
                 filtro_cor_da_prova=filtro_cor_da_prova1, 
                 filtro_deficiencia=filtro_deficiencia,
                 filtro_amostra=filtro_amostra, 
                 filtro_cor=filtro_cor, 
-                filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
-                filtro_ano_de_conclusao=filtro_ano_de_conclusao,     
                 filtro_estado=filtro_estado, 
                 filtro_recurso=filtro_recurso,
                 filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
                 filtro_estado_civil=filtro_estado_civil, 
-                filtro_escola=filtro_escola, 
-                filtro_nacionalidade=filtro_nacionalidade,
                 filtro_ano=filtro_ano)
             Microdado_Prova2 = bd_formulario_3.buscar_dataframe_no_banco(
                 Amostra, 
-                filtro_sexo=filtro_sexo, 
-            filtro_cidade=filtro_cidade, 
+                filtro_sexo=filtro_sexo_grupo_B, 
+                filtro_cidade=filtro_cidade_grupo_B, 
                 filtro_cor_da_prova=filtro_cor_da_prova2, 
-                filtro_deficiencia=filtro_deficiencia,
-                filtro_amostra=filtro_amostra, 
-                filtro_cor=filtro_cor, 
-                filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
-                filtro_ano_de_conclusao=filtro_ano_de_conclusao,     
-                filtro_estado=filtro_estado, 
-                filtro_recurso=filtro_recurso,
-                filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
-                filtro_estado_civil=filtro_estado_civil, 
-                filtro_escola=filtro_escola, 
-                filtro_nacionalidade=filtro_nacionalidade,
+                filtro_deficiencia=filtro_deficiencia_grupo_B,
+                filtro_amostra=filtro_amostra_grupo_B, 
+                filtro_cor=filtro_cor_grupo_B,   
+                filtro_estado=filtro_estado_grupo_B, 
+                filtro_recurso=filtro_recurso_grupo_B,
+                filtro_localizacao_da_escola=filtro_localizacao_da_escola_grupo_B, 
+                filtro_estado_civil=filtro_estado_civil_grupo_B, 
                 filtro_ano=filtro_ano)
+            if(filtro_cor_da_prova3!='Nenhuma'):                
+                Microdado_Prova3 = bd_formulario_3.buscar_dataframe_no_banco(
+                    Amostra, 
+                    filtro_sexo=filtro_sexo_grupo_B, 
+                    filtro_cidade=filtro_cidade_grupo_B, 
+                    filtro_cor_da_prova=filtro_cor_da_prova2, 
+                    filtro_deficiencia=filtro_deficiencia_grupo_B,
+                    filtro_amostra=filtro_amostra_grupo_B, 
+                    filtro_cor=filtro_cor_grupo_B,   
+                    filtro_estado=filtro_estado_grupo_B, 
+                    filtro_recurso=filtro_recurso_grupo_B,
+                    filtro_localizacao_da_escola=filtro_localizacao_da_escola_grupo_B, 
+                    filtro_estado_civil=filtro_estado_civil_grupo_B, 
+                    filtro_ano=filtro_ano)
+            if(filtro_cor_da_prova4!='Nenhuma'):                
+                Microdado_Prova4 = bd_formulario_3.buscar_dataframe_no_banco(
+                    Amostra, 
+                    filtro_sexo=filtro_sexo_grupo_B, 
+                    filtro_cidade=filtro_cidade_grupo_B, 
+                    filtro_cor_da_prova=filtro_cor_da_prova2, 
+                    filtro_deficiencia=filtro_deficiencia_grupo_B,
+                    filtro_amostra=filtro_amostra_grupo_B, 
+                    filtro_cor=filtro_cor_grupo_B,   
+                    filtro_estado=filtro_estado_grupo_B, 
+                    filtro_recurso=filtro_recurso_grupo_B,
+                    filtro_localizacao_da_escola=filtro_localizacao_da_escola_grupo_B, 
+                    filtro_estado_civil=filtro_estado_civil_grupo_B, 
+                    filtro_ano=filtro_ano)
         else:
             Amostra = [prova, respostas, gabarito]
             Microdado_Prova1 = bd_formulario_3.buscar_dataframe_no_banco(
@@ -448,36 +488,57 @@ def formulario_2(request):
                 filtro_cidade=filtro_cidade, 
                 filtro_cor_da_prova=filtro_cor_da_prova1, 
                 filtro_deficiencia=filtro_deficiencia,
-                filtro_amostra=filtro_amostra, 
-                filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
-                filtro_ano_de_conclusao=filtro_ano_de_conclusao,     
+                filtro_amostra=filtro_amostra,    
                 filtro_cor=filtro_cor, 
                 filtro_estado=filtro_estado, 
                 filtro_recurso=filtro_recurso,
                 filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
                 filtro_estado_civil=filtro_estado_civil, 
-                filtro_escola=filtro_escola, 
-                filtro_nacionalidade=filtro_nacionalidade,
                 filtro_ano=filtro_ano)
             
             Microdado_Prova2 = bd_formulario_3.buscar_dataframe_no_banco(
                 Amostra, 
-                filtro_sexo=filtro_sexo, 
-                filtro_cidade=filtro_cidade, 
+                filtro_sexo=filtro_sexo_grupo_B, 
+                filtro_cidade=filtro_cidade_grupo_B, 
                 filtro_cor_da_prova=filtro_cor_da_prova2, 
-                filtro_deficiencia=filtro_deficiencia,
-                filtro_amostra=filtro_amostra, 
-                filtro_ltp_adm_escola=filtro_ltp_adm_escola,            
-                filtro_ano_de_conclusao=filtro_ano_de_conclusao,     
-                filtro_cor=filtro_cor, 
-                filtro_estado=filtro_estado, 
-                filtro_recurso=filtro_recurso,
-                filtro_localizacao_da_escola=filtro_localizacao_da_escola, 
-                filtro_estado_civil=filtro_estado_civil, 
-                filtro_escola=filtro_escola, 
-                filtro_nacionalidade=filtro_nacionalidade,
+                filtro_deficiencia=filtro_deficiencia_grupo_B,
+                filtro_amostra=filtro_amostra_grupo_B,    
+                filtro_cor=filtro_cor_grupo_B, 
+                filtro_estado=filtro_estado_grupo_B, 
+                filtro_recurso=filtro_recurso_grupo_B,
+                filtro_localizacao_da_escola=filtro_localizacao_da_escola_grupo_B, 
+                filtro_estado_civil=filtro_estado_civil_grupo_B, 
                 filtro_ano=filtro_ano)
         
+            if(filtro_cor_da_prova3!='Nenhuma'):                
+                Microdado_Prova3 = bd_formulario_3.buscar_dataframe_no_banco(
+                    Amostra, 
+                    filtro_sexo=filtro_sexo_grupo_B, 
+                    filtro_cidade=filtro_cidade_grupo_B, 
+                    filtro_cor_da_prova=filtro_cor_da_prova2, 
+                    filtro_deficiencia=filtro_deficiencia_grupo_B,
+                    filtro_amostra=filtro_amostra_grupo_B, 
+                    filtro_cor=filtro_cor_grupo_B,   
+                    filtro_estado=filtro_estado_grupo_B, 
+                    filtro_recurso=filtro_recurso_grupo_B,
+                    filtro_localizacao_da_escola=filtro_localizacao_da_escola_grupo_B, 
+                    filtro_estado_civil=filtro_estado_civil_grupo_B, 
+                    filtro_ano=filtro_ano)
+            if(filtro_cor_da_prova4!='Nenhuma'):                
+                Microdado_Prova4 = bd_formulario_3.buscar_dataframe_no_banco(
+                    Amostra, 
+                    filtro_sexo=filtro_sexo_grupo_B, 
+                    filtro_cidade=filtro_cidade_grupo_B, 
+                    filtro_cor_da_prova=filtro_cor_da_prova2, 
+                    filtro_deficiencia=filtro_deficiencia_grupo_B,
+                    filtro_amostra=filtro_amostra_grupo_B, 
+                    filtro_cor=filtro_cor_grupo_B,   
+                    filtro_estado=filtro_estado_grupo_B, 
+                    filtro_recurso=filtro_recurso_grupo_B,
+                    filtro_localizacao_da_escola=filtro_localizacao_da_escola_grupo_B, 
+                    filtro_estado_civil=filtro_estado_civil_grupo_B, 
+                    filtro_ano=filtro_ano)
+                
         if(filtro_ano=="2019"):
             CONTAGEMMicrodado_Amostra = 3702008
         elif(filtro_ano=="2018"):
@@ -495,6 +556,7 @@ def formulario_2(request):
         # Extrair as respostas da prova 1
         resposta = Microdado_Prova1[respostas]
         quantidade_de_respostas = Microdado_Prova1[respostas].count() - 1
+        quantidadeParcial_grupo_A = Microdado_Prova1[respostas].count()
         gabarito_prova1 = Microdado_Prova1[gabarito]
 
         acertos = [0] * 2
@@ -535,6 +597,7 @@ def formulario_2(request):
         # Extrair as respostas da prova 2
         resposta = Microdado_Prova2[respostas]
         quantidade_de_respostas = Microdado_Prova2[respostas].count() - 1
+        quantidadeParcial_grupo_B = Microdado_Prova2[respostas].count()
         gabarito_prova2 = Microdado_Prova2[gabarito]
 
         acertos = [0] * 2
@@ -568,14 +631,114 @@ def formulario_2(request):
         acertos_pd_prova2 = pd.DataFrame(acertos_porcentagem)
         acertos_pd_prova2 = acertos_pd_prova2.reset_index(drop=True)
         acertos_pd_prova2.index = acertos_pd_prova2.index + int(questao2)
+        
+        # PROVA 3
+        
+        if(filtro_cor_da_prova3!='Nenhuma'):  
+            # Resetar o índice do DataFrame Microdado_Prova3
+            Microdado_Prova3.reset_index(inplace=True)
 
+            # Extrair as respostas da prova 3
+            resposta = Microdado_Prova3[respostas]
+            quantidade_de_respostas = Microdado_Prova3[respostas].count() - 1
+            quantidadeParcial_grupo_B = Microdado_Prova3[respostas].count()
+            gabarito_prova3 = Microdado_Prova3[gabarito]
+
+            acertos = [0] * 2
+            acertos_porcentagem = [0] * 1
+
+            if quantidade_de_respostas >= 0:
+                linha_do_gabarito = gabarito_prova3.iloc[quantidade_de_respostas]
+
+            j = 0
+            questao3 = int(questao3)
+
+            for i in range(quantidade_de_respostas):
+                if resposta[i] == '':
+                    resposta[i] = "............................................."
+                linha_da_resposta = resposta[i]
+
+                resposta_gabarito = linha_do_gabarito[questao3]
+                resposta_candidato = linha_da_resposta[questao3]
+
+                if acerto_erro == 'acertos':
+                    if resposta_candidato == resposta_gabarito:
+                        acertos[j] += 1
+                        resposta_candidato = ''
+                else:
+                    if resposta_candidato != resposta_gabarito:
+                        acertos[j] += 1
+                        resposta_candidato = ''
+
+            acertos_porcentagem[0] = (acertos[j] / quantidade_de_respostas) * 100
+
+            acertos_pd_prova3 = pd.DataFrame(acertos_porcentagem)
+            acertos_pd_prova3 = acertos_pd_prova3.reset_index(drop=True)
+            acertos_pd_prova3.index = acertos_pd_prova3.index + int(questao3)            
+        # FINAL PROVA 3
+        
+        # PROVA 4        
+        if(filtro_cor_da_prova4!='Nenhuma'):  
+            # Resetar o índice do DataFrame Microdado_Prova3
+            Microdado_Prova4.reset_index(inplace=True)
+
+            # Extrair as respostas da prova 3
+            resposta = Microdado_Prova4[respostas]
+            quantidade_de_respostas = Microdado_Prova4[respostas].count() - 1
+            quantidadeParcial_grupo_B = Microdado_Prova4[respostas].count()
+            gabarito_prova4 = Microdado_Prova4[gabarito]
+
+            acertos = [0] * 2
+            acertos_porcentagem = [0] * 1
+
+            if quantidade_de_respostas >= 0:
+                linha_do_gabarito = gabarito_prova4.iloc[quantidade_de_respostas]
+
+            j = 0
+            questao4 = int(questao4)
+
+            for i in range(quantidade_de_respostas):
+                if resposta[i] == '':
+                    resposta[i] = "............................................."
+                linha_da_resposta = resposta[i]
+
+                resposta_gabarito = linha_do_gabarito[questao4]
+                resposta_candidato = linha_da_resposta[questao4]
+
+                if acerto_erro == 'acertos':
+                    if resposta_candidato == resposta_gabarito:
+                        acertos[j] += 1
+                        resposta_candidato = ''
+                else:
+                    if resposta_candidato != resposta_gabarito:
+                        acertos[j] += 1
+                        resposta_candidato = ''
+
+            acertos_porcentagem[0] = (acertos[j] / quantidade_de_respostas) * 100
+
+            acertos_pd_prova4 = pd.DataFrame(acertos_porcentagem)
+            acertos_pd_prova4 = acertos_pd_prova4.reset_index(drop=True)
+            acertos_pd_prova4.index = acertos_pd_prova4.index + int(questao4)
+            
+        # FINAL PROVA 4
+        
         # Colocando nome no DataFrame
         acertos_pd_prova1.columns = ['porcentagem_de_acertos']
         texto = acertos_pd_prova1.porcentagem_de_acertos
 
         # Colocando nome no DataFrame
         acertos_pd_prova2.columns = ['porcentagem_de_acertos']
-        texto = acertos_pd_prova2.porcentagem_de_acertos
+        texto = acertos_pd_prova2.porcentagem_de_acertos        
+        
+        # Colocando nome no DataFrame PROVA 3        
+        if(filtro_cor_da_prova3!='Nenhuma'):  
+            acertos_pd_prova3.columns = ['porcentagem_de_acertos']
+            texto = acertos_pd_prova3.porcentagem_de_acertos
+
+        # Colocando nome no DataFrame PROVA 4       
+        if(filtro_cor_da_prova4!='Nenhuma'):  
+            acertos_pd_prova4.columns = ['porcentagem_de_acertos']
+            texto = acertos_pd_prova4.porcentagem_de_acertos
 
         print("----------------------------------------------------------------------------------")
         print(acertos_pd_prova1)
@@ -600,14 +763,45 @@ def formulario_2(request):
             textposition='auto',
             name=filtro_cor_da_prova2
         )
+        
+        # Colocando nome no DataFrame PROVA 4       
+        if(filtro_cor_da_prova3!='Nenhuma'):  
+            relatorio_em_grafico.add_bar(
+                y=acertos_pd_prova3['porcentagem_de_acertos'],
+                x=acertos_pd_prova3.index,
+                text=acertos_pd_prova3['porcentagem_de_acertos'],
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=filtro_cor_da_prova3
+            )
 
+        # Colocando nome no DataFrame PROVA 4       
+        if(filtro_cor_da_prova4!='Nenhuma'):  
+            relatorio_em_grafico.add_bar(
+                y=acertos_pd_prova4['porcentagem_de_acertos'],
+                x=acertos_pd_prova4.index,
+                text=acertos_pd_prova4['porcentagem_de_acertos'],
+                texttemplate='%{text:.2f}%',
+                textposition='auto',
+                name=filtro_cor_da_prova4
+            )
+            
+        if(filtro_cor_da_prova3=='Nenhum' and filtro_cor_da_prova4=='Nenhum'):
+            indexes = [questao1, questao2, ]
+        elif(filtro_cor_da_prova3!='Nenhum' and filtro_cor_da_prova4=='Nenhum'):
+            indexes = [questao1, questao2, questao3]
+        elif(filtro_cor_da_prova3=='Nenhum' and filtro_cor_da_prova4!='Nenhum'):
+            indexes = [questao1, questao2, questao4]
+        elif(filtro_cor_da_prova3!='Nenhum' and filtro_cor_da_prova4!='Nenhum'):
+            indexes = [questao1, questao2, questao3, questao4]
+            
         relatorio_em_grafico.update_layout(
             xaxis=dict(
-                tickvals=[questao1, questao2],
+                tickvals=indexes,
                 tickmode="array",
                 titlefont=dict(size=10),
             ),
-            title="Percentual de " + acerto_erro + " nas questões na prova de " + prova + " no ano de " + filtro_ano + " dos inscritos que possuem " + filtro_deficiencia + " deficiência.",
+            title="Percentual de " + acerto_erro + " nas questões na prova de " + prova + " no ano de " + filtro_ano,
             height=500,
             margin={'t': 50, 'l': 50},
             yaxis={'domain': [0, 1]},
@@ -648,8 +842,10 @@ def formulario_2(request):
             'anotacao_mensagem' : anotacao_mensagem,
             'menssagem1' : menssagem1,
             'prova_pdf'  :  prova_pdf,
-            'form_filtro' : form_filtro,
-            'quantidadeParcial' : CONTAGEM,
+            'form_filtro_grupo_A' : form_filtro_grupo_A,
+            'form_filtro_grupo_B' : form_filtro_grupo_B,
+            'quantidadeParcial_grupo_A' : quantidadeParcial_grupo_A,
+            'quantidadeParcial_grupo_B' : quantidadeParcial_grupo_B,
             'quantidadeTotal' : CONTAGEMMicrodado_Amostra,
         }
 

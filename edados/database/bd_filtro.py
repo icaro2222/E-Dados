@@ -70,12 +70,12 @@ def filtro(
     else:
         filtro_estado =  ' AND "SG_UF_RESIDENCIA" =' +"'" +filtro_estado+"'"
 
-    if(filtro_escola == 'todos'):
+    if(filtro_escola == 'todos' or filtro_escola == 'vazio' ):
         filtro_escola = ''
     else:
         filtro_escola =  ' AND "TP_ESCOLA" =' +"'" +filtro_escola+"'"
 
-    if(filtro_nacionalidade == 'todos'):
+    if(filtro_nacionalidade == 'todos' or filtro_nacionalidade == 'vazio' ):
         filtro_nacionalidade = ''
     else:
         filtro_nacionalidade =  ' AND "TP_NACIONALIDADE" =' +"'" +filtro_nacionalidade+"'"

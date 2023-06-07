@@ -29,49 +29,52 @@ Acertos/Erros nas Questões
       <span>Provas e Questões a Serem Analisadas</span>
     </h5>
     <hr class="mt-0 mb-2" />
-    <div class="row d-flex mb-3">
-      <div id="prova1" class="col-md-2 border ml-3">
-        <div id="prova1" class="col-md-12">
+    <div class="row mb-3">
+      <div class="col-md-3 border ml-3 p-2">
+        <h5 class="mb-0">Grupos A</h5>
+        <hr class="mt-0 mb-3" />
+        <div class="col-md-12">
           {% csrf_token %}
           {{ form.prova1|as_crispy_field }}
         </div>
-        <div id="prova1" class="col-md-12">
+        <div class="col-md-12">
           {% csrf_token %}
           {{ form.questao1|as_crispy_field }}
         </div>
       </div>
-      <div id="prova1" class="col-md-2 border ml-3">
-        <div id="prova2" class="col-md-12">
-          {% csrf_token %}
-          {{ form.prova2|as_crispy_field }}
-        </div>
-        <div id="prova2" class="col-md-12">
-          {% csrf_token %}
-          {{ form.questao2|as_crispy_field }}
+      <div class="col-md-6 border ml-4 p-2">
+        <h5 class="mb-0">Grupos B</h5>
+        <hr class="mt-0 mb-3" />
+        <div class="row">
+          <div class="col-md-4">
+            {% csrf_token %}
+            {{ form.prova2|as_crispy_field }}
+          </div>
+          <div class="col-md-4">
+            {% csrf_token %}
+            {{ form.prova3|as_crispy_field }}
+          </div>
+          <div class="col-md-4">
+            {% csrf_token %}
+            {{ form.prova4|as_crispy_field }}
+          </div>
+          <div class="col-md-4">
+            {% csrf_token %}
+            {{ form.questao2|as_crispy_field }}
+          </div>
+          <div class="col-md-4">
+            {% csrf_token %}
+            {{ form.questao3|as_crispy_field }}
+          </div>
+          <div class="col-md-4">
+            {% csrf_token %}
+            {{ form.questao4|as_crispy_field }}
+          </div>
         </div>
       </div>
-      <div id="prova1" class="col-md-2 border ml-3">
-        <div id="prova3" class="col-md-12">
-          {% csrf_token %}
-          {{ form.prova3|as_crispy_field }}
-        </div>
-        <div id="prova2" class="col-md-12">
-          {% csrf_token %}
-          {{ form.questao3|as_crispy_field }}
-        </div>
-      </div>
-      <div id="prova1" class="col-md-2 border ml-3">
-        <div id="prova4" class="col-md-12">
-          {% csrf_token %}
-          {{ form.prova4|as_crispy_field }}
-        </div>
-        <div id="prova2" class="col-md-12">
-          {% csrf_token %}
-          {{ form.questao4|as_crispy_field }}
-        </div>
-      </div>
-      <div class="col-md-1"></div>
-      <div id="prova1" class="col-md-2 border">
+      <div class="col-md-2 border ml-4 p-2">
+        <h5 class="mb-0">Fatores</h5>
+        <hr class="mt-0 mb-3" />
         <div class="col-md-12">
           {% csrf_token %}
           {{ form.acerto_erro|as_crispy_field }}
@@ -82,8 +85,8 @@ Acertos/Erros nas Questões
         </div>
       </div>
     </div>
-    
-    <h5 class="mt-0 mb-0 d-flex align-items-center">
+
+    <h5 class="m-0 d-flex align-items-center">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-funnel me-2"
         viewBox="0 0 16 16">
         <path
@@ -91,82 +94,116 @@ Acertos/Erros nas Questões
       </svg>
       <span>Filtros</span>
     </h5>
-
     <hr class="mt-0 mb-2" />
-    <div class="row d-flex">
-      <div class="col-md-2">
-        {% csrf_token %}
-        {{ form_filtro.sexo|as_crispy_field }}
+    <div class="row d-flex mb-3">
+      <div class="col-md-6">
+        <div class="border p-2">
+          <h5 class="mb-0">Grupos A</h5>
+          <hr class="mt-0 mb-3" />
+          <div class="row">
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_A.deficiencia|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_A.recurso|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_A.sexo|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_A.cor|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+              {% csrf_token %}
+              {{ form_filtro_grupo_A.estado|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+              {% csrf_token %}
+              {{ form_filtro_grupo_A.cidade|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+              {% csrf_token %}
+              {{ form_filtro_grupo_A.estado_civil|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_A.localizacao_da_escola|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_A.amostra|as_crispy_field }}
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-3">
-        {% csrf_token %}
-        {{ form_filtro.escola|as_crispy_field }}
-      </div>
-      <div class="col-md-2">
-        {% csrf_token %}
-        {{ form_filtro.cor|as_crispy_field }}
-      </div>
-      <div class="col-md-2">
-        {% csrf_token %}
-        {{ form_filtro.estado_civil|as_crispy_field }}
-      </div>
-      <div class="col-md-3">
-        {% csrf_token %}
-        {{ form_filtro.deficiencia|as_crispy_field }}
-      </div>
-      <div class="col-md-2">
-        {% csrf_token %}
-        {{ form_filtro.nacionalidade|as_crispy_field }}
-      </div>
-      <div id="teste" class="col-md-3">
-        {% csrf_token %}
-        {{ form_filtro.tp_adm_escola|as_crispy_field }}
-      </div>
-      <div class="col-md-2">
-        {% csrf_token %}
-        {{ form_filtro.estado|as_crispy_field }}
-      </div>
-      <div class="col-md-2">
-        {% csrf_token %}
-        {{ form_filtro.cidade|as_crispy_field }}
-      </div>
-      <div class="col-md-3">
-        {% csrf_token %}
-        {{ form_filtro.localizacao_da_escola|as_crispy_field }}
-      </div>
-      <div id="teste" class="col-md-3">
-        {% csrf_token %}
-        {{ form_filtro.ano_de_conclusao|as_crispy_field }}
-      </div>
-      <div class="col-md-3">
-        {% csrf_token %}
-        {{ form_filtro.recurso|as_crispy_field }}
-      </div>
-      <div class="col-md-3">
-        {% csrf_token %}
-        <div>
-          {{ form_filtro.amostra|as_crispy_field }} </div>
-      </div>
-      <div class="row col">
-        <div class="col d-flex align-items-center justify-content-center">
-          <button id="preloader2" type="submit" class="btn btn-outline-primary">
-            Gerar Análise
-            <svg xmlns="http://www.w3.org/2000/svg" width="86" height="44" fill="currentColor"
-              class="bi bi-clipboard-data" viewBox="0 0 16 16">
-              <path
-                d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
-              <path
-                d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
-              <path
-                d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
-            </svg>
-          </button>
+      <div class="col-md-6">
+        <div class="border p-2">
+          <h5 class="mb-0">Grupos B</h5>
+          <hr class="mt-0 mb-3" />
+          <div class="row">
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_B.deficiencia|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_B.recurso|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_B.sexo|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_B.cor|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+              {% csrf_token %}
+              {{ form_filtro_grupo_B.estado|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+              {% csrf_token %}
+              {{ form_filtro_grupo_B.cidade|as_crispy_field }}
+            </div>
+            <div class="col-md-4">
+              {% csrf_token %}
+              {{ form_filtro_grupo_B.estado_civil|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_B.localizacao_da_escola|as_crispy_field }}
+            </div>
+            <div class="col-md-6">
+              {% csrf_token %}
+              {{ form_filtro_grupo_B.amostra|as_crispy_field }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <div class="row col-md-12 d-flex align-items-center justify-content-end">
+      <button id="preloader2" type="submit" class="btn btn-outline-primary">
+        Gerar Análise
+        <svg xmlns="http://www.w3.org/2000/svg" width="86" height="44" fill="currentColor" class="bi bi-clipboard-data"
+          viewBox="0 0 16 16">
+          <path
+            d="M4 11a1 1 0 1 1 2 0v1a1 1 0 1 1-2 0v-1zm6-4a1 1 0 1 1 2 0v5a1 1 0 1 1-2 0V7zM7 9a1 1 0 0 1 2 0v3a1 1 0 1 1-2 0V9z" />
+          <path
+            d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z" />
+          <path
+            d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z" />
+        </svg>
+      </button>
+    </div>
+
     <div class="loading" id="preloader">
       <h4 class="loading_preloader justify-content-center align-items-center">
-        Processar todos os dados pode tornar o processo mais pesado e, por isso, pode levar um tempo para ser concluído.
+        Processar todos os dados pode tornar o processo mais pesado e, por isso, pode levar um tempo para ser
+        concluído.
       </h4>
     </div>
     <hr id="progressbar">
@@ -175,22 +212,19 @@ Acertos/Erros nas Questões
 
 <div class="text-dark rounded border border-dark">
   <div class="row">
-    <div class="col md-12">
-      <div class="col-md-12">
-        <h5 class="mt-2 mb-0">{{ menssagem }}</h5>
+    <div class="col-md-12">
+        <h5 class="mt-2 mb-0 ml-2">{{ menssagem }}</h5>
         <hr class="mt-0 mb-3 bg-dark" />
-        <div>
-          <h6>
-            O número total de alunos após a aplicação do filtro é:
-            {{quantidadeParcial}}
-          </h6>
-          <h6>
-            O número total de alunos que se inscreveram no Enem:
-            {{quantidadeTotal}}
-          </h6>
+      <div class="row d-flex col">
+        <div class="col-md-12">
+          <h6>O número total de alunos que se inscreveram no Enem: {{ quantidadeTotal }}</h6>
         </div>
-
-
+        <div class="col-md-6">
+          <h6>O número total de alunos no GRUPO A: {{ quantidadeParcial_grupo_A }}</h6>
+        </div>
+        <div class="col-md-6">
+          <h6>O número total de alunos no GRUPO B: {{ quantidadeParcial_grupo_B }}</h6>
+        </div>
       </div>
       <hr class="mb-0 mb-3 bg-dark" />
 
