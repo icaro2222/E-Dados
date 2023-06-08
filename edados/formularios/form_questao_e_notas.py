@@ -1,10 +1,7 @@
 from django import forms
 from edados.formularios import questionario_socioeconomico
-
-
-
 class MeuFormulario(forms.Form):
-
+    
     choices_nota = (('NU_NOTA_MT' ,'NU_NOTA_MT - Matemática'),    
                     ('NU_NOTA_CH', 'NU_NOTA_CH - Ciências da Natureza'),
                     ('NU_NOTA_CN' ,'NU_NOTA_CN - Ciências Humanas'),
