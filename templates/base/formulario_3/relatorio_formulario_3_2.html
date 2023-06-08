@@ -374,16 +374,32 @@ Acertos/Erros por Questões
 </div>
 
 
+
 <script>
   var cor_da_prova_2017 = document.getElementById("cor_da_prova_2017");
   var cor_da_prova_2018 = document.getElementById("cor_da_prova_2018");
   var cor_da_prova_2019 = document.getElementById("cor_da_prova_2019");
-
+    
   var selectAno = document.getElementById("id_ano");
+  var ano = selectAno.value;
+  if (ano == "2019") {
+    cor_da_prova_2019.style.display = 'block';
+    cor_da_prova_2018.style.display = 'none';
+    cor_da_prova_2017.style.display = 'none';
+  } else if (ano == "2018") {
+    cor_da_prova_2019.style.display = 'none';
+    cor_da_prova_2018.style.display = 'block';
+    cor_da_prova_2017.style.display = 'none';
+  } else if (ano == "2017") {
+    cor_da_prova_2019.style.display = 'none';
+    cor_da_prova_2018.style.display = 'none';
+    cor_da_prova_2017.style.display = 'block';
+  }
+
   selectAno.addEventListener("change", function () {
     var ano = selectAno.value;
     console.log(ano)
-    if (ano == 2019) {
+    if (ano == "2019") {
       cor_da_prova_2019.style.display = 'block';
       cor_da_prova_2018.style.display = 'none';
       cor_da_prova_2017.style.display = 'none';
@@ -396,8 +412,7 @@ Acertos/Erros por Questões
       cor_da_prova_2018.style.display = 'none';
       cor_da_prova_2017.style.display = 'block';
     }
-  });
-
+  });  
 
   // Toggle the side navigation
   function imprimirComDelay() {

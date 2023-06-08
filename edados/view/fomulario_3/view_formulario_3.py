@@ -267,131 +267,118 @@ def prova_nome_pdf(filtro_cor_da_prova, filtro_ano):
     elif(filtro_ano=="2017"):
         if('391'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_07_DIA_2_AZUL.pdf"
-        elif('504'==filtro_cor_da_prova):
+        elif('392'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_05_DIA_2_AMARELO.pdf"
-        elif('505'==filtro_cor_da_prova):
+        elif('393'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_06_DIA_2_CINZA.pdf"
-        elif('506'==filtro_cor_da_prova):
+        elif('394'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_08_DIA_2_ROSA.pdf"
-        elif('507'==filtro_cor_da_prova):
+        elif('395'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_01_DIA_1_AZUL.pdf"
-        elif('508'==filtro_cor_da_prova):
+        elif('396'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_02_DIA_1_AMARELO.pdf"
-        elif('509'==filtro_cor_da_prova):
+        elif('397'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_03_DIA_1_BRANCO.pdf"
-        elif('510'==filtro_cor_da_prova):
+        elif('398'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_04_DIA_1_ROSA.pdf"
-        elif('511'==filtro_cor_da_prova):
+        elif('399'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_01_DIA_1_AZUL.pdf"
-        elif('512'==filtro_cor_da_prova):
+        elif('400'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_02_DIA_1_AMARELO.pdf"
-        elif('513'==filtro_cor_da_prova):
+        elif('401'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_04_DIA_1_ROSA.pdf"
-        elif('514'==filtro_cor_da_prova):
+        elif('402'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_03_DIA_1_BRANCO.pdf"
-        elif('515'==filtro_cor_da_prova):
+        elif('403'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_07_DIA_2_AZUL.pdf"
-        elif('516'==filtro_cor_da_prova):
+        elif('404'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_05_DIA_2_AMARELO.pdf"
-        elif('517'==filtro_cor_da_prova):
+        elif('405'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_08_DIA_2_ROSA.pdf"
-        elif('518'==filtro_cor_da_prova):
+        elif('406'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_06_DIA_2_CINZA.pdf"
-        elif('519'==filtro_cor_da_prova):
+        elif('407'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_11_DIA_2_LARANJA_LEDOR.pdf"
-        elif('520'==filtro_cor_da_prova):
+        elif('408'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_09_DIA_1_LARANJA_LEDOR.pdf"
-        elif('521'==filtro_cor_da_prova):
+        elif('409'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_09_DIA_1_LARANJA_LEDOR.pdf"
-        elif('522'==filtro_cor_da_prova):
+        elif('410'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_11_DIA_2_LARANJA_LEDOR.pdf"
-        elif('523'==filtro_cor_da_prova):
+        elif('411'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_12_DIA_2_VERDE_LIBRAS.pdf"
-        elif('524'==filtro_cor_da_prova):
+        elif('412'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_10_DIA_1_VERDE_LIBRAS.pdf"
-        elif('525'==filtro_cor_da_prova):
+        elif('413'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_10_DIA_1_VERDE_LIBRAS.pdf"
-        elif('526'==filtro_cor_da_prova):
+        elif('414'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_12_DIA_2_VERDE_LIBRAS.pdf"
-        elif('527'==filtro_cor_da_prova):
+        elif('415'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_01_DIA_1_AZUL.pdf"
-        elif('528'==filtro_cor_da_prova):
+        elif('416'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_02_DIA_1_AMARELO.pdf"
-        elif('529'==filtro_cor_da_prova):
+        elif('417'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_02_DIA_1_AMARELO_AMPLIADA.pdf"
-        elif('530'==filtro_cor_da_prova):
+        elif('418'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_02_DIA_1_AMARELO_SUPERAMPLIADA.pdf"
-        elif('531'==filtro_cor_da_prova):
+        elif('419'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_03_DIA_1_BRANCO.pdf"
-        elif('532'==filtro_cor_da_prova):
+        elif('420'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_04_DIA_1_ROSA.pdf"
-        elif('533'==filtro_cor_da_prova):
+        elif('421'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_09_DIA_1_LARANJA_LEDOR.pdf"
-        elif('534'==filtro_cor_da_prova):
+        elif('422'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_10_DIA_1_VERDE_LIBRAS.pdf"
-        elif('535'==filtro_cor_da_prova):
+        elif('423'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_05_DIA_2_AMARELO.pdf"
-        elif('536'==filtro_cor_da_prova):
+        elif('424'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_06_DIA_2_CINZA.pdf"
-        elif('537'==filtro_cor_da_prova):
+        elif('425'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_06_DIA_2_CINZA_AMPLIADA.pdf"
-        elif('538'==filtro_cor_da_prova):
+        elif('426'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_06_DIA_2_CINZA_SUPERAMPLIADA.pdf"
-        elif('539'==filtro_cor_da_prova):
+        elif('427'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_07_DIA_2_AZUL.pdf"
-        elif('540'==filtro_cor_da_prova):
+        elif('428'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_08_DIA_2_ROSA.pdf"
-        elif('541'==filtro_cor_da_prova):
+        elif('429'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_11_DIA_2_LARANJA_LEDOR.pdf"
-        elif('542'==filtro_cor_da_prova):
+        elif('430'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P1_CAD_12_DIA_2_VERDE_LIBRAS.pdf"
-        elif('543'==filtro_cor_da_prova):
+        elif('431'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_05_DIA_2_AMARELO.pdf"
-        elif('544'==filtro_cor_da_prova):
+        elif('432'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_06_DIA_2_CINZA.pdf"
-        elif('545'==filtro_cor_da_prova):
+        elif('433'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_07_DIA_2_AZUL.pdf"
-        elif('546'==filtro_cor_da_prova):
+        elif('434'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_08_DIA_2_ROSA.pdf"
-        elif('547'==filtro_cor_da_prova):
+        elif('435'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_01_DIA_1_AZUL.pdf"
-        elif('548'==filtro_cor_da_prova):
+        elif('436'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_02_DIA_1_AMARELO.pdf"
-        elif('549'==filtro_cor_da_prova):
+        elif('437'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_03_DIA_1_BRANCO.pdf"
-        elif('550'==filtro_cor_da_prova):
+        elif('438'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_04_DIA_1_ROSA.pdf"
-        elif('551'==filtro_cor_da_prova):
+        elif('439'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_01_DIA_1_AZUL.pdf"
-        elif('552'==filtro_cor_da_prova):
+        elif('440'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_02_DIA_1_AMARELO.pdf"
-        elif('553'==filtro_cor_da_prova):
+        elif('441'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_03_DIA_1_BRANCO.pdf"
-        elif('554'==filtro_cor_da_prova):
+        elif('442'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_04_DIA_1_ROSA.pdf"
-        elif('555'==filtro_cor_da_prova):
+        elif('443'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_05_DIA_2_AMARELO.pdf"
-        elif('556'==filtro_cor_da_prova):
+        elif('444'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_06_DIA_2_CINZA.pdf"
-        elif('557'==filtro_cor_da_prova):
+        elif('445'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_07_DIA_2_AZUL.pdf"
-        elif('558'==filtro_cor_da_prova):
+        elif('446'==filtro_cor_da_prova):
             prova_pdf="ENEM_2017_P2_CAD_08_DIA_2_ROSA.pdf"
-        elif('559'==filtro_cor_da_prova):
-            prova_pdf="ENEM_2017_P2_CAD_09_DIA_1_LARANJA_LEDOR.pdf"
-        elif('560'==filtro_cor_da_prova):
-            prova_pdf="ENEM_2017_P2_CAD_09_DIA_1_LARANJA_LEDOR.pdf"
-        elif('561'==filtro_cor_da_prova):
-            prova_pdf="ENEM_2017_P2_CAD_03_DIA_1_BRANCO.pdf"
-        elif('562'==filtro_cor_da_prova):
-            prova_pdf="ENEM_2017_P2_CAD_04_DIA_1_ROSA.pdf"
-        elif('563'==filtro_cor_da_prova):
-            prova_pdf="ENEM_2017_P2_CAD_09_DIA_1_LARANJA_LEDOR.pdf"
-        elif('564'==filtro_cor_da_prova):
-            prova_pdf="ENEM_2017_P2_CAD_09_DIA_1_LARANJA_LEDOR.pdf"
-        elif('565'==filtro_cor_da_prova):
-            prova_pdf="ENEM_2017_P2_CAD_09_DIA_1_LARANJA_LEDOR.pdf"
-        prova_pdf="desenvolvimento.pdf"
+        else:
+            prova_pdf="desenvolvimento.pdf"
             
     print(prova_pdf)
     return prova_pdf
