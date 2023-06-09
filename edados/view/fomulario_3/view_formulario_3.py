@@ -545,7 +545,7 @@ def formulario_2(request):
         menssagem = 'Quantidade de acertos e erros por questão:'
         menssagem_informativa = """ Aplicar filtros para visualizar resultados entre diferentes grupos de alunos, como sexo, região, entre outros critérios de filtragem.
         Contrastar subgrupos específicos de alunos para diferentes provas e questões selecionadas, proporcionando uma análise mais segmentada e personalizada.
-        Permitir a comparação entre múltiplas provas, visando a compreensão das disparidades e desigualdades presentes nos resultados.
+        Comparar múltiplas provas, visando a compreensão das disparidades e desigualdades presentes nos resultados.
         Compreender as questões em que os alunos apresentam maior ou menor desempenho."""
         
         menssagem_informativa = menssagem_informativa.split('\n')
