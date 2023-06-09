@@ -28,13 +28,15 @@ def dashboard(request):
     
     if request.method == 'GET':
 
-        menssagem1 = "Dados Gerais do Enem"
+#         menssagem1 = "Dados Gerais do Enem"        
+#         menssagem = """Esta plataforma online oferece uma solução para análise de microdados socioeconômicos do ENEM, referentes aos anos de 2017, 2018 e 2019. No entanto, algumas colunas importantes foram removidas pelo INEP, como os dados sobre alunos com deficiência, o que inviabilizou a análise sem essas informações específicas.
+# Para garantir dados consistentes, foram utilizados apenas os dados dos inscritos presentes em todas as provas, ou seja, aqueles com TP_PRESENCA_CN ==1, TP_PRESENCA_CH==1, TP_PRESENCA_LC == 1 e TP_PRESENCA_MT == 1. Dessa forma, alunos que não compareceram não interferem nos resultados.
+# A plataforma utiliza técnicas avançadas da ciência de dados para permitir uma análise precisa e detalhada dos dados, fornecendo insights valiosos para a tomada de decisões estratégicas em relação ao desempenho dos candidatos. Com uma interface intuitiva e funcionalidades de filtragem e visualização de dados, é uma ferramenta poderosa para pesquisadores, gestores educacionais e profissionais da área de educação que buscam aprimorar a compreensão dos fatores que influenciam o desempenho dos estudantes no ENEM."""
+
+
+        menssagem1 = "Bem-vindo à E-DADOS!"
         # menssagem = """Essa plataforma online oferece uma solução para a análise de microdados socioeconômicos do ENEM referentes aos anos de 2016, 2017, 2018 e 2019 de maneira eficiente e ágil. Utilizando técnicas avançadas da ciência de dados, a plataforma possibilita uma análise precisa e detalhada dos dados, com o objetivo de fornecer insights valiosos para a tomada de decisões estratégicas em relação ao desempenho dos candidatos nas provas. Com uma interface intuitiva e funcionalidades de filtragem e visualização de dados, a plataforma é uma ferramenta poderosa para pesquisadores, gestores educacionais e profissionais da área de educação interessados em aprimorar a compreensão dos fatores que influenciam o desempenho dos estudantes no ENEM."""
-        menssagem = """Esta plataforma online oferece uma solução para análise de microdados socioeconômicos do ENEM, referentes aos anos de 2017, 2018 e 2019. No entanto, algumas colunas importantes foram removidas pelo INEP, como os dados sobre alunos com deficiência, o que inviabilizou a análise sem essas informações específicas.
-
-Para garantir dados consistentes, foram utilizados apenas os dados dos inscritos presentes em todas as provas, ou seja, aqueles com TP_PRESENCA_CN ==1, TP_PRESENCA_CH==1, TP_PRESENCA_LC == 1 e TP_PRESENCA_MT == 1. Dessa forma, alunos que não compareceram não interferem nos resultados.
-
-A plataforma utiliza técnicas avançadas da ciência de dados para permitir uma análise precisa e detalhada dos dados, fornecendo insights valiosos para a tomada de decisões estratégicas em relação ao desempenho dos candidatos. Com uma interface intuitiva e funcionalidades de filtragem e visualização de dados, é uma ferramenta poderosa para pesquisadores, gestores educacionais e profissionais da área de educação que buscam aprimorar a compreensão dos fatores que influenciam o desempenho dos estudantes no ENEM."""
+        menssagem = """A plataforma (protótipo) especializada em análise dos microdados socioeconômicos do ENEM. Explore os dados, obtenha insights valiosos e tome decisões estratégicas com eficiência. Vamos começar!"""
 
         menssagem = menssagem.split('\n')
         menssagem = format_html_join(

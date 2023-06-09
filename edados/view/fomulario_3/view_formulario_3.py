@@ -542,22 +542,15 @@ def nome_prova(codigo, filtro_ano):
 def formulario_2(request):
 
     if request.method == 'GET':
-        menssagem = 'Análise do Desempenho Acadêmico: Quantidade de Acertos e Erros por Prova e Aplicação de Filtros'
-        menssagem_informativa = """A análise de dados é uma das habilidades mais importantes na era digital em que vivemos, e é especialmente útil quando se trata de quantificar o desempenho em testes como o Exame Nacional do Ensino Médio (ENEM). Uma plataforma online com filtros pode ser uma ferramenta poderosa para analisar dados do ENEM e determinar o nível de sucesso de um determinado grupo de estudantes.
-
-        Usando uma plataforma online com filtros, é possível analisar vários dados do ENEM, como a nota geral, a pontuação em cada área de conhecimento e a nota de redação. Além disso, é possível filtrar esses dados por região, tipo de escola, renda familiar, entre outros fatores.
-
-        Com essa plataforma, é possível determinar o nível de sucesso de um determinado grupo de estudantes, comparando-os com o desempenho geral de outros grupos. Por exemplo, é possível analisar os dados dos estudantes de uma determinada escola de ensino médio em relação aos dados gerais de todas as escolas de ensino médio na região.
-
-        Essa análise de dados pode ajudar a identificar possíveis áreas de melhoria no processo de ensino e aprendizagem, permitindo que os educadores tomem decisões informadas sobre a forma como ensinam e avaliam os alunos. Também pode ajudar a identificar os estudantes que precisam de mais apoio e fornecer informações valiosas para os pais sobre o desempenho dos seus filhos.
-
-
-        Em resumo, a análise de dados usando uma plataforma online com filtros pode fornecer informações valiosas sobre o desempenho dos alunos no ENEM, ajudando a identificar áreas de melhoria e fornecer informações importantes para os educadores e pais."""
+        menssagem = 'Análise da quantidade de acertos e erros por questão:'
+        menssagem_informativa = """ A análise de dados é uma das habilidades mais importantes na era digital em que vivemos, e é especialmente útil quando se trata de quantificar o desempenho em testes como o Exame Nacional do Ensino Médio (ENEM). Uma plataforma online com filtros pode ser uma ferramenta poderosa para analisar dados do ENEM e determinar o nível de sucesso de um determinado grupo de estudantes.
+        Nesta tela, é possível determinar o nível de sucesso de um determinado grupo de estudantes, comparando-os com o desempenho geral de outros grupos. Por exemplo, é possível analisar os dados dos estudantes de uma determinada escola de ensino médio em relação aos dados gerais de todas as escolas de ensino médio na região.
+        Identificar possíveis áreas de melhoria no processo de ensino e aprendizagem, permitindo que os educadores tomem decisões informadas sobre a forma como ensinam e avaliam os alunos. Também pode ajudar a identificar os estudantes que precisam de mais apoio e fornecer informações valiosas para os pais sobre o desempenho dos seus filhos.
+        Ajudar a identificar áreas de melhoria e fornecer informações importantes para os educadores e pais."""
         
         menssagem_informativa = menssagem_informativa.split('\n')
-        menssagem_informativa = format_html_join('\n', '<p>{}</p>', ((line,) for line in menssagem_informativa))
+        menssagem_informativa = format_html_join('\n', '<p>•{}</p>', ((line,) for line in menssagem_informativa))
         
-
         form = Formulario_3_2()
         form_filtro_grupo_A = Formulario_filtros(prefix='grupo_A')
         form_filtro_grupo_B = Formulario_filtros(prefix='grupo_B')
@@ -789,8 +782,8 @@ def formulario_2(request):
             CONTAGEMMicrodado_Amostra = 4426755
         CONTAGEM = Microdado_Prova1[prova].count()
         
-        menssagem = 'Análise do Desempenho Acadêmico: Quantidade de Acertos e Erros por Prova e Aplicação de Filtros'
-
+        menssagem = 'Análise da quantidade de acertos e erros por questão:'
+        
         # Resetar o índice do DataFrame Microdado_Prova1
         Microdado_Prova1.reset_index(inplace=True)
 
@@ -1093,20 +1086,14 @@ def formulario_2(request):
 def formulario_3(request):
 
     if request.method == 'GET':
-        menssagem = 'Análise do Desempenho Acadêmico: Quantidade de Acertos e Erros por Prova e Aplicação de Filtros'
-        menssagem_informativa = """A análise de dados é uma das habilidades mais importantes na era digital em que vivemos, e é especialmente útil quando se trata de quantificar o desempenho em testes como o Exame Nacional do Ensino Médio (ENEM). Uma plataforma online com filtros pode ser uma ferramenta poderosa para analisar dados do ENEM e determinar o nível de sucesso de um determinado grupo de estudantes.
-
-        Usando uma plataforma online com filtros, é possível analisar vários dados do ENEM, como a nota geral, a pontuação em cada área de conhecimento e a nota de redação. Além disso, é possível filtrar esses dados por região, tipo de escola, renda familiar, entre outros fatores.
-
-        Com essa plataforma, é possível determinar o nível de sucesso de um determinado grupo de estudantes, comparando-os com o desempenho geral de outros grupos. Por exemplo, é possível analisar os dados dos estudantes de uma determinada escola de ensino médio em relação aos dados gerais de todas as escolas de ensino médio na região.
-
-        Essa análise de dados pode ajudar a identificar possíveis áreas de melhoria no processo de ensino e aprendizagem, permitindo que os educadores tomem decisões informadas sobre a forma como ensinam e avaliam os alunos. Também pode ajudar a identificar os estudantes que precisam de mais apoio e fornecer informações valiosas para os pais sobre o desempenho dos seus filhos.
-
-
-        Em resumo, a análise de dados usando uma plataforma online com filtros pode fornecer informações valiosas sobre o desempenho dos alunos no ENEM, ajudando a identificar áreas de melhoria e fornecer informações importantes para os educadores e pais."""
+        menssagem = 'Análise da quantidade de acertos e erros por prova:'
+        menssagem_informativa = """ A análise de dados é uma das habilidades mais importantes na era digital em que vivemos, e é especialmente útil quando se trata de quantificar o desempenho em testes como o Exame Nacional do Ensino Médio (ENEM). Uma plataforma online com filtros pode ser uma ferramenta poderosa para analisar dados do ENEM e determinar o nível de sucesso de um determinado grupo de estudantes.
+        Nesta tela, é possível determinar o nível de sucesso de um determinado grupo de estudantes, comparando-os com o desempenho geral de outros grupos. Por exemplo, é possível analisar os dados dos estudantes de uma determinada escola de ensino médio em relação aos dados gerais de todas as escolas de ensino médio na região.
+        Identificar possíveis áreas de melhoria no processo de ensino e aprendizagem, permitindo que os educadores tomem decisões informadas sobre a forma como ensinam e avaliam os alunos. Também pode ajudar a identificar os estudantes que precisam de mais apoio e fornecer informações valiosas para os pais sobre o desempenho dos seus filhos.
+        Ajudar a identificar áreas de melhoria e fornecer informações importantes para os educadores e pais."""
         
         menssagem_informativa = menssagem_informativa.split('\n')
-        menssagem_informativa = format_html_join('\n', '<p>{}</p>', ((line,) for line in menssagem_informativa))
+        menssagem_informativa = format_html_join('\n', '<p>•{}</p>', ((line,) for line in menssagem_informativa))
         
 
         form = Formulario_3()

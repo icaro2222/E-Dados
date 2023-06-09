@@ -19,16 +19,16 @@ def aba_de_informacoes(request):
 
     if request.method == 'GET':
 
-        menssagem1 ="""Informações da plataforma E-DADOS V1.26""" 
+        menssagem1 ="""
+O software foi desenvolvido por Ícaro Dias (e-mail: icarodias2222@gmail.com), sob a orientação do Prof. Dr. Woquiton Lima Fernandes (e-mail: woquiton@gmail.com) e coorientação da Prof. Dra. Daniele Trindade (e-mail: daniele.trindade@ifbaiano.edu.br). 
+O software é parte do Trabalho de Conclusão de Curso (TCC) do curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas (ADS), oferecido pelo Instituto Federal Baiano, campus Guanambi.""" 
         # menssagem = """"""
         menssagem = """
-A E-DADOS é uma plataforma online cujo objetivo é estudar os dados do Enem em busca de informações relevantes sobre as pessoas com deficiência. Ela oferece uma solução para a análise de microdados socioeconômicos do ENEM referentes aos anos de 2016, 2017, 2018 e 2019 de maneira eficiente e ágil.
+Esta plataforma online oferece uma solução para análise de microdados socioeconômicos do ENEM, referentes aos anos de 2017, 2018 e 2019. No entanto, para os anos seguinte, não foram disponibilizados os dados completos. 
+Para garantir resultados mais consistentes, foram utilizados apenas os dados dos inscritos presentes em todas as provas, ou seja, aqueles que compareceram todos os dias. 
+A plataforma utiliza técnicas avançadas da ciência de dados para permitir uma análise precisa e detalhada dos dados, fornecendo insights valiosos para a tomada de decisões estratégicas em relação ao desempenho dos candidatos. Com uma interface intuitiva e funcionalidades de filtragem e visualização de dados, é uma ferramenta para pesquisadores, gestores educacionais e profissionais da área de educação que buscam aprimorar a compreensão dos fatores que influenciam o desempenho dos estudantes no ENEM, principalmente aqueles com deficiência.
+Para acessar a plataforma, é necessário fazer login utilizando um usuário e senha previamente cadastrados. Além disso, é possível visualizar as informações de todos os usuários cadastrados no sistema e gerenciar suas permissões de acesso. A plataforma também oferece recursos de exportação e download de dados no formato CSV.
 
-Utilizando técnicas avançadas da ciência de dados, a plataforma possibilita uma análise precisa e detalhada dos dados, visando fornecer insights valiosos para a tomada de decisões estratégicas em relação ao desempenho dos candidatos nas provas. Com uma interface intuitiva e funcionalidades de filtragem e visualização de dados, a plataforma é uma ferramenta poderosa para pesquisadores, gestores educacionais e profissionais da área de educação interessados em aprimorar a compreensão dos fatores que influenciam o desempenho dos estudantes no ENEM.
-
-A E-DADOS foi desenvolvida utilizando Django, um framework web de alto nível em Python que incentiva o desenvolvimento rápido e o design limpo e pragmático. O backend da plataforma utiliza PostgreSQL, um sistema de gerenciamento de banco de dados relacional de código aberto e muito popular. Já para o frontend, a plataforma utiliza Bootstrap, um framework front-end popular para design responsivo e de fácil utilização.
-
-Para acessar a plataforma, é necessário fazer login utilizando um usuário e senha previamente cadastrados. É possível visualizar as informações de todos os usuários cadastrados no sistema e gerenciar suas permissões de acesso. A plataforma também oferece recursos de exportação de dados para formatos como CSV e Excel.
 """
 
         menssagem = menssagem.split('\n')
@@ -37,7 +37,7 @@ Para acessar a plataforma, é necessário fazer login utilizando um usuário e s
 
         menssagem1 = menssagem1.split('\n')
         menssagem1 = format_html_join(
-            '\n', '<h4 class="font-weight-normal mb-0 mt-3">{}</h4>', ((line,) for line in menssagem1))
+            '\n', '<p class="font-weight-normal mb-0 mt-3">{}</p>', ((line,) for line in menssagem1))
 
         context = {
             # 'form': form,

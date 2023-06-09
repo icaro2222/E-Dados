@@ -271,18 +271,20 @@ def formulario_2(request):
     prova = 'NU_NOTA_MT'
 
     if request.method == 'GET':    
-          
-        menssagem = "Análise do Desempenho Acadêmico de Pessoas com Deficiência e seus Dados Socioeconômicos:"          
-        menssagem1 = ("Correlação entre as questões socioeconômicas e desempenho no exame, somados a filtros.")
-        menssagem_informativa = """
-        A análise de dados é uma ferramenta poderosa para compreender e tirar conclusões a partir de grandes quantidades de informações. Uma aplicação interessante da análise de dados é na área da educação, mais especificamente na análise do desempenho dos alunos em exames, como o Enem.
-        Ao analisar o desempenho dos alunos no Enem, é possível identificar padrões e correlações entre o desempenho e fatores socioeconômicos, como renda familiar, escolaridade dos pais e acesso à internet. Essas informações podem ser obtidas por meio de questionários aplicados aos alunos ou de dados do IBGE.
-        Uma plataforma online que ofereça filtros pode ser de grande ajuda nessa análise. Por exemplo, é possível filtrar os dados por região, tipo de escola e nível socioeconômico dos alunos. Isso permite que sejam identificadas correlações específicas para cada grupo de alunos, o que pode ser de grande ajuda para a elaboração de políticas públicas mais eficazes.
-        Além disso, a plataforma pode oferecer um indicador de acertos por questão, permitindo que sejam identificadas as questões em que os alunos têm mais dificuldade e que exigem maior atenção por parte dos professores e gestores escolares.
-        Portanto, a análise de dados combinada com uma plataforma online que ofereça filtros pode ser uma ferramenta poderosa para compreender as correlações entre fatores socioeconômicos e desempenho no Enem, além de fornecer informações valiosas para a elaboração de políticas públicas e para a gestão escolar."""
+           
+        # menssagem_informativa = """
+        # A análise de dados é uma ferramenta poderosa para compreender e tirar conclusões a partir de grandes quantidades de informações. Uma aplicação interessante da análise de dados é na área da educação, mais especificamente na análise do desempenho dos alunos em exames, como o Enem.
+        # Ao analisar o desempenho dos alunos no Enem, é possível identificar padrões e correlações entre o desempenho e fatores socioeconômicos, como renda familiar, escolaridade dos pais e acesso à internet. Essas informações podem ser obtidas por meio de questionários aplicados aos alunos ou de dados do IBGE.
+        # Uma plataforma online que ofereça filtros pode ser de grande ajuda nessa análise. Por exemplo, é possível filtrar os dados por região, tipo de escola e nível socioeconômico dos alunos. Isso permite que sejam identificadas correlações específicas para cada grupo de alunos, o que pode ser de grande ajuda para a elaboração de políticas públicas mais eficazes.
+        # Além disso, a plataforma pode oferecer um indicador de acertos por questão, permitindo que sejam identificadas as questões em que os alunos têm mais dificuldade e que exigem maior atenção por parte dos professores e gestores escolares.
+        # Portanto, a análise de dados combinada com uma plataforma online que ofereça filtros pode ser uma ferramenta poderosa para compreender as correlações entre fatores socioeconômicos e desempenho no Enem, além de fornecer informações valiosas para a elaboração de políticas públicas e para a gestão escolar."""
+            
+        menssagem = "Análise do Desempenho Acadêmico:"      
+        menssagem_informativa = """ Possibilita identificar padrões e correlações entre o desempenho e fatores socioeconômicos, como renda familiar, escolaridade dos pais e acesso à internet.
+        Além disso, ofereçe filtros que ajudam s compreender as correlações entre fatores socioeconômicos e desempenho no Enem."""
         
         menssagem_informativa = menssagem_informativa.split('\n')
-        menssagem_informativa = format_html_join('\n', '<p>{}</p>', ((line,) for line in menssagem_informativa))
+        menssagem_informativa = format_html_join('\n', '<p>•{}</p>', ((line,) for line in menssagem_informativa))
         
         
         
@@ -626,8 +628,7 @@ def formulario_2(request):
             pass
 
         menssagem1 = """Formulário da análise do Desempenho do inscrito em relação aos dados socioêconomicos :"""
-        menssagem = """Correlação entre as respostas do questionário socioeconômico e
-        o desempenho no exame."""
+        menssagem = """Análise do desempenho dos alunos:"""
 
         if(anotacao_mensagem!=""):
             anotacao_quadro = anotacao_mensagem[0]

@@ -11,22 +11,11 @@
   <!-- Conteúdo da página -->
   <div class="row border border-break">
     <div class="col-md-12 text-dark">
-      {{ menssagem1 }}
+      <h4 class="font-weight-normal mb-0 mt-3">Sobre:</h4>
       <hr class="mt-0 bg-light" />
-    </div>
-
-    <!-- Page Heading -->
-    <form class="col-md-12 mb-3" action="." method="post">
-      {% csrf_token %}
-      <div class="d-flex">
-        <!-- {{ form|crispy }} -->
-      </div>
-    </form>
-    <div class="d-flex col-md-12">
-      <div class="col md-6">{{relatorio_em_quadro|safe}}</div>
-      <div class="col md-6">{{relatorio|safe}}</div>
-    </div>
-    <div class="col-md-12 ">
+      <h6 class="text-dark">{{ menssagem1 }}</h6>
+      <h4 class="font-weight-normal mb-0 mt-3">Informações:</h4>
+      <hr class="mt-0 bg-light" />
       <h6 class="text-dark">{{ menssagem }}</h6>
     </div>
   </div>

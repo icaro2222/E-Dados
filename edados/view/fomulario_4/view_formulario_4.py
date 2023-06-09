@@ -21,17 +21,15 @@ def formulario_4(request):
 
     if request.method == 'GET':        
         
-        menssagem = ("Mapa de Distribuição de Alunos")
-        menssagem_informativa = """O formulário web em questão disponibiliza uma ferramenta de análise da densidade demográfica dos inscritos no ENEM utilizando os microdados. Através dessa plataforma, é possível realizar análises comparativas entre diferentes regiões demográficas e identificar padrões que possam estar relacionados aos dados socioeconômicos dos inscritos.
-
-        Com o objetivo de oferecer uma experiência de usuário intuitiva e acessível, a tela do site apresenta de forma clara e organizada as diferentes opções de análise disponíveis. É possível selecionar diferentes regiões demográficas e        comparar a densidade de inscritos em cada uma delas, além de visualizar gráficos e tabelas com informações detalhadas         sobre os dados socioeconômicos dos inscritos em cada região.
-
-        Além disso, o site oferece opções avançadas de filtragem e segmentação de dados, permitindo que o usuário realize         análises mais específicas e detalhadas de acordo com suas necessidades. Por exemplo, é possível filtrar os dados por         gênero, idade, escolaridade e outras variáveis socioeconômicas para identificar padrões mais específicos em cada         região demográfica.
-
-        A análise da densidade demográfica dos inscritos no ENEM é uma ferramenta valiosa para a compreensão das dinâmicas         socioeconômicas do país. Com base nesses dados, é possível identificar desigualdades regionais e propor políticas     públicas mais efetivas para a melhoria do acesso à educação e para a promoção da igualdade social.         O site web em questão representa uma importante contribuição nesse sentido, oferecendo uma plataforma de análise de dados     demográficos acessível e de fácil utilização para pesquisadores, estudantes e outros interessados em compreender melhor a realidade socioeconômica do Brasil."""
+        menssagem = ("Mapa de Temático:")
+        menssagem_informativa = """ Identificar disparidades regionais.
+        Analisar correlações entre notas e localização.
+        Avaliar a distribuição de alunos por estado.
+        Compreender a relação entre a idade dos alunos e o desempenho."""
+        
         menssagem_informativa = menssagem_informativa.split('\n')
-        menssagem_informativa = format_html_join('\n', '<p>{}</p>', ((line,) for line in menssagem_informativa))
-
+        menssagem_informativa = format_html_join('\n', '<p>•{}</p>', ((line,) for line in menssagem_informativa))
+        
 
         form = Formulario_4()
         form_filtro = Formulario_filtros()
@@ -57,7 +55,7 @@ def formulario_4(request):
         global CONTAGEMMicrodado_Amostra
         
         # Formulario de Filtro
-        menssagem = ("Mapa de Distribuição de Alunos")
+        menssagem = ("Mapa de Temático:")
         menssagem_informativa = """A tela web em questão disponibiliza uma ferramenta de análise da densidade demográfica 
         dos inscritos no ENEM utilizando os microdados."""
 

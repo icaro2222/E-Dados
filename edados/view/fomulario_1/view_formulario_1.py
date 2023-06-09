@@ -258,9 +258,16 @@ def formulario_1(request):
     demografico = 'TP_SEXO'
 
     if request.method == 'GET':
-        menssagem = 'Análise de Dados Socioeconômicos do ENEM'
-        menssagem1 = """Este formulário permite realizar uma análise exploratória que correlaciona os microdados socioeconômicos e demográficos do ENEM nos anos de 2016, 2017, 2018 e 2019. 
-        É possível obter resultados em porcentagem, o que possibilita a comparação entre os anos estudados."""
+        
+        menssagem = ("Gráficos:")
+        menssagem1 = """ Permite realizar uma análise exploratória que correlaciona os microdados socioeconômicos e demográficos do ENEM.
+        É possível obter resultados em porcentagem, o que possibilita a comparação entre os anos estudados.
+        Realizar filtros específicos em milhões de dados.
+        Gerar e imprimir relatórios"""
+
+        menssagem1 = menssagem1.split('\n')
+        menssagem1 = format_html_join(
+            '\n', '<p class="font-weight-normal m-2">•{}</p>', ((line,) for line in menssagem1))
 
         form = Formulario_1()
         form_filtro = Formulario_filtros()
