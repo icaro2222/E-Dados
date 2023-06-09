@@ -286,7 +286,7 @@ def formulario_2(request):
         Contrastar as notas mínimas, médias e máximas entre os grupos filtrados, permitindo identificar disparidades e desigualdades.
         Gerar um relatório final contendo estatísticas, gráficos e insights relevantes da análise.
         Visualizar as provas em que os alunos apresentam maior ou menor desempenho.
-        Identificação de padrões ou tendências."""
+        Identificar padrões ou tendências."""
         
         menssagem_informativa = menssagem_informativa.split('\n')
         menssagem_informativa = format_html_join('\n', '<p>•{}</p>', ((line,) for line in menssagem_informativa))

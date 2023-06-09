@@ -543,7 +543,7 @@ def formulario_2(request):
 
     if request.method == 'GET':
         menssagem = 'Quantidade de acertos e erros por questão:'
-        menssagem_informativa = """ Aplicar filtros para visualizar resultados entre diferentes grupos de alunos, como sexo, região, entre outros critérios de filtragem.
+        menssagem_informativa = """ Visualizar resultados entre diferentes grupos de alunos, como sexo, região, entre outros critérios de filtragem.
         Contrastar subgrupos específicos de alunos para diferentes provas e questões selecionadas, proporcionando uma análise mais segmentada e personalizada.
         Comparar múltiplas provas, visando a compreensão das disparidades e desigualdades presentes nos resultados.
         Compreender as questões em que os alunos apresentam maior ou menor desempenho."""
@@ -1087,7 +1087,7 @@ def formulario_3(request):
 
     if request.method == 'GET':
         menssagem = 'Quantidade de acertos e erros por prova:'
-        menssagem_informativa = """ Permitir ao usuário filtrar os dados dos microdados do ENEM por ano, sexo, região e outros critérios relevantes.
+        menssagem_informativa = """ Filtrar os dados dos microdados do ENEM por ano, sexo, região e outros critérios relevantes.
         Gerar gráfico de barras com a porcentagem de alunos que acertaram ou erraram cada questão da prova.
         Compreender as questões em que os alunos apresentam maior ou menor desempenho."""
         

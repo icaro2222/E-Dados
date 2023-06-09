@@ -261,7 +261,7 @@ def formulario_1(request):
         
         menssagem = ("Gráficos:")
         menssagem1 = """ Realizar  análise exploratória que correlaciona os microdados socioeconômicos e demográficos do ENEM.
-        Específicos filtros, possibilitando de análises mais refinadas e segmentadas nos milhões de dados disponíveis, permitindo investigar relações específicas e identificar padrões relevantes.
+        Específicar filtros, possibilitando de análises mais refinadas e segmentadas nos milhões de dados disponíveis, permitindo investigar relações específicas e identificar padrões relevantes.
         Gerar um relatório final abrangente, que apresente estatísticas, gráficos e insights relevantes da análise de forma clara e compreensível para o usuário."""
 
         menssagem1 = menssagem1.split('\n')
