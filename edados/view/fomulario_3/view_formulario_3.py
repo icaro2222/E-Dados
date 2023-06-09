@@ -1089,8 +1089,7 @@ def formulario_3(request):
         menssagem = 'Quantidade de acertos e erros por prova:'
         menssagem_informativa = """ Permitir ao usuário filtrar os dados dos microdados do ENEM por ano, sexo, região e outros critérios relevantes.
         Gerar gráfico de barras com a porcentagem de alunos que acertaram ou erraram cada questão da prova.
-        Compreender as questões em que os alunos apresentam maior ou menor desempenho.
-        """
+        Compreender as questões em que os alunos apresentam maior ou menor desempenho."""
         
         menssagem_informativa = menssagem_informativa.split('\n')
         menssagem_informativa = format_html_join('\n', '<p>•{}</p>', ((line,) for line in menssagem_informativa))
