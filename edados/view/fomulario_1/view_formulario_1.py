@@ -260,10 +260,9 @@ def formulario_1(request):
     if request.method == 'GET':
         
         menssagem = ("Gráficos:")
-        menssagem1 = """ Permite realizar uma análise exploratória que correlaciona os microdados socioeconômicos e demográficos do ENEM.
-        É possível obter resultados em porcentagem, o que possibilita a comparação entre os anos estudados.
-        Realizar filtros específicos em milhões de dados.
-        Gerar e imprimir relatórios"""
+        menssagem1 = """ Realizar  análise exploratória que correlaciona os microdados socioeconômicos e demográficos do ENEM.
+        Específicos filtros, possibilitando de análises mais refinadas e segmentadas nos milhões de dados disponíveis, permitindo investigar relações específicas e identificar padrões relevantes.
+        Gerar um relatório final abrangente, que apresente estatísticas, gráficos e insights relevantes da análise de forma clara e compreensível para o usuário."""
 
         menssagem1 = menssagem1.split('\n')
         menssagem1 = format_html_join(
@@ -341,7 +340,9 @@ def formulario_1(request):
             CONTAGEMMicrodado_Amostra = 4426755
 
         CONTAGEM  = Microdado_Amostra[demografico].count()
-        menssagem = 'Análise de Dados Socioeconômicos do ENEM'
+        
+        menssagem = ("Gráficos:")
+        
         relatorio_em_grafico=''
         relatorio=""
         relatorio_em_quadro=''

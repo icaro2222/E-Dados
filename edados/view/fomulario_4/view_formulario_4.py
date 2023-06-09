@@ -25,7 +25,7 @@ def formulario_4(request):
         menssagem_informativa = """ Identificar disparidades regionais.
         Analisar correlações entre notas e localização.
         Avaliar a distribuição de alunos por estado.
-        Compreender a relação entre a idade dos alunos e o desempenho."""
+        Compreender a relação entre a idade dos alunos e localização."""
         
         menssagem_informativa = menssagem_informativa.split('\n')
         menssagem_informativa = format_html_join('\n', '<p>•{}</p>', ((line,) for line in menssagem_informativa))

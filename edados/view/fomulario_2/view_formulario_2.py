@@ -279,9 +279,14 @@ def formulario_2(request):
         # Além disso, a plataforma pode oferecer um indicador de acertos por questão, permitindo que sejam identificadas as questões em que os alunos têm mais dificuldade e que exigem maior atenção por parte dos professores e gestores escolares.
         # Portanto, a análise de dados combinada com uma plataforma online que ofereça filtros pode ser uma ferramenta poderosa para compreender as correlações entre fatores socioeconômicos e desempenho no Enem, além de fornecer informações valiosas para a elaboração de políticas públicas e para a gestão escolar."""
             
-        menssagem = "Análise do Desempenho Acadêmico:"      
-        menssagem_informativa = """ Possibilita identificar padrões e correlações entre o desempenho e fatores socioeconômicos, como renda familiar, escolaridade dos pais e acesso à internet.
-        Além disso, ofereçe filtros que ajudam s compreender as correlações entre fatores socioeconômicos e desempenho no Enem."""
+        menssagem = "Desempenho no Exame:"      
+        menssagem_informativa = """ Identificar padrões e correlações entre o desempenho e fatores socioeconômicos, como renda familiar, escolaridade dos pais e acesso à internet.
+        Exibir a distribuição dos alunos em cada resposta da questão socioeconômica e analisar a distribuição dos resultados, calculando a média, o mínimo e o máximo para cada grupo.
+        Aplicar filtros para segmentar os resultados por critérios como região, estado, escola, gênero, raça, entre outros.
+        Contrastar as notas mínimas, médias e máximas entre os grupos filtrados, permitindo identificar disparidades e desigualdades.
+        Gerar um relatório final contendo estatísticas, gráficos e insights relevantes da análise.
+        Visualizar as provas em que os alunos apresentam maior ou menor desempenho.
+        Identificação de padrões ou tendências."""
         
         menssagem_informativa = menssagem_informativa.split('\n')
         menssagem_informativa = format_html_join('\n', '<p>•{}</p>', ((line,) for line in menssagem_informativa))

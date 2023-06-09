@@ -280,9 +280,11 @@ def formulario_4(request):
     demografico = 'TP_SEXO'
 
     if request.method == 'GET':        
-        menssagem = ("Analisar Dados Brutos do ENEM:")
-        menssagem1 = """ Realizar filtros específicos em milhões de dados.
-        Permitir download dos dados em arquivos CSV."""
+        menssagem = ("Dados Brutos:")
+        menssagem1 = """ Realizar filtros em um grande volume de dados, possibilitando a análise específica de milhões de registros.
+        Disponibilizar o download dos dados em formato CSV, podendo optar por baixar apenas algumas colunas ou todas as colunas disponíveis.
+        Apresentar quadro resumido do CSV completo, oferecendo ao usuário uma visão geral dos principais dados e métricas contidos no arquivo.
+        Visualizar quadro de distribuição com a quantidade de alunos em cada resposta do questionário socioeconômico, oferecendo insights sobre a composição socioeconômica dos estudantes."""
 
         menssagem1 = menssagem1.split('\n')
         menssagem1 = format_html_join(
