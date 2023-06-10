@@ -19,5 +19,13 @@ def questionario_questao(Form):
                     ('NU_NOTA_REDACAO', 'NU_NOTA_REDACAO - Redação'),)
 
  
-    questao = forms.ChoiceField(label='Questao:', choices=choices_questao, required=False)
+    questao = forms.ChoiceField(
+        label="""<div class="m-0" title="O mapa exibe a distribuição de alunos por estados e a média de idade. Provas do ENEM podem ser selecionadas para calcular a média por estados de acordo com os dados filtrados.">Questao: <i class="fas fa-info-circle"></i></div>""", 
+        choices=choices_questao,
+        required=False,
+        widget=forms.Select(attrs={
+            'title': """NENHUM: Exibe a distribuição de alunos por estados brasileiros em formato de porcentagem.
+NU_IDADE: Mostra a média das idades de cada grupo por estado.
+PROVAS DO ENEM: Permite selecionar uma das provas do ENEM para calcular a média por estados de acordo com os dados filtrados."""
+        }))
     return questao
