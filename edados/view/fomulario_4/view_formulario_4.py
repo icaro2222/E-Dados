@@ -29,7 +29,6 @@ def formulario_4(request):
         
         menssagem_informativa = menssagem_informativa.split('\n')
         menssagem_informativa = format_html_join('\n', '<p>•{}</p>', ((line,) for line in menssagem_informativa))
-        
 
         form = Formulario_4()
         form_filtro = Formulario_filtros()
@@ -58,7 +57,6 @@ def formulario_4(request):
         menssagem = ("Mapa de Temático:")
         menssagem_informativa = """A tela web em questão disponibiliza uma ferramenta de análise da densidade demográfica 
         dos inscritos no ENEM utilizando os microdados."""
-
 
         # Variáveis vindas do Formulario
         filtro_questao = form.data['questao']
@@ -120,22 +118,13 @@ def formulario_4(request):
     
         if filtro_questao == 'vazio':
             Dataframe = Microdado_Amostra.groupby('SG_UF_RESIDENCIA')
-
-            # Realizar a contagem de elementos em cada grupo
-            Dataframe = Dataframe.size().reset_index(name='count')
-
-            # Dataframe = Dataframe.rename_axis('SG_UF_RESIDENCIA')
-            # Dataframe = Dataframe.reset_index() 
-            
+            Dataframe = Dataframe.size().reset_index(name='count')            
         else:
             Dataframe = Microdado_Amostra.groupby('SG_UF_RESIDENCIA')[filtro_questao]   
             Dataframe = Dataframe.describe() 
             Dataframe = Dataframe.rename_axis('SG_UF_RESIDENCIA')
             Dataframe = Dataframe.reset_index() 
 
-        print(Dataframe)
-        # print(contagem['SG_UF_RESIDENCIA'])
-        
         CONTAGEM  = Microdado_Amostra['SG_UF_RESIDENCIA'].count()
             
         # Formulario de Filtro
@@ -167,23 +156,17 @@ def formulario_4(request):
             filtro_questao="SG_UF_RESIDENCIA"
             # Calcular o percentual
             percentuais = Dataframe['count'] / Dataframe['count'].sum()
-
             # Converter os percentuais em formato de porcentagem com duas casas decimais
             percentuais_formatados = (percentuais * 100).round(2)
-
             # Atualizar o hovertemplate com os percentuais formatados
             fig.update_traces(
                 hovertemplate='<b>Estado</b>: %{location}<br><b>Contagem</b>: %{customdata[0]}<br><b>Percentual</b>: ' + percentuais_formatados.astype(str) + '%',
             )
         else:
-            # Atualizar o hovertemplate com os percentuais formatados
-            # fig.update_traces(
-            #     hovertemplate='<b>Estado</b>: %{location}<br><b>'+filtro_questao+'</b>: %{customdata[0]}<br>',
-            # )
             fig.update_traces(
                 hovertemplate='<b>Estado</b>: %{location}<br><b>Média</b>: %{customdata[0]:.2f}',
             )
-
+            
         fig.update_layout(
             mapbox_style="carto-positron",
             mapbox_zoom=3,
@@ -192,9 +175,8 @@ def formulario_4(request):
             title=('<b>'+filtro_questao+'</b>'),            
             titlefont={'family': 'Arial', 'size': 24},
         )
-
+        
         relatorio_mapa = fig.to_html()
-
 
         relatorio = ''
         

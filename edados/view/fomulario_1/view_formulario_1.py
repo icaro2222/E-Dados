@@ -527,8 +527,6 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         rowOddColor = 'white'
         DataFrame = DataFrame.unstack()
         DataFrame = DataFrame.T
-        print('----------------------------------------------')
-        print(DataFrame)
         figura_tabela = go.Figure(data=[
             go.Table(
                 header=dict(
@@ -575,8 +573,6 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         relatorio_em_grafico = ""
         figura_tabela = ""
         relatorio = ""
-        print('----------------------------------------------')
-        print(Microdado_Amostra)
         Microdado_Amostra = Microdado_Amostra.groupby([demografico])
         Microdado_Amostra = Microdado_Amostra[demografico].count()
         
@@ -651,11 +647,6 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
 
         figura_tabela = figura_tabela.to_html()
         relatorio_em_grafico = relatorio_em_grafico.to_html()
-        relatorio = relatorio_em_grafico
-        print('----------------------------------------------')
-        print(Microdado_Amostra)
-        # print(Microdado_Amostra['index'])
-
     return [relatorio_em_grafico, figura_tabela, relatorio]
 
 def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_sexo):
@@ -670,8 +661,6 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
 
         Microdado_Amostra = Microdado_Amostra.groupby([demografico])
         Microdado_Amostra = Microdado_Amostra[demografico].count()
-        print('----------------------------------------------')
-        print(Microdado_Amostra)
         
         # Dados do gráfico
         labels = Microdado_Amostra.index
@@ -776,8 +765,6 @@ def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_
         relatorio = ""
         Microdado_Amostra = Microdado_Amostra.groupby([demografico])
         Microdado_Amostra = Microdado_Amostra[demografico].count()
-        print('----------------------------------------------')
-        print(Microdado_Amostra)
         
         # Dados do gráfico
         labels = Microdado_Amostra.index
@@ -882,7 +869,6 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(filtro_ano)
             if filtro_ano == '2019' or filtro_ano == '2018' or filtro_ano == '2017':
                 if (index == '0' or index == 0):
                     nome = 'Não informou'
@@ -961,7 +947,6 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(filtro_ano)
             if filtro_ano == '2019' or filtro_ano == '2018' or filtro_ano == '2017':
                 if (index == '0' or index == 0):
                     nome = 'Não informou'
@@ -1014,7 +999,6 @@ def demografico_estado_civil(Microdado_Amostra, demografico, questao, filtro_ano
         values = [trace.y[0] for trace in fig.data]
 
         fig = go.Figure(data=[go.Pie(labels=labels, values=values)])
-        print(fig.data[0].name)
         
         # Estilizar o gráfico de pizza
         fig.update_layout(
@@ -1138,7 +1122,6 @@ def demografico_raca(Microdado_Amostra, demografico, questao):
             else:
                 nome = 'Indígena'
                 
-            print(DataFrame[index])
             fig.add_bar(
                 y=([(DataFrame[index]/CONTAGEM)*100]),
                 x=DataFrame.index,
@@ -1174,9 +1157,7 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
 
         # rotacionar
         DataFrame = DataFrame.unstack()
-
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
 
         # desrotacionar
         DataFrame = DataFrame.stack()
@@ -1184,7 +1165,6 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(index)
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):
@@ -1224,14 +1204,11 @@ def demografico_nascionalidade(Microdado_Amostra, demografico, questao):
         DataFrame = Microdado_Amostra.sort_values(by=[demografico])
         DataFrame = DataFrame.groupby([demografico])
         DataFrame = DataFrame[demografico].count()
-
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
 
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(index)
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):
@@ -1279,9 +1256,7 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
 
         # rotacionar
         DataFrame = DataFrame.unstack()
-
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
 
         # desrotacionar
         DataFrame = DataFrame.stack()
@@ -1289,7 +1264,6 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(index)
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):
@@ -1327,14 +1301,11 @@ def demografico_escolaridade(Microdado_Amostra, demografico, questao):
         DataFrame = Microdado_Amostra.sort_values(by=[demografico])
         DataFrame = DataFrame.groupby([demografico])
         DataFrame = DataFrame[demografico].count()
-
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
 
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(index)
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):
@@ -1380,9 +1351,7 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
 
         # rotacionar
         DataFrame = DataFrame.unstack()
-
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
 
         # desrotacionar
         DataFrame = DataFrame.stack()
@@ -1390,7 +1359,6 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print('INDEX= '+index)
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):
@@ -1430,12 +1398,10 @@ def demografico_conclusao_ensino_medio(Microdado_Amostra, demografico, questao):
         DataFrame = DataFrame[demografico].count()
 
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
 
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print('INDEX= '+index)
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):
@@ -1481,9 +1447,7 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
 
         # rotacionar
         DataFrame = DataFrame.unstack()
-
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
 
         # desrotacionar
         DataFrame = DataFrame.stack()
@@ -1493,8 +1457,6 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
         for index in lista_dos_index:
 
             if filtro_ano == '2019':
-                print('----------------------')
-                print(index)
                 if (index == '0' or index == 0):
                     nome = 'Não informou'
                 elif (index == '1' or index == 1):
@@ -1524,7 +1486,6 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
                 else:
                     nome = 'Antes de 2007'
             else:
-                print(index)
                 if (index == '0' or index == 0):
                     nome = 'Não informou'
                 elif (index == '1' or index == 1):
@@ -1580,17 +1541,12 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
         DataFrame = Microdado_Amostra.sort_values(by=[demografico])
         DataFrame = DataFrame.groupby([demografico])
         DataFrame = DataFrame[demografico].count()
-
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
-
         fig = go.Figure()
 
         for index in lista_dos_index:
 
             if filtro_ano == '2019':
-                print('----------------------')
-                print(index)
                 if (index == '0' or index == 0):
                     nome = 'Não informou'
                 elif (index == '1' or index == 1):
@@ -1620,7 +1576,6 @@ def demografico_ano_de_conclusao(Microdado_Amostra, demografico, questao, filtro
                 else:
                     nome = 'Antes de 2007'
             else:
-                print(2018)
                 if (index == '0' or index == 0):
                     nome = 'Não informou'
                 elif (index == '1' or index == 1):
@@ -1684,17 +1639,14 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
 
         # rotacionar
         DataFrame = DataFrame.unstack()
-
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
-
+        
         # desrotacionar
         DataFrame = DataFrame.stack()
 
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(index)
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):
@@ -1737,12 +1689,9 @@ def demografico_instituicao_aonde_conclui_ensino_medio(Microdado_Amostra, demogr
 
 
         lista_dos_index = DataFrame.index.to_list()
-        print(lista_dos_index)
-
         fig = go.Figure()
 
         for index in lista_dos_index:
-            print(index)
             if (index == '0' or index == 0):
                 nome = 'Não informou'
             elif (index == '1' or index == 1):

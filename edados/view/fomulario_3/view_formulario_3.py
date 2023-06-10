@@ -20,9 +20,7 @@ def formatar(valor):
     return "{:,.2f}".format(valor)
 
 def prova_nome_pdf(filtro_cor_da_prova, filtro_ano):
-    
-    print( "filtro_cor_da_prova:"+ str(filtro_cor_da_prova)+ "  filtro_ano:"+ str(filtro_ano))
-    
+        
     if(filtro_ano=="2019"):
         if('503'==filtro_cor_da_prova):
             prova_pdf="ENEM_2019_P1_CAD_07_DIA_2_AZUL.pdf"
@@ -380,13 +378,10 @@ def prova_nome_pdf(filtro_cor_da_prova, filtro_ano):
         else:
             prova_pdf="desenvolvimento.pdf"
             
-    print(prova_pdf)
     return prova_pdf
 
 def nome_prova(codigo, filtro_ano): 
-    print(codigo)
-    print("=============================================")   
-    print(filtro_ano)
+
     if (filtro_ano=="2019"):
         if( codigo == '503' or 
             codigo == '504' or
@@ -1065,10 +1060,6 @@ def formulario_2(request):
         # Formata a mensagem em HTML
         anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao}<hr class="mt-0">{anotacao_mensagem}</div>'
         
-        print("-------------------- filtro_cidade ---------------------------")
-        print(filtro_cidade)
-        print("-------------------- filtro_cidade_grupo_B ---------------------------")
-        print(filtro_cidade_grupo_B)
         context = {
             'form' : form,
             'menssagem':menssagem,

@@ -292,7 +292,7 @@
                                     <div class="col">
                                         <div id="svg-container">
                                             {{menssagem_segundo_planos}}
-                                            <a id="button_csv" class="av-link collapse-item btn btn-custom  text-dark d-flex justify-content-center align-items-center"
+                                            <a id="button_csv" title="Realizar o download do arquivo CSV mais recente gerado na plataforma." class="av-link collapse-item btn btn-custom  text-dark d-flex justify-content-center align-items-center"
                                                 href="">
                                                 <svg id="svg-hourglass1" style="display: none;"
                                                     xmlns="http://www.w3.org/2000/svg" width="16" 
@@ -342,7 +342,7 @@
                             <div class="row d-flex align-items-center">
                                 <li class="nav-item dropdown no-arrow ml-2 mr-3 text-center">
                                     <a class="av-link collapse-item btn btn-custom d-flex justify-content-center align-items-center"
-                                        href="{% url 'dicionario' %}">
+                                        href="{% url 'dicionario' %}" title="Visualizar o PDF do dicionário de microdados do ENEM.">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor"
                                             class="bi bi-info-circle mr-1 d-none d-lg-inline text-dark"
@@ -360,7 +360,7 @@
 
 
                             <li class="nav-item dropdown no-arrow ml-2">
-                                <a class="nav-link dropdown-toggle" href="{% url 'dashboard' %}" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" title="Configurações ou Sair" href="{% url 'dashboard' %}" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-dark small">{{ request.user.username }}</span>
                                     <div class="img-profile d-flex justify-content-center align-items-center rounded-circle btn btn-outline-dark">
                                         <span class="profile-initial ">{{ request.user.username|first|upper }}</span>
@@ -372,7 +372,7 @@
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
                                     {% if  request.user.is_superuser  %}
-                                    <a class="dropdown-item"  href={% url "cadastrar_usuario" %}>
+                                    <a class="dropdown-item" title="Configurações" href={% url "cadastrar_usuario" %}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                          fill="currentColor" class="bi bi-gear  mr-2 " viewBox="0 0 16 16">
                                             <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>

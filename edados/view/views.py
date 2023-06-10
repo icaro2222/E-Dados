@@ -57,12 +57,7 @@ def grafico(request):
         graph = graph.decode('utf-8')
         buffer.close()
         form = MeuFormulario(request.POST)
-
-        if form.is_valid():
-            print(form.changed_data)
-        else:
-            pass
-
+        
         context = {
             'form' : form,
             'graph' : graph
@@ -131,11 +126,6 @@ def grafico(request):
         graph = graph.decode('utf-8')
         buffer.close()
 
-        if form.is_valid():
-            print(form.changed_data)
-        else:
-            pass
-
         context = {
             'form' : form,
             'graph' : graph
@@ -174,11 +164,6 @@ def index(request):
         graph = graph.decode('utf-8')
         buffer.close()
         form = MeuFormulario(request.POST)
-
-        if form.is_valid():
-            print(form.changed_data)
-        else:
-            pass
 
         context = {
             'form' : form,
@@ -263,11 +248,6 @@ def index(request):
         graph = base64.b64encode(image_png)
         graph = graph.decode('utf-8')
         buffer.close()
-
-        if form.is_valid():
-            print(form.changed_data)
-        else:
-            pass
 
         context = {
             'form' : form,

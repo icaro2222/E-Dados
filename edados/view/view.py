@@ -25,11 +25,6 @@ def Grafico_Tabela(request):
     if request.method == 'GET':
         form = MeuFormulario(request.POST)
 
-        if form.is_valid():
-            print(form.changed_data)
-        else:
-            pass
-
         context = {
             'form' : form,
             # 'graph' : graph
@@ -159,11 +154,6 @@ def Grafico_Tabela(request):
         graph_media = base64.b64encode(image_png)
         graph_media = graph_media.decode('utf-8')
         buffer.close()
-
-        if form.is_valid():
-            print(form.changed_data)
-        else:
-            pass
 
         context = {
             'form' : form,

@@ -9,15 +9,13 @@ from edados.database import conect_db
 import os
 
 def verificar_csv(request):
-    # Aqui você pode executar a consulta SQL para obter o status atual do CSV
     
+    # Aqui você pode executar a consulta SQL para obter o status atual do CSV    
     engine = conect_db.connect()
     # Conectando com o Banco de Dados
     Session = sessionmaker(bind=engine)
     session = Session()
-    comando_sql = """SELECT "status" FROM "csv" WHERE "nome"= '"""+ request.user.username+"';"
-    print(comando_sql)
-    
+    comando_sql = """SELECT "status" FROM "csv" WHERE "nome"= '"""+ request.user.username+"';"    
 
     result = session.execute(comando_sql)
     status = result.scalar()  # Extrai o valor do resultado da consulta
@@ -47,16 +45,14 @@ def criar_csv(nome_usuario,
         filtro_escola="filtro_escola",
         filtro_nacionalidade="filtro_nacionalidade"):
     
-    print('---------------------------------------------------------------------------')
-    print("FUNÇÃO DE IMPRIMIR CSV")
-    
+    from pathlib import Path
+    from django.shortcuts import redirect, reverse
     
     engine = conect_db.connect()
     # Conectando com o Banco de Dados
     Session = sessionmaker(bind=engine)
     session = Session()
     comando_sql = """UPDATE "csv" SET "status"='andamento' WHERE  "nome"= '"""+ nome_usuario +"';"
-    print(comando_sql)
 
     session.execute(comando_sql)
     session.commit()
@@ -80,11 +76,8 @@ def criar_csv(nome_usuario,
         filtro_escola=filtro_escola,
         filtro_nacionalidade=filtro_nacionalidade)
 
-    from pathlib import Path
-
     # Caminho para o diretório do projeto
     BASE_DIR = Path(__file__).resolve().parents[2]
-
     # Caminho para a pasta onde deseja salvar o arquivo CSV
     pasta_destino = str(BASE_DIR) + '/static/csv/' + str(nome_usuario)+'/'
 
@@ -93,28 +86,18 @@ def criar_csv(nome_usuario,
         
     # Caminho completo do arquivo CSV
     caminho_arquivo = os.path.join(pasta_destino, nome_arquivo)
-    print('---------------------------------------------------------------------------')
-    print(caminho_arquivo)
     Microdado_Amostra.to_csv(caminho_arquivo, index=False)
-
     comando_sql = """
         UPDATE "csv" SET "status"='finalizado' WHERE   "nome"= '"""+ nome_usuario +"';"
-    print(comando_sql)
+    
     session.execute(comando_sql)
     session.commit()
-    print('---------------------------------------------------------------------------')
-    print("FINALIZOU")
     
-    # O arquivo CSV foi salvo com sucesso na pasta especificada
-    
-    from django.shortcuts import redirect, reverse
-
+    # O arquivo CSV foi salvo com sucesso na pasta especificada    
     # Obtém a URL correspondente à view 'dashboard' com os argumentos corretos
-    url = reverse('dashboard')
-    
+    url = reverse('dashboard')    
     # Redireciona o usuário para a URL obtida
     return redirect(url)
-
 
 
 def buscar_cidades(request):
@@ -5808,8 +5791,6 @@ def buscar_cidades(request):
 
 def buscar_cidades_post(request):
     estado = request.POST.get('estado')
-    print("--------------cidades-------------cidades------------------cidades---------")
-    print(estado)
     
     if("AC"==estado):
         opcoes_cidades = [
@@ -11488,9 +11469,6 @@ def buscar_cidades_post(request):
        ("Wanderlândia", "Wanderlândia"),
        ("Xambioá", "Xambioá")]
 
-    print("--------------response_data-------------response_data------------------response_data---------")
-    print(opcoes_cidades)
-    
     # Retorna o status como uma resposta JSON
     response_data = {'opcoes_cidades': opcoes_cidades}
     return JsonResponse(response_data)

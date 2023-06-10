@@ -261,18 +261,6 @@ E: Sim, quatro ou mais."""
 @login_required
 def formulario_4(request):
 
-    # Medindo o tempo que a view demora para executar
-    
-    print('-----------------------------------------------------------------------')
-    import datetime
-    import pytz
-    brasilia_tz = pytz.timezone('America/Sao_Paulo')
-    hora_atual = datetime.datetime.now(brasilia_tz)
-    hora_formatada = hora_atual.strftime('%H:%M:%S')
-    print(hora_formatada)
-    print('-----------------------------------------------------------------------')
-    tempo_inicial = time.time()
-
     global CONTAGEM
     global CONTAGEMMicrodado_Amostra
 
@@ -560,15 +548,7 @@ def formulario_4(request):
             'relatorio_em_grafico' : relatorio_em_grafico,   
             'relatorio_dados_brutos' : relatorio_dados_brutos,
         }
-        
-        # Captura o tempo de fim da execução
-        tempo_final = time.time()
-        tempo = tempo_final - tempo_inicial
-        
-        # Exibe o tempo de execução no terminal
-        print('----------------------------------------------------------------')
-        print(f"Tempo de execução: {tempo:.6f} segundos")
-        
+                
         if request.POST.get('button')=='gerar_analise':
             return render(request, 'base/formulario_1/relatorio_formulario_4.html', context=context)
         
@@ -663,7 +643,6 @@ def formulario_4(request):
         filtro_ano_de_conclusao = form_filtro.data['ano_de_conclusao']
         
         nome_usuario =  request.user.username
-        print("000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")
 
         criar_csv.delay(nome_usuario,
                     filtro_cidade=filtro_cidade,
