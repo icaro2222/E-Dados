@@ -1065,9 +1065,15 @@ def formulario_2(request):
         # Formata a mensagem em HTML
         anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao}<hr class="mt-0">{anotacao_mensagem}</div>'
         
+        print("-------------------- filtro_cidade ---------------------------")
+        print(filtro_cidade)
+        print("-------------------- filtro_cidade_grupo_B ---------------------------")
+        print(filtro_cidade_grupo_B)
         context = {
             'form' : form,
             'menssagem':menssagem,
+            'filtro_cidade': filtro_cidade,
+            'filtro_cidade_grupo_B': filtro_cidade_grupo_B,
             'relatorio'  :relatorio,
             'anotacao_mensagem' : anotacao_mensagem,
             'menssagem1' : menssagem1,
@@ -1300,6 +1306,7 @@ def formulario_3(request):
         
         context = {
             'form' : form,
+            'filtro_cidade': filtro_cidade,
             'menssagem':menssagem,
             'relatorio'  :relatorio,
             'anotacao_mensagem' : anotacao_mensagem,

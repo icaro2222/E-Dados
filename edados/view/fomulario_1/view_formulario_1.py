@@ -1,12 +1,13 @@
-from django.shortcuts import render
-import plotly.graph_objects as go
-from django.utils.html import format_html_join
-import pandas as pd
-import plotly.express as px
 from edados.formularios.formulario_1.formulario_1 import Formulario_1
 from edados.formularios.filtros.formulario_1_filtros import Formulario_filtros
-from edados.database import bd_formulario_1
 from django.contrib.auth.decorators import login_required
+from django.utils.html import format_html_join
+from edados.database import bd_formulario_1
+from django.http import JsonResponse
+from django.shortcuts import render
+import plotly.graph_objects as go
+import plotly.express as px
+import pandas as pd
 
 CONTAGEM = 0
 CONTAGEMMicrodado_Amostra = 0
@@ -29,6 +30,7 @@ def formatarFrequenciaSemPorcentagem(valor):
 def formatarFrequenciaAbsoluta(valor):
     valor =  (valor/CONTAGEMMicrodado_Amostra)*100
     return "{:,.6f}%".format(valor)
+
 
 def anotacao(Questao):
 
@@ -428,11 +430,16 @@ def formulario_1(request):
             
             # Formata a mensagem em HTML
             anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_quadro}<hr class="mt-0">{anotacao_mensagem}</div>'
+        
+        if(filtro_cidade=="todos"):
+            filtro_cidade=""
             
+        
         context = {
             'form': form,
             'anotacao_mensagem' : anotacao_mensagem,
             'form_filtro': form_filtro,
+            'filtro_cidade': filtro_cidade,
             'menssagem': menssagem,
             'relatorio_em_grafico': relatorio_em_grafico,
             'quantidadeParcial' : CONTAGEM,

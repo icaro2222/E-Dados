@@ -107,6 +107,7 @@ def formulario_4(request):
         if Microdado_Amostra.empty:            
             context = {
                 'form' : form,
+            'filtro_cidade': filtro_cidade,
                 'menssagem' : menssagem,
                 'relatorio_mapa' : "",
                 'form_filtro' : form_filtro,
@@ -200,6 +201,7 @@ def formulario_4(request):
         context = {
             'form' : form,
             'menssagem' : menssagem,
+            'filtro_cidade': filtro_cidade,
             'relatorio_mapa' : relatorio_mapa,
             'form_filtro' : form_filtro,
             'quantidadeParcial' : CONTAGEM,

@@ -217,8 +217,11 @@
   </div>
 </div>
 
-<script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src={% static "js/js_formulario.js" %}></script>
+<script src={% static "js/js_geral.js" %} data-filtro-cidade="{{ filtro_cidade }}"></script>
 
+<script>
   var selectElement = document.getElementById("id_amostra"); 
   // Adicione um ouvinte de eventos para o evento "change" no campo "select"
   selectElement.addEventListener("change", function () {
@@ -232,6 +235,4 @@
   });
 
 </script>
-<script src={% static "js/js_formulario.js" %}></script>
-
 {% endblock %}

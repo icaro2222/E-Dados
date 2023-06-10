@@ -374,8 +374,132 @@ Acertos/Erros por Questões
 </div>
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
+  var selectElement = document.getElementById("id_grupo_A-estado");
+  var estado = selectElement.options[selectElement.selectedIndex].value;
+  // Acessar o valor do atributo 'data-filtro-cidade'
+
+
+  var filtroCidade = "{{ filtro_cidade }}";
+  console.log("------------filtroCidade A---------------");
+  console.log(filtroCidade);
+  console.log("------------estado  A---------------");
+  console.log(estado);
+
+  if (estado !== "todos") {
+    console.log(estado);
+    // Enviar uma solicitação AJAX para buscar as cidades correspondentes
+    $.ajax({
+      url: "{% url 'buscar_cidades' %}", // URL para a view Django que irá lidar com a solicitação
+      type: 'get',
+      data: {
+        'estado': estado // Enviar o estado selecionado como parâmetro
+      },
+      success: function (data) {
+        // Limpar as opções atuais do campo de cidade
+        $('#id_grupo_A-cidade').empty();
+        console.log(filtroCidade);
+
+        // Adicionar as novas opções do campo de cidade com base na resposta recebida
+        $.each(data.opcoes_cidades, function (index, cidade) {
+          $('#id_grupo_A-cidade').append($('<option></option>').val(cidade[0]).text(cidade[1]));
+        });
+
+        // Selecionar no select o campo com o valor da variável 'filtroCidade'
+        $('#id_grupo_A-cidade option[value="' + filtroCidade + '"]').prop('selected', true);
+      }
+    });
+  }
+
+
+  $(document).ready(function () {
+    // Capturar o evento de mudança do campo de estado
+    $('#id_grupo_A-estado').change(function () {
+      var estado = $(this).val(); // Obter o valor do estado selecionado
+      console.log(estado)
+
+      // Enviar uma solicitação AJAX para buscar as cidades correspondentes
+      $.ajax({
+        url: "{% url 'buscar_cidades' %}",  // URL para a view Django que irá lidar com a solicitação
+        type: 'get',
+        data: {
+          'estado': estado // Enviar o estado selecionado como parâmetro
+        },
+        success: function (data) {
+          // Limpar as opções atuais do campo de cidade
+          $('#id_grupo_A-cidade').empty();
+
+          // Adicionar as novas opções do campo de cidade com base na resposta recebida
+          $.each(data.opcoes_cidades, function (index, cidade) {
+            $('#id_grupo_A-cidade').append($('<option></option>').val(cidade[0]).text(cidade[1]));
+          });
+        }
+      });
+    });
+  });
+
+  var selectElementB = document.getElementById("id_grupo_B-estado");
+  var estadoB = selectElementB.options[selectElementB.selectedIndex].value;
+  var filtroCidadeB = "{{ filtro_cidade_grupo_B }}";
+  console.log("------------filtroCidade B---------------");
+  console.log(filtroCidadeB);
+  console.log("------------estado  B---------------");
+  console.log(estadoB);
+
+  if (estadoB !== "todos") {
+    console.log(estadoB);
+    // Enviar uma solicitação AJAX para buscar as cidades correspondentes
+    $.ajax({
+      url: "{% url 'buscar_cidades' %}", // URL para a view Django que irá lidar com a solicitação
+      type: 'get',
+      data: {
+        'estado': estadoB // Enviar o estado selecionado como parâmetro
+      },
+      success: function (data) {
+        // Limpar as opções atuais do campo de cidade
+        $('#id_grupo_B-cidade').empty();
+        console.log(filtroCidadeB);
+
+        // Adicionar as novas opções do campo de cidade com base na resposta recebida
+        $.each(data.opcoes_cidades, function (index, cidade) {
+          $('#id_grupo_B-cidade').append($('<option></option>').val(cidade[0]).text(cidade[1]));
+        });
+
+        // Selecionar no select o campo com o valor da variável 'filtroCidadeB'
+        $('#id_grupo_B-cidade option[value="' + filtroCidadeB + '"]').prop('selected', true);
+      }
+    });
+  }
+
+
+  $(document).ready(function () {
+    // Capturar o evento de mudança do campo de estado
+    $('#id_grupo_B-estado').change(function () {
+      var estadoB = $(this).val(); // Obter o valor do estado selecionado
+      console.log(estadoB)
+
+      // Enviar uma solicitação AJAX para buscar as cidades correspondentes
+      $.ajax({
+        url: "{% url 'buscar_cidades' %}",  // URL para a view Django que irá lidar com a solicitação
+        type: 'get',
+        data: {
+          'estado': estadoB // Enviar o estado selecionado como parâmetro
+        },
+        success: function (data) {
+          // Limpar as opções atuais do campo de cidade
+          $('#id_grupo_B-cidade').empty();
+
+          // Adicionar as novas opções do campo de cidade com base na resposta recebida
+          $.each(data.opcoes_cidades, function (index, cidade) {
+            $('#id_grupo_B-cidade').append($('<option></option>').val(cidade[0]).text(cidade[1]));
+          });
+        }
+      });
+    });
+  });
+
   var cor_da_prova_2017 = document.getElementById("cor_da_prova_2017");
   var cor_da_prova_2018 = document.getElementById("cor_da_prova_2018");
   var cor_da_prova_2019 = document.getElementById("cor_da_prova_2019");
@@ -442,6 +566,9 @@ Acertos/Erros por Questões
   });
 
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src={% static "js/js_geral.js" %} data-filtro-cidade="{{ filtro_cidade }}"></script>
 
 <!-- /.container-fluid -->
 {% endblock %}

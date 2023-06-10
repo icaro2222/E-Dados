@@ -371,6 +371,7 @@ def formulario_4(request):
             menssagem = """Nenhum dos inscritos com essas características!"""
             context = {
                 'form' : form,
+            'filtro_cidade': filtro_cidade,
                 'form_filtro' : form_filtro,
                 'menssagem' : menssagem,
                 'quantidadeParcial' : CONTAGEM,
@@ -548,7 +549,8 @@ def formulario_4(request):
             anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_quadro}<hr class="mt-0">{anotacao_mensagem}</div>'
         
         context = {
-            'form' : form,         
+            'form' : form,  
+            'filtro_cidade': filtro_cidade,     
             'anotacao_mensagem' : anotacao_mensagem,
             'menssagem' : menssagem,
             'form_filtro' : form_filtro,
@@ -688,6 +690,7 @@ def formulario_4(request):
         menssagem1 = """Esta é uma tela web que permite realizar o somatório dos alunos que responderam ao ENEM. Esta tela também possui filtros que permitem reduzir o somatório para fins de análise dos microdados. O resultado desse somatório é obtido após a aplicação desses filtros."""
         context = {
             'form' : form,
+            'filtro_cidade': filtro_cidade,
             'menssagem' : menssagem,
             'menssagem1' : menssagem1,
             'form_filtro' : form_filtro

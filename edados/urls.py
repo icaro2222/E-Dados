@@ -23,7 +23,7 @@ from .view.fomulario_1 import view_formulario_1, view_formulario_1_4
 from .view.fomulario_2 import view_formulario_2
 from .view.fomulario_3 import view_formulario_3
 from .view.fomulario_4 import view_formulario_4
-from .view.tasks import criar_csv, verificar_csv
+from .view.tasks import criar_csv, verificar_csv, buscar_cidades
 
 urlpatterns = [
     path('', dashboard.dashboard, name="dashboard"),
@@ -36,6 +36,7 @@ urlpatterns = [
     path('Desempenho_no_exame/', view_formulario_2.formulario_2, name="Quest_Soc_Notas_Deficiencia"),
     path('Dados_Brutos/', view_formulario_1_4.formulario_4, name="formulario_1_4"),
     path('Perfil_do_Inscrito/', view_formulario_1.formulario_1, name="formulario_1"),
+    path('buscar_cidades/', buscar_cidades, name="buscar_cidades"),
     
     path('Acertos_por_Prova/', view_formulario_3.formulario_3, name="formulario_3"),
     path('Acertos_por_Questao/', view_formulario_3.formulario_2, name="formulario_3_2"),

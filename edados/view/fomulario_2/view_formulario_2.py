@@ -425,6 +425,7 @@ def formulario_2(request):
             menssagem1 = """Nenhum aluno com esse perfil:"""
             context = {
                 'form' : form,
+            'filtro_cidade': filtro_cidade,
                 'menssagem' : menssagem,
                 'menssagem1' : menssagem1,
                 'quantidadeParcial' : CONTAGEM,
@@ -655,6 +656,7 @@ def formulario_2(request):
         context = {
             'form' : form,
             'menssagem' : menssagem,
+            'filtro_cidade': filtro_cidade,
             'anotacao_mensagem' : anotacao_mensagem,
             'menssagem1' : menssagem1,
             'form_filtro' : form_filtro,

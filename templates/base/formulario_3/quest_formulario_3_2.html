@@ -52,7 +52,7 @@ Acertos/Erros por Questões
               title="O termo 'grupo B' neste contexto faz referência ao conjunto de filtros denominado 'GRUPO B', sendo possível associar a prova a um grupo específico de alunos.">
               <h5 class="mb-0">Grupos B <i class="fas fa-info-circle fa-sm"></i></h5>
             </div>
-  
+
             <hr class="mt-0 mb-3" />
             <div class="row">
               <div class="col-md-4">
@@ -91,7 +91,7 @@ Acertos/Erros por Questões
               title="O termo 'grupo A' neste contexto faz referência ao conjunto de filtros denominado 'GRUPO A', sendo possível associar a prova a um grupo específico de alunos.">
               <h5 class="mb-0">Grupos A <i class="fas fa-info-circle fa-sm"></i></h5>
             </div>
-  
+
             <hr class="mt-0 mb-3" />
             <div class="col-md-12">
               {% csrf_token %}
@@ -159,7 +159,7 @@ Acertos/Erros por Questões
               title="O termo 'grupo B' neste contexto faz referência ao conjunto de filtros denominado 'GRUPO B', sendo possível associar a prova a um grupo específico de alunos.">
               <h5 class="mb-0">Grupos B <i class="fas fa-info-circle fa-sm"></i></h5>
             </div>
-  
+
             <hr class="mt-0 mb-3" />
             <div class="row">
               <div class="col-md-4">
@@ -335,7 +335,131 @@ Acertos/Erros por Questões
   </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
+  var selectElement = document.getElementById("id_grupo_A-estado");
+  var selectElementid_grupo_B_estado = document.getElementById("id_grupo_B-estado");
+  var estado = selectElement.options[selectElement.selectedIndex].value;
+  // Acessar o valor do atributo 'data-filtro-cidade'
+
+  var selectfiltroCidade = document.getElementById("id_grupo_A-cidade");
+  var filtroCidade = selectfiltroCidade.value;
+  console.log(filtroCidade);
+  console.log(estado);
+
+  if (estado !== "todos") {
+    console.log(estado);
+    // Enviar uma solicitação AJAX para buscar as cidades correspondentes
+    $.ajax({
+      url: "{% url 'buscar_cidades' %}", // URL para a view Django que irá lidar com a solicitação
+      type: 'get',
+      data: {
+        'estado': estado // Enviar o estado selecionado como parâmetro
+      },
+      success: function (data) {
+        // Limpar as opções atuais do campo de cidade
+        $('#id_grupo_A-cidade').empty();
+        console.log(filtroCidade);
+
+        // Adicionar as novas opções do campo de cidade com base na resposta recebida
+        $.each(data.opcoes_cidades, function (index, cidade) {
+          $('#id_grupo_A-cidade').append($('<option></option>').val(cidade[0]).text(cidade[1]));
+        });
+
+        // Selecionar no select o campo com o valor da variável 'filtroCidade'
+        $('#id_grupo_A-cidade option[value="' + filtroCidade + '"]').prop('selected', true);
+      }
+    });
+  }
+
+
+  $(document).ready(function () {
+    // Capturar o evento de mudança do campo de estado
+    $('#id_grupo_A-estado').change(function () {
+      var estado = $(this).val(); // Obter o valor do estado selecionado
+      console.log(estado)
+
+      // Enviar uma solicitação AJAX para buscar as cidades correspondentes
+      $.ajax({
+        url: "{% url 'buscar_cidades' %}",  // URL para a view Django que irá lidar com a solicitação
+        type: 'get',
+        data: {
+          'estado': estado // Enviar o estado selecionado como parâmetro
+        },
+        success: function (data) {
+          // Limpar as opções atuais do campo de cidade
+          $('#id_grupo_A-cidade').empty();
+
+          // Adicionar as novas opções do campo de cidade com base na resposta recebida
+          $.each(data.opcoes_cidades, function (index, cidade) {
+            $('#id_grupo_A-cidade').append($('<option></option>').val(cidade[0]).text(cidade[1]));
+          });
+        }
+      });
+    });
+  });
+  var selectElementB = document.getElementById("id_grupo_B-estado");
+  var estadoB = selectElementB.options[selectElementB.selectedIndex].value;
+  // Acessar o valor do atributo 'data-filtro-cidade'
+
+  var selectfiltroCidade = document.getElementById("id_grupo_A-cidade");
+  var filtroCidade = selectfiltroCidade.value;
+  console.log(filtroCidade);
+  console.log(estadoB);
+
+  if (estadoB !== "todos") {
+    console.log(estadoB);
+    // Enviar uma solicitação AJAX para buscar as cidades correspondentes
+    $.ajax({
+      url: "{% url 'buscar_cidades' %}", // URL para a view Django que irá lidar com a solicitação
+      type: 'get',
+      data: {
+        'estado': estadoB // Enviar o estado selecionado como parâmetro
+      },
+      success: function (data) {
+        // Limpar as opções atuais do campo de cidade
+        $('#id_grupo_B-cidade').empty();
+        console.log(filtroCidade);
+
+        // Adicionar as novas opções do campo de cidade com base na resposta recebida
+        $.each(data.opcoes_cidades, function (index, cidade) {
+          $('#id_grupo_B-cidade').append($('<option></option>').val(cidade[0]).text(cidade[1]));
+        });
+
+        // Selecionar no select o campo com o valor da variável 'filtroCidade'
+        $('#id_grupo_B-cidade option[value="' + filtroCidade + '"]').prop('selected', true);
+      }
+    });
+  }
+
+
+  $(document).ready(function () {
+    // Capturar o evento de mudança do campo de estado
+    $('#id_grupo_B-estado').change(function () {
+      var estadoB = $(this).val(); // Obter o valor do estado selecionado
+      console.log(estadoB)
+
+      // Enviar uma solicitação AJAX para buscar as cidades correspondentes
+      $.ajax({
+        url: "{% url 'buscar_cidades' %}",  // URL para a view Django que irá lidar com a solicitação
+        type: 'get',
+        data: {
+          'estado': estadoB // Enviar o estado selecionado como parâmetro
+        },
+        success: function (data) {
+          // Limpar as opções atuais do campo de cidade
+          $('#id_grupo_B-cidade').empty();
+
+          // Adicionar as novas opções do campo de cidade com base na resposta recebida
+          $.each(data.opcoes_cidades, function (index, cidade) {
+            $('#id_grupo_B-cidade').append($('<option></option>').val(cidade[0]).text(cidade[1]));
+          });
+        }
+      });
+    });
+  });
+
   var cor_da_prova_2017 = document.getElementById("cor_da_prova_2017");
   var cor_da_prova_2018 = document.getElementById("cor_da_prova_2018");
   var cor_da_prova_2019 = document.getElementById("cor_da_prova_2019");
@@ -379,11 +503,11 @@ Acertos/Erros por Questões
         progressbar.style.width = width + '%';
       }
     }
-  };   
+  };
 
   document.getElementById("progressbar").style.animation = "none";
 
-  document.getElementById("preloader2").addEventListener("click", function() {
+  document.getElementById("preloader2").addEventListener("click", function () {
     document.getElementById("preloader").style.display = "block";
   });
 
