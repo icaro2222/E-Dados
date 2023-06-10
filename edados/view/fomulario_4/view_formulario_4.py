@@ -102,10 +102,12 @@ def formulario_4(request):
             filtro_escola=filtro_escola, 
             filtro_nacionalidade=filtro_nacionalidade)
         
+        CONTAGEM  = Microdado_Amostra['SG_UF_RESIDENCIA'].count()
+            
         if Microdado_Amostra.empty:            
             context = {
                 'form' : form,
-            'filtro_cidade': filtro_cidade,
+                'filtro_cidade': filtro_cidade,
                 'menssagem' : menssagem,
                 'relatorio_mapa' : "",
                 'form_filtro' : form_filtro,
@@ -125,8 +127,6 @@ def formulario_4(request):
             Dataframe = Dataframe.rename_axis('SG_UF_RESIDENCIA')
             Dataframe = Dataframe.reset_index() 
 
-        CONTAGEM  = Microdado_Amostra['SG_UF_RESIDENCIA'].count()
-            
         # Formulario de Filtro
         menssagem = ("Mapa de Distribuição de Alunos")
         menssagem_informativa = """A tela web em questão disponibiliza uma ferramenta de análise da densidade demográfica 
