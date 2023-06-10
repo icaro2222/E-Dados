@@ -3,7 +3,7 @@ from django import forms
 
 def questionario_ano_de_conclusao(Form):
 
-    choices_ano = (('vazio', 'TODOS'),
+    choices_ano = (('vazio', 'Todos'),
                 ('0', 'Não informado'),
                 ('1', '2018'),
                 ('2', '2017'),

@@ -62,6 +62,8 @@ def filtro(
         
     if(filtro_localizacao_da_escola == 'todos'):
         filtro_localizacao_da_escola = ''
+    elif(filtro_localizacao_da_escola == 'null'):
+        filtro_localizacao_da_escola =  ' AND "TP_LOCALIZACAO_ESC" IS NULL '
     else:
         filtro_localizacao_da_escola =  ' AND "TP_LOCALIZACAO_ESC" =' +"'" +filtro_localizacao_da_escola+"'"
 
@@ -225,6 +227,8 @@ def filtro_para_o_mapa(
         
     if(filtro_localizacao_da_escola == 'todos'):
         filtro_localizacao_da_escola = ''
+    elif(filtro_localizacao_da_escola == 'null'):
+        filtro_localizacao_da_escola =  ' AND "TP_LOCALIZACAO_ESC" IS NULL '
     else:
         filtro_localizacao_da_escola =  ' AND "TP_LOCALIZACAO_ESC" =' +"'" +filtro_localizacao_da_escola+"'"
 

@@ -3,7 +3,7 @@ from django import forms
 
 def questionario_estado_civil(Form):
 
-    choices_estado_civil = (('todos', 'TODOS'),
+    choices_estado_civil = (('todos', 'Todos'),
                     ('0', 'Não informado'),
                     ('1' ,'Solteiro(a)'),
                     ('2' ,'Casado(a)/Moram juntos'),

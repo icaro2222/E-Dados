@@ -4,7 +4,7 @@ from django import forms
 # DADOS DOS PEDIDOS DE ATENDIMENTO ESPECIALIZADO
 def questionario_de_escola(Form):
 
-    choices_escola = (('todos', 'TODOS'),
+    choices_escola = (('todos', 'Todas'),
         ('1', 'Não Respondeu'),
         ('2', 'Pública'),
         ('3', 'Privada'),

@@ -4,7 +4,7 @@ from django import forms
 # DADOS DOS PEDIDOS DE ATENDIMENTO ESPECIALIZADO
 def questionario_de_nacionalidade(Form):
 
-    choices_nacionalidade = (('todos', 'TODOS'),
+    choices_nacionalidade = (('todos', 'Todas'),
         ('0', 'Não informado'),
         ('1', 'Brasileiro(a)'),
         ('2', 'Brasileiro(a) Naturalizado(a)'),

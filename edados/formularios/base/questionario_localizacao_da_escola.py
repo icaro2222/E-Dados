@@ -3,7 +3,8 @@ from django import forms
 
 def questionario_localizacao(Form):
     
-    choices_localizacao = (('todos', 'Ambas'),
+    choices_localizacao = (('todos', 'Todas'),
+                           ('null', 'Não informou'),
                            ('1', 'Urbana'),
                            ('2', 'Rural'))
 

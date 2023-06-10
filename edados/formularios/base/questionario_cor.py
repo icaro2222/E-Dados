@@ -3,7 +3,7 @@ from django import forms
 
 def questionario_cor(Form):
 
-    choices_cor = (('todos', 'TODOS'),
+    choices_cor = (('todos', 'Todas'),
                     ('0', 'Não declarado'),
                     ('1' ,'Branca'),
                     ('2' ,'Preta'),

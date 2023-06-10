@@ -3,7 +3,7 @@ from django import forms
 
 def questionario_tipo_de_escola(Form):
 
-    choices_escola=(('vazio', 'TODOS'),
+    choices_escola=(('vazio', 'Todas'),
                     ('1', 'Federal'),
                     ('2', 'Estadual'),
                     ('3', 'Municipal'),
