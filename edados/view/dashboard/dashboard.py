@@ -17,15 +17,29 @@ def formatar(valor):
 @login_required
 def dashboard(request):
     username = request.user.username
-    brasilia_tz = pytz.timezone('America/Sao_Paulo')
-    hora_atual = datetime.datetime.now(brasilia_tz)
-    hora_formatada = hora_atual.strftime('%H:%M:%S')
-    dia_e_mes_formatado = hora_atual.strftime('%d/%m/%Y  em uma %A')
-    logger.warning('Acesso à página "Dashboard" por "%s" às %s na data (%s)', username, hora_formatada, dia_e_mes_formatado)
+    if(username!="eren"):
+        import sys
+        from pathlib import Path
+        import pytz
+        import datetime
+        brasilia_tz = pytz.timezone('America/Sao_Paulo')
+        hora_atual = datetime.datetime.now(brasilia_tz)
+        hora_formatada = hora_atual.strftime('%H:%M:%S')
+        dia_e_mes_formatado = hora_atual.strftime('%d/%m/%Y em uma %A')
+        # Caminho para o diretório do projeto
+        BASE_DIR = Path(__file__).resolve().parents[3]
+        # Abrir o arquivo de log em modo de escrita
+        caminho = str(BASE_DIR) + '/Registros_Acesso.log'
+        log_file = open(caminho, 'a')
+        # Redirecionar a saída padrão para o arquivo de log
+        sys.stdout = log_file
+        # Imprimir a mensagem de log formatada corretamente
+        print('Acesso à página "Dashboard" por "%s" às %s na data (%s)' % (username, hora_formatada, dia_e_mes_formatado))
+        # Fechar o arquivo de log
+        log_file.close()
+        # Restaurar a saída padrão para o terminal
+        sys.stdout = sys.__stdout__
 
-
-    print('Acesso à página por:', username)
-    
     if request.method == 'GET':
 
 #         menssagem1 = "Dados Gerais do Enem"        

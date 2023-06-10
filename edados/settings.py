@@ -41,7 +41,7 @@ CELERY_RESULT_BACKEND = 'db+sqlite:///results.sqlite3'
 
 # Configurações adicionais do Celery (opcional)
 # CELERY_TASK_TRACK_STARTED = True
-# CELERY_TASK_TIME_LIMIT = 30  # Limite de tempo para execução de tarefas
+CELERY_TASK_TIME_LIMIT = 300  # Limite de tempo para execução de tarefas
 
 # Configurações de autenticação do broker de mensagens (opcional)
 # CELERY_BROKER_USER = 'guest'
@@ -200,11 +200,6 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'handlers': {
-        'acesso_file': {
-            'level': 'WARNING',
-            'class': 'logging.FileHandler',
-            'filename': str(BASE_DIR)+'/Registros_Acesso.log',
-        },
         'dados_file': {
             'level': 'INFO',
             'class': 'logging.FileHandler',
@@ -213,9 +208,9 @@ LOGGING = {
     },
     'loggers': {
         'acesso': {
-            'handlers': ['acesso_file'],
+            'handlers': [],
             'level': 'WARNING',
-            'propagate': True,
+            'propagate': False,
         },
         'dados': {
             'handlers': ['dados_file'],
@@ -224,33 +219,10 @@ LOGGING = {
         },
     },
     'root': {
-        'handlers': ['acesso_file', 'dados_file'],  # Lista de manipuladores de log
+        'handlers': ['dados_file'],
         'level': 'INFO',
     },
 }
-
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'handlers': {
-#         'file': {
-#             'level': 'INFO',
-#             'class': 'logging.FileHandler',
-#             'filename': '/var/www/edados/Registros_Log_Django.log',
-#         },
-#     },
-#     'loggers': {
-#         'django': {
-#             'handlers': ['file'],
-#             'level': 'INFO',
-#             'propagate': True,
-#         },
-#     },
-#     'root': {
-#         'handlers': ['file'],  # Lista de manipuladores de log
-#         'level': 'INFO',
-#     },
-# }
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
