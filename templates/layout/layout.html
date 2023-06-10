@@ -29,6 +29,32 @@
             margin-bottom: 0rem;
             font-family: "IBM Plex Sans", sans-serif;
         }
+        .infor-item {
+    position: relative;
+}
+.infor-item .tooltip {
+    position: absolute;
+    top: 98%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18.2rem;
+    background-color: #f3f7fa;
+    color: #060c5f;
+    padding: 5px;
+    border-radius: 5px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border: 1px solid #000000;
+    border-color: #060c5f;
+}
+
+
+.infor-item:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
     </style>
 
     <style>
@@ -292,7 +318,9 @@
                                     <div class="col">
                                         <div id="svg-container">
                                             {{menssagem_segundo_planos}}
-                                            <a id="button_csv" title="Realizar o download do arquivo CSV mais recente gerado na plataforma." class="av-link collapse-item btn btn-custom  text-dark d-flex justify-content-center align-items-center"
+                                            <a id="button_csv" title="" 
+                                            onmouseover="showTooltip(this)" onmouseout="hideTooltip(this)"    
+                                            class="av-link infor-item collapse-item btn btn-custom  text-dark d-flex justify-content-center align-items-center"
                                                 href="">
                                                 <svg id="svg-hourglass1" style="display: none;"
                                                     xmlns="http://www.w3.org/2000/svg" width="16" 
@@ -333,7 +361,8 @@
                                                     <path
                                                         d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
                                                 </svg>
-                                                <span class="m-0 ml-2 d-none d-lg-inline text-dark small"> CSV</span>
+                                                <span class="m-0 ml-2 d-none d-lg-inline text-dark small"> CSV
+                                                    <span class="tooltip">Realizar o download do arquivo CSV mais recente gerado na plataforma.</span></span></span>
                                             </a>
                                         </div>
                                     </div>
@@ -341,8 +370,9 @@
                             </div>
                             <div class="row d-flex align-items-center">
                                 <li class="nav-item dropdown no-arrow ml-2 mr-3 text-center">
-                                    <a class="av-link collapse-item btn btn-custom d-flex justify-content-center align-items-center"
-                                        href="{% url 'dicionario' %}" title="Visualizar o PDF do dicionário de microdados do ENEM.">
+                                    <a class="av-link infor-item collapse-item btn btn-custom d-flex justify-content-center align-items-center"
+                                    onmouseover="showTooltip(this)" onmouseout="hideTooltip(this)"    
+                                    href="{% url 'dicionario' %}" title="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor"
                                             class="bi bi-info-circle mr-1 d-none d-lg-inline text-dark"
@@ -353,7 +383,8 @@
                                                 d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                                         </svg>
                                         <span
-                                            class="m-0 d-none d-lg-inline text-dark small">Dicionário<br>Microdados</span>
+                                            class="m-0 d-none d-lg-inline text-dark small">Dicionário<br>Microdados
+    <span class="tooltip">Visualizar o PDF do dicionário de microdados do ENEM.</span></span>
                                     </a>
                                 </li>
                             </div>
@@ -372,7 +403,7 @@
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
                                     {% if  request.user.is_superuser  %}
-                                    <a class="dropdown-item" title="Configurações" href={% url "cadastrar_usuario" %}>
+                                    <a class="dropdown-item infor-item" title="Configurações" href={% url "cadastrar_usuario" %}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                          fill="currentColor" class="bi bi-gear  mr-2 " viewBox="0 0 16 16">
                                             <path d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z"/>
@@ -451,6 +482,24 @@
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var tooltipTimer;
+    
+        function showTooltip(element) {
+            clearTimeout(tooltipTimer);
+            tooltipTimer = setTimeout(function() {
+                element.querySelector('.tooltip').style.visibility = 'visible';
+                element.querySelector('.tooltip').style.opacity = '1';
+            }, 300); // Atraso de 300ms (0.3s) antes da exibição
+        }
+    
+        function hideTooltip(element) {
+            clearTimeout(tooltipTimer);
+            element.querySelector('.tooltip').style.visibility = 'hidden';
+            element.querySelector('.tooltip').style.opacity = '0';
+        }
+    </script>
+    
 
     <script>
 
