@@ -120,8 +120,13 @@ def criar_csv(nome_usuario,
 def buscar_cidades(request):
     estado = request.GET.get('estado')
     
-    if("AC"==estado):
+    if("todos"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
+            ('todo', 'Selecione um "Estado" primeiro'),]
+    elif("AC"==estado):
+        opcoes_cidades = [
+            ('todos', 'Todos'),
             ('Acrelândia', 'Acrelândia'),
             ('Assis Brasil', 'Assis Brasil'),
             ('Brasiléia', 'Brasiléia'),
@@ -146,6 +151,7 @@ def buscar_cidades(request):
             ('Xapuri', 'Xapuri')]
     elif("AL"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Água Branca","Água Branca"),
         ("Anadia","Anadia"),
         ("Arapiraca","Arapiraca"),
@@ -250,6 +256,7 @@ def buscar_cidades(request):
         ("Viçosa","Viçosa"),]
     elif("AP"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Alvarães","Alvarães"),
         ("Amaturá","Amaturá"),
         ("Anamã","Anamã"),
@@ -314,6 +321,7 @@ def buscar_cidades(request):
         ("Urucurituba","Urucurituba")]
     elif("AM"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Amapá", "Amapá"),
         ("Calçoene", "Calçoene"),
         ("Cutias", "Cutias"),
@@ -332,6 +340,7 @@ def buscar_cidades(request):
         ("Vitória do Jari", "Vitória do Jari"  )]
     elif("BA"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Abaíra","Abaíra"),
         ("Abaré","Abaré"),
         ("Acajutiba","Acajutiba"),
@@ -751,6 +760,7 @@ def buscar_cidades(request):
         ("Xique-Xique","Xique-Xique")]
     elif("CE"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Abaiara","Abaiara"),
         ("Acarape","Acarape"),
         ("Acaraú","Acaraú"),
@@ -937,6 +947,7 @@ def buscar_cidades(request):
         ("Viçosa do Ceará", "Viçosa do Ceará")]
     elif("DF"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Águas Claras", "Águas Claras"),
         ("Arniqueira", "Arniqueira"),
         ("Brasília", "Brasília"),
@@ -975,6 +986,7 @@ def buscar_cidades(request):
         ("Vicente Pires", "Vicente Pires")]
     elif("ES"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Afonso Cláudio", "Afonso Cláudio"),
         ("Água Doce do Norte", "Água Doce do Norte"),
         ("Águia Branca", "Águia Branca"),
@@ -1055,6 +1067,7 @@ def buscar_cidades(request):
         ("Vitória", "Vitória")]
     elif("GO"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Abadia de Goiás", "Abadia de Goiás"),
         ("Abadiânia", "Abadiânia"),
         ("Acreúna", "Acreúna"),
@@ -1303,6 +1316,7 @@ def buscar_cidades(request):
         ("Vila Propício", "Vila Propício")]
     elif("MA"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Açailândia", "Açailândia"),
        ("Afonso Cunha",  "Afonso Cunha"),
        ("Água Doce do Maranhão",  "Água Doce do Maranhão"),
@@ -1522,6 +1536,7 @@ def buscar_cidades(request):
        ("Zé Doca",  "Zé Doca")]
     elif("MT"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Acorizal","Acorizal"),
        ("Água Boa", "Água Boa"),
        ("Alta Floresta", "Alta Floresta"),
@@ -1663,6 +1678,7 @@ def buscar_cidades(request):
        ("Vila Rica", "Vila Rica")]
     elif("MS"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Água Clara","Água Clara"),
        ("Alcinópolis", "Alcinópolis"),
        ("Amambaí", "Amambaí"),
@@ -1742,6 +1758,7 @@ def buscar_cidades(request):
        ("Vicentina", "Vicentina")]
     elif("MG"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Abadia dos Dourados","Abadia dos Dourados"),
        ("Abaeté", "Abaeté"),
        ("Abre Campo", "Abre Campo"),
@@ -2597,6 +2614,7 @@ def buscar_cidades(request):
        ("Wenceslau Braz", "Wenceslau Braz")]
     elif("PA"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Abaetetuba", "Abaetetuba"),
        ("Abel Figueiredo", "Abel Figueiredo"),
        ("Acará", "Acará"),
@@ -2742,6 +2760,7 @@ def buscar_cidades(request):
        ("Xinguara", "Xinguara")]
     elif("PB"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Água Branca", "Água Branca"),
        ("Aguiar", "Aguiar"),
        ("Alagoa Grande", "Alagoa Grande"),
@@ -2967,6 +2986,7 @@ def buscar_cidades(request):
        ("Zabelê", "Zabelê")]
     elif("PR"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ( "Abatiá", "Abatiá"),
        ("Adrianópolis", "Adrianópolis"),
        ("Agudos do Sul", "Agudos do Sul"),
@@ -3368,6 +3388,7 @@ def buscar_cidades(request):
        ("Xambrê", "Xambrê")]
     elif("PE"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Abreu e Lima","Abreu e Lima"),
        ("Afogados da Ingazeira", "Afogados da Ingazeira"),
        ("Afrânio", "Afrânio"),
@@ -3555,6 +3576,7 @@ def buscar_cidades(request):
        ("Xexéu", "Xexéu")]
     elif("PI"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Acauã", "Acauã"),
        ("Agricolândia", "Agricolândia"),
        ("Água Branca", "Água Branca"),
@@ -3779,6 +3801,7 @@ def buscar_cidades(request):
        ("Wall Ferraz", "Wall Ferraz")]
     elif("RJ"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Angra dos Reis", "Angra dos Reis"),
        ("Aperibé", "Aperibé"),
        ("Araruama", "Araruama"),
@@ -3873,6 +3896,7 @@ def buscar_cidades(request):
        ("Volta Redonda", "Volta Redonda")]
     elif("RN"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Acari", "Acari"),
        ("Açu", "Açu"),
        ("Afonso Bezerra", "Afonso Bezerra"),
@@ -4042,6 +4066,7 @@ def buscar_cidades(request):
        ("Vila Flor", "Vila Flor")]
     elif("RS"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Aceguá", "Aceguá"),
        ("Água Santa", "Água Santa"),
        ("Agudo", "Agudo"),
@@ -4540,6 +4565,7 @@ def buscar_cidades(request):
        ("Xangri-lá", "Xangri-lá")]
     elif("RO"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Alta Floresta d'Oeste", "Alta Floresta d'Oeste"),
        ("Alto Alegre do Parecis", "Alto Alegre do Parecis"),
        ("Alto Paraíso", "Alto Paraíso"),
@@ -4594,6 +4620,7 @@ def buscar_cidades(request):
        ("Vilhena", "Vilhena")]
     elif("RR"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Alto Alegre", "Alto Alegre"),
        ("Amajari", "Amajari"),
        ("Boa Vista", "Boa Vista"),
@@ -4611,6 +4638,7 @@ def buscar_cidades(request):
        ("Uiramutã", "Uiramutã")]
     elif("SC"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Abdon Batista", "Abdon Batista"),
        ("Abelardo Luz", "Abelardo Luz"),
        ("Agrolândia", "Agrolândia"),
@@ -4906,6 +4934,7 @@ def buscar_cidades(request):
        ("Zortéa", "Zortéa")]
     elif("SP"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Amparo de São Francisco", "Amparo de São Francisco"),
        ("Aquidabã", "Aquidabã"),
        ("Aracaju", "Aracaju"),
@@ -4983,6 +5012,7 @@ def buscar_cidades(request):
        ("Umbaúba", "Umbaúba")]
     elif("SE"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Adamantina", "Adamantina"),
        ("Adolfo", "Adolfo"),
        ("Aguaí", "Aguaí"),
@@ -5630,6 +5660,7 @@ def buscar_cidades(request):
        ("Zacarias", "Zacarias")]
     elif("TO"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Abreulândia", "Abreulândia"),
        ("Aguiarnópolis", "Aguiarnópolis"),
        ("Aliança do Tocantins", "Aliança do Tocantins"),
@@ -5782,6 +5813,7 @@ def buscar_cidades_post(request):
     
     if("AC"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
             ('Acrelândia', 'Acrelândia'),
             ('Assis Brasil', 'Assis Brasil'),
             ('Brasiléia', 'Brasiléia'),
@@ -5806,6 +5838,7 @@ def buscar_cidades_post(request):
             ('Xapuri', 'Xapuri')]
     elif("AL"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Água Branca","Água Branca"),
         ("Anadia","Anadia"),
         ("Arapiraca","Arapiraca"),
@@ -5910,6 +5943,7 @@ def buscar_cidades_post(request):
         ("Viçosa","Viçosa"),]
     elif("AP"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Alvarães","Alvarães"),
         ("Amaturá","Amaturá"),
         ("Anamã","Anamã"),
@@ -5974,6 +6008,7 @@ def buscar_cidades_post(request):
         ("Urucurituba","Urucurituba")]
     elif("AM"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Amapá", "Amapá"),
         ("Calçoene", "Calçoene"),
         ("Cutias", "Cutias"),
@@ -5992,6 +6027,7 @@ def buscar_cidades_post(request):
         ("Vitória do Jari", "Vitória do Jari"  )]
     elif("BA"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Abaíra","Abaíra"),
         ("Abaré","Abaré"),
         ("Acajutiba","Acajutiba"),
@@ -6411,6 +6447,7 @@ def buscar_cidades_post(request):
         ("Xique-Xique","Xique-Xique")]
     elif("CE"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Abaiara","Abaiara"),
         ("Acarape","Acarape"),
         ("Acaraú","Acaraú"),
@@ -6597,6 +6634,7 @@ def buscar_cidades_post(request):
         ("Viçosa do Ceará", "Viçosa do Ceará")]
     elif("DF"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Águas Claras", "Águas Claras"),
         ("Arniqueira", "Arniqueira"),
         ("Brasília", "Brasília"),
@@ -6635,6 +6673,7 @@ def buscar_cidades_post(request):
         ("Vicente Pires", "Vicente Pires")]
     elif("ES"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Afonso Cláudio", "Afonso Cláudio"),
         ("Água Doce do Norte", "Água Doce do Norte"),
         ("Águia Branca", "Águia Branca"),
@@ -6715,6 +6754,7 @@ def buscar_cidades_post(request):
         ("Vitória", "Vitória")]
     elif("GO"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
         ("Abadia de Goiás", "Abadia de Goiás"),
         ("Abadiânia", "Abadiânia"),
         ("Acreúna", "Acreúna"),
@@ -6963,6 +7003,7 @@ def buscar_cidades_post(request):
         ("Vila Propício", "Vila Propício")]
     elif("MA"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Açailândia", "Açailândia"),
        ("Afonso Cunha",  "Afonso Cunha"),
        ("Água Doce do Maranhão",  "Água Doce do Maranhão"),
@@ -7182,6 +7223,7 @@ def buscar_cidades_post(request):
        ("Zé Doca",  "Zé Doca")]
     elif("MT"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Acorizal","Acorizal"),
        ("Água Boa", "Água Boa"),
        ("Alta Floresta", "Alta Floresta"),
@@ -7323,6 +7365,7 @@ def buscar_cidades_post(request):
        ("Vila Rica", "Vila Rica")]
     elif("MS"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Água Clara","Água Clara"),
        ("Alcinópolis", "Alcinópolis"),
        ("Amambaí", "Amambaí"),
@@ -7402,6 +7445,7 @@ def buscar_cidades_post(request):
        ("Vicentina", "Vicentina")]
     elif("MG"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Abadia dos Dourados","Abadia dos Dourados"),
        ("Abaeté", "Abaeté"),
        ("Abre Campo", "Abre Campo"),
@@ -8257,6 +8301,7 @@ def buscar_cidades_post(request):
        ("Wenceslau Braz", "Wenceslau Braz")]
     elif("PA"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Abaetetuba", "Abaetetuba"),
        ("Abel Figueiredo", "Abel Figueiredo"),
        ("Acará", "Acará"),
@@ -8402,6 +8447,7 @@ def buscar_cidades_post(request):
        ("Xinguara", "Xinguara")]
     elif("PB"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Água Branca", "Água Branca"),
        ("Aguiar", "Aguiar"),
        ("Alagoa Grande", "Alagoa Grande"),
@@ -8627,6 +8673,7 @@ def buscar_cidades_post(request):
        ("Zabelê", "Zabelê")]
     elif("PR"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ( "Abatiá", "Abatiá"),
        ("Adrianópolis", "Adrianópolis"),
        ("Agudos do Sul", "Agudos do Sul"),
@@ -9028,6 +9075,7 @@ def buscar_cidades_post(request):
        ("Xambrê", "Xambrê")]
     elif("PE"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Abreu e Lima","Abreu e Lima"),
        ("Afogados da Ingazeira", "Afogados da Ingazeira"),
        ("Afrânio", "Afrânio"),
@@ -9215,6 +9263,7 @@ def buscar_cidades_post(request):
        ("Xexéu", "Xexéu")]
     elif("PI"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Acauã", "Acauã"),
        ("Agricolândia", "Agricolândia"),
        ("Água Branca", "Água Branca"),
@@ -9439,6 +9488,7 @@ def buscar_cidades_post(request):
        ("Wall Ferraz", "Wall Ferraz")]
     elif("RJ"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Angra dos Reis", "Angra dos Reis"),
        ("Aperibé", "Aperibé"),
        ("Araruama", "Araruama"),
@@ -9533,6 +9583,7 @@ def buscar_cidades_post(request):
        ("Volta Redonda", "Volta Redonda")]
     elif("RN"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Acari", "Acari"),
        ("Açu", "Açu"),
        ("Afonso Bezerra", "Afonso Bezerra"),
@@ -9702,6 +9753,7 @@ def buscar_cidades_post(request):
        ("Vila Flor", "Vila Flor")]
     elif("RS"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Aceguá", "Aceguá"),
        ("Água Santa", "Água Santa"),
        ("Agudo", "Agudo"),
@@ -10200,6 +10252,7 @@ def buscar_cidades_post(request):
        ("Xangri-lá", "Xangri-lá")]
     elif("RO"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Alta Floresta d'Oeste", "Alta Floresta d'Oeste"),
        ("Alto Alegre do Parecis", "Alto Alegre do Parecis"),
        ("Alto Paraíso", "Alto Paraíso"),
@@ -10254,6 +10307,7 @@ def buscar_cidades_post(request):
        ("Vilhena", "Vilhena")]
     elif("RR"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Alto Alegre", "Alto Alegre"),
        ("Amajari", "Amajari"),
        ("Boa Vista", "Boa Vista"),
@@ -10271,6 +10325,7 @@ def buscar_cidades_post(request):
        ("Uiramutã", "Uiramutã")]
     elif("SC"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Abdon Batista", "Abdon Batista"),
        ("Abelardo Luz", "Abelardo Luz"),
        ("Agrolândia", "Agrolândia"),
@@ -10566,6 +10621,7 @@ def buscar_cidades_post(request):
        ("Zortéa", "Zortéa")]
     elif("SP"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Amparo de São Francisco", "Amparo de São Francisco"),
        ("Aquidabã", "Aquidabã"),
        ("Aracaju", "Aracaju"),
@@ -10643,6 +10699,7 @@ def buscar_cidades_post(request):
        ("Umbaúba", "Umbaúba")]
     elif("SE"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Adamantina", "Adamantina"),
        ("Adolfo", "Adolfo"),
        ("Aguaí", "Aguaí"),
@@ -11290,6 +11347,7 @@ def buscar_cidades_post(request):
        ("Zacarias", "Zacarias")]
     elif("TO"==estado):
         opcoes_cidades = [
+            ('todos', 'Todos'),
        ("Abreulândia", "Abreulândia"),
        ("Aguiarnópolis", "Aguiarnópolis"),
        ("Aliança do Tocantins", "Aliança do Tocantins"),

@@ -2,6 +2,17 @@ from random import choices
 from django import forms
 from edados.formularios.base import questionario_cidade , questionario_adm_escola, questionario_ano_de_conclusao, questionario_amostra, questionario_recursos, questionario_localizacao_da_escola, questionario_estado, questionario_de_nacionalidade,questionario_sexo, questionario_de_escola, questionario_cor, questionario_estado_civil, questionario_de_deficiencia
 
+
+class CustomSelectWidget(forms.Select):
+    def create_option(self, name, value, label, selected, index, subindex=None, attrs=None):
+        option = super().create_option(name, value, label, selected, index, subindex=subindex, attrs=attrs)
+        
+        # Desabilitar a opção "Selecionar"
+        if value == 'todo':
+            option['attrs']['disabled'] = 'disabled'
+        
+        return option
+
 class CidadeField(forms.CharField):
     def validate(self, value):
         super().validate(value)
@@ -28,4 +39,4 @@ class Formulario_filtros(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['cidade'].widget = forms.Select(choices=[('todos', 'Todos')])
+        self.fields['cidade'].widget = CustomSelectWidget(choices=[('todos', 'Todos'),('todo', 'Selecionar o "Estado" primeiro')])

@@ -460,6 +460,60 @@ Acertos/Erros por Questões
     });
   });
 
+  $(document).ready(function () {
+    // Capturar o evento de mudança do campo de cidade
+    $('#id_grupo_A-cidade').change(function () {
+      var cidade = $(this).val(); // Obter o valor do cidade selecionado
+      console.log(cidade)
+      if (cidade == "todo")
+  
+        // Enviar uma solicitação AJAX para buscar as cidades correspondentes
+        $.ajax({
+          url: "{% url 'buscar_cidades' %}",  // URL para a view Django que irá lidar com a solicitação
+          type: 'get',
+          data: {
+            'estado': estado // Enviar o estado selecionado como parâmetro
+          },
+          success: function (data) {
+            // Limpar as opções atuais do campo de cidade
+            $('#id_grupo_A-cidade').empty();
+  
+            // Adicionar as novas opções do campo de cidade com base na resposta recebida
+            $.each(data.opcoes_cidades, function (index, cidade) {
+              $('#id_grupo_A-cidade').append($('<option></option>').val(cidade[0]).text(cidade[1]));
+            });
+          }
+        });
+    });
+  });
+
+  $(document).ready(function () {
+    // Capturar o evento de mudança do campo de cidade
+    $('#id_grupo_B-cidade').change(function () {
+      var cidade = $(this).val(); // Obter o valor do cidade selecionado
+      console.log(cidade)
+      if (cidade == "todo")
+  
+        // Enviar uma solicitação AJAX para buscar as cidades correspondentes
+        $.ajax({
+          url: "{% url 'buscar_cidades' %}",  // URL para a view Django que irá lidar com a solicitação
+          type: 'get',
+          data: {
+            'estado': estado // Enviar o estado selecionado como parâmetro
+          },
+          success: function (data) {
+            // Limpar as opções atuais do campo de cidade
+            $('#id_grupo_B-cidade').empty();
+  
+            // Adicionar as novas opções do campo de cidade com base na resposta recebida
+            $.each(data.opcoes_cidades, function (index, cidade) {
+              $('#id_grupo_B-cidade').append($('<option></option>').val(cidade[0]).text(cidade[1]));
+            });
+          }
+        });
+    });
+  });
+
   var cor_da_prova_2017 = document.getElementById("cor_da_prova_2017");
   var cor_da_prova_2018 = document.getElementById("cor_da_prova_2018");
   var cor_da_prova_2019 = document.getElementById("cor_da_prova_2019");
