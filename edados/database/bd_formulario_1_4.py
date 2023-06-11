@@ -3,6 +3,7 @@ from edados.database import conect_db
 from edados.database import bd_filtro
 
 def buscar_dataframe_no_banco(amostra="vazio", 
+                            filtro_task ="vazio",
                             filtro_cidade ="vazio",
                             filtro_questao = "vazio", 
                             filtro_recurso = "vazio", 
@@ -60,6 +61,10 @@ def buscar_dataframe_no_banco(amostra="vazio",
         
     query = (estrutura + filtro)
 
+    if(filtro_task=="filtro"):
+        print('RETORNANDO QUERY--------------------------------------')
+        return query
+    
     print(query)
     print('--------------------EXECUTANDO O CODIGO SQL-------------------')
     import datetime
@@ -68,6 +73,8 @@ def buscar_dataframe_no_banco(amostra="vazio",
     hora_atual = datetime.datetime.now(brasilia_tz)
     hora_formatada = hora_atual.strftime('%H:%M:%S')
     print(hora_formatada)
+    
+    
     df = pd.read_sql(query, engine)
     print('--------------------BUSCA CONCLUIDA---------------------------')
     hora_atual = datetime.datetime.now(brasilia_tz)

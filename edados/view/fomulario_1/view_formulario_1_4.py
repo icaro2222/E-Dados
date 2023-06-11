@@ -344,7 +344,22 @@ def formulario_4(request):
             classes="""table table-striped table-bordered table-sm
             text-dark"""
             )
-        
+            
+        from pathlib import Path
+        import os
+        # Caminho para o diretório do projeto
+        BASE_DIR = Path(__file__).resolve().parents[3]
+        # Caminho para a pasta onde deseja salvar o arquivo CSV
+        username = request.user.username
+        pasta_destino = str(BASE_DIR) + '/static/csv/' + str(username)+'/'
+
+        # Nome do arquivo CSV
+        nome_arquivo = 'microdados_enem_reduzido.csv'
+            
+        # Caminho completo do arquivo CSV
+        caminho_arquivo = os.path.join(pasta_destino, nome_arquivo)
+        Microdado_Amostra.to_csv(caminho_arquivo, index=False)
+    
         if filtro_questao == 'nenhum':
             Dataframe = Microdado_Amostra
             Dataframe = Dataframe.describe().T

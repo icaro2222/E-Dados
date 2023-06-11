@@ -58,8 +58,11 @@ def criar_csv(nome_usuario,
     session.commit()
         
     Amostra = '*'
-    Microdado_Amostra = bd_formulario_1_4.buscar_dataframe_no_banco(
+    filtro_task = "filtro"
+     
+    query = bd_formulario_1_4.buscar_dataframe_no_banco(
         Amostra,
+        filtro_task = filtro_task,
         filtro_sexo=filtro_sexo,
         filtro_cidade=filtro_cidade, 
         filtro_recurso=filtro_recurso,
@@ -75,25 +78,52 @@ def criar_csv(nome_usuario,
         filtro_estado_civil=filtro_estado_civil,
         filtro_escola=filtro_escola,
         filtro_nacionalidade=filtro_nacionalidade)
-
-    # Caminho para o diretório do projeto
+    
+    import csv
+    # # Caminho para o diretório do projeto
     BASE_DIR = Path(__file__).resolve().parents[2]
-    # Caminho para a pasta onde deseja salvar o arquivo CSV
+    # # Caminho para a pasta onde deseja salvar o arquivo CSV
     pasta_destino = str(BASE_DIR) + '/static/csv/' + str(nome_usuario)+'/'
 
-    # Nome do arquivo CSV
+    # # Nome do arquivo CSV
     nome_arquivo = 'microdados_enem.csv'
         
-    # Caminho completo do arquivo CSV
+    # # Caminho completo do arquivo CSV
     caminho_arquivo = os.path.join(pasta_destino, nome_arquivo)
-    Microdado_Amostra.to_csv(caminho_arquivo, index=False)
+    # Tamanho do bloco de registros a serem lidos de cada vez
+    tamanho_bloco = 10000
+
+    # Função para escrever os registros em um arquivo CSV
+    def escrever_csv(cursor, caminho_arquivo):
+        with open(caminho_arquivo, 'w', newline='') as arquivo_csv:
+            writer = csv.writer(arquivo_csv)
+            
+            # Escreve o cabeçalho no arquivo
+            writer.writerow(cursor.keys())
+
+            # Itera sobre os blocos de registros e escreve no arquivo
+            while True:
+                registros = cursor.fetchmany(tamanho_bloco)
+                    
+                # time.sleep(atraso)  # Atraso entre cada iteração
+                if not registros:
+                    break
+                writer.writerows(registros)
+
+
+    # Conexão com o banco de dados e execução da query
+    with engine.connect() as conn:
+        cursor = conn.execute(query)
+        # Chama a função para escrever os registros no arquivo CSV
+        escrever_csv(cursor, caminho_arquivo)
+    
+    
     comando_sql = """
         UPDATE "csv" SET "status"='finalizado' WHERE   "nome"= '"""+ nome_usuario +"';"
     
     session.execute(comando_sql)
     session.commit()
-    
-    # O arquivo CSV foi salvo com sucesso na pasta especificada    
+     
     # Obtém a URL correspondente à view 'dashboard' com os argumentos corretos
     url = reverse('dashboard')    
     # Redireciona o usuário para a URL obtida
