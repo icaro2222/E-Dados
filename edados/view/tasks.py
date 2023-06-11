@@ -91,10 +91,20 @@ def criar_csv(nome_usuario,
     # # Caminho completo do arquivo CSV
     caminho_arquivo = os.path.join(pasta_destino, nome_arquivo)
     # Tamanho do bloco de registros a serem lidos de cada vez
-    tamanho_bloco = 10000
+    tamanho_bloco = 1000
 
+    print(query)
+    print('--------------------EXECUTANDO O CODIGO SQL-------------------')
+    import datetime
+    import pytz
+    brasilia_tz = pytz.timezone('America/Sao_Paulo')
+    hora_atual = datetime.datetime.now(brasilia_tz)
+    hora_formatada = hora_atual.strftime('%H:%M:%S')
+    print(hora_formatada)
+    
     # Função para escrever os registros em um arquivo CSV
     def escrever_csv(cursor, caminho_arquivo):
+        contagem=0
         with open(caminho_arquivo, 'w', newline='') as arquivo_csv:
             writer = csv.writer(arquivo_csv)
             
@@ -103,6 +113,14 @@ def criar_csv(nome_usuario,
 
             # Itera sobre os blocos de registros e escreve no arquivo
             while True:
+                print('--------------------SALVANDO BLOCOS DE DADOS--------------------------')
+                hora_atual = datetime.datetime.now(brasilia_tz)
+                hora_formatada = hora_atual.strftime('%H:%M:%S')
+                print(hora_formatada)
+                print('--------------------------CONTAGEM-------------------------')
+                contagem = contagem+tamanho_bloco
+                print(contagem)
+                print('------------------CONVERTENDO PARA DATAFRAME-------------------------')
                 registros = cursor.fetchmany(tamanho_bloco)
                     
                 # time.sleep(atraso)  # Atraso entre cada iteração
@@ -114,10 +132,19 @@ def criar_csv(nome_usuario,
     # Conexão com o banco de dados e execução da query
     with engine.connect() as conn:
         cursor = conn.execute(query)
+        print('--------------------BUSCA CONCLUIDA---------------------------')
+        hora_atual = datetime.datetime.now(brasilia_tz)
+        hora_formatada = hora_atual.strftime('%H:%M:%S')
+        print(hora_formatada)
         # Chama a função para escrever os registros no arquivo CSV
         escrever_csv(cursor, caminho_arquivo)
     
     
+    print('------------------FINALIZANDO CONVERSÃO------------------------')
+    hora_atual = datetime.datetime.now(brasilia_tz)
+    hora_formatada = hora_atual.strftime('%H:%M:%S')
+    print(hora_formatada)
+    print('-----------------------------------------------------------------------')
     comando_sql = """
         UPDATE "csv" SET "status"='finalizado' WHERE   "nome"= '"""+ nome_usuario +"';"
     
