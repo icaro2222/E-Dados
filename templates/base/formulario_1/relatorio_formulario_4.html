@@ -163,7 +163,7 @@
         </button>
       </div> -->
       <div class="col-md-2 d-flex align-items-center justify-content-end">
-        <a id="button_csv_reduzido" href="" class="btn btn-outline-primary">
+        <a id="button_csv_reduzido" href="" class="btn btn-outline-primary" style="display: none;">
           Baixar dados como CSV
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-filetype-csv"
             viewBox="0 0 16 16">
@@ -230,7 +230,7 @@
   var timestamp_reduzido = new Date().getTime(); // Obtém o timestamp atual
   var downloadUrl_reduzido = staticRoot_reduzido + filePath_reduzido + "?timestamp=" + timestamp_reduzido;
   button_csv_reduzido.href = downloadUrl_reduzido;
-  console.log(downloadUrl_reduzido)
+  button_csv_reduzido.style.display = "block";
 
   var selectElement = document.getElementById("id_amostra"); 
   // Adicione um ouvinte de eventos para o evento "change" no campo "select"
