@@ -15,8 +15,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #f2f2f2;
+    height: 80vh;
+    width: 100%;
+    background-color: #f2f2f265;
     font-family: Arial, sans-serif;
     font-size: 24px;
   }
@@ -201,8 +202,25 @@
 
   <!-- Relatório em formato de tabelaa percentual -->
   <div class="row">
-    <div id="loading_grafico" class="loading_grafico">
-      <span>Carregando...</span>
+    <div class="col-md-12">
+      <div id="loading_grafico" class="loading_grafico">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="40" stroke="currentColor" stroke-width="2" fill="none" />
+          <circle cx="50" cy="10" r="6" fill="currentColor">
+            <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s"
+              repeatCount="indefinite" />
+          </circle>
+          <circle cx="10" cy="50" r="6" fill="currentColor">
+            <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s"
+              repeatCount="indefinite" begin="0.1s" />
+          </circle>
+          <circle cx="90" cy="50" r="6"fill="currentColor">
+            <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="1s"
+              repeatCount="indefinite" begin="0.2s" />
+          </circle>
+        </svg>
+        <span>Carregando...</span>
+      </div>
     </div>
     <div class="col-md-12">
       <hr class="mt-0 mb-3 bg-dark" />
@@ -264,7 +282,9 @@
   window.addEventListener("load", function () {
     // Função chamada quando a página termina de carregar
     var loading_grafico = document.getElementById("loading_grafico");
-    loading_grafico.style.display = "none";
+      loading_grafico.style.display = "none";
+     // setTimeout(function () {
+     // }, 300000); // Atraso de 3 segundos (3000 milissegundos)
   });
 </script>
 {% endblock %}
