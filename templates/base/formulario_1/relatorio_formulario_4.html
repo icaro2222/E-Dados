@@ -9,6 +9,19 @@
 {% endblock %}
 {% block conteudo %}
 
+<style>
+  /* Estilos para o efeito de carregamento */
+  .loading_grafico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+  }
+</style>
+
 <!-- Begin Page Content -->
 <div class="row text-dark">
 
@@ -194,6 +207,10 @@
     </div>
     <div class="col-md-12">
       <div class="col md-11">{{relatorio_em_grafico|safe}}</div>
+
+  <div id="loading_grafico" class="loading_grafico">
+    <span>Carregando...</span>
+  </div>
       <div class="col-md-12 d-flex aligh-items-center justify-content-center">
         <div class="col-md-12 d-flex justify-content-center">
           {{anotacao_mensagem|safe}}
@@ -244,5 +261,14 @@
     }
   });
 
+</script>
+<script>
+  window.addEventListener("load", function() {
+    // Função chamada quando a página termina de carregar
+    var loading_grafico = document.getElementById("loading_grafico");
+    loading_grafico.style.display = "none";
+    // setTimeout(function() {
+    // }, 3000); // Atraso de 3 segundos (3000 milissegundos)
+  });
 </script>
 {% endblock %}
