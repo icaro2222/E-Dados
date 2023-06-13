@@ -86,3 +86,49 @@
         transform: rotate(360deg);
     }
 }
+
+/* Criando tela de loading */
+
+
+  /* Estilos para o efeito de carregamento */
+  .loading_grafico {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    width: 100%;
+    background-color: #f2f2f265;
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+  }
+  
+    .loading_grafico_menssagem {
+      position: absolute;
+      top: 55%;
+      left: 52%;
+      transform: translate(-50%, -50%);
+    }
+  
+  .loading_grafico_svg:before {
+    content: "";
+    position: absolute;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid currentColor;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    top: 45%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    animation: spinloading_grafico 2s linear infinite;
+  }
+
+    @keyframes spinloading_grafico {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }

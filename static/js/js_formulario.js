@@ -19,12 +19,14 @@
       }
     }
   };
-  
-  
 
   document.getElementById("progressbar").style.animation = "none";
-   
-  
+
+  window.addEventListener("load", function () {
+    // Função chamada quando a página termina de carregar
+    var loading_grafico = document.getElementById("loading_grafico");
+      loading_grafico.style.display = "none";
+  });
 
   var selectElement = document.getElementById("id_amostra");
   var selectedOption = selectElement.options[selectElement.selectedIndex].value;
