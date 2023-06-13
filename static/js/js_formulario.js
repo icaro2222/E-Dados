@@ -30,10 +30,10 @@
       loading_grafico.style.display = "none";
   });
 
-  var selectElement = document.getElementById("id_amostra");
-  var selectedOption = selectElement.options[selectElement.selectedIndex].value;
+  var selectElement_id_amostra = document.getElementById("id_amostra");
+  var selectedOption_id_amostra = selectElement_id_amostra.options[selectElement_id_amostra.selectedIndex].value;
   
-  if (selectedOption == "todos_os_dados") {
+  if (selectedOption_id_amostra == "todos_os_dados") {
     document.getElementById("preloader2").addEventListener("click", function() {
       document.getElementById("preloader").style.display = "block";
     });
@@ -44,10 +44,10 @@
   }
   
   
-  selectElement.addEventListener("change", function() {
-    selectedOption = selectElement.options[selectElement.selectedIndex].value;
+  selectElement_id_amostra.addEventListener("change", function() {
+    selectedOption_id_amostra = selectElement_id_amostra.options[selectElement_id_amostra.selectedIndex].value;
   
-    if (selectedOption == "todos_os_dados") {
+    if (selectedOption_id_amostra == "todos_os_dados") {
       document.getElementById("preloader2").addEventListener("click", function() {
         document.getElementById("preloader_processando").style.display = "none";
         document.getElementById("preloader").style.display = "block";
@@ -58,16 +58,4 @@
         document.getElementById("preloader_processando").style.display = "block";
       });
     }    
-  });  
-  // var selectElement = document.getElementById("id_amostra");
-
-  // selectElement.onchange = function() {
-  //   var selectedOption = selectElement.options[selectElement.selectedIndex].value;
-  
-  //   if (selectedOption == "todos_os_dados") {
-  //     document.getElementById("preloader2").addEventListener("click", function() {
-  //       document.getElementById("preloader").style.display = "block";
-  //     });
-  //   }
-  // }
-  
+  });

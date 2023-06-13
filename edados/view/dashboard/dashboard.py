@@ -41,129 +41,29 @@ def dashboard(request):
         sys.stdout = sys.__stdout__
 
     if request.method == 'GET':
-
-#         menssagem1 = "Dados Gerais do Enem"        
-#         menssagem = """Esta plataforma online oferece uma solução para análise de microdados socioeconômicos do ENEM, referentes aos anos de 2017, 2018 e 2019. No entanto, algumas colunas importantes foram removidas pelo INEP, como os dados sobre alunos com deficiência, o que inviabilizou a análise sem essas informações específicas.
-# Para garantir dados consistentes, foram utilizados apenas os dados dos inscritos presentes em todas as provas, ou seja, aqueles com TP_PRESENCA_CN ==1, TP_PRESENCA_CH==1, TP_PRESENCA_LC == 1 e TP_PRESENCA_MT == 1. Dessa forma, alunos que não compareceram não interferem nos resultados.
-# A plataforma utiliza técnicas avançadas da ciência de dados para permitir uma análise precisa e detalhada dos dados, fornecendo insights valiosos para a tomada de decisões estratégicas em relação ao desempenho dos candidatos. Com uma interface intuitiva e funcionalidades de filtragem e visualização de dados, é uma ferramenta poderosa para pesquisadores, gestores educacionais e profissionais da área de educação que buscam aprimorar a compreensão dos fatores que influenciam o desempenho dos estudantes no ENEM."""
-
-
         menssagem1 = "Bem-vindo à E-DADOS!"
-        # menssagem = """Essa plataforma online oferece uma solução para a análise de microdados socioeconômicos do ENEM referentes aos anos de 2016, 2017, 2018 e 2019 de maneira eficiente e ágil. Utilizando técnicas avançadas da ciência de dados, a plataforma possibilita uma análise precisa e detalhada dos dados, com o objetivo de fornecer insights valiosos para a tomada de decisões estratégicas em relação ao desempenho dos candidatos nas provas. Com uma interface intuitiva e funcionalidades de filtragem e visualização de dados, a plataforma é uma ferramenta poderosa para pesquisadores, gestores educacionais e profissionais da área de educação interessados em aprimorar a compreensão dos fatores que influenciam o desempenho dos estudantes no ENEM."""
-        menssagem = """A plataforma (protótipo) especializada em análise dos microdados socioeconômicos do ENEM. Explore os dados, obtenha insights valiosos e tome decisões estratégicas com eficiência. Vamos começar!"""
+        
+        svg = ('''<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8 15C4.13401 15 1 11.866 1 8C1 4.13401 4.13401 1 8 1C11.866 1 15 4.13401 15 8C15 11.866 11.866 15 8 15ZM8 16C12.4183 16 16 12.4183 16 8C16 3.58172 12.4183 0 8 0C3.58172 0 0 3.58172 0 8C0 12.4183 3.58172 16 8 16Z"/>
+        <path d="M8.9307 6.58789L6.63969 6.875L6.55766 7.25586L7.00883 7.33789C7.3018 7.4082 7.36039 7.51367 7.29594 7.80664L6.55766 11.2754C6.3643 12.1719 6.66313 12.5938 7.36625 12.5938C7.91117 12.5938 8.54398 12.3418 8.83109 11.9961L8.91898 11.5801C8.71977 11.7559 8.4268 11.8262 8.23344 11.8262C7.95805 11.8262 7.85844 11.6328 7.92875 11.293L8.9307 6.58789Z"/>
+        <path d="M9 4.5C9 5.05228 8.55229 5.5 8 5.5C7.44772 5.5 7 5.05228 7 4.5C7 3.94772 7.44772 3.5 8 3.5C8.55229 3.5 9 3.94772 9 4.5Z"/>
+        </svg>''')
 
-        menssagem = menssagem.split('\n')
-        menssagem = format_html_join(
-            '\n', '<p class="font-weight-normal">{}</p>', ((line,) for line in menssagem))
-
-        # form = DashboardFormulario()
-
-        # fig = go.Figure(data=[go.Table(
-        #     header=dict(
-        #         values=['Ano', 'Quantidade de Inscritos']),
-        #     cells=dict(
-        #         values=[['2021', '2020', '2019', '2018', '2017', '2016',
-        #                  '2015', '2014', '2013', '2012', '2011', '2010'],
-        #                 [4004764, 5783357, 5095308, 5513662,
-        #                  6731186, 8627371, 7792025, 8722290,
-        #                  7173574, 5791332, 5380857, 4626094
-        #                  ]
-        #                 ]))
-        # ])
-
-        # figura = go.Figure()
-
-        # figura.add_bar(
-        #     x=['2010', '2011', '2012', '2013', '2014', '2015',
-        #        '2016', '2017', '2018', '2019', '2020', '2021'],
-        #     y=[4626094, 5380857,  5791332, 7173574,
-        #        8722290, 7792025,  8627371,	6731186,
-        #        5513662, 5095308, 5783357, 4004764
-        #        ],
-        #     name='Num de inscritos')
-
-        # figura.add_scatter(
-        #     x=['2010', '2011', '2012', '2013', '2014', '2015',
-        #        '2016', '2017', '2018', '2019', '2020', '2021'],
-        #     y=[4626094, 5380857,  5791332, 7173574,
-        #        8722290, 7792025,  8627371,	6731186,
-        #        5513662, 5095308, 5783357, 4004764
-        #        ],
-        #     name='Num de inscritos')
-
-        # figura.update_layout(
-        #     title_text='Quantidade de inscrições no Enem, por ano.',
-        #     width=500,
-        #     margin=dict(l=50, r=50, b=150, t=50),
-        #     xaxis=dict(
-        #         title="Ano",
-        #         title_standoff=10
-        #     ),
-        #     yaxis_title="Quantidade de Inscritos",
-        #     font=dict(
-        #         family="Arial",
-        #         size=12,
-        #         color="black"
-        #     ),
-        #     annotations=[
-        #         dict(
-        #             x=0,
-        #             y=-0.5,
-        #             xref="paper",
-        #             yref="paper",
-        #             text="Legenda: <br>Num de inscritos: esta legenda indica o número de alunos<br>que realizaram a inscrição no Enem no respectivo ano.",
-        #             showarrow=False,
-        #             align="left",
-        #             font=dict(
-        #                 family="Arial",
-        #                 size=13,
-        #                 color="black"
-        #             )
-        #         )
-        #     ],
-        #     plot_bgcolor='white'
-        # )
-
-        # fig.update_layout(
-        #     title_text='Quantidade de inscrições no Enem, por ano.',
-        #     width=500,
-        #     xaxis_title="Ano",
-        #     yaxis_title="Quantidade de Inscritos",
-        #     legend_title="Legenda",
-        #     margin=dict(l=50, r=50, b=150, t=50),
-        #     font=dict(
-        #         family="Arial",
-        #         size=12,
-        #         color="black"
-        #     ),
-        #     annotations=[
-        #         dict(
-        #             x=0,
-        #             y=-0.5,
-        #             xref="paper",
-        #             yref="paper",
-        #             text="Legenda: <br>Quantidade de Inscritos: esta legenda indica o número de alunos<br>que realizaram a inscrição no Enem no respectivo ano.",
-        #             showarrow=False,
-        #             align="left"
-        #             # ,
-        #             # font=dict(
-        #             #     family="Arial",
-        #             #     size=13,
-        #             #     color="dark"
-        #             # )
-        #         )
-        #     ]
-        # )
-
-        # relatorio_em_quadro = fig.to_html()
-        # relatorio = figura.to_html()
-
+        from django.utils.safestring import mark_safe
+        from django.template import Library
+        register = Library()
+        @register.filter(is_safe=True)
+        def svg_to_html(value):
+            return mark_safe(value)      
+        
+        menssagem = '''<p class="font-weight-normal">A E-Dados é um protótipo de painel especializado na análise dos microdados socioeconômicos do ENEM. Para melhor utilização, o menu lateral foi projetado de forma bastante intuitiva, apresentando para você os objetivos de cada tipo de consulta. Além disso, ao longo dos formulários, você encontrará informações indicadas pelo ícone '''+svg+''', que, ao posicionar o cursor sobre elas, exibirão detalhes, caso necessário.</p>
+        <p class="font-weight-normal">Explore os dados, obtenha insights valiosos e extraia informações com eficiência.</p>
+        <p class="font-weight-normal">Vamos começar!</p>'''
+        menssagem = svg_to_html(menssagem)
+        
         context = {
-            # 'form': form,
             'menssagem': menssagem,
             'menssagem1': menssagem1,
-            # 'relatorio': relatorio,
-            # 'relatorio_em_quadro': relatorio_em_quadro
         }
         return render(request, 'dashboard/dashboard.html', context=context)
     else:
