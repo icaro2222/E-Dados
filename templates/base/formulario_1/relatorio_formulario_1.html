@@ -148,6 +148,12 @@ Gráfico Socioeconômico
   <div class="row">
     <div class="col-md-12">
       <hr class="mt-0 mb-3 bg-dark" />
+      <div id="loading_grafico" class="loading_grafico">
+        <div class="loading_grafico_svg"></div>
+        <span class="loading_grafico_menssagem">Carregando...</span>
+      </div>
+    </div>
+    <div class="col-md-12">
       <div class="col-md-12">{{relatorio_em_quadro|safe}}</div>
     </div>
     <div class="col-md-12">
@@ -156,12 +162,6 @@ Gráfico Socioeconômico
         <div class="col-md-12 d-flex justify-content-center">
           {{anotacao_mensagem|safe}}
         </div>
-      </div>
-    </div>
-    <div class="col-md-12">
-      <div id="loading_grafico" class="loading_grafico">
-        <div class="loading_grafico_svg"></div>
-        <span class="loading_grafico_menssagem">Carregando...</span>
       </div>
     </div>
   </div>
