@@ -10,7 +10,7 @@ Densidade Demográfica
 {% block conteudo %}
 
 <style>
-  .text-dark.rounded.border.border-dark {
+  #loading_mapa_grafico {
     min-height: 800px;
 }
 
@@ -132,7 +132,7 @@ Densidade Demográfica
 </div>
 
 
-<div class="text-dark rounded border border-dark">
+<div id="loading_mapa_grafico" class="text-dark rounded border border-dark">
 
   <div class="col-md-12">
     <h5 class="mt-2 mb-0">{{ menssagem }}</h5>
@@ -155,7 +155,6 @@ Densidade Demográfica
         <div class="loading_grafico_svg col-md-12"></div>
         <span class="loading_grafico_menssagem">Carregando...</span>
       </div>
-      <div class="relatorio_mapa col-md-12">{{relatorio_mapa|safe}}</div>
     </div>
   </div>
   <hr class="mb-3" />
@@ -210,7 +209,7 @@ Densidade Demográfica
       loading_grafico.style.display = "none";
   });
 
-
+  document.getElementById("loading_mapa_grafico").style.minHeight = "0px";
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src={% static "js/js_geral.js" %} data-filtro-cidade="{{ filtro_cidade }}"></script>
