@@ -5,17 +5,9 @@
 Densidade Demográfica
 {% endblock %}
 {% block css %}
-<link rel="stylesheet" href={% static "css/styles_relatorio.css" %}>
+<link rel="stylesheet" href={% static "css/styles_relatorio_form_4_mapa.css" %}>
 {% endblock %}
 {% block conteudo %}
-
-<style>
-  @media print {
-    body {
-      zoom: 0.85;
-    }
-  }
-</style>
 
 <!-- Begin Page Content -->
 <div class="row text-dark">
@@ -157,9 +149,7 @@ Densidade Demográfica
         <div class="loading_grafico_svg"></div>
         <span class="loading_grafico_menssagem">Carregando...</span>
       </div>
-    </div>
-    <div class="relatorio_mapa col-md-12">
-      <div class="col md-11">{{relatorio_mapa|safe}}</div>
+      <div class="relatorio_mapa col md-11">{{relatorio_mapa|safe}}</div>
     </div>
   </div>
   <hr class="mb-3" />
@@ -211,9 +201,7 @@ Densidade Demográfica
   window.addEventListener("load", function () {
     // Função chamada quando a página termina de carregar
     var loading_grafico = document.getElementById("loading_grafico");
-    this.setTimeout(function () {
       loading_grafico.style.display = "none";
-    }, 3000);
   });
 
 

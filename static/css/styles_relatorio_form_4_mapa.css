@@ -1,0 +1,200 @@
+* {
+  margin: 0%;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+.relatorio {
+  max-height: max-content;
+  height: 1000px;
+  width: 100%;
+}
+
+h5 svg path {
+  color: #293c74;
+}
+
+@media print {
+  body {
+    zoom: 0.85;
+  }
+
+}
+
+#progressbar {
+  width: 10%;
+  background-color: #ccc;
+  animation: brilho 1s ease-in-out infinite;
+}
+
+@keyframes brilho {
+  0% {
+    border-color: rgba(255, 255, 255, 0.7);
+  }
+
+  10% {
+    border-color: rgb(147, 146, 146);
+  }
+}
+
+.loading {
+  position: fixed;
+  display: none;
+  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0.7);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loading:before {
+  content: "";
+  position: absolute;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  top: 45%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  animation: spin 2s linear infinite;
+}
+
+.loading_preloader {
+  position: absolute;
+  z-index: 9999;
+  margin: 0.5rem auto;
+  /* define a margem superior e inferior como 0.5rem e a margem esquerda e direita como automática */
+  font-weight: 400;
+  line-height: 1.2;
+  text-align: center;
+  top: 57%;
+  /* posiciona o elemento verticalmente no meio */
+  left: 50%;
+  /* posiciona o elemento horizontalmente no meio */
+  transform: translate(-50%, -50%);
+  /* move o elemento para a esquerda e para cima em 50% do seu tamanho para centralizá-lo completamente */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+@media print {
+  body {
+    zoom: 0.85;
+  }
+}
+/* Criando tela de loading */
+
+
+/* Estilos para o efeito de carregamento */
+.loading_grafico {
+  display: flex;
+  position: absolute;
+  z-index: 5;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  width: 100%;
+  background-color: #f2f2f265;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+}
+
+.loading_grafico_menssagem {
+  position: absolute;
+  top: 55%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  margin-top: 40px;
+  text-align: center;
+}
+
+.loading_grafico_svg:before {
+  content: "";
+  position: absolute;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid currentColor;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  top: 45%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  animation: spinloading_grafico 2s linear infinite;
+}
+
+@keyframes spinloading_grafico {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.relatorio_mapa {
+  position: relative;
+  min-height: 500px;
+  /* Ajuste de acordo com a altura desejada */
+}
+/* Estilos para o efeito de carregamento 
+.loading_grafico {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 100%;
+  background-color: #f2f2f265;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
+}
+
+.loading_grafico_menssagem {
+  position: absolute;
+  top: 55%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  margin-top: 40px;
+  text-align: center;
+}
+
+.loading_grafico_svg:before {
+  content: "";
+  position: absolute;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid currentColor;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  top: 45%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  animation: spinloading_grafico 2s linear infinite;
+}
+
+@keyframes spinloading_grafico {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.relatorio_mapa {
+  position: relative;
+  min-height: 500px;
+} */

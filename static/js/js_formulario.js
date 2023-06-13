@@ -19,6 +19,8 @@
       }
     }
   };
+  
+  
 
   document.getElementById("progressbar").style.animation = "none";
 
