@@ -37,18 +37,25 @@
     document.getElementById("preloader2").addEventListener("click", function() {
       document.getElementById("preloader").style.display = "block";
     });
+  }else {
+    document.getElementById("preloader2").addEventListener("click", function() {
+      document.getElementById("preloader_processando").style.display = "block";
+    });
   }
+  
   
   selectElement.addEventListener("change", function() {
     selectedOption = selectElement.options[selectElement.selectedIndex].value;
   
     if (selectedOption == "todos_os_dados") {
       document.getElementById("preloader2").addEventListener("click", function() {
+        document.getElementById("preloader_processando").style.display = "none";
         document.getElementById("preloader").style.display = "block";
       });
     }else{
       document.getElementById("preloader2").addEventListener("click", function() {
         document.getElementById("preloader").style.display = "none";
+        document.getElementById("preloader_processando").style.display = "block";
       });
     }    
   });  
