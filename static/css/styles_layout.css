@@ -18,4 +18,5 @@ abbr {
 
 #wrapper #content-wrapper {
     background-color: #f9fbfc;
+    overflow: hidden;
 }
