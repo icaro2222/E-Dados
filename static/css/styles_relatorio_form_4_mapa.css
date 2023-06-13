@@ -103,7 +103,8 @@ h5 svg path {
   z-index: 5;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  top: 65px;
+  height: 645px;
   width: 100%;
   background-color: #f2f2f265;
   font-family: Arial, sans-serif;
@@ -143,11 +144,6 @@ h5 svg path {
   }
 }
 
-.relatorio_mapa {
-  position: relative;
-  min-height: 500px;
-  /* Ajuste de acordo com a altura desejada */
-}
 /* Estilos para o efeito de carregamento 
 .loading_grafico {
   display: flex;
