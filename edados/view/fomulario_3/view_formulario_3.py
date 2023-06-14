@@ -1052,7 +1052,8 @@ def formulario_2(request):
         porcentagem de quantos alunos acertaram ou erraram a questão especificada pelo 
         "Q". Dessa forma, é possível identificar em qual questão da prova deve-se 
         fazer uma análise para entender o motivo de a questão ter uma maior porcentagem 
-        de alunos que erraram."""
+        de alunos que erraram.<br>
+        É importante que prestem atenção aos detalhes da prova, como o ano e o dia em que a prova foi aplicada. No ENEM (Exame Nacional do Ensino Médio), uma das provas é selecionada como referência para a aplicação das provas adaptadas para pessoas com deficiência. Portanto, ao analisar os alunos que utilizaram recursos para deficientes, é fundamental escolher a prova correta. Por exemplo, no primeiro dia do ENEM de 2019, a prova amarela foi utilizada como referência para essa finalidade."""
         
         # Cria a mensagem de anotação
         informativo = '<h5 class="mb-0">Informativo:</h5>'
@@ -1287,7 +1288,8 @@ def formulario_3(request):
         porcentagem de quantos alunos acertaram ou erraram a questão especificada pelo 
         "Q". Dessa forma, é possível identificar em qual questão da prova deve-se 
         fazer uma análise para entender o motivo de a questão ter uma maior porcentagem 
-        de alunos que erraram."""
+        de alunos que erraram.<br>
+        É importante que prestem atenção aos detalhes da prova, como o ano e o dia em que a prova foi aplicada. No ENEM (Exame Nacional do Ensino Médio), uma das provas é selecionada como referência para a aplicação das provas adaptadas para pessoas com deficiência. Portanto, ao analisar os alunos que utilizaram recursos para deficientes, é fundamental escolher a prova correta. Por exemplo, no primeiro dia do ENEM de 2019, a prova amarela foi utilizada como referência para essa finalidade."""
         
         # Cria a mensagem de anotação
         informativo = '<h5 class="mb-0">Informativo:</h5>'
