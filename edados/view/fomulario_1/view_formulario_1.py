@@ -354,7 +354,6 @@ def formulario_1(request):
             if (filtro_sexo == 'todos'):
                 vetor = demografico_sexo(
                     Microdado_Amostra, demografico, questao)
-                relatorio=""
                 relatorio_em_grafico  = vetor[2]
                 relatorio_em_quadro  = vetor[1]
             else:
@@ -401,22 +400,67 @@ def formulario_1(request):
         
         if(questao=="nenhum"):
             anotacao_quadro   = anotacao_mensagem[0]
-            anotacao_mensagem = "Gráfico de Pizza: é uma forma visual eficaz de representar a distribuição de dados categorizados em formato de porcentagem. Ele mostra a proporção de diferentes categorias em um conjunto de dados. Ao calcular as porcentagens para cada categoria (masculino e feminino) em relação ao total, é possível observar facilmente a distribuição das respostas por gênero em relação aos filtros selecionados. As fatias do gráfico representam as porcentagens das respostas masculinas e femininas, proporcionando uma compreensão visual rápida e clara da distribuição."
-            anotacao_mensagem = anotacao_mensagem.split('\n')
-            anotacao_mensagem = format_html_join(
-                '\n', '<div class="col-md-12 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_mensagem))
-            # Cria a mensagem de anotação
-            informativo = '<h5 class="mb-0">Informativo:</h5>'
-
-            anotacao_quadro = anotacao_quadro.split('\n')
-            anotacao_quadro = format_html_join(
-                '\n', '<div class="col-md-11 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_quadro))
+            anotacao_quadro   = 'teste'
+            if(demografico=="TP_SEXO"):
+                anotacao_quadro   = anotacao_mensagem[0]
+                anotacao_mensagem = "Gráfico de Pizza: é uma forma visual eficaz de representar a distribuição de dados categorizados em formato de porcentagem. Ele mostra a proporção de diferentes categorias em um conjunto de dados. Ao calcular as porcentagens para cada categoria (masculino e feminino) em relação ao total, é possível observar facilmente a distribuição das respostas por gênero em relação aos filtros selecionados. As fatias do gráfico representam as porcentagens das respostas masculinas e femininas, proporcionando uma compreensão visual rápida e clara da distribuição."
             
-            # Formata a mensagem em HTML
-            anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_quadro}<hr class="mt-0">{anotacao_mensagem}</div>'
-            # anotacao_mensagem="teste"
+                anotacao_mensagem = anotacao_mensagem.split('\n')
+                anotacao_mensagem = format_html_join(
+                    '\n', '<div class="col-md-12 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_mensagem))
+                # Cria a mensagem de anotação
+                informativo = '<h5 class="mb-0">Informativo:</h5>'
+
+                anotacao_quadro = anotacao_quadro.split('\n')
+                anotacao_quadro = format_html_join(
+                    '\n', '<div class="col-md-11 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_quadro))
+                
+                # Formata a mensagem em HTML
+                anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_quadro}<hr class="mt-0">{anotacao_mensagem}</div>'
+                # anotacao_mensagem="teste"
+            
+            elif(demografico=="TP_ESTADO_CIVIL"):
+                anotacao_mensagem = "Gráfico de Pizza: é uma forma visual eficaz de representar a distribuição de dados categorizados em formato de porcentagem. Ele mostra a proporção de diferentes categorias em um conjunto de dados. Ao calcular as porcentagens para cada categoria (não informou, solteir@, casad@, divociad@ e viúv@) em relação ao total, é possível observar facilmente a distribuição das respostas por estado civil em relação aos filtros selecionados. As fatias do gráfico representam as porcentagens das respostas de cada estado civil, proporcionando uma compreensão visual rápida e clara da distribuição."
+            
+                anotacao_mensagem = anotacao_mensagem.split('\n')
+                anotacao_mensagem = format_html_join(
+                    '\n', '<div class="col-md-12 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_mensagem))
+                # Cria a mensagem de anotação
+                informativo = '<h5 class="mb-0">Informativo:</h5>'
+
+                anotacao_quadro = anotacao_quadro.split('\n')
+                anotacao_quadro = format_html_join(
+                    '\n', '<div class="col-md-11 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_quadro))
+                
+                # Formata a mensagem em HTML
+                anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_mensagem}</div>'
+                # anotacao_mensagem="teste"
+            
+            else:
+                anotacao_mensagem = "Gráfico: representar a distribuição de dados categorizados em formato de porcentagem. Ele mostra a proporção de diferentes categorias em um conjunto de dados. Ao calcular as porcentagens para cada categoria em relação ao total, é possível observar facilmente a distribuição das respostas em relação aos filtros selecionados, proporcionando uma compreensão visual rápida e clara da distribuição."
+                
+                anotacao_mensagem = anotacao_mensagem.split('\n')
+                anotacao_mensagem = format_html_join(
+                    '\n', '<div class="col-md-12 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_mensagem))
+                # Cria a mensagem de anotação
+                informativo = '<h5 class="mb-0">Informativo:</h5>'
+
+                anotacao_quadro = anotacao_quadro.split('\n')
+                anotacao_quadro = format_html_join(
+                    '\n', '<div class="col-md-11 mt-2"><h6 class="font-weight-normal mb-0">{}</h6></div>', ((line,) for line in anotacao_quadro))
+                
+                # Formata a mensagem em HTML
+                anotacao_mensagem = f'<div class="col-md-11 border"><div class="col-md-11 mt-2">{informativo}</div><hr class="mt-0">{anotacao_mensagem}</div>'
+                # anotacao_mensagem="teste"
+            
         else:
-            anotacao_quadro = anotacao_mensagem[0]
+            
+            if(demografico=="TP_SEXO"):
+                anotacao_quadro   = anotacao_mensagem[0]
+            else:
+                anotacao_quadro = "Gráfico: representar a distribuição de dados categorizados em formato de porcentagem. Ele mostra a proporção de diferentes categorias em um conjunto de dados. Ao calcular as porcentagens para cada categoria em relação ao total, é possível observar facilmente a distribuição das respostas em relação aos filtros selecionados, proporcionando uma compreensão visual rápida e clara da distribuição."
+                
+                
             anotacao_mensagem = anotacao_mensagem[1]
             anotacao_mensagem = anotacao_mensagem.split('\n')
             anotacao_mensagem = format_html_join(
@@ -451,6 +495,10 @@ def formulario_1(request):
     return render(request, 'base/formulario_1/relatorio_formulario_1.html', context=context)
 
 def demografico_sexo(Microdado_Amostra, demografico, questao):
+    
+    relatorio_em_grafico = ""
+    figura_tabela = ""
+    relatorio = ""
     
     if questao!="nenhum":
         DataFrame = Microdado_Amostra.sort_values(by=[questao])
@@ -566,13 +614,10 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             )
         )
         
-        relatorio_em_grafico = relatorio_em_grafico.to_html()
+        relatorio = relatorio_em_grafico.to_html()
         figura_tabela = figura_tabela.to_html()
-        relatorio = fig.to_html()
+        relatorio_em_grafico = fig.to_html()
     else:
-        relatorio_em_grafico = ""
-        figura_tabela = ""
-        relatorio = ""
         Microdado_Amostra = Microdado_Amostra.groupby([demografico])
         Microdado_Amostra = Microdado_Amostra[demografico].count()
         
@@ -582,7 +627,6 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             Microdado_Amostra.M =0
         if("F" not in Microdado_Amostra.index):
             Microdado_Amostra.F =0
-            
         
         figura_tabela = go.Figure(data=[
             go.Table(
@@ -622,7 +666,6 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
             )
         )
         
-        
         # Dados do gráfico
         labels = Microdado_Amostra.index
         values_feminino = Microdado_Amostra.F
@@ -639,6 +682,9 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
         labels = ['Feminino', 'Masculino']
         values = [Microdado_Amostra.F, Microdado_Amostra.M]
 
+        print("=========================================================================")
+        print(values)
+        
         # Definindo as cores das fatias
         colors = ['#FFA0CA', '#6995ED']
 
@@ -647,7 +693,8 @@ def demografico_sexo(Microdado_Amostra, demografico, questao):
 
         figura_tabela = figura_tabela.to_html()
         relatorio_em_grafico = relatorio_em_grafico.to_html()
-    return [relatorio_em_grafico, figura_tabela, relatorio]
+        
+    return [relatorio, figura_tabela, relatorio_em_grafico]
 
 def demografico_sexo_unilateral(Microdado_Amostra, demografico, questao, filtro_sexo):
 
