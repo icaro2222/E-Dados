@@ -39,8 +39,8 @@ O E-Dados (Enem Dados) é uma plataforma de análise de dados do ENEM que realiz
 
 Sobre a Plataforma:
 - Desenvolvedor: Ícaro Dias (e-mail: icarodias2222@gmail.com)
-- Orientador: Prof. Dr. Woquiton Lima Fernandes (e-mail: woquiton@gmail.com)
-- Coorientadora: Prof. Dra. Daniele Trindade (e-mail: daniele.trindade@ifbaiano.edu.br)
+- Orientador: Prof. Dr. Woquiton Lima Fernandes
+- Coorientadora: Prof. Dra. Daniele Trindade
 - Instituição: Instituto Federal Baiano, campus Guanambi
 
 Informações Adicionais:
