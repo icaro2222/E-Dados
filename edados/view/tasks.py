@@ -4972,7 +4972,7 @@ def buscar_cidades(request):
        ("Xavantina", "Xavantina"),
        ("Xaxim", "Xaxim"),
        ("Zortéa", "Zortéa")]
-    elif("SP"==estado):
+    elif("SE"==estado):
         opcoes_cidades = [
             ('todos', 'Todos'),
        ("Amparo de São Francisco", "Amparo de São Francisco"),
@@ -5050,7 +5050,7 @@ def buscar_cidades(request):
        ("Tobias Barreto", "Tobias Barreto"),
        ("Tomar do Geru", "Tomar do Geru"),
        ("Umbaúba", "Umbaúba")]
-    elif("SE"==estado):
+    elif("SP"==estado):
         opcoes_cidades = [
             ('todos', 'Todos'),
        ("Adamantina", "Adamantina"),
